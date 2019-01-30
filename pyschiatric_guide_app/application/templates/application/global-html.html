@@ -40,18 +40,22 @@
         crossorigin="anonymous"></script>
 </body>
 <footer>
-    <div class="container">
+    <center>
+    <div class="container mx-auto">
         {% block footer %} <!-- Anything in this block can be overridden -->
-        <div class="col-lg-1">
-            <a href="" style="color: #A9A9A9">Documentation</a>
-        </div>
-        <div class="col-lg-2">
-            <a href="../admin" style="color: #A9A9A9">Admin Login</a>
-        </div>
-        <div class="col-lg-1">
-            <a href="../admin/auth/user/add/" style="color: #A9A9A9">Add User</a>
-        </div>
+            <div class="row">
+                <div class="col-md">
+                    <a href="" style="color: #A9A9A9">Documentation</a>
+                </div>
+                <div class="col-md">
+                    <a href="../admin" style="color: #A9A9A9">Admin Login</a>
+                </div>
+                <div class="col-md">
+                    <a href="../admin/auth/user/add/" style="color: #A9A9A9">Add User</a>
+                </div>
+            </div>
         {% endblock%}
     </div>
+    </center>
 </footer>
 </html>
