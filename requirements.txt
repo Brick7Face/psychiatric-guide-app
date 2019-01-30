@@ -1,5 +1,2 @@
-Django==2.1.5
-# Depending on os, on linux:
-pip install django-crispy-forms
-# on windows
-pip install git+git://github.com/maraujop/django-crispy-forms.git@dev#egg=django-crispy-forms
+Django==1.11.18
+Django-crispy-forms>=1.7.2
