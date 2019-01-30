@@ -1,8 +1,8 @@
 {% extends "application/global-html.html" %}
 {% block body %}
-
+<form method="post">
     {% csrf_token %}
-    {{ form }}
+    {{ form.as_p }}
     <button class="btn" type="submit">Login</button>
-
+</form>
 {% endblock body %}
