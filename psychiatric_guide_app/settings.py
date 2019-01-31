@@ -24,7 +24,11 @@ SECRET_KEY = 'f#0fumh+-2a^2yb%ywzvj(@k9!yj+_cz7#p15rwy^(-r(s^rg3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# SECURITY WARNING: App Engine's security features ensure that it is safe to
+# have ALLOWED_HOSTS = ['*'] when the app is deployed. If you deploy a Django
+# app not on App Engine, make sure to set an appropriate host here.
+# See https://docs.djangoproject.com/en/2.1/ref/settings/
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -114,5 +118,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'static'
 LOGIN_REDIRECT_URL = '/'  # Sets redirect after login
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
