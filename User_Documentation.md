@@ -1,4 +1,4 @@
-# Psychiatric Prescribers Guide: User Support 
+# Psychiatric Prescribing Guide: User Support 
 ---
 [Developer Documentation](https://github.com/Brick7Face/psychiatric-guide-app/blob/development/README.md) can be found by clicking on the link.
 # 1. Web Application Overview 
