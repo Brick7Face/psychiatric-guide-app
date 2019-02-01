@@ -1,6 +1,6 @@
 
 # Psychiatric Prescribing Guide: Developer Support
-Webapp to automate the Prescribing Pocket Guide 2012 process
+Webapp to automate the Prescribing Pocket Guide 2012 process. If you are looking for User Documentation, go here: https://github.com/Brick7Face/psychiatric-guide-app/blob/development/User_Documentation.md
 ## 1. Obtain the source code
 
 ---
