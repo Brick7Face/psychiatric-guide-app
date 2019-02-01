@@ -17,19 +17,15 @@ The web application designed to accomplish this task will help simplify and orga
 ## 1.2 Before Getting Started
 
 
-*   Only certified psychiatric prescribers are permitted to create an account to view and track patient information.  
-*   Anyone can view the information provided in the general Prescribing Pocket Guide on our website.
+Only certified psychiatric prescribers are permitted to create an account to view and track patient information.  Anyone can view the information provided in the general Prescribing Pocket Guide on our website.
 
-This pocket guide is intended for the use of licensed medical care providers only. Patients and/or individuals who are not licensed medical care providers who come into possession of this guide should confirm any information obtained from or through this guide with other sources, and review all information regarding any medical condition or treatment with a physician.
+> This pocket guide is intended for the use of licensed medical care providers only. Patients and/or individuals who are not licensed medical care providers who come into possession of this guide should confirm any information obtained from or through this guide with other sources, and review all information regarding any medical condition or treatment with a physician.
 
+> Although every effort has been made to ensure that drug doses and other information are presented accurately in this guide, the ultimate responsibility rests with the prescribing physician. Neither the publisher, the sponsor, nor the authors can be held responsible for errors or for any consequences arising from the use of information contained herein. Readers are strongly urged to consult any relevant primary literature. No claims or endorsements are made for any drug or compound currently under clinical investigation.  
 
-Although every effort has been made to ensure that drug doses and other information are presented accurately in this guide, the ultimate responsibility rests with the prescribing physician. Neither the publisher, the sponsor, nor the authors can be held responsible for errors or for any consequences arising from the use of information contained herein. Readers are strongly urged to consult any relevant primary literature. No claims or endorsements are made for any drug or compound currently under clinical investigation.  
+> The information provided herein is not intended or implied to be a substitute for professional medical advice, diagnosis or treatment. All content, including text, graphics, images and information contained on or available through this guide is for general information purposes only.  You are encouraged to confirm any information obtained from or through this guide with other sources and review all information regarding any medical condition or treatment as you deem is appropriate in your medical judgment. The publisher does not advise or recommend to its reader's treatment or action with regard to matters relating to a patient's health or well-being other than to suggest that readers consult appropriate health-care materials in such matters. No action should be taken based solely on the content of this guide. 
 
-
-The information provided herein is not intended or implied to be a substitute for professional medical advice, diagnosis or treatment. All content, including text, graphics, images and information contained on or available through this guide is for general information purposes only.  You are encouraged to confirm any information obtained from or through this guide with other sources and review all information regarding any medical condition or treatment as you deem is appropriate in your medical judgment. The publisher does not advise or recommend to its reader's treatment or action with regard to matters relating to a patient's health or well-being other than to suggest that readers consult appropriate health-care materials in such matters. No action should be taken based solely on the content of this guide. 
-
-
-NEVER DISREGARD YOUR (OR ANOTHER'S) PROFESSIONAL MEDICAL OPINION OR TRAINING BECAUSE OF SOMETHING YOU HAVE READ IN THIS POCKET GUIDE.
+> NEVER DISREGARD YOUR (OR ANOTHER'S) PROFESSIONAL MEDICAL OPINION OR TRAINING BECAUSE OF SOMETHING YOU HAVE READ IN THIS POCKET GUIDE."
 
 *   _Prescribing Pocket Guide 2012_ - Carla Cobb, Pharm.D., BCPP; Leanna Donner, Pharm.D.; D'Anne Holley, RPh
 
