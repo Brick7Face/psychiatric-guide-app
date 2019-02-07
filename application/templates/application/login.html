@@ -1,0 +1,11 @@
+{% extends "application/global-html.html" %}
+{% load crispy_forms_tags %}
+{% block body %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <center>
+            <button class="btn btn-primary mt-4 btn-block" type="submit">Login</button>
+        </center>
+    </form>
+{% endblock body %}
