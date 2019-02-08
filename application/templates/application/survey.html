@@ -2,17 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="">
     <title>Title</title>
 </head>
 <body>
 <table style="width:100%">
-    <tr>
-        <td style="width:30%"><b>Over the past 2 weeks, how often have you been bothered by any of the following
-            problems?</b></td>
-        <td style="width:17.5%"><b>Not at all (0)</b></td>
-        <td style="width:17.5%"><b>Several days (1)</b></td>
-        <td style="width:17.5%"><b>More than half the days (2)</b></td>
-        <td style="width:17.5%"><b>Nearly every day (3)</b></td>
+    <tr id="header-row">
+        <td id="left-table-header">Over the past 2 weeks, how often have you been bothered by any of the following
+            problems?</td>
+        <td>Not at all (0)</td>
+        <td>Several days (1)</td>
+        <td>More than half the days (2)</td>
+        <td>Nearly every day (3)</td>
     </tr>
     {% for question in questions %}
         {% include "./question-radio.html" with question=question num=forloop.counter %}
