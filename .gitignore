@@ -1,4 +1,4 @@
 .idea/
 venv/
 *.pyc
-static/
+psychiatric-guide-app/static/
