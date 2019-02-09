@@ -1,13 +1,13 @@
 from django.db import models
 
-class Steps(models.Model):
+class Step(models.Model):
 	
-	name = models.TextField(help_text='Enter step title')
-	description = models.TextField(help_text='Enter step description')
+    name = models.TextField(help_text='Enter step title')
+    description = models.TextField(help_text='Enter step description')
     
     # Metadata
     class Meta: 
-        ordering = ['title']
+        ordering = ['name']
 
     # Methods
     def get_absolute_url(self):

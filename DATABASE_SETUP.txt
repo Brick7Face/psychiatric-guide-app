@@ -9,3 +9,5 @@ will have to code those models as classes in python files. Finally, we should be
 migrations and django will automatically give us GUI control of the database through the admin site.
 
 These steps were found here: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Models
+
+After creating models in models.py, you must run migrations with python3 manage.py makemigrations, then python3 manage.py migrate. Finally, you must register the models in admin.py.
