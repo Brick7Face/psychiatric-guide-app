@@ -42,21 +42,25 @@
 </body>
 <footer>
     <center>
-    <div class="container mx-auto mt-4">
-        {% block footer %} <!-- Anything in this block can be overridden -->
+        <div class="container mx-auto mt-4">
+            {% block footer %} <!-- Anything in this block can be overridden -->
             <div class="row">
                 <div class="col-md">
                     <a href="" style="color: #A9A9A9">Documentation</a>
                 </div>
                 <div class="col-md">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'login-view' %}" style="color: #A9A9A9">Logout</a>
+                    {% else %}
                     <a href="{% url 'login-view' %}" style="color: #A9A9A9">Login</a>
+                    {% endif %}
                 </div>
                 <div class="col-md">
                     <a href="{% url 'create-new-user' %}" style="color: #A9A9A9">Add User</a>
                 </div>
             </div>
-        {% endblock%}
-    </div>
+            {% endblock%}
+        </div>
     </center>
 </footer>
 </html>
