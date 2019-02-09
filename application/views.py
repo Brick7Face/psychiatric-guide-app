@@ -37,10 +37,14 @@ class CreateUser(UserCreationForm):  # Class for the user generation form
     username = forms.CharField()  # gets username
     first_name = forms.CharField()  # gets first name
     last_name = forms.CharField()  # Gets last name.
-    is_super_user = forms.CheckboxInput()  # check
-    is_staff = forms.CheckboxInput()
+    is_super_user = forms.CheckboxInput()  # checkbox for superuser
+    is_staff = forms.CheckboxInput()  # checkbox for staff member
 
     class Meta:
         model = User  # Form is of User Model.
         fields = ['username', 'first_name', 'last_name', 'is_staff', 'is_superuser',
                   'password1']  # Fields to be displayed of the form on the site.
+        help_texts = { # Text descriptions that show under the field on the form
+            'is_staff': 'Check if account is for a staff member.',
+            'is_superuser': 'Allows this user to modify, edit, and delete other users and their information.'
+        }
