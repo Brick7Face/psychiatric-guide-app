@@ -1,0 +1,371 @@
+{
+  "properties": [
+    {
+      "category": "font",
+      "type": "font-weight",
+      "cssProperties": [
+        "font",
+        "font-weight"
+      ],
+      "value": "300",
+      "comment": "Use for large headings only.",
+      "access": "global",
+      "name": "fontWeightLight"
+    },
+    {
+      "category": "font",
+      "type": "font-weight",
+      "cssProperties": [
+        "font",
+        "font-weight"
+      ],
+      "value": "400",
+      "comment": "Most all body copy.",
+      "access": "global",
+      "name": "fontWeightRegular"
+    },
+    {
+      "category": "font",
+      "type": "font-weight",
+      "cssProperties": [
+        "font",
+        "font-weight"
+      ],
+      "value": "700",
+      "comment": "Used sparingly for emphasized text within regular body copy.",
+      "access": "global",
+      "name": "fontWeightBold"
+    },
+    {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "10",
+      "comment": "Constant typography token for font size 1",
+      "name": "fontSize1"
+    },
+    {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "12",
+      "comment": "Constant typography token for font size 2",
+      "name": "fontSize2"
+    },
+    {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "13",
+      "comment": "Constant typography token for font size 3",
+      "name": "fontSize3"
+    },
+    {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "32",
+      "comment": "Variable typography token for font size 10",
+      "name": "varFontSize10"
+    },
+    {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "14",
+      "comment": "Constant typography token for font size 4",
+      "name": "fontSize4"
+    },
+    {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "42",
+      "comment": "Variable typography token for font size 11",
+      "name": "varFontSize11"
+    },
+    {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "16",
+      "comment": "Constant typography token for font size 5",
+      "name": "fontSize5"
+    },
+    {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "18",
+      "comment": "Constant typography token for font size 6",
+      "name": "fontSize6"
+    },
+    {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "20",
+      "comment": "Constant typography token for font size 7",
+      "name": "fontSize7"
+    },
+    {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "24",
+      "comment": "Constant typography token for font size 8",
+      "name": "fontSize8"
+    },
+    {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "10",
+      "comment": "Variable typography token for font size 1",
+      "name": "varFontSize1"
+    },
+    {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "28",
+      "comment": "Constant typography token for font size 9",
+      "name": "fontSize9"
+    },
+    {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "12",
+      "comment": "Variable typography token for font size 2",
+      "name": "varFontSize2"
+    },
+    {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "13",
+      "comment": "Variable typography token for font size 3",
+      "name": "varFontSize3"
+    },
+    {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "32",
+      "comment": "Constant typography token for font size 10",
+      "name": "fontSize10"
+    },
+    {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "14",
+      "comment": "Variable typography token for font size 4",
+      "name": "varFontSize4"
+    },
+    {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "42",
+      "comment": "Constant typography token for font size 11",
+      "name": "fontSize11"
+    },
+    {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "16",
+      "comment": "Variable typography token for font size 5",
+      "name": "varFontSize5"
+    },
+    {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "18",
+      "comment": "Variable typography token for font size 6",
+      "name": "varFontSize6"
+    },
+    {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "20",
+      "comment": "Variable typography token for font size 7",
+      "name": "varFontSize7"
+    },
+    {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "24",
+      "comment": "Variable typography token for font size 8",
+      "name": "varFontSize8"
+    },
+    {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "28",
+      "comment": "Variable typography token for font size 9",
+      "name": "varFontSize9"
+    },
+    {
+      "category": "line-height",
+      "type": "number",
+      "cssProperties": [
+        "font",
+        "*height"
+      ],
+      "value": "1.25",
+      "comment": "Unitless line-heights for reusability",
+      "access": "global",
+      "name": "lineHeightHeading"
+    },
+    {
+      "category": "line-height",
+      "type": "number",
+      "cssProperties": [
+        "font",
+        "*height"
+      ],
+      "value": "1.5",
+      "comment": "Unitless line-heights for reusability",
+      "access": "global",
+      "name": "lineHeightText"
+    },
+    {
+      "category": "line-height",
+      "type": "number",
+      "cssProperties": [
+        "font",
+        "*height"
+      ],
+      "value": "1",
+      "comment": "Remove extra leading. Unitless line-heights for reusability",
+      "access": "global",
+      "name": "lineHeightReset"
+    },
+    {
+      "category": "line-height",
+      "type": "number",
+      "cssProperties": [
+        "font",
+        "*height"
+      ],
+      "value": "40",
+      "comment": "Line heights for tabs",
+      "access": "global",
+      "name": "lineHeightTab"
+    },
+    {
+      "category": "line-height",
+      "type": "number",
+      "cssProperties": [
+        "font",
+        "*height"
+      ],
+      "value": "1.5",
+      "comment": "Variable unitless line-heights for reusability",
+      "name": "varLineHeightText"
+    },
+    {
+      "category": "font",
+      "type": "font",
+      "cssProperties": [
+        "font",
+        "font-family"
+      ],
+      "value": "'Salesforce Sans', Arial, sans-serif",
+      "name": "fontFamilyText"
+    },
+    {
+      "category": "font",
+      "type": "font",
+      "cssProperties": [
+        "font",
+        "font-family"
+      ],
+      "value": "'Salesforce Sans', Arial, sans-serif",
+      "name": "fontFamilyHeading"
+    },
+    {
+      "category": "font",
+      "type": "font",
+      "cssProperties": [
+        "font",
+        "font-family"
+      ],
+      "value": "Consolas, Menlo, Monaco, Courier, monospace",
+      "name": "fontFamilyMonospace"
+    }
+  ]
+}

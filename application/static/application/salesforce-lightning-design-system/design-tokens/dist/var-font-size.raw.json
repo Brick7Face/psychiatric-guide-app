@@ -1,0 +1,160 @@
+{
+  "aliases": {
+    "FONT_SIZE_1": {
+      "value": "0.625rem"
+    },
+    "FONT_SIZE_2": {
+      "value": "0.75rem"
+    },
+    "FONT_SIZE_3": {
+      "value": "0.8125rem"
+    },
+    "FONT_SIZE_4": {
+      "value": "0.875rem"
+    },
+    "FONT_SIZE_5": {
+      "value": "1rem"
+    },
+    "FONT_SIZE_6": {
+      "value": "1.125rem"
+    },
+    "FONT_SIZE_7": {
+      "value": "1.25rem"
+    },
+    "FONT_SIZE_8": {
+      "value": "1.5rem"
+    },
+    "FONT_SIZE_9": {
+      "value": "1.75rem"
+    },
+    "FONT_SIZE_10": {
+      "value": "2rem"
+    },
+    "FONT_SIZE_11": {
+      "value": "2.625rem"
+    }
+  },
+  "props": {
+    "VAR_FONT_SIZE_10": {
+      "category": "font",
+      "type": "size",
+      "comment": "Variable typography token for font size 10",
+      "cssProperties": [
+        "font-size"
+      ],
+      "value": "2rem",
+      "originalValue": "{!FONT_SIZE_10}",
+      "name": "VAR_FONT_SIZE_10"
+    },
+    "VAR_FONT_SIZE_11": {
+      "category": "font",
+      "type": "size",
+      "comment": "Variable typography token for font size 11",
+      "cssProperties": [
+        "font-size"
+      ],
+      "value": "2.625rem",
+      "originalValue": "{!FONT_SIZE_11}",
+      "name": "VAR_FONT_SIZE_11"
+    },
+    "VAR_FONT_SIZE_1": {
+      "category": "font",
+      "type": "size",
+      "comment": "Variable typography token for font size 1",
+      "cssProperties": [
+        "font-size"
+      ],
+      "value": "0.625rem",
+      "originalValue": "{!FONT_SIZE_1}",
+      "name": "VAR_FONT_SIZE_1"
+    },
+    "VAR_FONT_SIZE_2": {
+      "category": "font",
+      "type": "size",
+      "comment": "Variable typography token for font size 2",
+      "cssProperties": [
+        "font-size"
+      ],
+      "value": "0.75rem",
+      "originalValue": "{!FONT_SIZE_2}",
+      "name": "VAR_FONT_SIZE_2"
+    },
+    "VAR_FONT_SIZE_3": {
+      "category": "font",
+      "type": "size",
+      "comment": "Variable typography token for font size 3",
+      "cssProperties": [
+        "font-size"
+      ],
+      "value": "0.8125rem",
+      "originalValue": "{!FONT_SIZE_3}",
+      "name": "VAR_FONT_SIZE_3"
+    },
+    "VAR_FONT_SIZE_4": {
+      "category": "font",
+      "type": "size",
+      "comment": "Variable typography token for font size 4",
+      "cssProperties": [
+        "font-size"
+      ],
+      "value": "0.875rem",
+      "originalValue": "{!FONT_SIZE_4}",
+      "name": "VAR_FONT_SIZE_4"
+    },
+    "VAR_FONT_SIZE_5": {
+      "category": "font",
+      "type": "size",
+      "comment": "Variable typography token for font size 5",
+      "cssProperties": [
+        "font-size"
+      ],
+      "value": "0.875rem",
+      "originalValue": "{!FONT_SIZE_4}",
+      "name": "VAR_FONT_SIZE_5"
+    },
+    "VAR_FONT_SIZE_6": {
+      "category": "font",
+      "type": "size",
+      "comment": "Variable typography token for font size 6",
+      "cssProperties": [
+        "font-size"
+      ],
+      "value": "1rem",
+      "originalValue": "{!FONT_SIZE_5}",
+      "name": "VAR_FONT_SIZE_6"
+    },
+    "VAR_FONT_SIZE_7": {
+      "category": "font",
+      "type": "size",
+      "comment": "Variable typography token for font size 7",
+      "cssProperties": [
+        "font-size"
+      ],
+      "value": "1.25rem",
+      "originalValue": "{!FONT_SIZE_7}",
+      "name": "VAR_FONT_SIZE_7"
+    },
+    "VAR_FONT_SIZE_8": {
+      "category": "font",
+      "type": "size",
+      "comment": "Variable typography token for font size 8",
+      "cssProperties": [
+        "font-size"
+      ],
+      "value": "1.25rem",
+      "originalValue": "{!FONT_SIZE_7}",
+      "name": "VAR_FONT_SIZE_8"
+    },
+    "VAR_FONT_SIZE_9": {
+      "category": "font",
+      "type": "size",
+      "comment": "Variable typography token for font size 9",
+      "cssProperties": [
+        "font-size"
+      ],
+      "value": "1.75rem",
+      "originalValue": "{!FONT_SIZE_9}",
+      "name": "VAR_FONT_SIZE_9"
+    }
+  }
+}

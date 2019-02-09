@@ -1,0 +1,437 @@
+{
+  "aliases": {
+    "FONT_SIZE_1": {
+      "value": ".625rem"
+    },
+    "FONT_SIZE_2": {
+      "value": ".75rem"
+    },
+    "FONT_SIZE_3": {
+      "value": ".8125rem"
+    },
+    "FONT_SIZE_4": {
+      "value": ".875rem"
+    },
+    "FONT_SIZE_5": {
+      "value": "1rem"
+    },
+    "FONT_SIZE_6": {
+      "value": "1.125rem"
+    },
+    "FONT_SIZE_7": {
+      "value": "1.25rem"
+    },
+    "FONT_SIZE_8": {
+      "value": "1.5rem"
+    },
+    "FONT_SIZE_9": {
+      "value": "2rem"
+    },
+    "SANS_SERIF": {
+      "value": "'Salesforce Sans', Arial, sans-serif"
+    },
+    "MONOSPACE": {
+      "value": "Consolas, Menlo, Monaco, Courier, monospace"
+    }
+  },
+  "props": {
+    "FONT_WEIGHT_LIGHT": {
+      "category": "font",
+      "type": "font-weight",
+      "cssProperties": [
+        "font",
+        "font-weight"
+      ],
+      "value": "300",
+      "comment": "Use for large headings only.",
+      "originalValue": "300",
+      "name": "FONT_WEIGHT_LIGHT"
+    },
+    "FONT_WEIGHT_REGULAR": {
+      "category": "font",
+      "type": "font-weight",
+      "cssProperties": [
+        "font",
+        "font-weight"
+      ],
+      "value": "400",
+      "comment": "Most all body copy.",
+      "originalValue": "400",
+      "name": "FONT_WEIGHT_REGULAR"
+    },
+    "FONT_WEIGHT_BOLD": {
+      "category": "font",
+      "type": "font-weight",
+      "cssProperties": [
+        "font",
+        "font-weight"
+      ],
+      "value": "700",
+      "comment": "Used sparingly for emphasized text within regular body copy.",
+      "originalValue": "700",
+      "name": "FONT_WEIGHT_BOLD"
+    },
+    "FONT_SIZE_HEADING_MEDIUM": {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "1.125rem",
+      "comment": "Medium headings.",
+      "deprecated": true,
+      "originalValue": "{!FONT_SIZE_6}",
+      "name": "FONT_SIZE_HEADING_MEDIUM"
+    },
+    "FONT_SIZE_MEDIUM": {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "1rem",
+      "deprecated": true,
+      "originalValue": "1rem",
+      "name": "FONT_SIZE_MEDIUM"
+    },
+    "FONT_SIZE_TEXT_SMALL": {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": ".8125rem",
+      "comment": "Small body text.",
+      "deprecated": true,
+      "originalValue": "{!FONT_SIZE_3}",
+      "name": "FONT_SIZE_TEXT_SMALL"
+    },
+    "FONT_SIZE_MEDIUM_A": {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "1.125rem",
+      "deprecated": true,
+      "originalValue": "1.125rem",
+      "name": "FONT_SIZE_MEDIUM_A"
+    },
+    "FONT_SIZE_X_LARGE": {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "1.5rem",
+      "deprecated": true,
+      "originalValue": "1.5rem",
+      "name": "FONT_SIZE_X_LARGE"
+    },
+    "FONT_SIZE_X_LARGE_A": {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "1.57rem",
+      "deprecated": true,
+      "originalValue": "1.57rem",
+      "name": "FONT_SIZE_X_LARGE_A"
+    },
+    "FONT_SIZE_HEADING_X_LARGE": {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "2rem",
+      "comment": "Extra large headings.",
+      "deprecated": true,
+      "originalValue": "{!FONT_SIZE_9}",
+      "name": "FONT_SIZE_HEADING_X_LARGE"
+    },
+    "FONT_SIZE_XX_LARGE": {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "2rem",
+      "deprecated": true,
+      "originalValue": "2rem",
+      "name": "FONT_SIZE_XX_LARGE"
+    },
+    "FONT_SIZE_TEXT_XX_SMALL": {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": ".625rem",
+      "comment": "Extra extra small text.",
+      "deprecated": true,
+      "originalValue": "{!FONT_SIZE_1}",
+      "name": "FONT_SIZE_TEXT_XX_SMALL"
+    },
+    "FONT_SIZE_LARGE": {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "1.25rem",
+      "deprecated": true,
+      "originalValue": "1.25rem",
+      "name": "FONT_SIZE_LARGE"
+    },
+    "FONT_SIZE_HEADING_LARGE": {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "1.5rem",
+      "comment": "Large headings.",
+      "deprecated": true,
+      "originalValue": "{!FONT_SIZE_8}",
+      "name": "FONT_SIZE_HEADING_LARGE"
+    },
+    "FONT_SIZE_TEXT_X_LARGE": {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "1.25rem",
+      "comment": "Extra large body text.",
+      "deprecated": true,
+      "originalValue": "{!FONT_SIZE_7}",
+      "name": "FONT_SIZE_TEXT_X_LARGE"
+    },
+    "FONT_SIZE_X_SMALL": {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "0.625rem",
+      "deprecated": true,
+      "originalValue": "0.625rem",
+      "name": "FONT_SIZE_X_SMALL"
+    },
+    "FONT_SIZE_HEADING_XX_SMALL": {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": ".625rem",
+      "comment": "Extra Extra small headings.",
+      "deprecated": true,
+      "originalValue": "{!FONT_SIZE_1}",
+      "name": "FONT_SIZE_HEADING_XX_SMALL"
+    },
+    "FONT_SIZE_HEADING_X_SMALL": {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": ".75rem",
+      "comment": "Extra small headings.",
+      "deprecated": true,
+      "originalValue": "{!FONT_SIZE_2}",
+      "name": "FONT_SIZE_HEADING_X_SMALL"
+    },
+    "FONT_SIZE_TEXT_LARGE": {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "1.125rem",
+      "comment": "Large body text.",
+      "deprecated": true,
+      "originalValue": "{!FONT_SIZE_6}",
+      "name": "FONT_SIZE_TEXT_LARGE"
+    },
+    "FONT_SIZE_SMALL": {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "0.875rem",
+      "deprecated": true,
+      "originalValue": "0.875rem",
+      "name": "FONT_SIZE_SMALL"
+    },
+    "FONT_SIZE_TEXT_MEDIUM": {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": "1rem",
+      "comment": "Medium body text.",
+      "deprecated": true,
+      "originalValue": "{!FONT_SIZE_5}",
+      "name": "FONT_SIZE_TEXT_MEDIUM"
+    },
+    "FONT_SIZE_TEXT_X_SMALL": {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": ".75rem",
+      "comment": "Extra small body text.",
+      "deprecated": true,
+      "originalValue": "{!FONT_SIZE_2}",
+      "name": "FONT_SIZE_TEXT_X_SMALL"
+    },
+    "FONT_SIZE_HEADING_SMALL": {
+      "category": "font-size",
+      "type": "font-size",
+      "cssProperties": [
+        "font",
+        "font-size"
+      ],
+      "value": ".875rem",
+      "comment": "Small headings.",
+      "deprecated": true,
+      "originalValue": "{!FONT_SIZE_4}",
+      "name": "FONT_SIZE_HEADING_SMALL"
+    },
+    "LINE_HEIGHT_HEADING": {
+      "category": "line-height",
+      "type": "number",
+      "cssProperties": [
+        "font",
+        "*height"
+      ],
+      "value": "1.25",
+      "comment": "Unitless line-heights for reusability",
+      "access": "global",
+      "originalValue": "1.25",
+      "name": "LINE_HEIGHT_HEADING"
+    },
+    "LINE_HEIGHT_TEXT": {
+      "category": "line-height",
+      "type": "number",
+      "cssProperties": [
+        "font",
+        "*height"
+      ],
+      "value": "1.5",
+      "comment": "Unitless line-heights for reusability",
+      "access": "global",
+      "originalValue": "1.5",
+      "name": "LINE_HEIGHT_TEXT"
+    },
+    "LINE_HEIGHT_RESET": {
+      "category": "line-height",
+      "type": "number",
+      "cssProperties": [
+        "font",
+        "*height"
+      ],
+      "value": "1",
+      "comment": "Remove extra leading. Unitless line-heights for reusability",
+      "access": "global",
+      "originalValue": "1",
+      "name": "LINE_HEIGHT_RESET"
+    },
+    "LINE_HEIGHT_TAB": {
+      "category": "line-height",
+      "type": "number",
+      "cssProperties": [
+        "font",
+        "*height"
+      ],
+      "value": "2.5rem",
+      "comment": "Line heights for tabs",
+      "access": "global",
+      "originalValue": "2.5rem",
+      "name": "LINE_HEIGHT_TAB"
+    },
+    "VAR_LINE_HEIGHT_TEXT": {
+      "category": "line-height",
+      "type": "number",
+      "cssProperties": [
+        "font",
+        "*height"
+      ],
+      "value": "1.5",
+      "comment": "Variable unitless line-heights for reusability",
+      "originalValue": "1.5",
+      "name": "VAR_LINE_HEIGHT_TEXT"
+    },
+    "FONT_FAMILY": {
+      "category": "font",
+      "type": "font",
+      "cssProperties": [
+        "font",
+        "font-family"
+      ],
+      "value": "'Salesforce Sans', Arial, sans-serif",
+      "deprecated": true,
+      "comment": "Deprecated: use FONT_FAMILY_TEXT instead for regular body text and FONT_FAMILY_HEADING for headings.",
+      "originalValue": "{!SANS_SERIF}",
+      "name": "FONT_FAMILY"
+    },
+    "FONT_FAMILY_TEXT": {
+      "category": "font",
+      "type": "font",
+      "cssProperties": [
+        "font",
+        "font-family"
+      ],
+      "value": "'Salesforce Sans', Arial, sans-serif",
+      "originalValue": "{!SANS_SERIF}",
+      "name": "FONT_FAMILY_TEXT"
+    },
+    "FONT_FAMILY_HEADING": {
+      "category": "font",
+      "type": "font",
+      "cssProperties": [
+        "font",
+        "font-family"
+      ],
+      "value": "'Salesforce Sans', Arial, sans-serif",
+      "originalValue": "{!SANS_SERIF}",
+      "name": "FONT_FAMILY_HEADING"
+    },
+    "FONT_FAMILY_MONOSPACE": {
+      "category": "font",
+      "type": "font",
+      "cssProperties": [
+        "font",
+        "font-family"
+      ],
+      "value": "Consolas, Menlo, Monaco, Courier, monospace",
+      "originalValue": "{!MONOSPACE}",
+      "name": "FONT_FAMILY_MONOSPACE"
+    }
+  }
+}

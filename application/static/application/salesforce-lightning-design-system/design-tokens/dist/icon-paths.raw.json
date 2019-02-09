@@ -1,0 +1,40 @@
+{
+  "aliases": {},
+  "props": {
+    "CUSTOM_SPRITE": {
+      "category": "utility",
+      "type": "string",
+      "value": "/assets/icons/custom-sprite/svg/symbols.svg",
+      "originalValue": "/assets/icons/custom-sprite/svg/symbols.svg",
+      "name": "CUSTOM_SPRITE"
+    },
+    "DOCTYPE_SPRITE": {
+      "category": "utility",
+      "type": "string",
+      "value": "/assets/icons/doctype-sprite/svg/symbols.svg",
+      "originalValue": "/assets/icons/doctype-sprite/svg/symbols.svg",
+      "name": "DOCTYPE_SPRITE"
+    },
+    "STANDARD_SPRITE": {
+      "category": "utility",
+      "type": "string",
+      "value": "/assets/icons/standard-sprite/svg/symbols.svg",
+      "originalValue": "/assets/icons/standard-sprite/svg/symbols.svg",
+      "name": "STANDARD_SPRITE"
+    },
+    "ACTION_SPRITE": {
+      "category": "utility",
+      "type": "string",
+      "value": "/assets/icons/action-sprite/svg/symbols.svg",
+      "originalValue": "/assets/icons/action-sprite/svg/symbols.svg",
+      "name": "ACTION_SPRITE"
+    },
+    "UTILITY_SPRITE": {
+      "category": "utility",
+      "type": "string",
+      "value": "/assets/icons/utility-sprite/svg/symbols.svg",
+      "originalValue": "/assets/icons/utility-sprite/svg/symbols.svg",
+      "name": "UTILITY_SPRITE"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+<aura:tokens>
+  <aura:token name="varSpacingXLarge" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="2rem"/>
+  <aura:token name="varSpacingHorizontalSmall" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="0.75rem"/>
+  <aura:token name="varSpacingHorizontalXxLarge" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="3rem"/>
+  <aura:token name="spacingXSmall" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="0.5rem"/>
+  <aura:token name="spacingXxxSmall" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="0.125rem"/>
+  <aura:token name="spacingXxSmall" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="0.25rem"/>
+  <aura:token name="varSpacingVerticalLarge" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="1.5rem"/>
+  <aura:token name="varSpacingLarge" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="1.5rem"/>
+  <aura:token name="varSpacingMedium" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="1rem"/>
+  <aura:token name="varSpacingVerticalMedium" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="1rem"/>
+  <aura:token name="varSpacingVerticalXSmall" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="0.5rem"/>
+  <aura:token name="spacingSmall" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="0.75rem"/>
+  <aura:token name="varSpacingVerticalXxxSmall" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="0.125rem"/>
+  <aura:token name="varSpacingXSmall" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="0.5rem"/>
+  <aura:token name="varSpacingXxxSmall" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="0.125rem"/>
+  <aura:token name="varSpacingHorizontalXLarge" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="2rem"/>
+  <aura:token name="varSpacingHorizontalXxSmall" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="0.25rem"/>
+  <aura:token name="varSpacingXxLarge" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="3rem"/>
+  <aura:token name="spacingMedium" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="1rem"/>
+  <aura:token name="varSpacingVerticalXxLarge" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="3rem"/>
+  <aura:token name="varSpacingVerticalSmall" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="0.75rem"/>
+  <aura:token name="varSpacingSmall" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="0.75rem"/>
+  <aura:token name="spacingNone" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="0"/>
+  <aura:token name="varSpacingHorizontalLarge" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="1.5rem"/>
+  <aura:token name="spacingXLarge" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="2rem"/>
+  <aura:token name="spacingXxLarge" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="3rem"/>
+  <aura:token name="varSpacingHorizontalXxxSmall" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="0.125rem"/>
+  <aura:token name="varSpacingHorizontalXSmall" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="0.5rem"/>
+  <aura:token name="varSpacingXxSmall" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="0.25rem"/>
+  <aura:token name="varSpacingHorizontalMedium" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="1rem"/>
+  <aura:token name="varSpacingVerticalXxSmall" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="0.25rem"/>
+  <aura:token name="varSpacingVerticalXLarge" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="2rem"/>
+  <aura:token name="spacingLarge" property="top,right,bottom,left,margin*,padding*,border*,*width,*height,box-shadow,stroke,stroke-width" value="1.5rem"/>
+</aura:tokens>
