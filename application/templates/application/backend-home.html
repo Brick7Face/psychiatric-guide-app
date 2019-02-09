@@ -2,10 +2,9 @@
 {% load crispy_forms_tags %}
 {% block body %}
     <form method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
+
         <div style="text-align: center;">
-            <button class="btn btn-primary mt-4 btn-block" type="submit">Login</button>
+            Application home after login
         </div>
     </form>
 {% endblock body %}

@@ -24,6 +24,7 @@
 <body>
 <div class="container"> <!-- Bootstrap container padding-->
     {% block body %} <!-- block to add/change body.  Anything in here can be overridden.-->
+
     {% endblock %}
 </div>
 <!-- sourced code from https://getbootstrap.com/docs/4.0/getting-started/introduction/#starter-template -->
@@ -48,10 +49,10 @@
                     <a href="" style="color: #A9A9A9">Documentation</a>
                 </div>
                 <div class="col-md">
-                    <a href="../admin" style="color: #A9A9A9">Admin Login</a>
+                    <a href="{% url 'login-view' %}" style="color: #A9A9A9">Login</a>
                 </div>
                 <div class="col-md">
-                    <a href="../admin/auth/user/add/" style="color: #A9A9A9">Add User</a>
+                    <a href="{% url 'create-new-user' %}" style="color: #A9A9A9">Add User</a>
                 </div>
             </div>
         {% endblock%}
