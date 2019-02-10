@@ -50,12 +50,12 @@
         crossorigin="anonymous"></script>
 </body>
 <footer>
-    <center>
+    <div style="text-align: center;">
         <div class="container mx-auto mt-4">
             {% block footer %} <!-- Anything in this block can be overridden -->
                 <div class="row">
                 <div class="col-md">
-                    <a href="" style="color: #A9A9A9">Documentation</a>
+                    <a href="{% url 'documentation' %}" style="color: #A9A9A9">Documentation</a>
                 </div>
                 {% if user.is_authenticated %}
                     <div class="col-md">
@@ -73,6 +73,6 @@
             </div>
             {% endblock %}
             </div>
-    </center>
+    </div>
 </footer>
 </html>

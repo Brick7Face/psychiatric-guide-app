@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django import forms
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import logout
 
 # Create your views here.
@@ -16,14 +16,6 @@ def login(request):
 def logout_user(request):
     logout(request)
     return redirect('login-view')  # Logs user out and redirects to login page
-
-
-
-# def check_if_logged_in(request, url_path, title):
-#     if request.user.is_authenticated:  # allows users to view backend page if they are logged in
-#         return render(request, url_path, {'title': title})  # Renders new-user.html
-#     else:
-#         login  # returns user to login page
 
 
 # Create user code helped from Youtube series by Cory Schafer: https://www.youtube.com/watch?v=UmljXZIypDc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p
@@ -59,3 +51,11 @@ class CreateUser(UserCreationForm):  # Class for the user generation form
             'is_staff': 'Check if account is for a staff member.',
             'is_superuser': 'Allows this user to modify, edit, and delete other users and their information.'
         }
+
+
+def backend_home(request):
+    return render(request, 'application/backend-home.html', {'title': 'Home'})  # Renders login.html
+
+
+def documentation(request):
+    return render(request, 'application/documentation.html', {'title': 'Documentation'})  # Renders login.html

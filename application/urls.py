@@ -9,7 +9,8 @@ urlpatterns = [
     path('login/', log_view.LoginView.as_view(template_name = 'application/login.html'), name='login-view'), # login page at /login
     path('logout/', views.logout_user, name="logout-view"), # Logout page at
     path('create_user/', views.create_user, name='create-new-user'),# Path for new user registration
-    path('backend_home/', log_view.LogoutView.as_view(template_name='application/backend-home.html'), name="backend-home"), # Home page for logged in user
+    path('backend_home/', views.backend_home, name="backend-home"), # Home page for logged in user
+    path('documentation/', views.documentation, name="documentation"),  # Home page for logged in user
 
     # Logout page at
 
