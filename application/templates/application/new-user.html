@@ -1,11 +1,17 @@
 {% extends "application/global-html.html" %}
 {% load crispy_forms_tags %}
 {% block body %}
-    <form method="POST">
-        {% csrf_token %}
-        {{ new_user_form | crispy }}
+    {% if request.user.is_superuser %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ new_user_form | crispy }}
+            <div style="text-align: center;">
+                <button class="btn btn-primary mt-4 btn-block" type="submit">Create User</button>
+            </div>
+        </form>
+    {% else %}
         <div style="text-align: center;">
-            <button class="btn btn-primary mt-4 btn-block" type="submit">Create User</button>
+        <H3>Error: You must have permission to add new users.</H3>
         </div>
-    </form>
+    {% endif %}
 {% endblock body %}

@@ -29,7 +29,7 @@ def create_user(request):  # Renders user creation
             first_name = new_user_form.cleaned_data.get('first_name')
             last_name = new_user_form.cleaned_data.get('last_name')
             messages.success(request, 'Account created.')  # Message if user created succesfully
-            return redirect('application/backend-home.html')
+            return redirect('create-new-user')
 
     else:
         new_user_form = CreateUser()  # Resets form with error message if attempt not valid
@@ -49,7 +49,7 @@ class CreateUser(UserCreationForm):  # Class for the user generation form
                   'password1']  # Fields to be displayed of the form on the site.
         help_texts = {  # Text descriptions that show under the field on the form
             'is_staff': 'Check if account is for a staff member.',
-            'is_superuser': 'Allows this user to modify, edit, and delete other users and their information.'
+            'is_superuser': 'Allows this user to create, modify, edit, and delete other users and their information.'
         }
 
 

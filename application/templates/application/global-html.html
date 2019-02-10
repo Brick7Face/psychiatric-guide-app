@@ -23,16 +23,19 @@
 </header>
 <body>
 <div class="container"> <!-- Bootstrap container padding-->
-    <!-- Sourced message code from https://simpleisbetterthancomplex.com/tips/2016/09/06/django-tip-14-messages-framework.html-->
-    {% if messages %}
+    <!-- Sourced message code from https://simpleisbetterthancomplex.com/tips/2016/09/06/django-tip-14-messages-framework.html
+    And from Corey Schafer Youtube series : https://www.youtube.com/watch?v=UmljXZIypDc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p-->
+    {% if messages %}   <!--Shows messages at the top of the page if there are any created my django-->
         <ul class="messages">
             {% for message in messages %}
-                <li class="{{ message.tags }}">{{ message }}</li>
+                <div class="alert alert-success">
+                    <strong>{{ message.tags }}!</strong> {{ message }}
+                </div>
             {% endfor %}
         </ul>
-    {% endif %}
-    {% block body %}
+    {% endif %} <!--End of message block-->
 
+    {% block body %} <!--Block to for main body content-->
     {% endblock %}
 
 </div>
