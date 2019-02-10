@@ -56,6 +56,7 @@ On Windows:<br>
 On Linux/MacOS:<br>
 `./cloud_sql_proxy -instances="psychiatric-guide:us-west1:psychiatric-guide-db"=tcp:3306`<br>
 If that command is not found on Linux/MacOS, use `chmod u+x cloud_sql_proxy` and then the command above.
+If there is still an error, contact bryanplant on Github for access information.
 
 Next, the command to run the Django server locally:<br>
 On Windows:<br>
