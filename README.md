@@ -50,6 +50,7 @@ On Windows:<br>
 `cloud_sql_proxy.exe -instances="psychiatric-guide:us-west1:psychiatric-guide-db"=tcp:3306`<br>
 On Linux/MacOS:<br>
 `./cloud_sql_proxy -instances="psychiatric-guide:us-west1:psychiatric-guide-db"=tcp:3306`<br>
+If that command is not found on Linux/MacOS, use `chmod u+x cloud_sql_proxy` and then the command above. If you get an authentication error, download the Google Cloud SDK from https://cloud.google.com/sdk/ and follow the instructions to log in. If there is still an error, contact bryanplant on Github for access information.
 
 Since our software is a web application, there is not exactly a way to compile it explicitly. However, since it 
 needs to be publicly hosted, to see changes in development, one can run from the command line the command 
