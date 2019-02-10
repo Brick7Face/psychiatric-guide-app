@@ -14,7 +14,7 @@ def login(request):
 
 
 def logout_user(request):
-    logout(request)
+    logout(request) # Built in django logout function
     return redirect('login-view')  # Logs user out and redirects to login page
 
 
