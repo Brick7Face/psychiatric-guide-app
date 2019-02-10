@@ -21,14 +21,16 @@
     <link rel="stylesheet" type="text/css" href="{% static 'application/index.css' %}"><!-- load in global css -->
 
     {% if title %}
-    <title>{{ title }}</title> <!-- creates title if available -->
+        <title>{{ title }}</title> <!-- creates title if available -->
     {% else %}
-    <title>Psychiatric Guide App</title> <!-- Generic Title -->
+        <title>Psychiatric Guide App</title> <!-- Generic Title -->
     {% endif %}
 </head>
 
+<header>
+    <div style="text-align: center;"><h1>Application</h1></div>
+</header>
 <body>
-  <!-- Sidebar -->
   <div class="wrapper">
       <!-- Sidebar  -->
       <nav id="sidebar">
@@ -58,43 +60,67 @@
           </div>
       </nav> <!--SIDEBAR CODE-->
   </div>
+  <div class="login_container"> <!-- Bootstrap container padding-->
+      <!-- Sourced message code from https://simpleisbetterthancomplex.com/tips/2016/09/06/django-tip-14-messages-framework.html
+      And from Corey Schafer Youtube series : https://www.youtube.com/watch?v=UmljXZIypDc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p-->
+      {% if messages %}   <!--Shows messages at the top of the page if there are any created my django-->
+          <ul class="messages">
+              {% for message in messages %}
+                  <div class="alert alert-success">
+                      <strong>{{ message.tags }}!</strong> {{ message }}
+                  </div>
+              {% endfor %}
+          </ul>
+      {% endif %} <!--End of message block-->
 
-<div class="login_container"> <!-- Bootstrap container padding-->
-    {% block body %} <!-- block to add/change body.  Anything in here can be overridden.-->
-    {% endblock %}
-</div>
-<!-- sourced code from https://getbootstrap.com/docs/4.0/getting-started/introduction/#starter-template -->
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+      {% block body %} <!--Block to for main body content-->
+      {% endblock %}
+  </div>
 
-<footer>
-    <center>
-      <div class="container mx-auto mt-4">
-        {% block footer %} <!-- Anything in this block can be overridden -->
-            <div class="row">
-                <div class="col-md">
-                    <a href="https://github.com/Brick7Face/psychiatric-guide-app" style="color: #A9A9A9">Documentation</a>
-                </div>
-                <div class="col-md">
-                    <a href="../admin" style="color: #A9A9A9">Admin Login</a>
-                </div>
-                <div class="col-md">
-                    <a href="../admin/auth/user/add/" style="color: #A9A9A9">Add User</a>
-                </div>
-            </div>
-        {% endblock%}
-      </div>
-    </center>
-</footer>
+  <!-- sourced code from https://getbootstrap.com/docs/4.0/getting-started/introduction/#starter-template -->
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+          integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+          crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+          integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+          crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+          crossorigin="anonymous"></script>
+
+  <footer>
+      <center>
+        <div class="container mx-auto mt-4">
+          {% block footer %} <!-- Anything in this block can be overridden -->
+              <div class="row">
+                  <div class="col-md">
+                      <a href="https://github.com/Brick7Face/psychiatric-guide-app" style="color: #A9A9A9">Documentation</a>
+                  </div>
+                  <div class="col-md">
+                      <a href="{% url 'documentation' %}" style="color: #A9A9A9">Documentation</a>
+                  </div>
+                  {% if user.is_authenticated %}
+                      <div class="col-md">
+                          <a href="{% url 'logout-view' %}" style="color: #A9A9A9">Logout</a>
+                      </div>
+                      <div class="col-md">
+                          <a href="{% url 'create-new-user' %}" style="color: #A9A9A9">Add User</a>
+                      </div>
+                  {% else %}
+                      <div class="col-md">
+                      <a href="{% url 'login-view' %}" style="color: #A9A9A9">Login</a>
+                      <div class="col-md">
+                  {% endif %}
+
+              </div>
+              {% endblock %}
+              </div>
+          {% endblock%}
+        </div>
+      </center>
+  </footer>
 </body>
 
 </html>
