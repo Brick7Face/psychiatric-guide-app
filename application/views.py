@@ -3,20 +3,31 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django import forms
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
 # Create your views here.
 
 
 def login(request):
-    return render(request, 'login-view', {'title': 'Login'})  # Renders login.html
+    return render(request, 'application/login.html', {'title': 'Login'})  # Renders login.html
 
 
-def new_user(request):
-    return render(request, 'application/new-user.html', {'title': 'User Registration'})  # Renders new-user.html
+def logout_user(request):
+    logout(request)
+    return redirect('login-view')  # Logs user out and redirects to login page
+
+
+
+# def check_if_logged_in(request, url_path, title):
+#     if request.user.is_authenticated:  # allows users to view backend page if they are logged in
+#         return render(request, url_path, {'title': title})  # Renders new-user.html
+#     else:
+#         login  # returns user to login page
 
 
 # Create user code helped from Youtube series by Cory Schafer: https://www.youtube.com/watch?v=UmljXZIypDc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p
+@login_required # If user is not logged in, they are redirected to the login page.
 def create_user(request):  # Renders user creation
     if request.method == 'POST':
         new_user_form = CreateUser(request.POST)  # Form for creating a new user
@@ -44,7 +55,7 @@ class CreateUser(UserCreationForm):  # Class for the user generation form
         model = User  # Form is of User Model.
         fields = ['username', 'first_name', 'last_name', 'is_staff', 'is_superuser',
                   'password1']  # Fields to be displayed of the form on the site.
-        help_texts = { # Text descriptions that show under the field on the form
+        help_texts = {  # Text descriptions that show under the field on the form
             'is_staff': 'Check if account is for a staff member.',
             'is_superuser': 'Allows this user to modify, edit, and delete other users and their information.'
         }

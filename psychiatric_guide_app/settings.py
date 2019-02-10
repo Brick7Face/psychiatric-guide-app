@@ -119,5 +119,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
-LOGIN_REDIRECT_URL = '/'  # Sets redirect after login
+LOGIN_REDIRECT_URL = 'create-new-user'  # Sets redirect after login
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+LOGIN_URL = 'login-view' # Redirect for the login page for @login_required
+# LOGOUT_URL = 'logout-view' # Redirects to login page after logout

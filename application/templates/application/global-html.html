@@ -13,19 +13,28 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="sylesheet" type="text/css" href="{% static 'application/global-css.css' %}"> <!-- load in global css -->
     {% if title %}
-    <title>{{ title }}</title> <!-- creates title if available -->
+        <title>{{ title }}</title> <!-- creates title if available -->
     {% else %}
-    <title>Psychiatric Guide App</title> <!-- Generic Title -->
+        <title>Psychiatric Guide App</title> <!-- Generic Title -->
     {% endif %}
 </head>
 <header>
-    <center><h1>Application</h1></center>
+    <div style="text-align: center;"><h1>Application</h1></div>
 </header>
 <body>
 <div class="container"> <!-- Bootstrap container padding-->
-    {% block body %} <!-- block to add/change body.  Anything in here can be overridden.-->
+    <!-- Sourced message code from https://simpleisbetterthancomplex.com/tips/2016/09/06/django-tip-14-messages-framework.html-->
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% block body %}
 
     {% endblock %}
+
 </div>
 <!-- sourced code from https://getbootstrap.com/docs/4.0/getting-started/introduction/#starter-template -->
 <!-- Optional JavaScript -->
@@ -44,23 +53,26 @@
     <center>
         <div class="container mx-auto mt-4">
             {% block footer %} <!-- Anything in this block can be overridden -->
-            <div class="row">
+                <div class="row">
                 <div class="col-md">
                     <a href="" style="color: #A9A9A9">Documentation</a>
                 </div>
-                <div class="col-md">
-                    {% if user.is_authenticated %}
-                    <a href="{% url 'login-view' %}" style="color: #A9A9A9">Logout</a>
-                    {% else %}
+                {% if user.is_authenticated %}
+                    <div class="col-md">
+                        <a href="{% url 'logout-view' %}" style="color: #A9A9A9">Logout</a>
+                    </div>
+                    <div class="col-md">
+                        <a href="{% url 'create-new-user' %}" style="color: #A9A9A9">Add User</a>
+                    </div>
+                {% else %}
+                    <div class="col-md">
                     <a href="{% url 'login-view' %}" style="color: #A9A9A9">Login</a>
-                    {% endif %}
-                </div>
-                <div class="col-md">
-                    <a href="{% url 'create-new-user' %}" style="color: #A9A9A9">Add User</a>
-                </div>
+                    <div class="col-md">
+                {% endif %}
+
             </div>
-            {% endblock%}
-        </div>
+            {% endblock %}
+            </div>
     </center>
 </footer>
 </html>
