@@ -76,15 +76,37 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'psychiatric_guide_app.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+# [START db_setup]
+if os.getenv('GAE_APPLICATION', None):
+    # Running on production App Engine, so connect to Google Cloud SQL using
+    # the unix socket at /cloudsql/<your-cloudsql-connection string>
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': "/cloudsql/psychiatric-guide:us-west1:psychiatric-guide-db",
+            'USER': 'bryanplant',
+            'PASSWORD': '',
+            'NAME': 'guide',
+        }
     }
-}
+else:
+    # Running locally so connect to either a local MySQL instance or connect to
+    # Cloud SQL via the proxy. To start the proxy via command line:
+    #
+    #     $ cloud_sql_proxy -instances=[INSTANCE_CONNECTION_NAME]=tcp:3306
+    #
+    # See https://cloud.google.com/sql/docs/mysql-connect-proxy
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': '127.0.0.1',
+            'PORT': '3306',
+            'NAME': 'guide',
+            'USER': 'bryanplant',
+            'PASSWORD': '',
+        }
+    }
+# [END db_setup]
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -122,5 +144,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
-LOGIN_REDIRECT_URL = '/'  # Sets redirect after login
+LOGIN_REDIRECT_URL = 'backend-home'  # Sets redirect after login
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+LOGIN_URL = 'login-view' # Redirect for the login page for @login_required
+# LOGOUT_URL = 'logout-view' # Redirects to login page after logout

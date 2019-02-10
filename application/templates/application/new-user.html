@@ -1,0 +1,17 @@
+{% extends "application/global-html.html" %}
+{% load crispy_forms_tags %}
+{% block body %}
+    {% if user.is_superuser %} <!-- Checks if user has permission, being superuser, to create new accounts-->
+        <form method="POST">
+            {% csrf_token %}
+            {{ new_user_form | crispy }}    <!--Uses the form created in views.py and uses crispy form formatting-->
+            <div style="text-align: center;">
+                <button class="btn btn-primary mt-4 btn-block" type="submit">Create User</button>
+            </div>
+        </form>
+    {% else %}  <!--If user does not have permission to create a new user-->
+        <div style="text-align: center;">
+        <H3>Error: You must have permission to add new users.</H3>
+        </div>
+    {% endif %}
+{% endblock body %}

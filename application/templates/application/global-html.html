@@ -13,18 +13,31 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'application/main.css' %}"> <!-- load in global css -->
     {% if title %}
-    <title>{{ title }}</title> <!-- creates title if available -->
+        <title>{{ title }}</title> <!-- creates title if available -->
     {% else %}
-    <title>Psychiatric Guide App</title> <!-- Generic Title -->
+        <title>Psychiatric Guide App</title> <!-- Generic Title -->
     {% endif %}
 </head>
 <header>
-    <center><h1>Application</h1></center>
+    <div style="text-align: center;"><h1>Application</h1></div>
 </header>
 <body>
 <div class="container"> <!-- Bootstrap container padding-->
-    {% block body %} <!-- block to add/change body.  Anything in here can be overridden.-->
+    <!-- Sourced message code from https://simpleisbetterthancomplex.com/tips/2016/09/06/django-tip-14-messages-framework.html
+    And from Corey Schafer Youtube series : https://www.youtube.com/watch?v=UmljXZIypDc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p-->
+    {% if messages %}   <!--Shows messages at the top of the page if there are any created my django-->
+        <ul class="messages">
+            {% for message in messages %}
+                <div class="alert alert-success">
+                    <strong>{{ message.tags }}!</strong> {{ message }}
+                </div>
+            {% endfor %}
+        </ul>
+    {% endif %} <!--End of message block-->
+
+    {% block body %} <!--Block to for main body content-->
     {% endblock %}
+
 </div>
 <!-- sourced code from https://getbootstrap.com/docs/4.0/getting-started/introduction/#starter-template -->
 <!-- Optional JavaScript -->
@@ -40,22 +53,29 @@
         crossorigin="anonymous"></script>
 </body>
 <footer>
-    <center>
-    <div class="container mx-auto mt-4">
-        {% block footer %} <!-- Anything in this block can be overridden -->
-            <div class="row">
+    <div style="text-align: center;">
+        <div class="container mx-auto mt-4">
+            {% block footer %} <!-- Anything in this block can be overridden -->
+                <div class="row">
                 <div class="col-md">
-                    <a href="https://github.com/Brick7Face/psychiatric-guide-app" style="color: #A9A9A9">Documentation</a>
+                    <a href="{% url 'documentation' %}" style="color: #A9A9A9">Documentation</a>
                 </div>
-                <div class="col-md">
-                    <a href="../admin" style="color: #A9A9A9">Admin Login</a>
-                </div>
-                <div class="col-md">
-                    <a href="../admin/auth/user/add/" style="color: #A9A9A9">Add User</a>
-                </div>
+                {% if user.is_authenticated %}
+                    <div class="col-md">
+                        <a href="{% url 'logout-view' %}" style="color: #A9A9A9">Logout</a>
+                    </div>
+                    <div class="col-md">
+                        <a href="{% url 'create-new-user' %}" style="color: #A9A9A9">Add User</a>
+                    </div>
+                {% else %}
+                    <div class="col-md">
+                    <a href="{% url 'login-view' %}" style="color: #A9A9A9">Login</a>
+                    <div class="col-md">
+                {% endif %}
+
             </div>
-        {% endblock%}
+            {% endblock %}
+            </div>
     </div>
-    </center>
 </footer>
 </html>
