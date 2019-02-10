@@ -45,17 +45,23 @@ Finally, this documentation is accessible from a link on the website. For more q
 ### 3.1 How to compile/build:
 
 Our software uses Google Cloud SQL as its database service. In order to interact with this database when running the 
-software locally the following commands need to be run.<br>
+software locally, the following steps need to be completed. First, the Google Cloud SDK needs to be downloaded and
+installed at [https://cloud.google.com/sdk/](https://cloud.google.com/sdk/) After installing the SDK, run the command 
+`gcloud auth login` to sign in.
+
+Running the software locally requires two
+commands. The first command is to set up a proxy to Cloud SQL:<br>
 On Windows:<br>
 `cloud_sql_proxy.exe -instances="psychiatric-guide:us-west1:psychiatric-guide-db"=tcp:3306`<br>
 On Linux/MacOS:<br>
 `./cloud_sql_proxy -instances="psychiatric-guide:us-west1:psychiatric-guide-db"=tcp:3306`<br>
-If that command is not found on Linux/MacOS, use `chmod u+x cloud_sql_proxy` and then the command above. If you get an authentication error, download the Google Cloud SDK from https://cloud.google.com/sdk/ and follow the instructions to log in. If there is still an error, contact bryanplant on Github for access information.
+If that command is not found on Linux/MacOS, use `chmod u+x cloud_sql_proxy` and then the command above.
 
-Since our software is a web application, there is not exactly a way to compile it explicitly. However, since it 
-needs to be publicly hosted, to see changes in development, one can run from the command line the command 
-`python manage.py runserver` in the same directory as the manage.py file to host it locally. 
-On certain Linux operating systems, the command should instead be `python3 manage.py runserver`. 
+Next, the command to run the Django server locally:<br>
+On Windows:<br>
+`python manage.py runserver`<br>
+On Linux/MacOS:<br>
+`python3 manage.py runserver`. <br>
 This will host the application on local host at [http://127.0.0.1:8000/](http://127.0.0.1:8000/). 
 
 
