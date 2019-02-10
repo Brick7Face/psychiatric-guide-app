@@ -1,0 +1,27 @@
+body {
+    padding-top: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body .login_container{
+  height: 85vh;
+  margin:0 auto;
+  width: 60vw;
+}
+
+footer center .row{
+  width: 60vw;
+  margin: 0 auto;
+  padding-left:20vw;
+}
+
+form{
+  padding-top: 30vh;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    body .login_container {
+      padding-left: 0;
+    }
+}
