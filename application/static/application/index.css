@@ -1,0 +1,41 @@
+body {
+    padding-top: 0;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+}
+body .login_container{
+  margin:0 auto;
+  width: 60vw;
+  padding-bottom:5vh;
+}
+.new_user_container{
+  margin:0 auto;
+  width: 60vw;
+}
+
+footer{
+  padding-bottom:10vh;
+}
+
+center .row{
+  width: 80vw;
+  padding-left:20vw;
+}
+
+#login_wrapper form{
+  padding-left: 20vw;
+  padding-top: 30vh;
+  padding-bottom:5vh;
+}
+
+#new_user_wrapper form{
+  padding-top:10vh;
+  padding-left: 20vw;
+  padding-bottom:5vh;
+}
+
+@media (max-width: 768px) {
+    body .login_container {
+      padding-left: 0;
+    }
+}
