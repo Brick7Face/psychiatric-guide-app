@@ -35,6 +35,9 @@
         <div class="sidebar-header">
             {% if title %}
                 <h3>{{ title }}</h3> <!-- creates title if available -->
+                {% if user.is_authenticated %}
+                Hello {{ user.first_name }}.    <!--shows users first name if logged in.-->
+                    {% endif %}
             {% else %}
                 <h3>Psychiatric Guide</h3> <!-- Generic Title -->
             {% endif %}
