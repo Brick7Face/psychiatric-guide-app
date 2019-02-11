@@ -47,15 +47,26 @@ Finally, this documentation is accessible from a link on the website. For more q
 Our software uses Google Cloud SQL as its database service. In order to interact with this database when running the 
 software locally, the following steps need to be completed. First, the Google Cloud SDK needs to be downloaded and
 installed at [https://cloud.google.com/sdk/](https://cloud.google.com/sdk/) After installing the SDK, run the command 
-`gcloud auth login` to sign in.
+`gcloud auth login` to sign in.<br>
+
+Before running the software there is one command 
+needed to install the Python requirements: <br>
+On Windows:<br>
+`pip install -r requirements.txt`<br>
+On Linux\MacOS:<br>
+`pip3 install -r requirements.txt`<br> 
+
 
 Running the software locally requires two
 commands. The first command is to set up a proxy to Cloud SQL:<br>
 On Windows:<br>
 `cloud_sql_proxy.exe -instances="psychiatric-guide:us-west1:psychiatric-guide-db"=tcp:3306`<br>
-On Linux/MacOS:<br>
+On Linux:<br>
 `./cloud_sql_proxy -instances="psychiatric-guide:us-west1:psychiatric-guide-db"=tcp:3306`<br>
-If that command is not found on Linux/MacOS, use `chmod u+x cloud_sql_proxy` and then the command above.
+If that command is not found on Linux, use `chmod u+x cloud_sql_proxy` and then the command above.<br>
+On MacOS:<br>
+`./cloud_sql_proxy_mac -instances="psychiatric-guide:us-west1:psychiatric-guide-db"=tcp:3306`<br>
+If that command is not found on MacOS, use `chmod u+x cloud_sql_proxy_mac` and then the command above.<br>
 If there is still an error, contact bryanplant on Github for access information.
 
 Next, the command to run the Django server locally:<br>

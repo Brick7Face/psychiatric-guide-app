@@ -1,4 +1,5 @@
 .idea/
 venv/
 *.pyc
-psychiatric-guide-app/static/
+/static/
+.DS_STORE
