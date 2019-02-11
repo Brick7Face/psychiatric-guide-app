@@ -1,6 +1,7 @@
 {% extends "application/global-html.html" %}
 {% load crispy_forms_tags %}
 {% block body %}
+<div id="login_wrapper">
     <form method="post">
         {% csrf_token %}
         {{ form|crispy }}
@@ -8,4 +9,5 @@
             <button class="btn btn-primary mt-4 btn-block" type="submit">Login</button>
         </div>
     </form>
+  </div>
 {% endblock body %}
