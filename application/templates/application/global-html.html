@@ -11,34 +11,87 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="sylesheet" type="text/css" href="{% static 'application/global-css.css' %}"> <!-- load in global css -->
+
+
+    <!-- Lightning force CSS -->
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'application/assets/styles/salesforce-lightning-design-system.css' %}"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'application/sidebar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'application/index.css' %}"><!-- load in global css -->
+
     {% if title %}
         <title>{{ title }}</title> <!-- creates title if available -->
     {% else %}
-        <title>Psychiatric Guide App</title> <!-- Generic Title -->
+        <title>Psychiatric Guide</title> <!-- Generic Title -->
     {% endif %}
 </head>
-<header>
-    <div style="text-align: center;"><h1>Application</h1></div>
-</header>
+
 <body>
-<div class="container"> <!-- Bootstrap container padding-->
-    <!-- Sourced message code from https://simpleisbetterthancomplex.com/tips/2016/09/06/django-tip-14-messages-framework.html
-    And from Corey Schafer Youtube series : https://www.youtube.com/watch?v=UmljXZIypDc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p-->
-    {% if messages %}   <!--Shows messages at the top of the page if there are any created my django-->
-        <ul class="messages">
-            {% for message in messages %}
-                <div class="alert alert-success">
-                    <strong>{{ message.tags }}!</strong> {{ message }}
-                </div>
-            {% endfor %}
+<div class="menu_wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            {% if title %}
+                <h3>{{ title }}</h3> <!-- creates title if available -->
+            {% else %}
+                <h3>Psychiatric Guide</h3> <!-- Generic Title -->
+            {% endif %}
+        </div>
+
+        <ul class="list-unstyled components">
+            <li>
+                <a href="#">
+                    Home
+                </a>
+                <a href="#">
+                    App Information
+                </a>
+                <a href="#">
+                    Contact Us / Report a Bug
+                </a>
+            </li>
         </ul>
-    {% endif %} <!--End of message block-->
-
-    {% block body %} <!--Block to for main body content-->
-    {% endblock %}
-
+        <div class="login_button">
+            {% if user.is_authenticated %}
+                {#                <a href="{% url 'logout-view' %}" style="color: #A9A9A9">Logout</a>#}
+                {#                <button class="slds-button slds-button_outline-brand" onclick="window.location.href = {% url 'logout-view' %};"> Logout</button>#}
+                <a href="{% url 'logout-view' %}" class="slds-button slds-button_outline-brand" role="button">Logout</a>
+                {% if user.is_superuser %}
+                    <!-- Checks if user has permission, being superuser, to create new accounts-->
+                    {#                    <button class="slds-button slds-button_outline-brand" onclick="{% url 'create-new-user' %}"> Create#}
+                    {#                        User#}
+                    {#                    </button>#}
+                    <a href="{% url 'create-new-user' %}" class="slds-button slds-button_outline-brand" role="button">Create
+                        User</a>
+                {% endif %}
+            {% else %}
+                <a href="{% url 'login-view' %}" class="slds-button slds-button_outline-brand" role="button">Login</a>
+                {#                <button class="slds-button slds-button_outline-brand" onclick="{% url 'login-view' %}"> Login</button>#}
+                {#                <a href="{% url 'login-view' %}" style="color: #A9A9A9">Login</a>#}
+            {% endif %}
+        </div>
+    </nav> <!--SIDEBAR CODE-->
 </div>
+<div class="wrapper">
+    <div class="login_container"> <!-- Bootstrap container padding-->
+        <!-- Sourced message code from https://simpleisbetterthancomplex.com/tips/2016/09/06/django-tip-14-messages-framework.html
+        And from Corey Schafer Youtube series : https://www.youtube.com/watch?v=UmljXZIypDc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p-->
+        {% if messages %}   <!--Shows messages at the top of the page if there are any created my django-->
+            <ul class="messages">
+                {% for message in messages %}
+                    <div class="alert alert-success">
+                        <strong>{{ message.tags }}!</strong> {{ message }}
+                    </div>
+                {% endfor %}
+            </ul>
+        {% endif %} <!--End of message block-->
+        {% block body %} <!--Block to for main body content-->
+        {% endblock %}
+    </div>
+</div>
+
 <!-- sourced code from https://getbootstrap.com/docs/4.0/getting-started/introduction/#starter-template -->
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -51,31 +104,37 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-</body>
+
 <footer>
-    <div style="text-align: center;">
-        <div class="container mx-auto mt-4">
+    <center>
+        <div class="container_mx-auto_mt-4">
             {% block footer %} <!-- Anything in this block can be overridden -->
                 <div class="row">
-                <div class="col-md">
-                    <a href="{% url 'documentation' %}" style="color: #A9A9A9">Documentation</a>
-                </div>
-                {% if user.is_authenticated %}
                     <div class="col-md">
-                        <a href="{% url 'logout-view' %}" style="color: #A9A9A9">Logout</a>
+                        <a href="{% url 'documentation' %}" style="color: #A9A9A9">Documentation</a>
                     </div>
-                    <div class="col-md">
-                        <a href="{% url 'create-new-user' %}" style="color: #A9A9A9">Add User</a>
-                    </div>
-                {% else %}
-                    <div class="col-md">
-                    <a href="{% url 'login-view' %}" style="color: #A9A9A9">Login</a>
-                    <div class="col-md">
-                {% endif %}
+                    {% if user.is_authenticated %}
+                        <div class="col-md">
+                            <a href="{% url 'logout-view' %}" style="color: #A9A9A9">Logout</a>
+                        </div>
+                        {% if user.is_superuser %}
+                            <div class="col-md">
+                                <a href="{% url 'create-new-user' %}" style="color: #A9A9A9">Add User</a>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <div class="col-md">
+                            <a href="{% url 'login-view' %}" style="color: #A9A9A9">Login</a>
+                        </div>
+                    {% endif %}
 
-            </div>
+                </div>
             {% endblock %}
-            </div>
-    </div>
+        </div>
+    </center>
 </footer>
+
+</body>
+
+
 </html>
