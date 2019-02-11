@@ -3,35 +3,35 @@
     <div id="choice-container">
         <div class="choice">
             <label>
-                <input type="radio" checked name={{num}}><br>
+                <input type="radio" onclick="showNext()" name={{num}}><br>
                 Not at all<br>(0)
             </label>
         </div>
         <div class="choice">
             <label>
-                <input type="radio" name={{num}}><br>
+                <input type="radio" onclick="showNext()" name={{num}}><br>
                 Several Days<br>(1)
             </label>
         </div>
         <div class="choice">
             <label>
-                <input type="radio" name={{num}}><br>
+                <input type="radio" onclick="showNext()" name={{num}}><br>
                 More than half the days<br>(2)
             </label>
         </div>
         <div class="choice">
             <label>
-                <input type="radio" name={{num}}><br>
+                <input type="radio" onclick="showNext()" name={{num}}><br>
                 Nearly every day<br>(3)
             </label>
         </div>
     </div>
     {% if num > 1 %}
-        <button class="previous-button" onclick="updateQuestion(-1)">Previous</button>
+        <button id="previous-button" onclick="updateQuestion(-1)">Previous</button>
     {% endif %}
     {% if num != total %}
-        <button class="next-button" onclick="updateQuestion(1)">Next</button>
+        <button id="next-button" onclick="updateQuestion(1)">Next</button>
     {% else %}
-        <button class="submit-button" onclick="updateQuestion(1)">Submit</button>
+        <button id="submit-button" onclick="updateQuestion(1)">Submit</button>
     {% endif %}
 </div>

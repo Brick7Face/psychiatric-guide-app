@@ -67,18 +67,19 @@ button {
     height: 50px;
 }
 
-.previous-button {
+#previous-button {
     left: 15%;
     color: #2699FB;
     background-color: white;
     border: 2px solid #2699FB;
 }
 
-.next-button {
+#next-button {
+    display: none;
     background-color: #2699FB;
 }
 
-.submit-button {
+#submit-button {
     background-color: green;
 }
 
