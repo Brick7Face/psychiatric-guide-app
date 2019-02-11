@@ -25,7 +25,7 @@ class Step(models.Model):
     # Fields
     name = models.TextField(help_text='Enter step title')
     description = models.TextField(help_text='Enter step description')
-    treatment = models.ForeignKey(Treatment, on_delete=models.CASCADE, default='incomplete')
+    treatment = models.ForeignKey(Treatment, on_delete=models.DO_NOTHING, default='incomplete')
     
     # Metadata
     class Meta: 
