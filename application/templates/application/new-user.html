@@ -1,6 +1,7 @@
 {% extends "application/global-html.html" %}
 {% load crispy_forms_tags %}
 {% block body %}
+<div id="new_user_wrapper">
     {% if user.is_superuser %} <!-- Checks if user has permission, being superuser, to create new accounts-->
         <form method="POST">
             {% csrf_token %}
@@ -14,4 +15,5 @@
         <H3>Error: You must have permission to add new users.</H3>
         </div>
     {% endif %}
+  </div>
 {% endblock body %}
