@@ -148,4 +148,7 @@ STATICFILES_DIRS = ( os.path.join('static'), )
 LOGIN_REDIRECT_URL = 'backend-home'  # Sets redirect after login
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_URL = 'login-view' # Redirect for the login page for @login_required
-# LOGOUT_URL = 'logout-view' # Redirects to login page after logout
+# Sourced following code from user Jayground at https://stackoverflow.com/questions/3024153/how-to-expire-session-due-to-inactivity-in-django
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True # Logs user out if browser is closed
+SESSION_COOKIE_AGE = 900 # Automatically logs user out after 15 minutes (900 seconds)
+SESSION_SAVE_EVERY_REQUEST = True

@@ -42,9 +42,15 @@
 
         <ul class="list-unstyled components">
             <li>
-                <a href="#">
+                {% if user.is_authenticated %}
+                <a href="{% url 'backend-home' %}">
                     Home
                 </a>
+                {% else %}
+                <a href="{% url 'login-view' %}">
+                    Home
+                </a>
+                {% endif %}
                 <a href="#">
                     App Information
                 </a>
@@ -55,21 +61,14 @@
         </ul>
         <div class="login_button">
             {% if user.is_authenticated %}
-                {#                <a href="{% url 'logout-view' %}" style="color: #A9A9A9">Logout</a>#}
-                {#                <button class="slds-button slds-button_outline-brand" onclick="window.location.href = {% url 'logout-view' %};"> Logout</button>#}
-                <a href="{% url 'logout-view' %}" class="slds-button slds-button_outline-brand" role="button">Logout</a>
-                {% if user.is_superuser %}
-                    <!-- Checks if user has permission, being superuser, to create new accounts-->
-                    {#                    <button class="slds-button slds-button_outline-brand" onclick="{% url 'create-new-user' %}"> Create#}
-                    {#                        User#}
-                    {#                    </button>#}
+                {% if user.is_superuser %}<!-- Checks if user has permission, being superuser, to create new accounts-->
                     <a href="{% url 'create-new-user' %}" class="slds-button slds-button_outline-brand" role="button">Create
                         User</a>
                 {% endif %}
+                <a href="{% url 'logout-view' %}" class="slds-button slds-button_outline-brand" role="button">Logout</a>
+
             {% else %}
                 <a href="{% url 'login-view' %}" class="slds-button slds-button_outline-brand" role="button">Login</a>
-                {#                <button class="slds-button slds-button_outline-brand" onclick="{% url 'login-view' %}"> Login</button>#}
-                {#                <a href="{% url 'login-view' %}" style="color: #A9A9A9">Login</a>#}
             {% endif %}
         </div>
     </nav> <!--SIDEBAR CODE-->
