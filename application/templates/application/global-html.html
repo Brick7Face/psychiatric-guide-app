@@ -36,8 +36,17 @@
             {% if title %}
                 <h3>{{ title }}</h3> <!-- creates title if available -->
                 {% if user.is_authenticated %}
-                Hello {{ user.first_name }}.    <!--shows users first name if logged in.-->
-                    {% endif %}
+                    <!--code sourced from https://v4-alpha.getbootstrap.com/components/dropdowns/-->
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Hello {{ user.first_name }}.    <!--shows users first name if logged in.-->
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{% url 'logout-view' %}">Logout</a>
+                        </div>
+                    </div>
+                {% endif %}
             {% else %}
                 <h3>Psychiatric Guide</h3> <!-- Generic Title -->
             {% endif %}
@@ -46,13 +55,13 @@
         <ul class="list-unstyled components">
             <li>
                 {% if user.is_authenticated %}
-                <a href="{% url 'backend-home' %}">
-                    Home
-                </a>
+                    <a href="{% url 'backend-home' %}">
+                        Home
+                    </a>
                 {% else %}
-                <a href="{% url 'login-view' %}">
-                    Home
-                </a>
+                    <a href="{% url 'login-view' %}">
+                        Home
+                    </a>
                 {% endif %}
                 <a href="#">
                     App Information
