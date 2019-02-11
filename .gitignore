@@ -2,3 +2,4 @@
 venv/
 *.pyc
 /static/
+.DS_STORE
