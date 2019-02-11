@@ -1,33 +1,37 @@
 body {
     padding-top: 0;
     font-family: 'Poppins', sans-serif;
+    position: relative;
 }
-
 body .login_container{
-  height: 85vh;
+  margin:0 auto;
+  width: 60vw;
+  padding-bottom:5vh;
+}
+.new_user_container{
   margin:0 auto;
   width: 60vw;
 }
 
-.container_mx-auto_mt-4 .row{
-  width: 80vw;
-  margin: 0 auto;
+footer{
+  padding-bottom:10vh;
 }
-footer center .row{
+
+center .row{
   width: 80vw;
-  margin: 0 auto;
   padding-left:20vw;
 }
 
 #login_wrapper form{
+  padding-left: 20vw;
   padding-top: 30vh;
-  margin: 0 auto;
+  padding-bottom:5vh;
 }
 
 #new_user_wrapper form{
   padding-top:10vh;
   padding-left: 20vw;
-  margin: 0 auto;
+  padding-bottom:5vh;
 }
 
 @media (max-width: 768px) {

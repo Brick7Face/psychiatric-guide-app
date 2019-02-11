@@ -23,19 +23,19 @@
     {% if title %}
         <title>{{ title }}</title> <!-- creates title if available -->
     {% else %}
-        <title>Psychiatric Guide App</title> <!-- Generic Title -->
+        <title>Psychiatric Guide</title> <!-- Generic Title -->
     {% endif %}
 </head>
 
 <body>
-  <div class="wrapper">
+  <div class="menu_wrapper">
       <!-- Sidebar  -->
       <nav id="sidebar">
           <div class="sidebar-header">
               {% if title %}
               <h3>{{ title }}</h3> <!-- creates title if available -->
               {% else %}
-              <h3>Psychiatric Guide App</h3> <!-- Generic Title -->
+              <h3>Psychiatric Guide</h3> <!-- Generic Title -->
               {% endif %}
           </div>
 
@@ -57,21 +57,22 @@
           </div>
       </nav> <!--SIDEBAR CODE-->
   </div>
-  <div class="login_container"> <!-- Bootstrap container padding-->
-      <!-- Sourced message code from https://simpleisbetterthancomplex.com/tips/2016/09/06/django-tip-14-messages-framework.html
-      And from Corey Schafer Youtube series : https://www.youtube.com/watch?v=UmljXZIypDc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p-->
-      {% if messages %}   <!--Shows messages at the top of the page if there are any created my django-->
-          <ul class="messages">
-              {% for message in messages %}
-                  <div class="alert alert-success">
-                      <strong>{{ message.tags }}!</strong> {{ message }}
-                  </div>
-              {% endfor %}
-          </ul>
-      {% endif %} <!--End of message block-->
-
-      {% block body %} <!--Block to for main body content-->
-      {% endblock %}
+  <div class="wrapper">
+    <div class="login_container"> <!-- Bootstrap container padding-->
+        <!-- Sourced message code from https://simpleisbetterthancomplex.com/tips/2016/09/06/django-tip-14-messages-framework.html
+        And from Corey Schafer Youtube series : https://www.youtube.com/watch?v=UmljXZIypDc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p-->
+        {% if messages %}   <!--Shows messages at the top of the page if there are any created my django-->
+            <ul class="messages">
+                {% for message in messages %}
+                    <div class="alert alert-success">
+                        <strong>{{ message.tags }}!</strong> {{ message }}
+                    </div>
+                {% endfor %}
+            </ul>
+        {% endif %} <!--End of message block-->
+        {% block body %} <!--Block to for main body content-->
+        {% endblock %}
+    </div>
   </div>
 
   <!-- sourced code from https://getbootstrap.com/docs/4.0/getting-started/introduction/#starter-template -->
@@ -93,9 +94,6 @@
           {% block footer %} <!-- Anything in this block can be overridden -->
               <div class="row">
                   <div class="col-md">
-                      <a href="https://github.com/Brick7Face/psychiatric-guide-app" style="color: #A9A9A9">Documentation</a>
-                  </div>
-                  <div class="col-md">
                       <a href="{% url 'documentation' %}" style="color: #A9A9A9">Documentation</a>
                   </div>
                   {% if user.is_authenticated %}
@@ -116,6 +114,9 @@
             </div>
       </center>
   </footer>
+
 </body>
+
+
 
 </html>
