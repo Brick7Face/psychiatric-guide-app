@@ -1,7 +1,37 @@
-<tr>
-    <td>{{ question }}</td>
-    <td><input type="radio" name={{num}}></td>
-    <td><input type="radio" name={{num}}></td>
-    <td><input type="radio" name={{num}}></td>
-    <td><input type="radio" name={{num}}></td>
-</tr>
+<div class="question">
+    <span id="question-text"><span id="num-text">{{num}}/{{total}}</span> {{question}}</span>
+    <div id="choice-container">
+        <div class="choice">
+            <label>
+                <input type="radio" checked name={{num}}><br>
+                Not at all<br>(0)
+            </label>
+        </div>
+        <div class="choice">
+            <label>
+                <input type="radio" name={{num}}><br>
+                Several Days<br>(1)
+            </label>
+        </div>
+        <div class="choice">
+            <label>
+                <input type="radio" name={{num}}><br>
+                More than half the days<br>(2)
+            </label>
+        </div>
+        <div class="choice">
+            <label>
+                <input type="radio" name={{num}}><br>
+                Nearly every day<br>(3)
+            </label>
+        </div>
+    </div>
+    {% if num > 1 %}
+        <button class="previous-button" onclick="updateQuestion(-1)">Previous</button>
+    {% endif %}
+    {% if num != total %}
+        <button class="next-button" onclick="updateQuestion(1)">Next</button>
+    {% else %}
+        <button class="submit-button" onclick="updateQuestion(1)">Submit</button>
+    {% endif %}
+</div>

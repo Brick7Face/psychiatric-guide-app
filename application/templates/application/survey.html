@@ -6,24 +6,16 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static 'application/main.css' %}"> <!-- load in global css -->
     <link rel="stylesheet" type="text/css" href="{% static 'application/survey.css' %}"> <!-- load in global css -->
+    <script src="{% static 'application/survey.js' %}"></script>
 
-    <title>Title</title>
+    <title>Survey</title>
 </head>
 <body>
-<table style="width:100%">
-    <tr id="header-row">
-        <td id="left-table-header">Over the past 2 weeks, how often have you been bothered by any of the following
-            problems?</td>
-        <td>Not at all (0)</td>
-        <td>Several days (1)</td>
-        <td>More than half the days (2)</td>
-        <td>Nearly every day (3)</td>
-    </tr>
-    {% for question in questions %}
-        {% include "./question-radio.html" with question=question num=forloop.counter %}
-    {% endfor %}
-</table>
+    <div id="wrapper">
+        {% for question in questions %}
+            {% include "./question-radio.html" with num=forloop.counter total=questions|length %}
+        {% endfor %}
+    </div>
 </body>
 </html>

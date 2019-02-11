@@ -1,3 +1,109 @@
-#header-row {
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: whitesmoke;
+}
+
+#question-text {
+    font-weight: normal;
+    display: block;
+    font-size: 1.6em;
+    font-family: serif;
+    margin: 1.5em 0;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+#num-text {
     font-weight: bold;
+}
+
+#wrapper {
+    position: relative;
+    height: 100%;
+}
+
+.question {
+    display: none;
+    background-color: white;
+    width: 45%;
+    height: 45%;
+    border: 2px solid #2699FB;
+    text-align: center;
+    margin: auto;
+    clear: both;
+    overflow: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    color: #2699FB;
+    font-weight: bold;
+}
+
+#choice-container {
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    bottom: 25%;
+}
+
+.choice {
+    float: left;
+    display: block;
+    width: 25%;
+}
+
+button {
+    position: absolute;
+    bottom: 5%;
+    right: 15%;
+    color: white;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    width: 125px;
+    height: 50px;
+}
+
+.previous-button {
+    left: 15%;
+    color: #2699FB;
+    background-color: white;
+    border: 2px solid #2699FB;
+}
+
+.next-button {
+    background-color: #2699FB;
+}
+
+.submit-button {
+    background-color: green;
+}
+
+input[type="radio"] {
+    /* remove standard background appearance */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* create custom radiobutton appearance */
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    padding: 6px;
+    /* background-color only for content */
+    background-clip: content-box;
+    border: 2px solid #2699FB;
+    background-color: white;
+    border-radius: 50%;
+}
+
+/* appearance for checked radiobutton */
+input[type="radio"]:checked {
+    background-color: #2699FB;
+}
+
+input:focus{
+    outline:none;
 }
