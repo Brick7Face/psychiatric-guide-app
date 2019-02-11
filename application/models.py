@@ -91,7 +91,7 @@ class Prescriber(models.Model):
     
     def __str__(self):
         """String for representing the MyModelName object (in Admin site etc.)."""
-        return self.name
+        return self.user.get_username()
 
 # defines model for PHQ-9 score and corresponding disorder
 # defines model for disorder treatment type and corresponding steps
