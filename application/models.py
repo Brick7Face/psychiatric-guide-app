@@ -2,11 +2,30 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
+# defines model for disorder treatment type and corresponding steps
+class Treatment(models.Model):
+    # Fields
+    name = models.TextField(help_text='Enter disorder treatment type title')
+    
+    # Metadata
+    class Meta: 
+        ordering = ['name']
+
+    # Methods
+    def get_absolute_url(self):
+        """Returns the url to access a particular instance of MyModelName."""
+        return reverse('model-detail-view', args=[str(self.id)])
+    
+    def __str__(self):
+        """String for representing the MyModelName object (in Admin site etc.)."""
+        return self.name
+
 # defines model for a single step (or box) from prescribing guide flowchart
 class Step(models.Model):
     # Fields
     name = models.TextField(help_text='Enter step title')
     description = models.TextField(help_text='Enter step description')
+    treatment = models.ForeignKey(Treatment, on_delete=models.CASCADE, default='incomplete')
     
     # Metadata
     class Meta: 
@@ -45,36 +64,6 @@ class Medication(models.Model):
         """String for representing the MyModelName object (in Admin site etc.)."""
         return self.name
 
-# defines model for a patient in treatment process
-class Patient(models.Model):
-    # Fields
-    first_Name = models.TextField(help_text='Enter patient first name and middle initial')
-    last_Name = models.TextField(help_text='Enter patient last name')
-    DOB = models.DateField(help_text='Enter patient date of birth')
-    address = models.TextField(help_text='Enter patient current address')
-    email = models.EmailField(help_text='Enter patient current email')
-    phone = models.TextField(help_text='Enter patient current phone number')
-    # current treatment progress (step)
-    # list of PHQ-9 scores
-    # visit history
-    next_Visit = models.DateTimeField(help_text='Enter the next visit date and time of the patient if applicable', blank=True, default=timezone.now)
-    # medicines
-    notes = models.TextField(help_text='Enter any prescriber notes about patient')
- 
-    
-    # Metadata
-    class Meta: 
-        ordering = ['last_Name','first_Name']
-
-    # Methods
-    def get_absolute_url(self):
-        """Returns the url to access a particular instance of MyModelName."""
-        return reverse('model-detail-view', args=[str(self.id)])
-    
-    def __str__(self):
-        """String for representing the MyModelName object (in Admin site etc.)."""
-        return self.name
-
 # defines model for a prescriber
 class Prescriber(models.Model):
     # Fields
@@ -93,5 +82,34 @@ class Prescriber(models.Model):
         """String for representing the MyModelName object (in Admin site etc.)."""
         return self.user.get_username()
 
-# defines model for PHQ-9 score and corresponding disorder
-# defines model for disorder treatment type and corresponding steps
+# defines model for a patient in treatment process
+class Patient(models.Model):
+    # Fields
+    first_Name = models.TextField(help_text='Enter patient first name and middle initial')
+    last_Name = models.TextField(help_text='Enter patient last name')
+    DOB = models.DateField(help_text='Enter patient date of birth')
+    address = models.TextField(help_text='Enter patient current address')
+    email = models.EmailField(help_text='Enter patient current email')
+    phone = models.TextField(help_text='Enter patient current phone number')
+    prescriber = models.ForeignKey(Prescriber, null=True, on_delete=models.SET_NULL)
+    current_Step = models.ForeignKey(Step, null=True, on_delete=models.SET_NULL)
+    # list of PHQ-9 scores
+    # visit history
+    next_Visit = models.DateTimeField(help_text='Enter the next visit date and time of the patient if applicable', blank=True, default=timezone.now)
+    medications = models.ManyToManyField(Medication)
+    notes = models.TextField(help_text='Enter any prescriber notes about patient')
+ 
+    
+    # Metadata
+    class Meta: 
+        ordering = ['last_Name','first_Name']
+
+    # Methods
+    def get_absolute_url(self):
+        """Returns the url to access a particular instance of MyModelName."""
+        return reverse('model-detail-view', args=[str(self.id)])
+    
+    def __str__(self):
+        """String for representing the MyModelName object (in Admin site etc.)."""
+        return self.name
+
