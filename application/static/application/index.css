@@ -13,6 +13,11 @@ body .login_container{
   width: 60vw;
 }
 
+.container_mx-auto_mt-4 .row{
+  margin:0 auto;
+  padding-left: 20vw;
+}
+
 footer{
   padding-bottom:10vh;
 }
@@ -27,7 +32,9 @@ center .row{
   padding-top: 30vh;
   padding-bottom:5vh;
 }
-
+#doc_wrapper{
+  padding-top: 40vh;
+}
 #new_user_wrapper form{
   padding-top:10vh;
   padding-left: 20vw;
