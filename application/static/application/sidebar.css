@@ -16,6 +16,10 @@
     color: #999;
 }
 
+.login_button .users_name {
+  margin-bottom: 2vh;
+}
+
 a, a:hover, a:focus {
     color: inherit;
     text-decoration: none;
