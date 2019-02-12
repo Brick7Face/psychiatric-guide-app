@@ -1,0 +1,10 @@
+.new_user_container{
+  margin:0 auto;
+  width: 60vw;
+}
+
+#new_user_wrapper form{
+  padding-top:10vh;
+  padding-left: 20vw;
+  padding-bottom:5vh;
+}

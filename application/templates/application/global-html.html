@@ -18,8 +18,13 @@
           href="{% static 'application/assets/styles/salesforce-lightning-design-system.css' %}"/>
 
     <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'application/backend-home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'application/contact-bug.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'application/documentation.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'application/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'application/login.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'application/new-user.css' %}"><!-- load in global css -->
     <link rel="stylesheet" type="text/css" href="{% static 'application/sidebar.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'application/index.css' %}"><!-- load in global css -->
 
     {% if title %}
         <title>{{ title }}</title> <!-- creates title if available -->
@@ -53,32 +58,41 @@
         </div>
 
         <ul class="list-unstyled components">
+          {% if user.is_superuser %}
+          <li class="active">
+              <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                  <i class="fas fa-home"></i>
+                  Admin Actions
+              </a>
+              <ul class="collapse list-unstyled" id="homeSubmenu">
+                  <li>
+                      <a href="{% url 'create-new-user' %}">
+                        Add User
+                      </a>
+                  </li>
+              </ul>
+          </li>
+          {% endif %}
             <li>
                 {% if user.is_authenticated %}
-                    <a href="{% url 'backend-home' %}">
-                        Home
-                    </a>
+                  <a href="{% url 'backend-home' %}">
+                      Home
+                  </a>
                 {% else %}
-                    <a href="{% url 'login-view' %}">
-                        Home
-                    </a>
+                  <a href="{% url 'login-view' %}">
+                      Home
+                  </a>
                 {% endif %}
-                <a href="#">
-                    App Information
-                </a>
-                <a href="#">
+                <a href="{% url 'contact-bug' %}">
                     Contact Us / Report a Bug
                 </a>
             </li>
         </ul>
         <div class="login_button">
             {% if user.is_authenticated %}
-                {% if user.is_superuser %}<!-- Checks if user has permission, being superuser, to create new accounts-->
-                    <a href="{% url 'create-new-user' %}" class="slds-button slds-button_outline-brand" role="button">Create
-                        User</a>
-                {% endif %}
+                {#                <a href="{% url 'logout-view' %}" style="color: #A9A9A9">Logout</a>#}
+                {#                <button class="slds-button slds-button_outline-brand" onclick="window.location.href = {% url 'logout-view' %};"> Logout</button>#}
                 <a href="{% url 'logout-view' %}" class="slds-button slds-button_outline-brand" role="button">Logout</a>
-
             {% else %}
                 <a href="{% url 'login-view' %}" class="slds-button slds-button_outline-brand" role="button">Login</a>
             {% endif %}
@@ -86,7 +100,7 @@
     </nav> <!--SIDEBAR CODE-->
 </div>
 <div class="wrapper">
-    <div class="login_container"> <!-- Bootstrap container padding-->
+    <div class="content_container"> <!-- Bootstrap container padding-->
         <!-- Sourced message code from https://simpleisbetterthancomplex.com/tips/2016/09/06/django-tip-14-messages-framework.html
         And from Corey Schafer Youtube series : https://www.youtube.com/watch?v=UmljXZIypDc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p-->
         {% if messages %}   <!--Shows messages at the top of the page if there are any created my django-->
@@ -115,11 +129,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-
+<!--
 <footer>
     <center>
         <div class="container_mx-auto_mt-4">
-            {% block footer %} <!-- Anything in this block can be overridden -->
+            {% block footer %}
                 <div class="row">
                     <div class="col-md">
                         <a href="{% url 'documentation' %}" style="color: #A9A9A9">Documentation</a>
@@ -144,7 +158,7 @@
         </div>
     </center>
 </footer>
-
+-->
 </body>
 
 
