@@ -78,7 +78,7 @@ a, a:hover, a:focus {
 }
 
 #sidebar ul ul a {
-    font-size: 0.9em !important;
+    font-size: 0.9em;
     padding-left: 40px !important;
     background: #2699FB;
 }
@@ -108,9 +108,23 @@ a, a:hover, a:focus {
   padding-left: 25px;
 }
 
+#sidebar i{
+  color: #fff;
+}
+
 @media (max-width: 800px) {
-    #sidebar .login_button {
-      display: none;
+    .users_name{
+      font-size: .9em;
+      text-align: left;
+    }
+    #sidebar .login_button{
+      text-align: center;
+      padding-left:0;
+    }
+    .slds-button{
+      margin: 0 auto;
+      width: 14vw;
+      font-size: .9em;
     }
     #sidebar.active {
         margin-left: 0;
@@ -126,7 +140,7 @@ a, a:hover, a:focus {
     #sidebar .sidebar-header h3{
       padding: 10px 4px;
       text-align: center;
-      font-size: 0.9em;
+      font-size: 1.1em;
     }
     /* Toggling the sidebar header content, hide the big heading [h3] and showing the small heading [strong] and vice versa*/
     #sidebar .sidebar-header strong {
@@ -150,7 +164,7 @@ a, a:hover, a:focus {
     }
 
     #sidebar ul li a i {
-        color: black;
+        color: #fff;
         margin-right:  0;
         display: block;
         font-size: 1.8em;
