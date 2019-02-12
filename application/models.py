@@ -25,7 +25,7 @@ class Step(models.Model):
     # Fields
     name = models.TextField(help_text='Enter step title')
     description = models.TextField(help_text='Enter step description')
-    treatment = models.ForeignKey(Treatment, on_delete=models.DO_NOTHING, default='incomplete')
+    treatment = models.ForeignKey(Treatment, on_delete=models.SET_DEFAULT, default='')
     
     # Metadata
     class Meta: 
@@ -59,15 +59,16 @@ class Medication(models.Model):
     def get_absolute_url(self):
         """Returns the url to access a particular instance of MyModelName."""
         return reverse('model-detail-view', args=[str(self.id)])
-    
+  
     def __str__(self):
         """String for representing the MyModelName object (in Admin site etc.)."""
         return self.name
 
+
 # defines model for a prescriber
 class Prescriber(models.Model):
     # Fields
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default='')
     
     # Metadata
     class Meta: 
