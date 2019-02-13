@@ -2,10 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
-# defines model for disorder treatment type and corresponding steps
-class Treatment(models.Model):
+# defines model for a single step (or box) from prescribing guide flowchart
+class Step(models.Model):
     # Fields
-    name = models.CharField(help_text='Enter disorder treatment type title', max_length=25)
+    name = models.CharField(help_text='Enter step title', max_length=25)
+    description = models.TextField(help_text='Enter step description')
     
     # Metadata
     class Meta: 
@@ -20,12 +21,11 @@ class Treatment(models.Model):
         """String for representing the MyModelName object (in Admin site etc.)."""
         return self.name
 
-# defines model for a single step (or box) from prescribing guide flowchart
-class Step(models.Model):
+# defines model for disorder treatment type and corresponding steps
+class Treatment(models.Model):
     # Fields
-    name = models.CharField(help_text='Enter step title', max_length=25)
-    description = models.TextField(help_text='Enter step description')
-    treatment = models.ForeignKey(Treatment, on_delete=models.SET_DEFAULT, default='')
+    name = models.CharField(help_text='Enter disorder treatment type title', max_length=25)
+    steps = models.ManyToManyField(Step)
     
     # Metadata
     class Meta: 
@@ -63,7 +63,6 @@ class Medication(models.Model):
     def __str__(self):
         """String for representing the MyModelName object (in Admin site etc.)."""
         return self.name
-
 
 # defines model for a prescriber
 class Prescriber(models.Model):
