@@ -1,0 +1,13 @@
+#login_wrapper{
+  margin:0 auto;
+  width: 40vw;
+}
+
+#login_wrapper form{
+  padding-top: 40vh;
+}
+
+.btn-primary{
+  background-color:#2699FB;
+  outline-color:#2699FB;
+}

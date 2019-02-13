@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
+from application.models import Prescriber
 from django import forms
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import logout
@@ -59,3 +60,6 @@ def backend_home(request):
 
 def documentation(request):
     return render(request, 'application/documentation.html', {'title': 'Documentation'})  # Renders login.html
+
+def contact_bug(request):
+    return render(request, 'application/contact-bug.html', {'title': 'Contact Us / Report a Bug'})
