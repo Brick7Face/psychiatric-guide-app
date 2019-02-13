@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
+from application.models import Prescriber
 from django import forms
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import logout
@@ -61,7 +62,6 @@ def backend_home(request):
 def documentation(request):
     return render(request, 'application/documentation.html', {'title': 'Documentation'})  # Renders login.html
 
-
 def survey(request):
     questions = [
         "Little interest or pleasure in doing things?",
@@ -76,3 +76,7 @@ def survey(request):
         "How difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?"
     ]
     return render(request, 'application/survey.html', {'title': 'Survey', 'questions': questions})
+
+
+def contact_bug(request):
+    return render(request, 'application/contact-bug.html', {'title': 'Contact Us / Report a Bug'})

@@ -9,5 +9,6 @@ urlpatterns = [
     path('create_user/', views.create_user, name='create-new-user'),  # Path for new user registration
     path('backend_home/', views.backend_home, name="backend-home"),  # Home page for logged in user
     path('documentation/', views.documentation, name="documentation"),  # Home page for logged in user
-    path('survey/', views.survey, name="survey-view")
+    path('survey/', views.survey, name="survey-view"),
+    path('contact-bug/', views.contact_bug, name="contact-bug"),
 ]
