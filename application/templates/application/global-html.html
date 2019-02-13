@@ -20,6 +20,12 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'application/sidebar.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'application/index.css' %}"><!-- load in global css -->
+    {% block css %}
+    {% endblock css %}
+
+    <!-- Link to scripts -->
+    {% block scripts %}
+    {% endblock %}
 
     {% if title %}
         <title>{{ title }}</title> <!-- creates title if available -->
@@ -75,7 +81,7 @@
     </nav> <!--SIDEBAR CODE-->
 </div>
 <div class="wrapper">
-    <div class="login_container"> <!-- Bootstrap container padding-->
+    <div class="login_container">
         <!-- Sourced message code from https://simpleisbetterthancomplex.com/tips/2016/09/06/django-tip-14-messages-framework.html
         And from Corey Schafer Youtube series : https://www.youtube.com/watch?v=UmljXZIypDc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p-->
         {% if messages %}   <!--Shows messages at the top of the page if there are any created my django-->

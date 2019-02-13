@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
@@ -8,7 +9,6 @@ from django.contrib.auth import logout
 
 
 # Create your views here.
-
 
 def login(request):
     return render(request, 'application/login.html', {'title': 'Login'})  # Renders login.html
@@ -75,4 +75,4 @@ def survey(request):
         "Thoughts that you would be better off dead, or thoughts of hurting yourself in some way?",
         "How difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?"
     ]
-    return render(request, 'application/survey.html', {'questions': questions})
+    return render(request, 'application/survey.html', {'title': 'Survey', 'questions': questions})

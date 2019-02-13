@@ -1,21 +1,18 @@
+{% extends "application/global-html.html" %}
 {% load static %} <!-- loads in static css file  application/static/application-->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static 'application/survey.css' %}"> <!-- load in global css -->
-    <script src="{% static 'application/survey.js' %}"></script>
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'application/survey.css' %}">
+{% endblock css %}
 
-    <title>Survey</title>
-</head>
-<body>
-    <div id="wrapper">
-        {% for question in questions %}
-            {% include "./question-radio.html" with num=forloop.counter total=questions|length %}
-        {% endfor %}
-    </div>
-</body>
-</html>
+{% block scripts %}
+<script src="{% static 'application/survey.js' %}"></script>
+{% endblock scripts %}
+
+{% block body %}
+<div id="question-wrapper">
+    {% for question in questions %}
+        {% include "./question-radio.html" with num=forloop.counter total=questions|length %}
+    {% endfor %}
+</div>
+{% endblock body %}

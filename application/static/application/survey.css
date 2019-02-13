@@ -19,22 +19,26 @@ html, body {
     font-weight: bold;
 }
 
-#wrapper {
+#question-wrapper {
     position: relative;
+    margin: 0 auto;
     height: 100%;
+    width: 100%;
 }
 
 .question {
     display: none;
     background-color: white;
     width: 45%;
+    min-width: 450px;
     height: 45%;
+    min-height: 350px;
     border: 2px solid #2699FB;
     text-align: center;
     margin: auto;
     clear: both;
     overflow: auto;
-    position: absolute;
+    position: relative;
     top: 0; left: 0; bottom: 0; right: 0;
     color: #2699FB;
     font-weight: bold;
