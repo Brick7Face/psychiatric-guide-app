@@ -144,7 +144,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
-STATICFILES_DIRS = ( os.path.join(''), )
+STATICFILES_DIRS = ( os.path.join('static'), )
 LOGIN_REDIRECT_URL = 'backend-home'  # Sets redirect after login
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_URL = 'login-view' # Redirect for the login page for @login_required
