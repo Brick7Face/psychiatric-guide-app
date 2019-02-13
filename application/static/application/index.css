@@ -1,27 +1,20 @@
 body {
     padding-top: 0;
     font-family: 'Poppins', sans-serif;
-    position: relative;
+}
+.wrapper{
+  height: 100vh;
+  width: 80vw;
+  margin-left: 20vw;
 }
 body .content_container{
-  margin:0 auto;
+  margin: 0 auto;
+  /*transform: translate(0%, 150%);*/
   width: 60vw;
-  padding-bottom:5vh;
+  overflow-y:scroll;
+  overflow: hidden;
 }
 
-.container_mx-auto_mt-4 .row{
-  margin:0 auto;
-  padding-left: 20vw;
-}
-
-footer{
-  padding-bottom:10vh;
-}
-
-center .row{
-  width: 80vw;
-  padding-left:20vw;
-}
 
 h1{
   font-family: 'Poppins', sans-serif;
