@@ -3,3 +3,8 @@
   padding-top: 30vh;
   padding-bottom:5vh;
 }
+
+.btn-primary{
+  background-color:#2699FB;
+  outline-color:#2699FB;
+}

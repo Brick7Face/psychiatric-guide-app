@@ -32,7 +32,6 @@ h1{
 .content{
   margin:0 auto;
 }
-
 @media (max-width: 768px) {
     body .content_container {
       padding-left: 0;
