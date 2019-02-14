@@ -25,5 +25,12 @@ function showQuestion(n) {
 }
 
 function showNext() {
-    questions[questionIndex-1].querySelector("#next-button").style.display = "block";
+    var next = questions[questionIndex-1].querySelector("#next-button");
+    var submit = questions[questionIndex-1].querySelector("#submit-button");
+    if (next != null) {
+        next.style.display = "block";
+    }
+    else if (submit != null) {
+        submit.style.display = "block";
+    }
 }

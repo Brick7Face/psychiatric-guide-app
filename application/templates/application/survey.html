@@ -11,8 +11,11 @@
 
 {% block body %}
 <div id="question-wrapper">
-    {% for question in questions %}
-        {% include "./question-radio.html" with num=forloop.counter total=questions|length %}
-    {% endfor %}
+    <form method="post">
+        {% csrf_token %}
+        {% for question in questions %}
+            {% include "./question-radio.html" with num=forloop.counter total=questions|length %}
+        {% endfor %}
+    </form>
 </div>
 {% endblock body %}

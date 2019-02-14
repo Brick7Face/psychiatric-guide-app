@@ -84,6 +84,7 @@ button {
 }
 
 #submit-button {
+    display: none;
     background-color: green;
 }
 
@@ -91,7 +92,6 @@ input[type="radio"] {
     /* remove standard background appearance */
     -webkit-appearance: none;
     -moz-appearance: none;
-    appearance: none;
     /* create custom radiobutton appearance */
     display: inline-block;
     width: 25px;
