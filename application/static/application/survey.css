@@ -9,9 +9,10 @@ html, body {
     display: block;
     font-size: 1.6em;
     font-family: serif;
-    margin: 1.5em 0;
-    padding-left: 2em;
-    padding-right: 2em;
+    margin: 15px 5px 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 100px;
 }
 
 #num-text {
@@ -29,10 +30,6 @@ html, body {
 .question {
     display: none;
     background-color: white;
-    width: 45%;
-    min-width: 450px;
-    height: 45%;
-    min-height: 350px;
     border: 2px solid #2699FB;
     text-align: center;
     margin: auto;
@@ -45,47 +42,72 @@ html, body {
 }
 
 #choice-container {
-    position: absolute;
+    position: relative;
     overflow: hidden;
     width: 100%;
-    bottom: 25%;
+    margin-top: 5vh;
 }
 
 .choice {
     float: left;
     display: block;
     width: 25%;
+    font-size: 1em;
+}
+
+#button-container {
+    clear: both;
+    position: relative;
+    margin: 0 auto;
+    padding: 15px;
+    width: 100%;
+    height: 75px;
 }
 
 button {
-    position: absolute;
-    bottom: 5%;
-    right: 15%;
+    position: relative;
     color: white;
-    border: none;
     text-align: center;
-    text-decoration: none;
     display: inline-block;
     border-radius: 5px;
-    width: 125px;
-    height: 50px;
+    border: 2px solid #2699FB;
+    height: 40px;
+    width: 40%;
+    margin-bottom: 15px;
 }
 
 #previous-button {
-    left: 15%;
     color: #2699FB;
     background-color: white;
     border: 2px solid #2699FB;
+    float: left;
 }
 
 #next-button {
     display: none;
     background-color: #2699FB;
+    float: right;
 }
 
 #submit-button {
     display: none;
     background-color: green;
+    float: right;
+}
+
+@media (max-width: 800px) {
+    button {
+        margin: 0;
+    }
+
+    #question-text {
+        font-size: 1.2em;
+    }
+
+    .choice {
+        width: 100%;
+        font-size: 0.8em;
+    }
 }
 
 input[type="radio"] {

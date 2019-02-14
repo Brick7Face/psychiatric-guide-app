@@ -1,37 +1,39 @@
 <div class="question">
-    <span id="question-text"><span id="num-text">{{num}}/{{total}}</span> {{question}}</span>
+    <span id="question-text"><span id="num-text">{{ num }}/{{ total }}</span> {{ question }}</span>
     <div id="choice-container">
         <div class="choice">
             <label>
-                <input type="radio" onclick="showNext()" name="{{num}}" value="0"><br>
+                <input type="radio" onclick="showNext()" name="{{ num }}" value="0"><br>
                 Not at all<br>(0)
             </label>
         </div>
         <div class="choice">
             <label>
-                <input type="radio" onclick="showNext()" name="{{num}}" value="1"><br>
+                <input type="radio" onclick="showNext()" name="{{ num }}" value="1"><br>
                 Several Days<br>(1)
             </label>
         </div>
         <div class="choice">
             <label>
-                <input type="radio" onclick="showNext()" name="{{num}}" value="2"><br>
+                <input type="radio" onclick="showNext()" name="{{ num }}" value="2"><br>
                 More than half the days<br>(2)
             </label>
         </div>
         <div class="choice">
             <label>
-                <input type="radio" onclick="showNext()" name="{{num}}" value="3"><br>
+                <input type="radio" onclick="showNext()" name="{{ num }}" value="3"><br>
                 Nearly every day<br>(3)
             </label>
         </div>
     </div>
-    {% if num > 1 %}
-        <button id="previous-button" type="button" onclick="updateQuestion(-1)">Previous</button>
-    {% endif %}
-    {% if num != total %}
-        <button id="next-button" type="button" onclick="updateQuestion(1)">Next</button>
-    {% else %}
-        <button id="submit-button" type="submit">Submit</button>
-    {% endif %}
+    <div id="button-container">
+        {% if num > 1 %}
+            <button id="previous-button" type="button" onclick="updateQuestion(-1)">Previous</button>
+        {% endif %}
+        {% if num != total %}
+            <button id="next-button" type="button" onclick="updateQuestion(1)">Next</button>
+        {% else %}
+            <button id="submit-button" type="submit">Submit</button>
+        {% endif %}
+    </div>
 </div>
