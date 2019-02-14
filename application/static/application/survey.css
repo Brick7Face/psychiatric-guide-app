@@ -2,7 +2,6 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-color: whitesmoke;
 }
 
 #question-text {
@@ -22,6 +21,7 @@ html, body {
 #question-wrapper {
     position: relative;
     margin: 0 auto;
+    padding-top: 20vh;
     height: 100%;
     width: 100%;
 }
