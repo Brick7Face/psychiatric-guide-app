@@ -1,8 +1,20 @@
-var questionIndex = 1;
+var questionIndex = 2;
 var questions = [];
 window.onload = function () {
-    showQuestion(questionIndex);
+    showIntroduction(questionIndex);
 };
+
+function showIntroduction() {
+    var introduction = document.getElementsByClassName("question introduction")[0];
+    introduction.style.display = "block";
+}
+
+function hideIntroduction() {
+    var introduction = document.getElementsByClassName("question introduction")[0];
+    console.log(introduction);
+    introduction.style.display = "none";
+    showQuestion(questionIndex);
+}
 
 // Next/previous controls
 function updateQuestion(n) {
@@ -10,12 +22,13 @@ function updateQuestion(n) {
 }
 
 function showQuestion(n) {
+    console.log("showing questions");
     var i;
     questions = document.getElementsByClassName("question");
     if (n > questions.length) {
-        questionIndex = 1
+        questionIndex = 2
     }
-    if (n < 1) {
+    if (n < 2) {
         questionIndex = questions.length
     }
     for (i = 0; i < questions.length; i++) {
@@ -25,8 +38,8 @@ function showQuestion(n) {
 }
 
 function showNext() {
-    var next = questions[questionIndex-1].querySelector("#next-button");
-    var submit = questions[questionIndex-1].querySelector("#submit-button");
+    var next = questions[questionIndex-1].querySelector(".next-button");
+    var submit = questions[questionIndex-1].querySelector(".submit-button");
     if (next != null) {
         next.style.display = "block";
     }

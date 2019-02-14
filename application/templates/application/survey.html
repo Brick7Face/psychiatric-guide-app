@@ -11,6 +11,10 @@
 
 {% block body %}
 <div id="question-wrapper">
+    <div class="question introduction">
+        <span class="question-text"> {{ introduction }} </span>
+        <button class="continue-button" onclick="hideIntroduction()">Continue</button>
+    </div>
     <form method="post">
         {% csrf_token %}
         {% for question in questions %}

@@ -4,7 +4,7 @@ html, body {
     height: 100%;
 }
 
-#question-text {
+.question-text {
     font-weight: normal;
     display: block;
     font-size: 1.6em;
@@ -76,31 +76,31 @@ button {
     margin-bottom: 15px;
 }
 
-#previous-button {
+.previous-button {
     color: #2699FB;
     background-color: white;
     border: 2px solid #2699FB;
     float: left;
 }
 
-#next-button {
+.next-button {
     display: none;
     background-color: #2699FB;
     float: right;
 }
 
-#submit-button {
+.submit-button {
     display: none;
     background-color: green;
     float: right;
 }
 
-@media (max-width: 800px) {
-    button {
-        margin: 0;
-    }
+.continue-button {
+    background-color: #2699FB;
+}
 
-    #question-text {
+@media (max-width: 800px) {
+    .question-text {
         font-size: 1.2em;
     }
 

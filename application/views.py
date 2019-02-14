@@ -71,6 +71,7 @@ def survey(request):
         return render(request, 'application/survey-complete.html',
                       {'title': 'Survey Complete', 'results': results})
     else:
+        introduction = "Over the past 2 weeks, how often have you been bothered by any of the following problems?"
         choices1 = ["Not at all", "Several days", "More than half the days", "Nearly every day"]
         choices2 = ["Not difficult at all", "Somewhat difficult", "Very difficult", "Extremely difficult"]
         questions = [
@@ -85,7 +86,9 @@ def survey(request):
             ["Thoughts that you would be better off dead, or thoughts of hurting yourself in some way?", choices1],
             ["How difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?", choices2]
         ]
-        return render(request, 'application/survey.html', {'title': 'Survey', 'questions': questions})
+        return render(request, 'application/survey.html', {'title': 'Survey',
+                                                           'introduction': introduction,
+                                                           'questions': questions})
 
 
 def contact_bug(request):
