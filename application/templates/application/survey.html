@@ -14,7 +14,7 @@
     <form method="post">
         {% csrf_token %}
         {% for question in questions %}
-            {% include "./question-radio.html" with num=forloop.counter total=questions|length %}
+            {% include "./question.html" with num=forloop.counter total=questions|length %}
         {% endfor %}
     </form>
 </div>

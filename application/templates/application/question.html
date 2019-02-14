@@ -1,0 +1,18 @@
+<div class="question">
+    <span id="question-text"><span id="num-text">{{ num }}/{{ total }}</span> {{ question.0 }}</span>
+    <div id="choice-container">
+        {% for choice in question.1 %}
+            {% include "./choice.html" with question_num=num choice_num=forloop.counter %}
+        {% endfor %}
+    </div>
+    <div id="button-container">
+        {% if num > 1 %}
+            <button id="previous-button" type="button" onclick="updateQuestion(-1)">Previous</button>
+        {% endif %}
+        {% if num != total %}
+            <button id="next-button" type="button" onclick="updateQuestion(1)">Next</button>
+        {% else %}
+            <button id="submit-button" type="submit">Submit</button>
+        {% endif %}
+    </div>
+</div>

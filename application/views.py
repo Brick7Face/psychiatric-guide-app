@@ -71,17 +71,19 @@ def survey(request):
         return render(request, 'application/survey-complete.html',
                       {'title': 'Survey Complete', 'results': results})
     else:
+        choices1 = ["Not at all", "Several days", "More than half the days", "Nearly every day"]
+        choices2 = ["Not difficult at all", "Somewhat difficult", "Very difficult", "Extremely difficult"]
         questions = [
-            "Little interest or pleasure in doing things?",
-            "Feeling down, depressed or hopeless?",
-            "Trouble falling or staying asleep, or sleeping too much?",
-            "Feeling tired or having little energy?",
-            "Poor appetite or overeating?",
-            "Feeling bad about yourself or that you are a failure or have let yourself or your family down?",
-            "Trouble concentrating on things, such as reading the newspaper or watching television?",
-            "Moving or speaking so slowly that other people could have noticed? Or so fidgety or restless that you have been moving a lot more than usual?",
-            "Thoughts that you would be better off dead, or thoughts of hurting yourself in some way?",
-            "How difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?"
+            ["Little interest or pleasure in doing things?", choices1],
+            ["Feeling down, depressed or hopeless?", choices1],
+            ["Trouble falling or staying asleep, or sleeping too much?", choices1],
+            ["Feeling tired or having little energy?", choices1],
+            ["Poor appetite or overeating?", choices1],
+            ["Feeling bad about yourself or that you are a failure or have let yourself or your family down?", choices1],
+            ["Trouble concentrating on things, such as reading the newspaper or watching television?", choices1],
+            ["Moving or speaking so slowly that other people could have noticed? Or so fidgety or restless that you have been moving a lot more than usual?", choices1],
+            ["Thoughts that you would be better off dead, or thoughts of hurting yourself in some way?", choices1],
+            ["How difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?", choices2]
         ]
         return render(request, 'application/survey.html', {'title': 'Survey', 'questions': questions})
 
