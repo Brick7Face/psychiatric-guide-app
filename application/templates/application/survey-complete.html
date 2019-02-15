@@ -4,6 +4,53 @@
 {% block body %}
     <div id="survey-complete-wrapper">
         <h1>Survey Complete!</h1>
-        <p>Here's the results:<br>{{ results }}<br>^ Keely uses math and stuff here</p>
+        <p>Here's the results:</p>
+
+        {% if diagnosis %}
+            <p> make a tentative diagnosis of depression, after ruling out <br>
+                physical causes, normal bereavement and a history of a manic <br>
+                or hypomanic episode. Screen for bipolar disorder using the <br>
+                Mood Disorders Questionnaire </p>
+
+            <p>^ Keely uses math and stuff here</p>
+        {% else %}
+            <p> you are not depressed so be better </p>>
+        {% endif %}
+
+        {% if change_treatment %}
+            <p> Treatment or treatment change may be warranted if at least one <br>
+            of the first two questions is rated a 2 or 3 OR question 10 is <br>
+                rated at least Somewhat difficult. </p>
+            <p>^ Keely uses math and stuff here</p>
+        {% else %}
+            <p> don't change treatment </p>
+        {% endif %}
+
+        {% if suicide_risk %}
+            <p> assess for suicide risk </p>
+            <p>^ Keely uses math and stuff here</p>
+        {% else %}
+            <p> not suicidal </p>
+        {% endif %}
+
+        {% if severity_score %}
+            <p>
+            |---------|--------------------------------|--------------------------------------------------| <br>
+            | Score   | Tentative Diagnosis            | Treatment Recommendation                         |<br>
+            |---------|--------------------------------|--------------------------------------------------|<br>
+            | 5 - 9   | Minimal symptoms               | Support, ask to call if worse, return in 1 month |<br>
+            |---------|--------------------------------|--------------------------------------------------|<br>
+            |         | Minor Depression               | Support, contact in one week                     |<br>
+            | 10 - 14 | Dysthymia or major Depression, | Antidepressant or psychotherapy,                 |<br>
+            |         | mild                           | contact in one week                              |<br>
+            |---------|--------------------------------|--------------------------------------------------|<br>
+            | 15 - 19 | Major Depression, moderate     | Antidepressant or psychotherapy                  |<br>
+            |---------|--------------------------------|--------------------------------------------------|<br>
+            |  >= 20  | Major Depression, severe       | Antidepressant and psychotherapy                 |<br>
+            |         |                                | (especially if not improved on monotherapy)      |<br>
+            |---------|--------------------------------|--------------------------------------------------|<br>
+        {% else %}
+            <p> something else becuase SS < 5 </p>
+        {% endif %}
     </div>
 {% endblock body %}

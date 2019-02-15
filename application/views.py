@@ -10,6 +10,8 @@ from django.contrib.auth import logout
 
 
 # Create your views here.
+from application.questionnaire_evaluations import PHQ9
+
 
 def login(request):
     return render(request, 'application/login.html', {'title': 'Login'})  # Renders login.html
@@ -68,8 +70,12 @@ def survey(request):
         # TODO: calculate calculate and save results here
         results = dict(request.POST)
         results.pop('csrfmiddlewaretoken', '')
-        return render(request, 'application/survey-complete.html',
-                      {'title': 'Survey Complete', 'results': results})
+        phq9 = PHQ9()
+        # returns dictionary {diag : bool, change treat : bool, suicide : bool, score : int}
+        dic = phq9.phq9_evaluation(results)
+        dic['title'] = 'Survey Complete'
+        return render(request, 'application/survey-complete.html', dic)
+
     else:
         introduction = "Over the past 2 weeks, how often have you been bothered by any of the following problems?"
         choices1 = ["Not at all", "Several days", "More than half the days", "Nearly every day"]

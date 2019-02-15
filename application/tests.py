@@ -72,11 +72,18 @@ class PHQ9TestCase(TestCase):
         self.assertEqual(6, self.phq9.treatment_and_monitoring(a2))
         self.assertEqual(6, self.phq9.treatment_and_monitoring(a3))
 
-        pass
+
+    def test_convert_results(self):
+        a1 = {'1':['2'], '2':['1']}
+        a1_expected = {1:2, 2:1}
+        self.assertEqual(self.phq9.convert_results(a1), a1_expected)
 
     def test_phq9_evaluation(self):
-        #TODO: a change in the Severity Score of 5 or more
+        # TODO: a change in the Severity Score of 5 or more
         pass
+
+
+
 #
 #
 # class MDQTestCase(TestCase):
@@ -94,3 +101,5 @@ class PHQ9TestCase(TestCase):
 #
 #     def test_mdq_diagnosis(self):
 #         pass
+
+

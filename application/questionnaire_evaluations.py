@@ -106,19 +106,27 @@ class PHQ9:
         #TODO: based on severity score print table from PHQ9 treatment and monitoring section 3
 
 
+    def convert_results(self, results):
+        answers = {}
+        for item in results.items():
+            key = int(item[0])
+            value = int(item[1][0])
+            answers[key] = value
+        return answers
+
     """
     @param:
     @return:
     """
-    def phq9_evaluation(self, answers):
+    def phq9_evaluation(self, results):
+        answers = self.convert_results(results)
         d1 = self.diagnosis_two(answers)
         d2 = self.diagnosis_two(answers)
         d3 = self.diagnosis_three(answers)
 
-        self.diagnosis(d1, d2, d3)
-        self.change_treatment(answers, d1)
-        self.suicide_risk(answers)
-        self.treatment_and_monitoring(answers)
+        results_dictionary = {'diagnosis' : self.diagnosis(d1, d2, d3), 'change_treatment' : self.change_treatment(answers, d1),
+                              'suicide_risk' : self.suicide_risk(answers), 'severity_score' : self.treatment_and_monitoring(answers)}
+        return results_dictionary
         # TODO: Monitoring – a change in the Severity Score of 5 or more
         #  is considered clinically significant in assessing improvement of symptoms.
 
