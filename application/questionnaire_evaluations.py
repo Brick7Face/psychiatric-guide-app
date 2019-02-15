@@ -14,6 +14,8 @@ class PHQ9:
     @return: Boolean - if answer to the first two questions are answered as a 2 or a 3
     """
     def diagnosis_one(self, answers):
+        if not answers:
+            return False
         if answers.get(1) in (2, 3) or answers.get(2) in (2, 3):
             return True
         else:
@@ -32,11 +34,9 @@ class PHQ9:
     """
     def diagnosis_two(self, answers):
         count = 0
-        for i in range(1, 9):
+        for i in range(1, 10):
             if answers.get(i) in (2, 3):
                 count += 1
-        if answers.get(9) == 2 or answers.get(9) == 3:
-            count += 1
         if count >= 5:
             return True
         else:
@@ -65,100 +65,137 @@ class PHQ9:
     @param: A patients answers to the PHQ-9 questionnaire
     @return: Boolean - if a doctor can make a tentative diagnosis of depression
     """
-    def diagnosis(self, answers):
-        if self.diagnosis_one(answers) and self.diagnosis_two(answers) and self.diagnosis_three(answers):
+    def diagnosis(self, d1, d2, d3):
+        return d1 and d2 and d3
+
+    """
+    Treatment or treatment change may be warranted if at least one of the first two questions
+    is rated a 2 or 3 OR question 10 is rated at least Somewhat difficult. 
+    
+    @param: A patients answers to the PHQ-9 questionnaire
+    @return: Boolean - if the prescribing physician should consider a treatment change
+    """
+    def change_treatment(self, d1, d3):
+        return d1 or d3
+
+    """
+    If the patient answers question 9 of the PHQ9 evaluation they should be assessed 
+    for suicide risk.
+    
+    @param: A patients answers to the PHQ-9 questionnaire
+    @return: Boolean - if patient should be assessed for suicide risk.
+    """
+    def suicide_risk(self, answers):
+        if answers.get(9) > 0:
             return True
         else:
             return False
 
     """
+    Based on the calculated severity score show the recommended treatment 
+    and tentative diagnosis 
+    
     @param: A patients answers to the PHQ-9 questionnaire
-    @return:
+    @return: ??? 
     """
     def treatment_and_monitoring(self, answers):
-        # --- Calculate Severity Score -------------------------------
-        severityScore = int(0)
-        for i in range(1, len(answers)):
-            severityScore += answers.get(i)
-        # ------------------------------------------------------------
+        severity_score = int(0)
+        for i in range(1, len(answers) + 1):
+            severity_score += answers.get(i)
+        return severity_score
+        #TODO: based on severity score print table from PHQ9 treatment and monitoring section 3
 
-        # --- Determine if treatment change may be warranted ---------
-        if self.diagnosis_one(answers) or answers.get(10) >= 2:
-            change_treatment = True
-        # ------------------------------------------------------------
-
-        # --- Determine if patient is suicide risk -------------------
-        if answers.get(9) > 0:
-            suicide_risk = True
-        # ------------------------------------------------------------
-
-        #TODO: how to format the info on this table:
-        # pop-up?, new page?,
-        # all together?, seperate?
-        if severityScore >= 5:
-            print("SEVERITY SCORE OF", severityScore, "USE THE FOLLOWING TABLE:")
-            print("|---------|--------------------------------|--------------------------------------------------|")
-            print("| Score   | Tentative Diagnosis            | Treatment Recommendation                         |")
-            print("|---------|--------------------------------|--------------------------------------------------|")
-            print("| 5 - 9   | Minimal symptoms               | Support, ask to call if worse, return in 1 month |")
-            print("|---------|--------------------------------|--------------------------------------------------|")
-            print("|         | Minor Depression               | Support, contact in one week                     |\n"
-                  "| 10 - 14 | Dysthymia or major Depression, | Antidepressant or psychotherapy,                 |\n"
-                  "|         | mild                           | contact in one week                              |")
-            print("|---------|--------------------------------|--------------------------------------------------|")
-            print("| 15 - 19 | Major Depression, moderate     | Antidepressant or psychotherapy                  |")
-            print("|---------|--------------------------------|--------------------------------------------------|")
-            print("|  >= 20  | Major Depression, severe       | Antidepressant and psychotherapy                 |\n"
-                  "|         |                                | (especially if not improved on monotherapy)      |")
-            print("|---------|--------------------------------|--------------------------------------------------|")
 
     """
     @param:
     @return:
     """
     def phq9_evaluation(self, answers):
-        self.diagnosis(answers)
+        d1 = self.diagnosis_two(answers)
+        d2 = self.diagnosis_two(answers)
+        d3 = self.diagnosis_three(answers)
+
+        self.diagnosis(d1, d2, d3)
+        self.change_treatment(answers, d1)
+        self.suicide_risk(answers)
         self.treatment_and_monitoring(answers)
         # TODO: Monitoring – a change in the Severity Score of 5 or more
         #  is considered clinically significant in assessing improvement of symptoms.
 
-    phq9_evaluation()
-
-
-#TODO: make work with DB
-# questions:
-# how to format answers to question one
-# how is answer to question 2 given
-# how to format answer to question 3
-# how to breakdown logic for when to ask questions 2 and 3
 
 class MDQ:
     """
+    based on the patients answers to question one of the MDQ determine if questions two and three
+    need to be asked
+
     @param:
     @return:
     """
-    def mdq_evaluation(self, answers):
+    def logic_for_questions_two_and_three(self):
+        #TODO: 1) rename this
+        #      2) figure out what this will look like
+        #      3) write this
+        pass
+
+    """
+    If seven or mare of the patient's responses from question one are marked yes,
+    return true.
+
+    @param:
+    @return:
+    """
+    def evaluation_question_one(self, answers):
+        #TODO: determine format of answers to questions (bool or int)
         question_one_score = 0
         for i in range(1, len(answers)):
             if answers.get(i) == 1:
                 question_one_score += 1
-
-        if question_one_score > 1:
-            #ask question two and three
-            pass
-
-
-        # --- are the 7+ yes in question one ----------------------
         if question_one_score >= 7:
-            diagnosis_one = True
+            return True
         else:
-            diagnosis_one = False
+            return False
 
-        # --- is question 2 yes -----------------------------------
+    """
+    if the patient answered question two of the MDQ as yes return true
+    
+    @param:
+    @return:
+    """
+    def evaluation_question_two(self, answers):
+        #TODO: determine format of answers to questions (bool or int)
+        if answers.get(2) == 1:
+            return True
+        else:
+            return False
 
+    """
+    if the patient answered question three of the MDQ as either Moderate Problem or
+    Serious Problem return true
+    
+    @param:
+    @return:
+    """
+    def evaluation_question_three(self, answers):
+        #TODO: determine format of answers to questions (bool or int)
+        if answers.get(3) >= 2:
+            return True
+        else:
+            return False
 
-        # --- is question 3 Moderate Problem or Serious Problem ---
+    """
+    Evaluates the three components of the diagnosis section of the MDQ. This method
+    Determines if the screen is positive for possible bipolar I disorder. Complete a 
+    clinical interview to make a diagnosis. This screen is not as sensitive for 
+    Bipolar II Disorder (depression and hypomania).
+    
+    @param:
+    @return:
+    """
+    def mdq_diagnosis(self, answers):
+        #TODO: For Treatment and Monitoring see “Bipolar Disorder Treatment Overview.
+        if self.evaluation_question_one(answers) and self.evaluation_question_two(answers) \
+                and self.evaluation_question_three(answers):
+            return True
+        else:
+            return False
 
-        return None
-
-    mdq_evaluation()
