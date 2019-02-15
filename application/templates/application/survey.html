@@ -1,0 +1,25 @@
+{% extends "application/global-html.html" %}
+{% load static %} <!-- loads in static css file  application/static/application-->
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'application/survey.css' %}">
+{% endblock css %}
+
+{% block scripts %}
+<script src="{% static 'application/survey.js' %}"></script>
+{% endblock scripts %}
+
+{% block body %}
+<div id="question-wrapper">
+    <div class="question introduction">
+        <span class="question-text"> {{ introduction }} </span>
+        <button class="continue-button" onclick="hideIntroduction()">Continue</button>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        {% for question in questions %}
+            {% include "./question.html" with num=forloop.counter total=questions|length %}
+        {% endfor %}
+    </form>
+</div>
+{% endblock body %}
