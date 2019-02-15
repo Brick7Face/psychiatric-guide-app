@@ -1,5 +1,11 @@
 {% extends "application/global-html.html" %}
 {% load crispy_forms_tags %}
+{% load static %} <!-- loads in static css file  application/static/application-->
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'application/contact-bug.css' %}">
+{% endblock css %}
+
 {% block body %}
   <div id="contact_wrapper">
     <div class="content">
