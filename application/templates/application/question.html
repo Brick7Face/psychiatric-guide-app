@@ -10,9 +10,9 @@
             <button class="previous-button" type="button" onclick="updateQuestion(-1)">Previous</button>
         {% endif %}
         {% if num != total %}
-            <button class="next-button" type="button" onclick="updateQuestion(1)">Next</button>
+            <button class="next-button" type="button" onclick="updateQuestion(1)" disabled>Next</button>
         {% else %}
-            <button class="submit-button" type="submit">Submit</button>
+            <button class="submit-button" type="submit" disabled>Submit</button>
         {% endif %}
     </div>
 </div>

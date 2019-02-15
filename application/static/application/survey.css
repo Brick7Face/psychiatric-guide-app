@@ -76,6 +76,12 @@ button {
     margin-bottom: 15px;
 }
 
+button:disabled {
+    background-color: gray;
+    color: white;
+    border-color: gray;
+}
+
 .previous-button {
     color: #2699FB;
     background-color: white;
@@ -84,13 +90,11 @@ button {
 }
 
 .next-button {
-    display: none;
     background-color: #2699FB;
     float: right;
 }
 
 .submit-button {
-    display: none;
     background-color: green;
     float: right;
 }

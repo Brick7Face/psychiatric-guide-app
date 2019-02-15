@@ -41,9 +41,9 @@ function showNext() {
     var next = questions[questionIndex-1].querySelector(".next-button");
     var submit = questions[questionIndex-1].querySelector(".submit-button");
     if (next != null) {
-        next.style.display = "block";
+        next.disabled = false;
     }
     else if (submit != null) {
-        submit.style.display = "block";
+        submit.disabled = false;
     }
 }
