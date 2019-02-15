@@ -8,7 +8,6 @@ from django import forms
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import logout
 
-
 # Create your views here.
 from application.questionnaire_evaluations import PHQ9
 
@@ -61,6 +60,10 @@ def backend_home(request):
     return render(request, 'application/backend-home.html', {'title': 'Home'})  # Renders login.html
 
 
+def patient_home(request):
+    return render(request, 'application/patient-home.html', {'title': 'Patient Home'})  # Renders login.html
+
+
 def documentation(request):
     return render(request, 'application/documentation.html', {'title': 'Documentation'})  # Renders login.html
 
@@ -86,11 +89,16 @@ def survey(request):
             ["Trouble falling or staying asleep, or sleeping too much?", choices1],
             ["Feeling tired or having little energy?", choices1],
             ["Poor appetite or overeating?", choices1],
-            ["Feeling bad about yourself or that you are a failure or have let yourself or your family down?", choices1],
+            ["Feeling bad about yourself or that you are a failure or have let yourself or your family down?",
+             choices1],
             ["Trouble concentrating on things, such as reading the newspaper or watching television?", choices1],
-            ["Moving or speaking so slowly that other people could have noticed? Or so fidgety or restless that you have been moving a lot more than usual?", choices1],
+            [
+                "Moving or speaking so slowly that other people could have noticed? Or so fidgety or restless that you have been moving a lot more than usual?",
+                choices1],
             ["Thoughts that you would be better off dead, or thoughts of hurting yourself in some way?", choices1],
-            ["How difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?", choices2]
+            [
+                "How difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?",
+                choices2]
         ]
         return render(request, 'application/survey.html', {'title': 'Survey',
                                                            'introduction': introduction,
