@@ -1,48 +1,32 @@
 body {
     padding-top: 0;
     font-family: 'Poppins', sans-serif;
-    position: relative;
 }
-body .login_container{
-  margin:0 auto;
-  width: 60vw;
-  padding-bottom:5vh;
-}
-.new_user_container{
-  margin:0 auto;
-  width: 60vw;
-}
-
-.container_mx-auto_mt-4 .row{
-  margin:0 auto;
-  padding-left: 20vw;
-}
-
-footer{
-  padding-bottom:10vh;
-}
-
-center .row{
+.wrapper{
+  height: 100vh;
   width: 80vw;
-  padding-left:20vw;
+  margin-left: 20vw;
+}
+body .content_container{
+  margin: 0 auto;
+  /*transform: translate(0%, 150%);*/
+  width: 60vw;
+  overflow-y:scroll;
+  overflow: hidden;
 }
 
-#login_wrapper form{
-  padding-left: 20vw;
-  padding-top: 30vh;
-  padding-bottom:5vh;
-}
-#doc_wrapper{
-  padding-top: 40vh;
-}
-#new_user_wrapper form{
-  padding-top:10vh;
-  padding-left: 20vw;
-  padding-bottom:5vh;
-}
 
+h1{
+  font-family: 'Poppins', sans-serif;
+  font-size: 4em;
+  font-weight: 400;
+  text-align: center;
+}
+.content{
+  margin:0 auto;
+}
 @media (max-width: 768px) {
-    body .login_container {
+    body .content_container {
       padding-left: 0;
     }
 }
