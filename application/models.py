@@ -68,7 +68,6 @@ class Medication(models.Model):
         return self.name
 
 
-'''
 # defines model for a prescriber
 class Prescriber(models.Model):
     # Fields
@@ -86,7 +85,6 @@ class Prescriber(models.Model):
     def __str__(self):
         """String for representing the Prescriber object (in Admin site etc.)."""
         return self.user.get_username()
-'''
 
 
 # defines model for a patient in treatment process
@@ -109,7 +107,7 @@ class Patient(models.Model):
 
     # Metadata
     class Meta:
-        ordering = ['last_Name', 'first_Name']
+        ordering = ['last_name', 'first_name']
 
     # Methods
     def get_absolute_url(self):
