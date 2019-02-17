@@ -73,6 +73,10 @@
                         <i class="fas fa-home"></i>
                         Home
                     </a>
+                    <a href="{% url 'survey-view' %}">
+                        <i class="fas fa-poll-h"></i>
+                        PHQ-9
+                    </a>
                     <a href="#">
                         <i class="fas fa-user"></i>
                         Patients
@@ -120,7 +124,7 @@
                 <a href="{% url 'login-view' %}" class="slds-button slds-button_outline-brand" role="button">Login</a>
             {% endif %}
         </ul>
-</nav>
+    </nav>
 </div>
 
 {#<div class="menu_wrapper">#}

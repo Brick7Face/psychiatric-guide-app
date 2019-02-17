@@ -1,9 +1,9 @@
-from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from application.models import Prescriber
+from application.models import Phq9 as phq9_db
 from django import forms
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import logout
@@ -71,6 +71,18 @@ def survey(request):
     if request.method == 'POST':
         # TODO: calculate calculate and save results here
         results = dict(request.POST)
+        phq9_db.objects.create(question_1=results.get('1'),
+                               question_2=results.get('2'),
+                               question_3=results.get('3'),
+                               question_4=results.get('4'),
+                               question_5=results.get('5'),
+                               question_6=results.get('6'),
+                               question_7=results.get('7'),
+                               question_8=results.get('8'),
+                               question_9=results.get('9'),
+                               question_10=results.get('10'),
+                               )
+
         results.pop('csrfmiddlewaretoken', '')
         phq9 = PHQ9()
         # returns dictionary {diag : bool, change treat : bool, suicide : bool, score : int}
