@@ -1,4 +1,4 @@
-#TODO: make work with DB
+# TODO: make work with DB
 # questions:
 # how to format question 10 on PHQ-9
 # how to format Treatment and Monitoring:
@@ -13,6 +13,7 @@ class PHQ9:
     @param: a patients answers to the PHQ-9 questionnaire
     @return: Boolean - if answer to the first two questions are answered as a 2 or a 3
     """
+
     def diagnosis_one(self, answers):
         if not answers:
             return False
@@ -32,6 +33,7 @@ class PHQ9:
     @param: A patients answers to the PHQ-9 questionnaire
     @return: Boolean - if the total system count is greater than five
     """
+
     def diagnosis_two(self, answers):
         count = 0
         for i in range(1, 10):
@@ -50,6 +52,7 @@ class PHQ9:
     @param: A patients answers to the PHQ-9 questionnaire
     @return: Boolean - if the answer to question 10 is greater than Not 'difficult at all'
     """
+
     def diagnosis_three(self, answers):
         if answers.get(10) > 1:
             return True
@@ -65,6 +68,7 @@ class PHQ9:
     @param: A patients answers to the PHQ-9 questionnaire
     @return: Boolean - if a doctor can make a tentative diagnosis of depression
     """
+
     def diagnosis(self, d1, d2, d3):
         return d1 and d2 and d3
 
@@ -75,6 +79,7 @@ class PHQ9:
     @param: A patients answers to the PHQ-9 questionnaire
     @return: Boolean - if the prescribing physician should consider a treatment change
     """
+
     def change_treatment(self, d1, d3):
         return d1 or d3
 
@@ -85,6 +90,7 @@ class PHQ9:
     @param: A patients answers to the PHQ-9 questionnaire
     @return: Boolean - if patient should be assessed for suicide risk.
     """
+
     def suicide_risk(self, answers):
         if answers.get(9) > 0:
             return True
@@ -98,13 +104,13 @@ class PHQ9:
     @param: A patients answers to the PHQ-9 questionnaire
     @return: ??? 
     """
+
     def treatment_and_monitoring(self, answers):
         severity_score = int(0)
         for i in range(1, len(answers) + 1):
             severity_score += answers.get(i)
         return severity_score
-        #TODO: based on severity score print table from PHQ9 treatment and monitoring section 3
-
+        # TODO: based on severity score print table from PHQ9 treatment and monitoring section 3
 
     def convert_results(self, results):
         answers = {}
@@ -118,14 +124,17 @@ class PHQ9:
     @param:
     @return:
     """
+
     def phq9_evaluation(self, results):
         answers = self.convert_results(results)
         d1 = self.diagnosis_two(answers)
         d2 = self.diagnosis_two(answers)
         d3 = self.diagnosis_three(answers)
 
-        results_dictionary = {'diagnosis' : self.diagnosis(d1, d2, d3), 'change_treatment' : self.change_treatment(answers, d1),
-                              'suicide_risk' : self.suicide_risk(answers), 'severity_score' : self.treatment_and_monitoring(answers)}
+        results_dictionary = {'diagnosis': self.diagnosis(d1, d2, d3),
+                              'change_treatment': self.change_treatment(answers, d1),
+                              'suicide_risk': self.suicide_risk(answers),
+                              'severity_score': self.treatment_and_monitoring(answers)}
         return results_dictionary
         # TODO: Monitoring – a change in the Severity Score of 5 or more
         #  is considered clinically significant in assessing improvement of symptoms.
@@ -139,8 +148,9 @@ class MDQ:
     @param:
     @return:
     """
+
     def logic_for_questions_two_and_three(self):
-        #TODO: 1) rename this
+        # TODO: 1) rename this
         #      2) figure out what this will look like
         #      3) write this
         pass
@@ -152,8 +162,9 @@ class MDQ:
     @param:
     @return:
     """
+
     def evaluation_question_one(self, answers):
-        #TODO: determine format of answers to questions (bool or int)
+        # TODO: determine format of answers to questions (bool or int)
         question_one_score = 0
         for i in range(1, len(answers)):
             if answers.get(i) == 1:
@@ -169,8 +180,9 @@ class MDQ:
     @param:
     @return:
     """
+
     def evaluation_question_two(self, answers):
-        #TODO: determine format of answers to questions (bool or int)
+        # TODO: determine format of answers to questions (bool or int)
         if answers.get(2) == 1:
             return True
         else:
@@ -183,8 +195,9 @@ class MDQ:
     @param:
     @return:
     """
+
     def evaluation_question_three(self, answers):
-        #TODO: determine format of answers to questions (bool or int)
+        # TODO: determine format of answers to questions (bool or int)
         if answers.get(3) >= 2:
             return True
         else:
@@ -199,11 +212,11 @@ class MDQ:
     @param:
     @return:
     """
+
     def mdq_diagnosis(self, answers):
-        #TODO: For Treatment and Monitoring see “Bipolar Disorder Treatment Overview.
+        # TODO: For Treatment and Monitoring see “Bipolar Disorder Treatment Overview.
         if self.evaluation_question_one(answers) and self.evaluation_question_two(answers) \
                 and self.evaluation_question_three(answers):
             return True
         else:
             return False
-

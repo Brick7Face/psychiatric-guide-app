@@ -58,6 +58,7 @@ def backend_home(request):
     return render(request, 'application/backend-home.html', {'title': 'Home'})  # Renders login.html
 
 
+@login_required
 def patient_home(request):
     return render(request, 'application/patient-home.html', {'title': 'Patient Home'})  # Renders login.html
 
@@ -75,6 +76,7 @@ def survey(request):
         # returns dictionary {diag : bool, change treat : bool, suicide : bool, score : int}
         dic = phq9.phq9_evaluation(results)
         dic['title'] = 'Survey Complete'
+
         return render(request, 'application/survey-complete.html', dic)
 
     else:
@@ -99,14 +101,6 @@ def survey(request):
                 choices2]
         ]
 
-        class Meta:
-            model = User  # Form is of User Model.
-            fields = ['username', 'first_name', 'last_name', 'is_staff', 'is_superuser',
-                      'password1']  # Fields to be displayed of the form on the site.
-            help_texts = {  # Text descriptions that show under the field on the form
-                'is_staff': 'Check if account is for a staff member.',
-                'is_superuser': 'Allows this user to create, modify, edit, and delete other users and their information.'
-            }
         return render(request, 'application/survey.html', {'title': 'Survey',
                                                            'introduction': introduction,
                                                            'questions': questions})

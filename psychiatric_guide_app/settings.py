@@ -80,6 +80,7 @@ WSGI_APPLICATION = 'psychiatric_guide_app.wsgi.application'
 if os.getenv('GAE_APPLICATION', None):
     # Running on production App Engine, so connect to Google Cloud SQL using
     # the unix socket at /cloudsql/<your-cloudsql-connection string>
+
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
