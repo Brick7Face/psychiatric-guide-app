@@ -71,16 +71,16 @@ def survey(request):
     if request.method == 'POST':
         # TODO: calculate calculate and save results here
         results = dict(request.POST)
-        phq9_db.objects.create(question_1=results.get('1'),
-                               question_2=results.get('2'),
-                               question_3=results.get('3'),
-                               question_4=results.get('4'),
-                               question_5=results.get('5'),
-                               question_6=results.get('6'),
-                               question_7=results.get('7'),
-                               question_8=results.get('8'),
-                               question_9=results.get('9'),
-                               question_10=results.get('10'),
+        phq9_db.objects.create(question_1=results.get(str(1))[0],
+                               question_2=results.get(str(2))[0],
+                               question_3=results.get(str(3))[0],
+                               question_4=results.get(str(4))[0],
+                               question_5=results.get(str(5))[0],
+                               question_6=results.get(str(6))[0],
+                               question_7=results.get(str(7))[0],
+                               question_8=results.get(str(8))[0],
+                               question_9=results.get(str(9))[0],
+                               question_10=results.get(str(10))[0],
                                )
 
         results.pop('csrfmiddlewaretoken', '')
