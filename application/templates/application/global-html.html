@@ -1,7 +1,6 @@
 <!-- global template html -->
 <!-- sourced code from https://getbootstrap.com/docs/4.0/getting-started/introduction/#starter-template -->
 {% load static %} <!-- loads in static css file  application/static/application-->
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -20,13 +19,14 @@
           href="{% static 'application/assets/styles/salesforce-lightning-design-system.css' %}"/>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="{% static 'application/backend-home.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'application/contact-bug.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'application/documentation.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'application/index.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'application/login.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'application/new-user.css' %}"><!-- load in global css -->
     <link rel="stylesheet" type="text/css" href="{% static 'application/sidebar.css' %}">
+    {% block css %}
+    {% endblock css %}
+
+    <!-- Link to scripts -->
+    {% block scripts %}
+    {% endblock %}
 
     {% if title %}
         <title>{{ title }}</title> <!-- creates title if available -->
@@ -42,22 +42,10 @@
         <div class="sidebar-header">
             {% if title %}
                 <h3>{{ title }}</h3> <!-- creates title if available -->
-                <!--
-                {% if user.is_authenticated %}
-                    <!--code sourced from https://v4-alpha.getbootstrap.com/components/dropdowns/--><!--
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Hello {{ user.first_name }}.    <!--shows users first name if logged in.--><!--
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="{% url 'logout-view' %}">Logout</a>
-                        </div>
-                    </div>
-                {% endif %}-->
             {% else %}
                 <h3>Psychiatric Guide</h3> <!-- Generic Title -->
             {% endif %}
+            <strong>PG</strong>
         </div>
 
         <ul class="list-unstyled components">
@@ -80,7 +68,7 @@
             <li>
                 {% if user.is_authenticated %}
                   <a href="{% url 'backend-home' %}">
-                    <i class="fas fa-home""></i>
+                    <i class="fas fa-home"></i>
                     Home
                   </a>
                   <a href="#">
@@ -91,7 +79,7 @@
                     <i class="fas fa-code-branch"></i>
                     Treatment Overview
                   </a>
-                  <a href="#">
+                  <a href="{% url 'survey-view' %}">
                     <i class="fas fa-poll-h"></i>
                     PHQ-9
                   </a>
@@ -108,6 +96,10 @@
                 <a href="{% url 'contact-bug' %}">
                     <i class="fas fa-bug"></i>
                     Contact Us / Report a Bug
+                </a>
+                <a href="{% url 'documentation' %}">
+                    <i class="fas fa-file"></i>
+                    Documentation
                 </a>
             </li>
             {% if user.is_authenticated %}

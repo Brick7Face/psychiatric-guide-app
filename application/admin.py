@@ -1,5 +1,5 @@
 from django.contrib import admin
-from application.models import Step, Medication, Patient, Prescriber, Treatment
+from application.models import Medication, Patient, Treatment, Step, Prescriber
 
 admin.site.register(Step)
 admin.site.register(Medication)

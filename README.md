@@ -83,7 +83,10 @@ All that needs to be done to run tests are to be in the same directory as the te
  line. We also setup these tests to run automatically in a script, which is detailed below. Alternatively, tests 
  can be run from the command line in the same directory as the .travis.yml file with the command 
  `python -m unittest discover`.
-
+ 
+ Additionally, our project uses the code analysis tool [SonarCloud](https://sonarcloud.io/), available from SonarQube. To run the analysis, after setting up SonarCloud on the local machine, use the command<br>
+ `sonar-scanner -D"sonar.projectKey=Brick7Face_psychiatric-guide-app" -D"sonar.organization=brick7face-github" -D"sonar.sources=." -D"sonar.host.url=https://sonarcloud.io" -D"sonar.login=3ea10bb00bffd52c5e9a8e1196a646ddfb7a1eec"`<br>
+ This will generate a code report available on the corresponding [SonarCloud dashboard](https://sonarcloud.io/dashboard?id=Brick7Face_psychiatric-guide-app) for the project.
 
 #### 3.2.1 How to set up an automated weekly (or more frequent) build and test
 

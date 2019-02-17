@@ -36,15 +36,25 @@ a, a:hover, a:focus {
     height: 100%;
     position: fixed;
     width: 20vw;
+    overflow-y:scroll;
+    overflow:hidden;
 }
 
 #sidebar .sidebar-header {
-    margin-top:25px;
+    margin-top:10px;
     padding-left:25px;
     padding: 25px;
     background: #2699FB;
 }
-
+#sidebar .sidebar-header strong{
+  display:none;
+}
+#sidebar.active .sidebar-header h3{
+  display: block;
+}
+#sidebar.active .sidebar-header strong{
+  display:none;
+}
 #sidebar ul.components {
     padding: 25px 0;
     border-bottom: 1px solid #fff;
@@ -62,7 +72,7 @@ a, a:hover, a:focus {
 }
 
 #sidebar ul li a {
-    padding: 20px;
+    padding: 10px;
     padding-left: 25px;
     font-size: 1.1em;
     display: block;
@@ -114,17 +124,23 @@ a, a:hover, a:focus {
 
 @media (max-width: 800px) {
     .users_name{
+      display: block;
+      font-size:0px;
+      /*
       font-size: .9em;
       text-align: left;
+      */
     }
     #sidebar .login_button{
       text-align: center;
       padding-left:0;
+      margin-top: 4px;
     }
     .slds-button{
-      margin: 0 auto;
+      padding: 0;
+      margin: 0;
       width: 14vw;
-      font-size: .9em;
+      font-size: .7em;
     }
     #sidebar.active {
         margin-left: 0;
@@ -137,30 +153,31 @@ a, a:hover, a:focus {
     #sidebar .sidebar-header{
       padding-left: 10px;
     }
-    #sidebar .sidebar-header h3{
+    /*#sidebar .sidebar-header h3{
       padding: 10px 4px;
       text-align: center;
       font-size: 1.1em;
-    }
+    }*/
     /* Toggling the sidebar header content, hide the big heading [h3] and showing the small heading [strong] and vice versa*/
-    #sidebar .sidebar-header strong {
-        display: none;
+    #sidebar .sidebar-header h3{
+      display: none;
     }
     #sidebar.active .sidebar-header h3 {
         display: none;
     }
-    #sidebar.active .sidebar-header strong {
-        display: block;
+    #sidebar .sidebar-header strong{
+      display: block;
     }
-
-    #sidebar ul li a {
-        text-align: left;
+    #sidebar.active .sidebar-header strong{
+      display:block;
     }
-
     #sidebar ul li a {
-        padding: 10px 4px;
+        padding: 4px 4px;
         text-align: center;
         font-size: 0.7em;
+    }
+    #sidebar ul li a i p {
+        font-size: 0;
     }
 
     #sidebar ul li a i {
@@ -174,6 +191,7 @@ a, a:hover, a:focus {
     /* Same dropdown links padding*/
     #sidebar ul ul a {
         padding: 10px !important;
+        font-size:0px;
     }
 
     /* Changing the arrow position to bottom center position,
