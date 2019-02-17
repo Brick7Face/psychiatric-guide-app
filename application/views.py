@@ -7,8 +7,6 @@ from application.models import Prescriber
 from django import forms
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import logout
-
-# Create your views here.
 from application.questionnaire_evaluations import PHQ9
 
 
@@ -60,6 +58,7 @@ def backend_home(request):
     return render(request, 'application/backend-home.html', {'title': 'Home'})  # Renders login.html
 
 
+@login_required
 def patient_home(request):
     return render(request, 'application/patient-home.html', {'title': 'Patient Home'})  # Renders login.html
 
@@ -77,6 +76,7 @@ def survey(request):
         # returns dictionary {diag : bool, change treat : bool, suicide : bool, score : int}
         dic = phq9.phq9_evaluation(results)
         dic['title'] = 'Survey Complete'
+
         return render(request, 'application/survey-complete.html', dic)
 
     else:
@@ -100,6 +100,7 @@ def survey(request):
                 "How difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?",
                 choices2]
         ]
+
         return render(request, 'application/survey.html', {'title': 'Survey',
                                                            'introduction': introduction,
                                                            'questions': questions})

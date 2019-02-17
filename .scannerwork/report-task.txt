@@ -1,0 +1,7 @@
+organization=brick7face-github
+projectKey=Brick7Face_psychiatric-guide-app
+serverUrl=https://sonarcloud.io
+serverVersion=7.7.0.22010
+dashboardUrl=https://sonarcloud.io/dashboard?id=Brick7Face_psychiatric-guide-app
+ceTaskId=AWj3QvPWII5E_8RgcepC
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AWj3QvPWII5E_8RgcepC
