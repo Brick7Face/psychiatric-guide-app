@@ -62,6 +62,8 @@ def backend_home(request):
 def patient_home(request):
     return render(request, 'application/patient-home.html', {'title': 'Patient Home'})  # Renders login.html
 
+def phq9_results(request):
+    return render(request, 'application/phq9-results.html', {'title': 'PHQ-9 Results'})  # Renders login.html
 
 def documentation(request):
     return render(request, 'application/documentation.html', {'title': 'Documentation'})  # Renders login.html

@@ -12,65 +12,6 @@
         <h1>
             Patient homepage
         </h1>
-
-        {% if diagnosis %}
-            <p> make a tentative diagnosis of depression, after ruling out <br>
-                physical causes, normal bereavement and a history of a manic <br>
-                or hypomanic episode. Screen for bipolar disorder using the <br>
-                Mood Disorders Questionnaire </p><br><br>
-        {% else %}
-            <p> cannot make tentative diagnosis of depression based on severity score </p><br><br>
-        {% endif %}
-
-        {% if change_treatment %}
-            <p> Treatment or treatment change may be warranted if at least one <br>
-                of the first two questions is rated a 2 or 3 OR question 10 is <br>
-                rated at least Somewhat difficult. </p><br><br>
-        {% else %}
-            <p> don't change treatment </p><br><br>
-        {% endif %}
-
-        {% if suicide_risk %}
-            <p> assess for suicide risk </p><br><br>
-        {% else %}
-            <p> not suicidal </p><br><br>
-        {% endif %}
-
-        {% if severity_score %}
-            {% if severity_score >= 5 %}
-                <p> Severity Score: 5 - 9 <br>
-                    Tentative Diagnosis: Minimal symptoms  <br>
-                    Treatment Recommendation:
-                </p>
-
-            {% elif severity_score >= 10 %}
-                <p> Severity Score: 10 - 14 <br>
-                    Tentative Diagnosis: Minor Depression <br>
-                    Dysthymia or major Depression, <br>
-                    mild  <br>
-                    Treatment Recommendation: Support, contact in one week<br>
-                    Antidepressant or psychotherapy, <br>
-                    contact in one week
-                </p>
-
-            {% elif severity_score >= 15 %}
-                <p> Severity Score: 15 - 19 <br>
-                    Tentative Diagnosis: Major Depression, moderate <br>
-                    Treatment Recommendation: Antidepressant or psychotherapy
-                </p>
-
-            {% else %}
-                <p> Severity Score: greater than 20 <br>
-                    Tentative Diagnosis:  Major Depression, severe  <br>
-                    Treatment Recommendation: Antidepressant and psychotherapy <br>
-                    (especially if not improved on monotherapy)
-                </p>
-
-        {% endif %}
-        {% else %}
-            <p> Severity Score: less then 5 <br>
-            Tentative Diagnosis: Not Depressed <br>
-            Treatment Recommendation: None</p>
-        {% endif %}
+    
     </div>
 {% endblock body %}
