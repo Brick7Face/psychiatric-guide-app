@@ -7,9 +7,8 @@ from application.models import Prescriber
 from django import forms
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import logout
+from application.questionnaire_evaluations import PHQ9
 
-
-# Create your views here.
 
 def login(request):
     return render(request, 'application/login.html', {'title': 'Login'})  # Renders login.html
@@ -59,6 +58,10 @@ def backend_home(request):
     return render(request, 'application/backend-home.html', {'title': 'Home'})  # Renders login.html
 
 
+def patient_home(request):
+    return render(request, 'application/patient-home.html', {'title': 'Patient Home'})  # Renders login.html
+
+
 def documentation(request):
     return render(request, 'application/documentation.html', {'title': 'Documentation'})  # Renders login.html
 
@@ -68,8 +71,12 @@ def survey(request):
         # TODO: calculate calculate and save results here
         results = dict(request.POST)
         results.pop('csrfmiddlewaretoken', '')
-        return render(request, 'application/survey-complete.html',
-                      {'title': 'Survey Complete', 'results': results})
+        phq9 = PHQ9()
+        # returns dictionary {diag : bool, change treat : bool, suicide : bool, score : int}
+        dic = phq9.phq9_evaluation(results)
+        dic['title'] = 'Survey Complete'
+        return render(request, 'application/survey-complete.html', dic)
+
     else:
         introduction = "Over the past 2 weeks, how often have you been bothered by any of the following problems?"
         choices1 = ["Not at all", "Several days", "More than half the days", "Nearly every day"]
@@ -80,12 +87,26 @@ def survey(request):
             ["Trouble falling or staying asleep, or sleeping too much?", choices1],
             ["Feeling tired or having little energy?", choices1],
             ["Poor appetite or overeating?", choices1],
-            ["Feeling bad about yourself or that you are a failure or have let yourself or your family down?", choices1],
+            ["Feeling bad about yourself or that you are a failure or have let yourself or your family down?",
+             choices1],
             ["Trouble concentrating on things, such as reading the newspaper or watching television?", choices1],
-            ["Moving or speaking so slowly that other people could have noticed? Or so fidgety or restless that you have been moving a lot more than usual?", choices1],
+            [
+                "Moving or speaking so slowly that other people could have noticed? Or so fidgety or restless that you have been moving a lot more than usual?",
+                choices1],
             ["Thoughts that you would be better off dead, or thoughts of hurting yourself in some way?", choices1],
-            ["How difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?", choices2]
+            [
+                "How difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?",
+                choices2]
         ]
+
+        class Meta:
+            model = User  # Form is of User Model.
+            fields = ['username', 'first_name', 'last_name', 'is_staff', 'is_superuser',
+                      'password1']  # Fields to be displayed of the form on the site.
+            help_texts = {  # Text descriptions that show under the field on the form
+                'is_staff': 'Check if account is for a staff member.',
+                'is_superuser': 'Allows this user to create, modify, edit, and delete other users and their information.'
+            }
         return render(request, 'application/survey.html', {'title': 'Survey',
                                                            'introduction': introduction,
                                                            'questions': questions})

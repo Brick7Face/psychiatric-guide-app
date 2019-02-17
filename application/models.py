@@ -72,16 +72,16 @@ class Medication(models.Model):
 class Prescriber(models.Model):
     # Fields
     user = models.ForeignKey(User, on_delete=models.CASCADE, default='')
-    
+
     # Metadata
-    class Meta: 
+    class Meta:
         ordering = ['user']
 
     # Methods
     def get_absolute_url(self):
         """Returns the url to access a particular instance of Prescriber."""
         return reverse('model-detail-view', args=[str(self.id)])
-    
+
     def __str__(self):
         """String for representing the Prescriber object (in Admin site etc.)."""
         return self.user.get_username()
@@ -117,3 +117,18 @@ class Patient(models.Model):
     def __str__(self):
         """String for representing the Patient object (in Admin site etc.)."""
         return self.last_name
+
+
+class Phq9(models.Model):
+    # Fields
+    date = models.DateTimeField(default=timezone.now)
+    question_1 = models.IntegerField()
+    question_2 = models.IntegerField()
+    question_3 = models.IntegerField()
+    question_4 = models.IntegerField()
+    question_5 = models.IntegerField()
+    question_6 = models.IntegerField()
+    question_7 = models.IntegerField()
+    question_8 = models.IntegerField()
+    question_9 = models.IntegerField()
+    question_10 = models.IntegerField()
