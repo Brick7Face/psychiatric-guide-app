@@ -73,6 +73,11 @@ def survey(request):
     if request.method == 'POST':
         # TODO: calculate calculate and save results here
         results = dict(request.POST)
+
+        results.pop('csrfmiddlewaretoken', '')
+        phq9 = PHQ9()
+        # returns dictionary {diag : bool, change treat : bool, suicide : bool, score : int}
+        dic = phq9.phq9_evaluation(results)
         phq9_db.objects.create(question_1=results.get(str(1))[0],
                                question_2=results.get(str(2))[0],
                                question_3=results.get(str(3))[0],
@@ -83,12 +88,13 @@ def survey(request):
                                question_8=results.get(str(8))[0],
                                question_9=results.get(str(9))[0],
                                question_10=results.get(str(10))[0],
+                               diagnosis=dic.get("diagnosis"),
+                               severity_score=dic.get("severity_score"),
+                               change_treatment=dic.get("change_treatment"),
+                               suicide_risk=dic.get("suicide_risk")
+
                                )
 
-        results.pop('csrfmiddlewaretoken', '')
-        phq9 = PHQ9()
-        # returns dictionary {diag : bool, change treat : bool, suicide : bool, score : int}
-        dic = phq9.phq9_evaluation(results)
         dic['title'] = 'Survey Complete'
 
         return render(request, 'application/survey-complete.html', dic)
