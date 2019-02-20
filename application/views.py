@@ -93,3 +93,12 @@ def survey(request):
 
 def contact_bug(request):
     return render(request, 'application/contact-bug.html', {'title': 'Contact Us / Report a Bug'})
+
+def medications(request):
+    return render(request, 'application/medications.html', {'title': 'Medications'})
+
+def patients(request):
+    return render(request, 'application/patients.html', {'title': 'Patients'})
+
+def treatment_overview(request):
+    return render(request, 'application/treatment-overview.html', {'title': 'Treatment Overview'})

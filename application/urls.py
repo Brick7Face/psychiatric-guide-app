@@ -11,4 +11,7 @@ urlpatterns = [
     path('documentation/', views.documentation, name="documentation"),  # Home page for logged in user
     path('survey/', views.survey, name="survey-view"),
     path('contact-bug/', views.contact_bug, name="contact-bug"),
+    path('medications/', views.medications, name="medications"),
+    path('patients/', views.patients, name="patients"),
+    path('treatment-overview', views.treatment_overview, name="treatment-overview")
 ]

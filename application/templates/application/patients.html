@@ -1,0 +1,20 @@
+{% extends "application/global-html.html" %}
+{% load crispy_forms_tags %}
+{% load static %} <!-- loads in static css file  application/static/application-->
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'application/patients.css' %}">
+{% endblock css %}
+
+{% block body %}
+  <div id="patients_wrapper">
+    <div class="content">
+      <h1>
+        Patients List
+      </h1>
+      <p>
+        This is a list of patients. Madison. Bryan. Done.
+        </p>
+    </div>
+  </div>
+{% endblock body %}
