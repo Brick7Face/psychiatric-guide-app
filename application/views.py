@@ -78,6 +78,9 @@ def survey(request):
         phq9 = PHQ9()
         # returns dictionary {diag : bool, change treat : bool, suicide : bool, score : int}
         dic = phq9.phq9_evaluation(results)
+        print("Change treatment (bool)", dic.get("change_treatment"))
+
+
         phq9_db.objects.create(question_1=results.get(str(1))[0],
                                question_2=results.get(str(2))[0],
                                question_3=results.get(str(3))[0],
@@ -92,7 +95,6 @@ def survey(request):
                                severity_score=dic.get("severity_score"),
                                change_treatment=dic.get("change_treatment"),
                                suicide_risk=dic.get("suicide_risk")
-
                                )
 
         dic['title'] = 'Survey Complete'
