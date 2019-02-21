@@ -97,7 +97,6 @@ class Patient(models.Model):
     address = models.CharField(help_text='Enter patient current address', max_length=150)
     email = models.EmailField(help_text='Enter patient current email', max_length=50)
     phone = models.CharField(help_text='Enter patient current phone number', max_length=20)
-    # prescriber = models.ForeignKey(Prescriber, null=True, on_delete=models.SET_NULL)
     current_step = models.ForeignKey(Step, null=True, on_delete=models.SET_NULL)
     # list of PHQ-9 scores
     # visit history
