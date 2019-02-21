@@ -109,4 +109,4 @@ def bug_report(request):
             messages.error(request, 'An error occurred, please try again later.')
         return redirect('bug_report')
     else:
-        return render(request, 'application/bug-report.html', {'title': 'Contact Us / Report a Bug'})
+        return render(request, 'application/bug-report.html', {'title': 'Report a Bug'})
