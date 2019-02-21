@@ -124,7 +124,7 @@ class PHQ9:
         d2 = self.diagnosis_two(answers)
         d3 = self.diagnosis_three(answers)
 
-        results_dictionary = {'diagnosis' : self.diagnosis(d1, d2, d3), 'change_treatment' : self.change_treatment(answers, d1),
+        results_dictionary = {'diagnosis' : self.diagnosis(d1, d2, d3), 'change_treatment' : self.change_treatment(d1, d3),
                               'suicide_risk' : self.suicide_risk(answers), 'severity_score' : self.treatment_and_monitoring(answers)}
         return results_dictionary
         # TODO: Monitoring – a change in the Severity Score of 5 or more
