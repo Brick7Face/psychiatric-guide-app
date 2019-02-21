@@ -1,15 +1,17 @@
-from django.http import HttpResponse
+import datetime
+
 from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
-from application.models import Prescriber
 from django import forms
-from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 
+from github import Github
 
-# Create your views here.
+from application.keys import GITHUB_TOKEN
+
 
 def login(request):
     return render(request, 'application/login.html', {'title': 'Login'})  # Renders login.html
@@ -91,5 +93,20 @@ def survey(request):
                                                            'questions': questions})
 
 
-def contact_bug(request):
-    return render(request, 'application/contact-bug.html', {'title': 'Contact Us / Report a Bug'})
+def bug_report(request):
+    if request.method == 'POST':
+        report = request.POST['report']
+        g = Github(GITHUB_TOKEN)
+        try:
+            repo = g.get_repo("Brick7Face/psychiatric-guide-app")
+            issue = repo.create_issue(
+                "User Generated Report: " + str(datetime.datetime.now()),
+                body=report
+            )
+            print(issue.html_url)
+            messages.success(request, 'Bug report submitted.')
+        except:
+            messages.error(request, 'An error occurred, please try again later.')
+        return redirect('bug_report')
+    else:
+        return render(request, 'application/bug-report.html', {'title': 'Contact Us / Report a Bug'})

@@ -3,3 +3,4 @@ venv/
 *.pyc
 /static/
 .DS_STORE
+keys.py
