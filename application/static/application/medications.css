@@ -1,3 +1,16 @@
 #medication_wrapper{
-  padding-top: 40vh;
+  margin-top: 15vh;
+}
+#medication_wrapper h1{
+  display:inline;
+}
+body .medication_content button{
+  color: #2699FB;
+}
+body .medication_content{
+  margin: 0 auto;
+}
+
+body .medication_content #accordion{
+  margin-top: 2vh;
 }

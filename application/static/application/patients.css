@@ -1,3 +1,33 @@
 #patients_wrapper{
-  padding-top: 40vh;
+  margin-top: 15vh;
+  height: 85vh;
+  width: 60vw;
+}
+body #patients_wrapper .patient_content{
+  margin: 0 auto;
+}
+body #patients_wrapper .patient_list{
+  border: 1px solid black;
+  padding: 1em;
+  margin-top: 2vh;
+  height: 50vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  white-space: nowrap;
+}
+body #patients_wrapper .card{
+  height: 4em;
+}
+body #patients_wrapper .slds-button{
+  margin-top:2vh;
+  width: 15vw;
+}
+body h2{
+  padding-left: 2vw;
+  padding-top: .5em;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5em;
+  font-weight: 300;
+  line-height: 1.7em;
+  color: #2699FB;
 }

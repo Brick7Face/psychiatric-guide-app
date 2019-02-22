@@ -8,13 +8,26 @@
 
 {% block body %}
   <div id="patients_wrapper">
-    <div class="content">
+    <div class="patient_content">
       <h1>
         Patients List
       </h1>
-      <p>
-        This is a list of patients. Madison. Bryan. Done.
-        </p>
+      <div class="patient_list">
+        <div class="card"><h2>Patient Name</h2></div>
+         <div class="card"><h2>Patient Name</h2></div>
+         <div class="card"><h2>Patient Name</h2></div>
+         <div class="card"><h2>Patient Name</h2></div>
+         <div class="card"><h2>Patient Name</h2></div>
+         <div class="card"><h2>Patient Name</h2></div>
+         <div class="card"><h2>Patient Name</h2></div>
+         <div class="card"><h2>Patient Name</h2></div>
+         <div class="card"><h2>Patient Name</h2></div>
+         <div class="card"><h2>Patient Name</h2></div>
+         <div class="card"><h2>Patient Name</h2></div>
+         <div class="card"><h2>Patient Name</h2></div>
+         <div class="card"><h2>Patient Name</h2></div>
+      </div>
     </div>
+    <button class="slds-button slds-button_outline-brand" onclick="window.location.href = {% url 'medications' %};"> Add Patient</button>
   </div>
 {% endblock body %}

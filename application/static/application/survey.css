@@ -22,9 +22,13 @@ html, body {
 #question-wrapper {
     position: relative;
     margin: 0 auto;
-    padding-top: 20%;
+    padding-top: 30vh;
     height: 100%;
     width: 100%;
+}
+
+body #question-wrapper h1{
+  margin-bottom: 2vh;
 }
 
 .question {

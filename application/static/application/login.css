@@ -1,10 +1,11 @@
 #login_wrapper{
-  margin:0 auto;
-  width: 40vw;
+  width: 60vw;
+  height: 85vh;
+  margin-top: 30vh;
 }
 
-#login_wrapper form{
-  padding-top: 40vh;
+body #login_wrapper .login_content{
+  margin: 0 auto;
 }
 
 .btn-primary{

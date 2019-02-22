@@ -1,3 +1,9 @@
 #treatment_wrapper{
-  padding-top: 40vh;
+  margin-top: 15vh;
+  height: 85vh;
+  width: 60vw;
+}
+
+body #treatment_wrapper .treatment_content{
+  margin: 0 auto;
 }

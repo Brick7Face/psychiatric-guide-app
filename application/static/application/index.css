@@ -17,6 +17,7 @@ body .content_container{
 
 
 h1{
+  display: inline;
   font-family: 'Poppins', sans-serif;
   font-size: 4em;
   font-weight: 400;
