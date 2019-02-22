@@ -1,0 +1,128 @@
+{% extends "application/global-html.html" %}
+{% load crispy_forms_tags %}
+{% load static %} <!-- loads in static css file  application/static/application-->
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'application/phq9-results.css' %}">
+{% endblock css %}
+
+{% block body %}
+    <div id="phq9_results_wrapper">
+
+        <h1>
+            PHQ-9 Patient Results
+        </h1>
+
+        <h2>Severity Score:
+        {% if severity_score >= 0 %}
+            {{severity_score}} <br>
+        {% else %}
+            0 <br>
+        {% endif %}
+        <br>
+        </h2>
+
+        <h2> Diagnosis </h2>
+        {% if diagnosis %}
+            <p> make a tentative diagnosis of depression, after ruling out <br>
+                physical causes, normal bereavement and a history of a manic <br>
+                or hypomanic episode. Screen for bipolar disorder using the <br>
+                Mood Disorders Questionnaire </p><br><br>
+        {% else %}
+            <p> cannot make tentative diagnosis of depression based on severity score </p><br><br>
+        {% endif %}
+
+        <h2> Change Treatment </h2>
+        {% if change_treatment %}
+            <p> Treatment or treatment change may be warranted if at least one <br>
+                of the first two questions is rated a 2 or 3 OR question 10 is <br>
+                rated at least Somewhat difficult. </p><br><br>
+        {% else %}
+            <p> don't change treatment </p><br><br>
+        {% endif %}
+
+        <h2> Suicide Risk </h2>
+        {% if suicide_risk %}
+            <p> assess for suicide risk </p><br><br>
+        {% else %}
+            <p> not suicidal </p><br><br>
+        {% endif %}
+
+        <h2>Treatment Table </h2>
+        <table style="width:100%">
+            <tr>
+                <th>Severity Score</th>
+                <th>Tentative Diagnosis</th>
+                <th>Treatment Recommendation</th>
+            </tr>
+            <tr>
+                <td>5 - 9</td>
+                <td>Minimal symptoms</td>
+                <td>Support, ask to call if worse,
+                    return in 1 month</td>
+            </tr>
+            <tr>
+                <td>10 - 14</td>
+                <td>Minor Depression <br>
+                    Dysthymia or major Depression,<br>
+                    mild
+                </td>
+                <td>Support, contact in one week<br>
+                    Antidepressant or psychotherapy, <br>
+                    contact in one week</td>
+            </tr>
+            <tr>
+                <td>15 - 19</td>
+                <td>Major Depression, moderate </td>
+                <td> Antidepressant or psychotherapy</td>
+            </tr>
+            <tr>
+                <td>20 or greater</td>
+                <td>Major Depression, severe  </td>
+                <td>Antidepressant and psychotherapy <br>
+                    (especially if not improved on monotherapy)</td>
+            </tr>
+        </table>
+        <!--
+        {% if severity_score %}
+
+
+            {% if severity_score >= 5 %}
+                <p> Severity Score: 5 - 9 <br>
+                    Tentative Diagnosis: Minimal symptoms  <br>
+                    Treatment Recommendation:
+                </p>
+
+            {% elif severity_score >= 10 %}
+                <p> Severity Score: 10 - 14 <br>
+                    Tentative Diagnosis: Minor Depression <br>
+                    Dysthymia or major Depression, <br>
+                    mild  <br>
+                    Treatment Recommendation: Support, contact in one week<br>
+                    Antidepressant or psychotherapy, <br>
+                    contact in one week
+                </p>
+
+            {% elif severity_score >= 15 %}
+                <p> Severity Score: 15 - 19 <br>
+                    Tentative Diagnosis: Major Depression, moderate <br>
+                    Treatment Recommendation: Antidepressant or psychotherapy
+                </p>
+
+            {% else %}
+                <p> Severity Score: greater than 20 <br>
+                    Tentative Diagnosis:  Major Depression, severe  <br>
+                    Treatment Recommendation: Antidepressant and psychotherapy <br>
+                    (especially if not improved on monotherapy)
+                </p>
+
+            {% endif %}
+        {% else %}
+            <p> Severity Score: less then 5 <br>
+                Tentative Diagnosis: Not Depressed <br>
+                Treatment Recommendation: None</p>
+        {% endif %}
+        -->
+    </div>
+    <a href="{% url 'patient-home' %}" class="btn btn-primary mt-4 btn-block" type="submit">add results to patient</a>
+{% endblock body %}
