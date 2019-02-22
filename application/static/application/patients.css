@@ -7,7 +7,7 @@ body #patients_wrapper .patient_content{
   margin: 0 auto;
 }
 body #patients_wrapper .patient_list{
-  border: 1px solid black;
+  border: 2px solid #2699FB;
   padding: 1em;
   margin-top: 2vh;
   height: 50vh;
@@ -19,8 +19,10 @@ body #patients_wrapper .card{
   height: 4em;
 }
 body #patients_wrapper .slds-button{
+  display: block;
+  margin: 0 auto;
   margin-top:2vh;
-  width: 15vw;
+  width: 10vw;
 }
 body h2{
   padding-left: 2vw;

@@ -28,6 +28,6 @@
          <div class="card"><h2>Patient Name</h2></div>
       </div>
     </div>
-    <button class="slds-button slds-button_outline-brand" onclick="window.location.href = {% url 'medications' %};"> Add Patient</button>
+    <a href="{% url 'new-patient' %}" class="slds-button slds-button_outline-brand" role="button">New Patient</a>
   </div>
 {% endblock body %}

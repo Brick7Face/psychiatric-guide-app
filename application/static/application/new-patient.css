@@ -1,0 +1,8 @@
+#new_patient_wrapper{
+  margin-top:15vh;
+  width: 60vw;
+  height: 85vh
+}
+body #new_patient_wrapper .new_patient_content{
+  margin: 0 auto;
+}

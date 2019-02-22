@@ -100,5 +100,8 @@ def medications(request):
 def patients(request):
     return render(request, 'application/patients.html', {'title': 'Patients'})
 
+def new_patient(request):
+    return render(request, 'application/new-patient.html', {'title': 'Add New Patient'})
+
 def treatment_overview(request):
     return render(request, 'application/treatment-overview.html', {'title': 'Treatment Overview'})
