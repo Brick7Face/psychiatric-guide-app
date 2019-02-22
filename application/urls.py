@@ -10,7 +10,7 @@ urlpatterns = [
     path('backend_home/', views.backend_home, name="backend-home"),  # Home page for logged in user
     path('documentation/', views.documentation, name="documentation"),  # Home page for logged in user
     path('survey/', views.survey, name="survey-view"),
-    path('contact-bug/', views.contact_bug, name="contact-bug"),
+    path('bug_report/', views.bug_report, name="bug_report"),
     path('patient_home/', views.patient_home, name="patient-home"),
     path('phq9_results/', views.phq9_results, name="phq9-results"),
 ]
