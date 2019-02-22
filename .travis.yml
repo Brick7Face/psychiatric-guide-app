@@ -1,3 +1,5 @@
+os: osx
+
 language: python
 
 python:
@@ -9,4 +11,11 @@ install:
 
 # command to run tests
 script:
+  # python tests
   - python -m unittest discover
+
+  # selenium tests
+  - brew install node
+  - npm install -g selenium-side-runner
+  - brew cask install chromedriver
+  - selenium-side-runner application/tests/psychiatric-guide.side
