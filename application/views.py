@@ -1,15 +1,14 @@
-from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from application.models import Prescriber
+from application.models import Phq9 as phq9_db
 from django import forms
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import logout
+from application.questionnaire_evaluations import PHQ9
 
-
-# Create your views here.
 
 def login(request):
     return render(request, 'application/login.html', {'title': 'Login'})  # Renders login.html
@@ -59,6 +58,16 @@ def backend_home(request):
     return render(request, 'application/backend-home.html', {'title': 'Home'})  # Renders login.html
 
 
+@login_required
+def patient_home(request):
+    return render(request, 'application/patient-home.html', {'title': 'Patient Home'})  # Renders login.html
+
+def phq9_results(request):
+    print("TEST ", phq9_db.objects.last().diagnosis)
+    dict = {'diagnosis': phq9_db.objects.last().diagnosis,'change_treatment': phq9_db.objects.last().change_treatment,
+            'suicide_risk': phq9_db.objects.last().suicide_risk, 'severity_score': phq9_db.objects.last().severity_score}
+    return render(request, 'application/phq9-results.html', dict)  # Renders login.html
+
 def documentation(request):
     return render(request, 'application/documentation.html', {'title': 'Documentation'})  # Renders login.html
 
@@ -67,9 +76,32 @@ def survey(request):
     if request.method == 'POST':
         # TODO: calculate calculate and save results here
         results = dict(request.POST)
+
         results.pop('csrfmiddlewaretoken', '')
-        return render(request, 'application/survey-complete.html',
-                      {'title': 'Survey Complete', 'results': results})
+        phq9 = PHQ9()
+        # returns dictionary {diag : bool, change treat : bool, suicide : bool, score : int}
+        dic = phq9.phq9_evaluation(results)
+        print("Change treatment (bool)", dic.get("change_treatment"))
+        phq9_db.objects.create(question_1=results.get(str(1))[0],
+                               question_2=results.get(str(2))[0],
+                               question_3=results.get(str(3))[0],
+                               question_4=results.get(str(4))[0],
+                               question_5=results.get(str(5))[0],
+                               question_6=results.get(str(6))[0],
+                               question_7=results.get(str(7))[0],
+                               question_8=results.get(str(8))[0],
+                               question_9=results.get(str(9))[0],
+                               question_10=results.get(str(10))[0],
+                               diagnosis=dic.get("diagnosis"),
+                               severity_score=dic.get("severity_score"),
+                               change_treatment=dic.get("change_treatment"),
+                               suicide_risk=dic.get("suicide_risk")
+                               )
+
+        dic['title'] = 'Survey Complete'
+
+        return render(request, 'application/survey-complete.html', dic)
+
     else:
         introduction = "Over the past 2 weeks, how often have you been bothered by any of the following problems?"
         choices1 = ["Not at all", "Several days", "More than half the days", "Nearly every day"]
@@ -80,12 +112,18 @@ def survey(request):
             ["Trouble falling or staying asleep, or sleeping too much?", choices1],
             ["Feeling tired or having little energy?", choices1],
             ["Poor appetite or overeating?", choices1],
-            ["Feeling bad about yourself or that you are a failure or have let yourself or your family down?", choices1],
+            ["Feeling bad about yourself or that you are a failure or have let yourself or your family down?",
+             choices1],
             ["Trouble concentrating on things, such as reading the newspaper or watching television?", choices1],
-            ["Moving or speaking so slowly that other people could have noticed? Or so fidgety or restless that you have been moving a lot more than usual?", choices1],
+            [
+                "Moving or speaking so slowly that other people could have noticed? Or so fidgety or restless that you have been moving a lot more than usual?",
+                choices1],
             ["Thoughts that you would be better off dead, or thoughts of hurting yourself in some way?", choices1],
-            ["How difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?", choices2]
+            [
+                "How difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?",
+                choices2]
         ]
+
         return render(request, 'application/survey.html', {'title': 'Survey',
                                                            'introduction': introduction,
                                                            'questions': questions})
