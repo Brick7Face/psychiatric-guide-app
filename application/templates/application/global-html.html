@@ -104,22 +104,23 @@
                     Documentation
                 </a>
             </li>
+        </ul>
+        <div class="login_button">
             {% if user.is_authenticated %}
-                <div class="users_name">
-                    Signed in as: {{ user.first_name }} {{ user.last_name }}
-                </div>
+              <div class="users_name">
+                  Signed in as: {{ user.first_name }} {{ user.last_name }}
+              </div>
 
                 {#                <a href="{% url 'logout-view' %}" style="color: #A9A9A9">Signout</a>#}
                 {#                <button class="slds-button slds-button_outline-brand" onclick="window.location.href = {% url 'logout-view' %};"> Logout</button>#}
-                <a href="{% url 'logout-view' %}" class="slds-button slds-button_outline-brand"
-                   role="button">Signout</a>
+                <a href="{% url 'logout-view' %}" class="slds-button slds-button_outline-brand" role="button">Signout</a>
             {% else %}
-                <div class="users_name">
-                    Not signed in
-                </div>
+              <div class="users_name">
+                Not signed in
+              </div>
                 <a href="{% url 'login-view' %}" class="slds-button slds-button_outline-brand" role="button">Login</a>
             {% endif %}
-        </ul>
+        </div>
     </nav>
 </div>
 
