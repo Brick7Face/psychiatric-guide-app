@@ -1,6 +1,7 @@
 #login_wrapper{
-  width: 60vw;
+  width: 30vw;
   height: 85vh;
+  margin: 0 auto;
   margin-top: 30vh;
 }
 
