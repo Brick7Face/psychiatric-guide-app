@@ -1,0 +1,21 @@
+{% extends "application/global-html.html" %}
+{% load crispy_forms_tags %}
+{% load static %} <!-- loads in static css file  application/static/application-->
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'application/bug-report.css' %}">
+{% endblock css %}
+
+{% block body %}
+    <div id="bug_report_wrapper">
+        <div id="bug_report">
+            <form method="post">
+                {% csrf_token %}
+                <label>
+                    <textarea name="report" placeholder="Please enter your feedback/a description of the bug." required></textarea>
+                </label><br>
+                <input class="btn btn-primary mt-4 btn-block" type="submit">
+            </form>
+        </div>
+    </div>
+{% endblock body %}
