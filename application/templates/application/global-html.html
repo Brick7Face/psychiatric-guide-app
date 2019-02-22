@@ -94,10 +94,6 @@
                         <i class="fas fa-home" style="right:0;"></i>
                         Home
                     </a>
-                    <a href="{% url 'survey-view' %}">
-                        <i class="fas fa-poll-h"></i>
-                        PHQ-9
-                    </a>
                 {% endif %}
                 <a href="{% url 'contact-bug' %}">
                     <i class="fas fa-bug"></i>
@@ -127,79 +123,6 @@
     </nav>
 </div>
 
-{#<div class="menu_wrapper">#}
-{#    <!-- Sidebar  -->#}
-{#    <nav id="sidebar">#}
-{#        <div class="sidebar-header">#}
-{#            {% if title %}#}
-{#                <h3>{{ title }}</h3> <!-- creates title if available -->#}
-{#                <!--#}
-{#                {% if user.is_authenticated %}#}
-{#                    <!--code sourced from https://v4-alpha.getbootstrap.com/components/dropdowns/--><!--#}
-{#                    <div class="dropdown">#}
-{#                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"#}
-{#                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
-{#                    Hello {{ user.first_name }}.    <!--shows users first name if logged in.--><!--#}
-{#                        </button>#}
-{#                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">#}
-{#                            <a class="dropdown-item" href="{% url 'logout-view' %}">Logout</a>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                {% endif %}-->#}
-{#            {% else %}#}
-{#                <h3>Psychiatric Guide</h3> <!-- Generic Title -->#}
-{#            {% endif %}#}
-{#        </div>#}
-{##}
-{#        <ul class="list-unstyled components">#}
-{#          {% if user.is_superuser %}#}
-{#          <li class="active">#}
-{#              <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">#}
-{#                  <i class="fas fa-home"></i>#}
-{#                  Admin Actions#}
-{#              </a>#}
-{#              <ul class="collapse list-unstyled" id="homeSubmenu">#}
-{#                  <li>#}
-{#                      <a href="{% url 'create-new-user' %}">#}
-{#                        Add User#}
-{#                      </a>#}
-{#                  </li>#}
-{#              </ul>#}
-{#          </li>#}
-{#          {% endif %}#}
-{#            <li>#}
-{#                {% if user.is_authenticated %}#}
-{#                  <a href="{% url 'backend-home' %}">#}
-{#                      Home#}
-{#                  </a>#}
-{#                  {% else %}#}
-{#                    <a href="{% url 'login-view' %}">#}
-{#                        Home#}
-{#                    </a>#}
-{#                {% endif %}#}
-{#                <a href="{% url 'contact-bug' %}">#}
-{#                    Contact Us / Report a Bug#}
-{#                </a>#}
-{#            </li>#}
-{#        </ul>#}
-{#        <div class="login_button">#}
-{#            {% if user.is_authenticated %}#}
-{#              <div class="users_name">#}
-{#                  Signed in as: {{ user.first_name }}#}
-{#              </div>#}
-{##}
-{#                <a href="{% url 'logout-view' %}" style="color: #A9A9A9">Signout</a>#}
-{#                <button class="slds-button slds-button_outline-brand" onclick="window.location.href = {% url 'logout-view' %};"> Logout</button>#}
-{#                <a href="{% url 'logout-view' %}" class="slds-button slds-button_outline-brand" role="button">Signout</a>#}
-{#            {% else %}#}
-{#              <div class="users_name">#}
-{#                Not signed in#}
-{#              </div>#}
-{#                <a href="{% url 'login-view' %}" class="slds-button slds-button_outline-brand" role="button">Login</a>#}
-{#            {% endif %}#}
-{#        </div>#}
-{#    </nav> <!--SIDEBAR CODE-->#}
-{#</div>#}
 <div class="wrapper">
     <div class="content_container"> <!-- Bootstrap container padding-->
         <!-- Sourced message code from https://simpleisbetterthancomplex.com/tips/2016/09/06/django-tip-14-messages-framework.html
