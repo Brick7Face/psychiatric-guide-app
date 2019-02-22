@@ -63,9 +63,9 @@ def patient_home(request):
     return render(request, 'application/patient-home.html', {'title': 'Patient Home'})  # Renders login.html
 
 def phq9_results(request):
-    phq9_db.objects.last()
-    dict = {'diagnosis': phq9_db.diagnosis,'change_treatment': phq9_db.change_treatment,
-            'suicide_risk': phq9_db.suicide_risk, 'severity_score': phq9_db.severity_score}
+    print("TEST ", phq9_db.objects.last().diagnosis)
+    dict = {'diagnosis': phq9_db.objects.last().diagnosis,'change_treatment': phq9_db.objects.last().change_treatment,
+            'suicide_risk': phq9_db.objects.last().suicide_risk, 'severity_score': phq9_db.objects.last().severity_score}
     return render(request, 'application/phq9-results.html', dict)  # Renders login.html
 
 def documentation(request):
@@ -82,8 +82,6 @@ def survey(request):
         # returns dictionary {diag : bool, change treat : bool, suicide : bool, score : int}
         dic = phq9.phq9_evaluation(results)
         print("Change treatment (bool)", dic.get("change_treatment"))
-
-
         phq9_db.objects.create(question_1=results.get(str(1))[0],
                                question_2=results.get(str(2))[0],
                                question_3=results.get(str(3))[0],
