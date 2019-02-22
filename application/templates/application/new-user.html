@@ -8,6 +8,7 @@
 
 {% block body %}
   <div id="new_user_wrapper">
+    <div class="new_user_content">
       {% if user.is_superuser %} <!-- Checks if user has permission, being superuser, to create new accounts-->
           <form method="POST">
               {% csrf_token %}
@@ -19,5 +20,6 @@
           <H3>Error: You must have permission to add new users.</H3>
 
       {% endif %}
+    </div>
   </div>
 {% endblock body %}

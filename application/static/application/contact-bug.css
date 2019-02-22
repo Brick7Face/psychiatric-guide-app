@@ -1,0 +1,9 @@
+#contact_wrapper{
+  padding-top: 15vh;
+  height: 85vh;
+  width: 60vw;
+}
+
+body #contact_wrapper .contact_content{
+  margin: 0 auto;
+}

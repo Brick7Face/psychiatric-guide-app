@@ -134,6 +134,20 @@ def survey(request):
                                                            'questions': questions})
 
 
+
+
+def medications(request):
+    return render(request, 'application/medications.html', {'title': 'Medications'})
+
+def patients(request):
+    return render(request, 'application/patients.html', {'title': 'Patients'})
+
+def new_patient(request):
+    return render(request, 'application/new-patient.html', {'title': 'Add New Patient'})
+
+def treatment_overview(request):
+    return render(request, 'application/treatment-overview.html', {'title': 'Treatment Overview'})
+
 def bug_report(request):
     if request.method == 'POST':
         report = request.POST['report']

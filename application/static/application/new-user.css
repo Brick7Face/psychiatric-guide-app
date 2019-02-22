@@ -1,8 +1,8 @@
 #new_user_wrapper form{
-  padding-top:10vh;
 }
 
 #new_user_wrapper{
-  margin: 0 auto;
   width: 40vw;
+  margin: 0 auto;
+  margin-top: 10vh;
 }

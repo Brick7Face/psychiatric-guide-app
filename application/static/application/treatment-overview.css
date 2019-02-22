@@ -1,9 +1,9 @@
-#home_wrapper{
+#treatment_wrapper{
   margin-top: 15vh;
   height: 85vh;
   width: 60vw;
 }
 
-body #home_wrapper .backend-home-content{
+body #treatment_wrapper .treatment_content{
   margin: 0 auto;
 }

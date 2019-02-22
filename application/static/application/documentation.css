@@ -1,5 +1,8 @@
 #document_wrapper{
+  margin-top: 15vh;
+  width: 60vw;
+  height: 85vh;
+}
+body #document_wrapper .document_content{
   margin: 0 auto;
-  padding-top: 40vh;
-  width: 40vw;
 }

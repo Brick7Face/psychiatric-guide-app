@@ -7,13 +7,15 @@
 {% endblock css %}
 
 {% block body %}
-<div id="login_wrapper">
-    <form method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <div style="text-align: center;">
-            <button class="btn btn-primary mt-4 btn-block" type="submit">Login</button>
-        </div>
-    </form>
-  </div>
+  <div id="login_wrapper">
+    <div class="login_content">
+      <form method="post">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <div style="text-align: center;">
+              <button class="btn btn-primary mt-4 btn-block" type="submit">Login</button>
+          </div>
+      </form>
+    </div>
+</div>
 {% endblock body %}
