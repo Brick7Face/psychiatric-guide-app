@@ -1,9 +1,13 @@
 {% extends "application/global-html.html" %}
 {% load static %} <!-- loads in static css file  application/static/application-->
 
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'application/survey-complete.css' %}">
+{% endblock css %}
+
 {% block body %}
     <div id="survey-complete-wrapper">
         <h1>Survey Complete!</h1>
-        <p>Here's the results:<br>{{ results }}<br>^ Keely uses math and stuff here</p>
     </div>
+    <a href="{% url 'phq9-results' %}" class="btn btn-primary mt-4 btn-block" type="submit">Click here to see the results</a>
 {% endblock body %}

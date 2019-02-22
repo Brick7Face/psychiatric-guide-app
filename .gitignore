@@ -3,3 +3,4 @@ venv/
 *.pyc
 /static/
 .DS_STORE
+db.sqlite3
