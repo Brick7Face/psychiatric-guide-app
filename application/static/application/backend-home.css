@@ -16,6 +16,9 @@ body #home_wrapper .backend-home-content{
   border: 2px solid #2699FB;
 }
 
+.pdf_link{
+  color: #2699FB;
+}
 
 body h1{
   font-size: 3em;
@@ -101,5 +104,8 @@ body #home_wrapper .backend-home-content #body_text{
   body #home_wrapper .backend-home-content .slds-button{
     width: 20vw;
     margin-left: 15vw;
+  }
+  body h1{
+    font-size: 2em;
   }
 }

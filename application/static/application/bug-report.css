@@ -7,10 +7,11 @@ html, body {
 #bug_report_wrapper{
   position: relative;
   margin: 0 auto;
-  margin-top: 20vh;
+  margin-top: 15vh;
   padding: 5vh 5vw;
   background-color: #fff;
   border: 2px solid #2699FB;
+  width: 40vw;
 }
 
 #bug_report {
@@ -39,4 +40,12 @@ textarea {
   border: 1px solid #2699FB;
   font-family: 'Poppins', sans-serif;
   padding: 20px;
+}
+@media (max-width: 1200px) {
+  #bug_report_wrapper{
+    width: 60vw;
+  }
+  body h1{
+    font-size: 2em;
+  }
 }

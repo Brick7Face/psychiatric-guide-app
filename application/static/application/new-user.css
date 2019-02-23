@@ -1,6 +1,3 @@
-#new_user_wrapper form{
-}
-
 #new_user_wrapper{
   width: 40vw;
   margin: 0 auto;
@@ -15,7 +12,10 @@ body #new_user_wrapper .new_user_content{
 }
 
 @media (max-width: 1200px){
-  new_user_wrapper{
+  body #new_user_wrapper .new_user_content{
+    width: 60vw;
+  }
+  body #new_user_wrapper{
     width: 60vw;
   }
 }
