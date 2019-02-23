@@ -6,3 +6,16 @@
   margin: 0 auto;
   margin-top: 10vh;
 }
+
+body #new_user_wrapper .new_user_content{
+  padding: 5vh 5vw;
+
+  background-color: #fff;
+  border: 2px solid #2699FB;
+}
+
+@media (max-width: 1200px){
+  new_user_wrapper{
+    width: 60vw;
+  }
+}
