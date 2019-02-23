@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 
-from application.models import Prescriber
+from application.models import Prescriber, Patient
 from application.models import Phq9 as phq9_db
 from django import forms
 from django.contrib.auth.decorators import login_required
@@ -14,6 +14,7 @@ from application.questionnaire_evaluations import PHQ9
 from github import Github
 
 from application.keys import GITHUB_TOKEN
+
 
 def login(request):
     return render(request, 'application/login.html', {'title': 'Login'})  # Renders login.html
@@ -63,15 +64,31 @@ def backend_home(request):
     return render(request, 'application/backend-home.html', {'title': 'Home'})  # Renders login.html
 
 
+def patients(request):
+    if request.method == 'POST':
+        print(request.POST)
+        return patient_home(request)
+    else:
+        return render(request, 'application/patients.html', {'title': 'Patients', 'patients': Patient.objects.all()})
+
+
 @login_required
 def patient_home(request):
-    return render(request, 'application/patient-home.html', {'title': 'Patient Home'})  # Renders login.html
+    print("TEST", request.POST)
+    return render(request, 'application/patient-home.html',
+                  {'title': 'Patient Home', 'patients': Patient.objects.all()})  # Renders login.html
+
 
 def phq9_results(request):
-    print("TEST ", phq9_db.objects.last().diagnosis)
-    dict = {'diagnosis': phq9_db.objects.last().diagnosis,'change_treatment': phq9_db.objects.last().change_treatment,
-            'suicide_risk': phq9_db.objects.last().suicide_risk, 'severity_score': phq9_db.objects.last().severity_score}
-    return render(request, 'application/phq9-results.html', dict)  # Renders login.html
+    if request.method == 'POST':
+        return redirect('patient-home')
+    else:
+        dict = {'diagnosis': phq9_db.objects.last().diagnosis,
+                'change_treatment': phq9_db.objects.last().change_treatment,
+                'suicide_risk': phq9_db.objects.last().suicide_risk,
+                'severity_score': phq9_db.objects.last().severity_score}
+        return render(request, 'application/phq9-results.html', dict)  # Renders login.html
+
 
 def documentation(request):
     return render(request, 'application/documentation.html', {'title': 'Documentation'})  # Renders login.html
@@ -134,19 +151,17 @@ def survey(request):
                                                            'questions': questions})
 
 
-
-
 def medications(request):
     return render(request, 'application/medications.html', {'title': 'Medications'})
 
-def patients(request):
-    return render(request, 'application/patients.html', {'title': 'Patients'})
 
 def new_patient(request):
     return render(request, 'application/new-patient.html', {'title': 'Add New Patient'})
 
+
 def treatment_overview(request):
     return render(request, 'application/treatment-overview.html', {'title': 'Treatment Overview'})
+
 
 def bug_report(request):
     if request.method == 'POST':

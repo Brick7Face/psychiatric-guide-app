@@ -13,19 +13,9 @@
         Patients List
       </h1>
       <div class="patient_list">
-        <div class="card"><h2>Patient Name</h2></div>
-         <div class="card"><h2>Patient Name</h2></div>
-         <div class="card"><h2>Patient Name</h2></div>
-         <div class="card"><h2>Patient Name</h2></div>
-         <div class="card"><h2>Patient Name</h2></div>
-         <div class="card"><h2>Patient Name</h2></div>
-         <div class="card"><h2>Patient Name</h2></div>
-         <div class="card"><h2>Patient Name</h2></div>
-         <div class="card"><h2>Patient Name</h2></div>
-         <div class="card"><h2>Patient Name</h2></div>
-         <div class="card"><h2>Patient Name</h2></div>
-         <div class="card"><h2>Patient Name</h2></div>
-         <div class="card"><h2>Patient Name</h2></div>
+        {% for patient in patients %}
+            {% include "./patient.html" %}
+          {% endfor %}
       </div>
     </div>
     <a href="{% url 'new-patient' %}" class="slds-button slds-button_outline-brand" role="button">New Patient</a>

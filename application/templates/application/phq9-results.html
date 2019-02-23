@@ -14,12 +14,12 @@
         </h1>
 
         <h2>Severity Score:
-        {% if severity_score >= 0 %}
-            {{severity_score}} <br>
-        {% else %}
-            0 <br>
-        {% endif %}
-        <br>
+            {% if severity_score >= 0 %}
+                {{ severity_score }} <br>
+            {% else %}
+                0 <br>
+            {% endif %}
+            <br>
         </h2>
 
         <h2> Diagnosis </h2>
@@ -59,7 +59,8 @@
                 <td>5 - 9</td>
                 <td>Minimal symptoms</td>
                 <td>Support, ask to call if worse,
-                    return in 1 month</td>
+                    return in 1 month
+                </td>
             </tr>
             <tr>
                 <td>10 - 14</td>
@@ -69,18 +70,20 @@
                 </td>
                 <td>Support, contact in one week<br>
                     Antidepressant or psychotherapy, <br>
-                    contact in one week</td>
+                    contact in one week
+                </td>
             </tr>
             <tr>
                 <td>15 - 19</td>
-                <td>Major Depression, moderate </td>
+                <td>Major Depression, moderate</td>
                 <td> Antidepressant or psychotherapy</td>
             </tr>
             <tr>
                 <td>20 or greater</td>
-                <td>Major Depression, severe  </td>
+                <td>Major Depression, severe</td>
                 <td>Antidepressant and psychotherapy <br>
-                    (especially if not improved on monotherapy)</td>
+                    (especially if not improved on monotherapy)
+                </td>
             </tr>
         </table>
         <!--
@@ -124,5 +127,8 @@
         {% endif %}
         -->
     </div>
-    <a href="{% url 'patient-home' %}" class="btn btn-primary mt-4 btn-block" type="submit">add results to patient</a>
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn btn-primary mt-4 btn-block" type="submit">add results to patient</button>
+    </form>
 {% endblock body %}
