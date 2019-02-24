@@ -66,17 +66,17 @@ def backend_home(request):
 
 def patients(request):
     if request.method == 'POST':
-        print(request.POST)
-        return patient_home(request)
+        request.session["patient_id"] = request.POST['patient_id']
+        return redirect('patient-home')
     else:
         return render(request, 'application/patients.html', {'title': 'Patients', 'patients': Patient.objects.all()})
 
 
 @login_required
 def patient_home(request):
-    print("TEST", request.POST)
+    id = request.session["patient_id"]
     return render(request, 'application/patient-home.html',
-                  {'title': 'Patient Home', 'patients': Patient.objects.all()})  # Renders login.html
+                  {'title': 'Patient Home', 'patient': Patient.objects.get(id=id)})  # Renders login.html
 
 
 def phq9_results(request):

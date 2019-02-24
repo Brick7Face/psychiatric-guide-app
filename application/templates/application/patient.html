@@ -4,7 +4,7 @@
 
 <form method="post">
     {% csrf_token %}
-    <input type = "hidden" name="key" value={{ patient.first_name }}{{ patient.last_name }}>
+    <input type = "hidden" name="patient_id" value={{ patient.id }}>
     <button class="card" type="submit">
         <h2>{{ patient.last_name }}, {{ patient.first_name }}</h2>
     </button>
