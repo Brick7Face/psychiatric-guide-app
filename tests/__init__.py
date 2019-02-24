@@ -4,7 +4,7 @@ import os
 test_runner = None
 old_config = None
 
-os.environ["DJANGO_SETTINGS_MODULE"] = "tests.settings"
+os.environ["DJANGO_SETTINGS_MODULE"] = "psychiatric_guide_app.settings"
 
 import django
 if hasattr(django, "setup"):

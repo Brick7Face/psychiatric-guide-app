@@ -21,7 +21,10 @@ setup(
     packages=[],
     include_package_data=True,
     install_requires=[
-        "Django>=1.7.0",
+        "Django>=2.1.7",
+        "Django-crispy-forms>=1.7.2",
+        "pymysql>=0.9.3",
+        "pygithub>=1.43.5",
     ],
     tests_require=[
         "nose",

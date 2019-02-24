@@ -1,1 +1,4 @@
-Django>=1.7.0
+Django-crispy-forms>=1.7.2
+Django>=2.1.7
+pygithub>=1.43.5
+pymysql>=0.9.3

@@ -13,6 +13,7 @@ def start(argv=None):
         argv = [
             "nosetests", "--cover-branches", "--with-coverage",
             "--cover-erase", "--verbose",
+            "--cover-package=application",
         ]
 
     nose.run_exit(argv=argv, defaultTest=os.path.abspath(os.path.dirname(__file__)))
