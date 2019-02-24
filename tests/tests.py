@@ -1,5 +1,5 @@
 from unittest import TestCase
-from application.models import Step
+from application.models import Step, Treatment, Medication, Prescriber, Patient, Phq9
 from application.questionnaire_evaluations import PHQ9
 
 class PHQ9TestCase(TestCase):
@@ -84,10 +84,22 @@ class PHQ9TestCase(TestCase):
 
 class ModelsTestCase(TestCase):
     
-    def test_step_creation(self):
-        Step.objects.create(name="Test Step", description="Testing...")
-        s = Step.objects.get(name="Test Step")
-        self.assertEqual(s.description, "Testing...")
+    def test_step_string(self):
+        step = Step(name="Test Step", description="Testing...")
+        self.assertEqual(str(step), step.name)
+
+    def test_treatment_string(self):
+        treatment = Treatment(name="Test Treatment")
+        self.assertEqual(str(treatment), treatment.name)
+
+    def test_medication_string(self):
+        medication = Medication(name="Test Medication", category="Test", titration="NA", comments="NA")
+        self.assertEqual(str(medication), medication.name)
+
+    def test_patient_string(self):
+        patient = Patient(last_name="Testson", address="NA", email="test@test.com", phone=5555555555, notes="NA")
+        self.assertEqual(str(patient), patient.last_name)
+
          
 
 #
