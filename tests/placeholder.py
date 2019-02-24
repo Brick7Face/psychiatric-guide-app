@@ -1,7 +1,5 @@
 from unittest import TestCase
-from application.questionnaire_evaluations import PHQ9
-from application.questionnaire_evaluations import MDQ
-
+#import questionnaire_evaluations
 
 class PHQ9TestCase(TestCase):
     phq9 = None
@@ -83,6 +81,13 @@ class PHQ9TestCase(TestCase):
         pass
 
 
+class ModelsTestCase(TestCase):
+    
+    def test_step_creation(self):
+        Step.objects.create(name="Test Step", description="Testing...")
+        s = Step.objects.get(name="Test Step")
+        self.assertEqual(s.description, "Testing...")
+         
 
 #
 #
