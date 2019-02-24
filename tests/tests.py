@@ -1,5 +1,6 @@
 from unittest import TestCase
-#import questionnaire_evaluations
+from application.models import Step
+from application.questionnaire_evaluations import PHQ9
 
 class PHQ9TestCase(TestCase):
     phq9 = None
