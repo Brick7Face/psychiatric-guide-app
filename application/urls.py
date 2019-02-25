@@ -9,7 +9,7 @@ urlpatterns = [
     path('create_user/', views.create_user, name='create-new-user'),  # Path for new user registration
     path('backend_home/', views.backend_home, name="backend-home"),  # Home page for logged in user
     path('documentation/', views.documentation, name="documentation"),  # Home page for logged in user
-    path('survey/', views.survey, name="survey-view"),
+    path('survey/', views.survey, name="survey"),
     path('medications/', views.medications, name="medications"),
     path('patients/', views.patients, name="patients"),
     path('treatment-overview', views.treatment_overview, name="treatment-overview"),
@@ -17,4 +17,5 @@ urlpatterns = [
     path('bug_report/', views.bug_report, name="bug_report"),
     path('patient_home/', views.patient_home, name="patient-home"),
     path('phq9_results/', views.phq9_results, name="phq9-results"),
+    path('pocket_guide/', views.pocket_guide, name="pocket_guide"),
 ]
