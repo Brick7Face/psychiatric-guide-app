@@ -98,7 +98,6 @@ class Patient(models.Model):
     email = models.EmailField(help_text='Enter patient current email', max_length=50)
     phone = models.CharField(help_text='Enter patient current phone number', max_length=20)
     current_step = models.ForeignKey(Step, null=True, on_delete=models.SET_NULL)
-    # list of PHQ-9 scores
     # visit history
     next_visit = models.DateTimeField(help_text='Enter the next visit date and time of the patient if applicable',
                                       blank=True, default=timezone.now)
@@ -137,3 +136,4 @@ class Phq9(models.Model):
     diagnosis = models.BooleanField(default=False)
     change_treatment = models.BooleanField(default=False)
     suicide_risk = models.BooleanField(default=False)
+    patient = models.ForeignKey(Patient, null=True, on_delete=models.SET_NULL)
