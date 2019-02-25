@@ -7,9 +7,18 @@
 
 body #login_wrapper .login_content{
   margin: 0 auto;
+  background-color: #fff;
+  border: 2px solid #2699FB;
+  padding: 5vh 5vw;
 }
 
 .btn-primary{
   background-color:#2699FB;
   outline-color:#2699FB;
+}
+
+@media (max-width: 1200px){
+  #login_wrapper{
+    width: 60vw;
+  }
 }
