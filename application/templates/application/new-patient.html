@@ -1,16 +1,18 @@
 {% extends "application/global-html.html" %}
+{% load crispy_forms_tags %}
 {% load static %} <!-- loads in static css file  application/static/application-->
 
 {% block css %}
-<link rel="stylesheet" type="text/css" href="{% static 'application/new-patient.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'application/new-user.css' %}">
 {% endblock css %}
 
 {% block body %}
-  <div id="new_patient_wrapper">
-        <div class="new_patient_content">
-          <h1>
-            New Patient
-          </h1>
-        </div>
+    <div id="new_patient_wrapper">
+        <form method="POST">
+            {% csrf_token %}
+            {{ new_patient_form | crispy }}
+            <!--Uses the form created in views.py and uses crispy form formatting-->
+            <button class="btn btn-primary mt-4 btn-block" type="submit">Create Patient</button>
+        </form>
     </div>
 {% endblock body %}

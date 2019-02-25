@@ -1,10 +1,13 @@
 import datetime
+
+from django.db.models import Model
+from django.forms import Form
 from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 
-from application.models import Prescriber, Patient
+from application.models import Prescriber, Step, Patient
 from application.models import Phq9 as phq9_db
 from django import forms
 from django.contrib.auth.decorators import login_required
@@ -84,6 +87,15 @@ def patient_home(request):
                       {'title': 'Patient Home',
                        'patient': Patient.objects.get(id=patient_id),
                        'phq9s': phq9_db.objects.filter(patient_id=patient_id)})  # Renders login.html
+
+
+def phq9_results(request):
+    print("TEST ", phq9_db.objects.last().diagnosis)
+    dict = {'diagnosis': phq9_db.objects.last().diagnosis, 'change_treatment': phq9_db.objects.last().change_treatment,
+            'suicide_risk': phq9_db.objects.last().suicide_risk,
+            'severity_score': phq9_db.objects.last().severity_score}
+    return render(request, 'application/phq9-results.html', dict)  # Renders login.html
+
 
 @login_required
 def phq9_results(request):
@@ -166,8 +178,38 @@ def medications(request):
     return render(request, 'application/medications.html', {'title': 'Medications'})
 
 
+class CreatePatientForm(forms.ModelForm):
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    dob = forms.DateField(initial=datetime.date.today,
+                          widget=forms.DateInput(format='%m/%d/%Y'),
+                          input_formats=('%m/%d/%Y', ))
+    address = forms.CharField()
+    email = forms.EmailField()
+    phone = forms.CharField()
+    current_step = forms.ModelChoiceField(Step.objects)
+    next_visit = forms.DateTimeField(initial=datetime.datetime.now(),
+                                     widget=forms.DateTimeInput(format='%m/%d/%Y %H:%M'),
+                                     input_formats=('%m/%d/%Y %H:%M', ))
+    notes = forms.CharField()
+
+    class Meta:
+        model = Patient
+        fields = ['first_name', 'last_name', 'dob', 'address', 'email', 'phone', 'current_step',
+                  'next_visit', 'notes']
+
+
 def new_patient(request):
-    return render(request, 'application/new-patient.html', {'title': 'Add New Patient'})
+    if request.method == 'POST':
+        new_patient_form = CreatePatientForm(request.POST)
+        if new_patient_form:
+            new_patient_form.save()
+            messages.success(request, 'Patient created.')
+            return redirect('patients')
+    else:
+        new_patient_form = CreatePatientForm()
+    return render(request, 'application/new-patient.html', {'new_patient_form': new_patient_form})
+
 
 
 def treatment_overview(request):

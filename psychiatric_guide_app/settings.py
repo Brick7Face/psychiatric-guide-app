@@ -105,16 +105,16 @@ else:
 # #     $ cloud_sql_proxy -instances=[INSTANCE_CONNECTION_NAME]=tcp:3306
 # #
 # # See https://cloud.google.com/sql/docs/mysql-connect-proxy
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'HOST': '127.0.0.1',
-#         'PORT': '3306',
-#         'NAME': 'guide',
-#         'USER': 'bryanplant',
-#         'PASSWORD': '',
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'HOST': '127.0.0.1',
+#             'PORT': '3306',
+#             'NAME': 'guide',
+#             'USER': 'bryanplant',
+#             'PASSWORD': '',
+#         }
 #     }
-# }
 # [END db_setup]
 
 # Password validation
