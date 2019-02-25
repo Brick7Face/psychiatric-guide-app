@@ -7,8 +7,11 @@ html, body {
 #bug_report_wrapper{
   position: relative;
   margin: 0 auto;
-  padding-top: 20%;
-  height: 100%;
+  margin-top: 15vh;
+  padding: 5vh 5vw;
+  background-color: #fff;
+  border: 2px solid #2699FB;
+  width: 40vw;
 }
 
 #bug_report {
@@ -20,7 +23,10 @@ html, body {
   width: 100%;
   max-width: 450px;
 }
-
+#bug_report #header{
+  text-align: left;
+  padding-bottom: 2vh;
+}
 label {
   width: 100%;
 }
@@ -31,7 +37,15 @@ textarea {
   width: 100%;
   height: 400px;
   max-width: 450px;
-  border: 2px solid #2699FB;
+  border: 1px solid #2699FB;
   font-family: 'Poppins', sans-serif;
   padding: 20px;
+}
+@media (max-width: 1200px) {
+  #bug_report_wrapper{
+    width: 60vw;
+  }
+  body h1{
+    font-size: 2em;
+  }
 }

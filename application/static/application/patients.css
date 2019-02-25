@@ -5,15 +5,20 @@
 }
 body #patients_wrapper .patient_content{
   margin: 0 auto;
+  background-color: #fff;
+  border: 2px solid #2699FB;
+  padding-left: 2.5vw;
+  padding-right: 2.5vw;
+  padding-top: 5vh;
 }
 body #patients_wrapper .patient_list{
-  border: 2px solid #2699FB;
   padding: 1em;
   margin-top: 2vh;
   height: 50vh;
   overflow-x: hidden;
   overflow-y: scroll;
   white-space: nowrap;
+
 }
 body #patients_wrapper .card{
   height: 4em;
@@ -33,4 +38,10 @@ body h2{
   font-weight: 300;
   line-height: 1.7em;
   color: #2699FB;
+}
+
+@media (max-width: 1200px){
+  body #patients_wrapper .slds-button{
+    width: 25vw;
+  }
 }
