@@ -3,21 +3,27 @@
 {% load static %} <!-- loads in static css file  application/static/application-->
 
 {% block css %}
-<link rel="stylesheet" type="text/css" href="{% static 'application/patients.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'application/patients.css' %}">
 {% endblock css %}
 
 {% block body %}
-  <div id="patients_wrapper">
-    <div class="patient_content">
-      <h1>
-        Patients List
-      </h1>
-      <div class="patient_list">
-        {% for patient in patients %}
-            {% include "./patient.html" %}
-          {% endfor %}
-      </div>
+    <div id="patients_wrapper">
+        <div class="patient_content">
+            <h1>
+                Patients List
+            </h1>
+            <div class="patient_list">
+                {% for patient in patients %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="patient_id" value={{ patient.id }}>
+                        <button class="card" type="submit">
+                            <h2>{{ patient.last_name }}, {{ patient.first_name }}</h2>
+                        </button>
+                    </form>
+                {% endfor %}
+            </div>
+        </div>
+        <a href="{% url 'new-patient' %}" class="slds-button slds-button_outline-brand" role="button">New Patient</a>
     </div>
-    <a href="{% url 'new-patient' %}" class="slds-button slds-button_outline-brand" role="button">New Patient</a>
-  </div>
 {% endblock body %}

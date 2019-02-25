@@ -117,6 +117,7 @@ class Patient(models.Model):
         """String for representing the Patient object (in Admin site etc.)."""
         return self.last_name
 
+
 class Phq9(models.Model):
     # Fields
     # current_step = models.ForeignKey(Patient, null=True, on_delete=models.SET_NULL)
