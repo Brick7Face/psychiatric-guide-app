@@ -87,7 +87,7 @@ def patient_home(request):
                        'patient': Patient.objects.get(id=patient_id),
                        'phq9s': phq9_db.objects.filter(patient_id=patient_id)})  # Renders login.html
 
-
+@login_required
 def phq9_results(request):
     if request.method == 'POST':
         # add phq-9 results to the patient
@@ -134,10 +134,9 @@ def survey(request):
                                       suicide_risk=dic.get("suicide_risk")
                                       )
 
-        dic['title'] = 'Survey Complete'
         request.session['phq9_id'] = phq9.id
 
-        return redirect('phq9-results')
+        return render(request, 'application/survey-complete.html', {'title': "Survey Complete"})
 
     else:
         introduction = "Over the past 2 weeks, how often have you been bothered by any of the following problems?"
