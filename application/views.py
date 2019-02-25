@@ -77,11 +77,9 @@ def patient_home(request):
     if request.method == 'POST':
         # take PHQ-9
         request.session['patient_id'] = request.POST['patient_id']
-        print("Taking PHQ-9 for patient", request.POST['patient_id'])
         return redirect('survey')
     else:
         patient_id = request.session["patient_id"]
-        print("PHQ9s", phq9_db.objects.filter(patient_id=patient_id))
         return render(request, 'application/patient-home.html',
                       {'title': 'Patient Home',
                        'patient': Patient.objects.get(id=patient_id),
@@ -93,7 +91,6 @@ def phq9_results(request):
         # add phq-9 results to the patient
         patient_id = request.session['patient_id']
         phq9 = phq9_db.objects.get(id=request.session['phq9_id'])
-        print("adding phq9 #" + str(phq9.id), "to", str(patient_id))
         phq9.patient_id = patient_id
         phq9.save()
         return redirect('patient-home')
