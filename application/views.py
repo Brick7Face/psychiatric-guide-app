@@ -148,6 +148,9 @@ def new_patient(request):
 def treatment_overview(request):
     return render(request, 'application/treatment-overview.html', {'title': 'Treatment Overview'})
 
+def pocket_guide(request):
+    return render(request, 'application/pocket_guide.pdf', {'title': 'Pocket Guide'})
+
 def bug_report(request):
     if request.method == 'POST':
         report = request.POST['report']

@@ -1,8 +1,29 @@
 #document_wrapper{
-  margin-top: 15vh;
+  margin-top: 30vh;
   width: 60vw;
-  height: 85vh;
+  height: 70vh;
 }
 body #document_wrapper .document_content{
   margin: 0 auto;
+  position: relative;
+  background-color: #fff;
+  border: 2px solid #2699FB;
+  width: 40vw;
+  padding: 5vh 5vw;
+  overflow: auto;
+}
+body h1{
+  font-size: 3em;
+}
+body p{
+  color: #707070;
+}
+
+@media (max-width: 1200px){
+  body #document_wrapper .document_content{
+    width: 60vw;
+  }
+  body h1{
+    font-size: 2em;
+  }
 }
