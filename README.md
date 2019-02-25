@@ -79,10 +79,9 @@ This will host the application on local host at [http://127.0.0.1:8000/](http://
 
 ### 3.2 How to test:
 
-All that needs to be done to run tests are to be in the same directory as the test.py file and run it from the 
- line. We also setup these tests to run automatically in a script, which is detailed below. Alternatively, tests 
- can be run from the command line in the same directory as the .travis.yml file with the command 
- `python -m unittest discover`.
+We have setup unit tests to run automatically in a script through Travis CI, which is detailed below. Alternatively, tests 
+ can be run from the command line in the root directory with the command 
+ `python setup.py test`. To write tests, either add test cases to the /tests/tests.py file or add new files to the tests directory. These files should be named with the word test first, in the format test*.py.
  
  Additionally, our project uses the code analysis tool [SonarCloud](https://sonarcloud.io/), available from SonarQube. To run the analysis, after setting up SonarCloud on the local machine, use the command<br>
  `sonar-scanner -D"sonar.projectKey=Brick7Face_psychiatric-guide-app" -D"sonar.organization=brick7face-github" -D"sonar.sources=." -D"sonar.host.url=https://sonarcloud.io" -D"sonar.login=3ea10bb00bffd52c5e9a8e1196a646ddfb7a1eec"`<br>
