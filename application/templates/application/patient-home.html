@@ -12,22 +12,43 @@
             {{ patient.last_name }}, {{ patient.first_name }}
         </h1>
         <h2>Visit History</h2>
-            <p></p>
+        <p></p>
         <h2>Treatment:</h2>
-            <p>{{ patient.current_step.name }}</p>
+        <p>{{ patient.current_step.name }}</p>
         <h2>Medications:</h2>
         {% for medication in patient.medications.all %}
             <p>{{ medication }}</p>
         {% endfor %}
         <h2>Notes:</h2>
-            <p>{{ patient.notes }}</p>
+        <p>{{ patient.notes }}</p>
         <h2>PHQ-9 Results</h2>
-            <p></p>
-        <button></button>
+        {% if phq9s %}
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <th>Severity Score</th>
+                </tr>
+                {% for phq9 in phq9s %}
+                    <tr>
+                        <td>{{ phq9.date.date }}</td>
+                        <td>{{ phq9.severity_score }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            No results yet
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="patient_id" value={{ patient.id }}>
+            <button type="submit">
+                Take PHQ-9
+            </button>
+        </form>
         <h2>Next Visit Data</h2>
-            <p></p>
+        <p></p>
         <h2>address:</h2>
-            <p>{{ patient.address }}</p>
+        <p>{{ patient.address }}</p>
         <h2>Date of birth</h2>
         <p>{{ patient.dob }}</p>
         <h2>Phone number</h2>

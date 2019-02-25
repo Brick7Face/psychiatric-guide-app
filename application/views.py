@@ -66,7 +66,7 @@ def backend_home(request):
 
 def patients(request):
     if request.method == 'POST':
-        request.session["patient_id"] = request.POST['patient_id']
+        request.session['patient_id'] = request.POST['patient_id']
         return redirect('patient-home')
     else:
         return render(request, 'application/patients.html', {'title': 'Patients', 'patients': Patient.objects.all()})
@@ -74,13 +74,28 @@ def patients(request):
 
 @login_required
 def patient_home(request):
-    id = request.session["patient_id"]
-    return render(request, 'application/patient-home.html',
-                  {'title': 'Patient Home', 'patient': Patient.objects.get(id=id)})  # Renders login.html
+    if request.method == 'POST':
+        # take PHQ-9
+        request.session['patient_id'] = request.POST['patient_id']
+        print("Taking PHQ-9 for patient", request.POST['patient_id'])
+        return redirect('survey')
+    else:
+        patient_id = request.session["patient_id"]
+        print("PHQ9s", phq9_db.objects.filter(patient_id=patient_id))
+        return render(request, 'application/patient-home.html',
+                      {'title': 'Patient Home',
+                       'patient': Patient.objects.get(id=patient_id),
+                       'phq9s': phq9_db.objects.filter(patient_id=patient_id)})  # Renders login.html
 
 
 def phq9_results(request):
     if request.method == 'POST':
+        # add phq-9 results to the patient
+        patient_id = request.session['patient_id']
+        phq9 = phq9_db.objects.get(id=request.session['phq9_id'])
+        print("adding phq9 #" + str(phq9.id), "to", str(patient_id))
+        phq9.patient_id = patient_id
+        phq9.save()
         return redirect('patient-home')
     else:
         dict = {'diagnosis': phq9_db.objects.last().diagnosis,
@@ -103,26 +118,26 @@ def survey(request):
         phq9 = PHQ9()
         # returns dictionary {diag : bool, change treat : bool, suicide : bool, score : int}
         dic = phq9.phq9_evaluation(results)
-        print("Change treatment (bool)", dic.get("change_treatment"))
-        phq9_db.objects.create(question_1=results.get(str(1))[0],
-                               question_2=results.get(str(2))[0],
-                               question_3=results.get(str(3))[0],
-                               question_4=results.get(str(4))[0],
-                               question_5=results.get(str(5))[0],
-                               question_6=results.get(str(6))[0],
-                               question_7=results.get(str(7))[0],
-                               question_8=results.get(str(8))[0],
-                               question_9=results.get(str(9))[0],
-                               question_10=results.get(str(10))[0],
-                               diagnosis=dic.get("diagnosis"),
-                               severity_score=dic.get("severity_score"),
-                               change_treatment=dic.get("change_treatment"),
-                               suicide_risk=dic.get("suicide_risk")
-                               )
+        phq9 = phq9_db.objects.create(question_1=results.get(str(1))[0],
+                                      question_2=results.get(str(2))[0],
+                                      question_3=results.get(str(3))[0],
+                                      question_4=results.get(str(4))[0],
+                                      question_5=results.get(str(5))[0],
+                                      question_6=results.get(str(6))[0],
+                                      question_7=results.get(str(7))[0],
+                                      question_8=results.get(str(8))[0],
+                                      question_9=results.get(str(9))[0],
+                                      question_10=results.get(str(10))[0],
+                                      diagnosis=dic.get("diagnosis"),
+                                      severity_score=dic.get("severity_score"),
+                                      change_treatment=dic.get("change_treatment"),
+                                      suicide_risk=dic.get("suicide_risk")
+                                      )
 
         dic['title'] = 'Survey Complete'
+        request.session['phq9_id'] = phq9.id
 
-        return render(request, 'application/survey-complete.html', dic)
+        return redirect('phq9-results')
 
     else:
         introduction = "Over the past 2 weeks, how often have you been bothered by any of the following problems?"
