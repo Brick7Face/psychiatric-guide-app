@@ -9,14 +9,14 @@ body #patients_wrapper .patient_content{
   border: 2px solid #2699FB;
   padding-left: 2.5vw;
   padding-right: 2.5vw;
-  padding-top: 5vh;
+  padding-top: 2vh;
 }
 body #patients_wrapper .patient_list{
   padding: 1em;
   margin-top: 2vh;
   height: 50vh;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   white-space: nowrap;
 
 }
@@ -39,7 +39,9 @@ body h2{
   line-height: 1.7em;
   color: #2699FB;
 }
-
+body h1{
+  font-size: 2.5em;
+}
 @media (max-width: 1200px){
   body #patients_wrapper .slds-button{
     width: 25vw;

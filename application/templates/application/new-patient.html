@@ -3,16 +3,24 @@
 {% load static %} <!-- loads in static css file  application/static/application-->
 
 {% block css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'application/new-user.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'application/new-patient.css' %}">
 {% endblock css %}
 
 {% block body %}
     <div id="new_patient_wrapper">
+      <h2>
+        <a href="{% url 'patients' %}" class="go_back">< Go Back</a>
+      </h2>
+      <div class="new_patient_content">
+        <h1>
+          New Patient
+        </h1>
         <form method="POST">
             {% csrf_token %}
             {{ new_patient_form | crispy }}
             <!--Uses the form created in views.py and uses crispy form formatting-->
-            <button class="btn btn-primary mt-4 btn-block" type="submit">Create Patient</button>
+            <button class="slds-button slds-button_outline-brand" type="submit">Create Patient</button>
         </form>
+      </div
     </div>
 {% endblock body %}
