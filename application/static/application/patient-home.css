@@ -1,8 +1,67 @@
+body #patient_home_wrapper{
+    background-color: #fff;
+    padding-top: 10.5vh;
+    padding-bottom: 2.5vh;
+    overflow: scroll;
+
+}
+
+.flex-container{
+    display: flex;
+    height: 95%;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+h3{
+    text-align: center;
+    color: #00a0e3;
+    font-size: 22pt;
+}
+
+
 h1 {
     text-align: center;
-    padding-top: 20%;
+    font-size: 30pt;
+    color: #00a0e3;
+    padding-bottom: 2.5vh;
 }
 
 h2{
-    font-size: 20pt;
+    font-size: 13pt;
+    text-decoration: underline;
+    padding-bottom: 2px;
+    padding-top: 10px;
+}
+
+#dob{
+    text-align: center;
+    color: gray;
+    padding-bottom: 30px;
+}
+
+.button{
+    background-color:  #00a0e3;
+    color: white;
+    text-align: center;
+    float: right;
+    margin: 10px;
+}
+
+#personal_info{
+    height: 60%;
+    width: 30%;
+    border: 2px solid #2699FB;
+    margin-right: 10px;
+    padding: 2.5vh;
+    margin-top: 2.5vh;
+    padding-top: 10%;
+}
+
+#patient_data{
+    height: 60%;
+    width: 70%;
+    border: 2px solid black;
+    padding: 2.5vh;
+    margin-top: 2.5vh;
 }

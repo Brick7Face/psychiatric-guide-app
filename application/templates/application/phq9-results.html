@@ -9,9 +9,9 @@
 {% block body %}
     <div id="phq9_results_wrapper">
 
-        <h1>
+        <h2>
             PHQ-9 Patient Results
-        </h1>
+        </h2>
 
         <h2>Severity Score:
             {% if severity_score >= 0 %}
@@ -49,6 +49,8 @@
         {% endif %}
 
         <h2>Treatment Table </h2>
+
+       <div style="overflow-x:auto;">
         <table style="width:100%">
             <tr>
                 <th>Severity Score</th>
@@ -86,6 +88,7 @@
                 </td>
             </tr>
         </table>
+       </div>
         <!--
         {% if severity_score %}
 
