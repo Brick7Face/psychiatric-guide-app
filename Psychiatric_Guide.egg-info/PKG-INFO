@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: Psychiatric-Guide
+Version: 1.0
+Summary: Implements the Prescribers Guide 2012
+Home-page: https://github.com/Brick7Face/psychiatric-guide-app
+Author: Bryan Plant, Keely Weisbeck, Madison Fichtner, Alex Harry, Nate Tranel
+Author-email: njtranel@gmail.com
+License: MIT License
+Download-URL: https://github.com/Brick7Face/psychiatric-guide-app.git
+Description: Implements prescribing algorithms for depression, bipolar, and their corresponding forms.
+Platform: UNKNOWN
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
