@@ -1,6 +1,6 @@
 #patients_wrapper{
   margin-top: 15vh;
-  height: 90vh;
+  height: 85vh;
   width: 60vw;
 }
 body #patients_wrapper .patient_content{
@@ -9,8 +9,7 @@ body #patients_wrapper .patient_content{
   border: 2px solid #2699FB;
   padding-left: 2.5vw;
   padding-right: 2.5vw;
-  padding-top:2vh;
-  padding-bottom:2vh;
+  padding-top: 2vh;
 }
 body #patients_wrapper .patient_list{
   padding: 1em;
