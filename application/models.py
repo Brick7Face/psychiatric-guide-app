@@ -121,7 +121,6 @@ class Patient(models.Model):
 
 class Phq9(models.Model):
     # Fields
-    # current_step = models.ForeignKey(Patient, null=True, on_delete=models.SET_NULL)
     date = models.DateTimeField(default=timezone.now)
     question_1 = models.IntegerField(default=5)
     question_2 = models.IntegerField(default=5)
