@@ -1,16 +1,21 @@
 
-#survey-complete-wrapper{
+body #survey-complete-wrapper{
     margin:0 auto;
     width: 40vw;
+    color:  #00a0e3;
+    padding-top: 10.5vh;
+    padding-bottom: 2.5vh;
+    overflow: scroll;
 }
 
 h1 {
     text-align: center;
-    padding-top: 25%;
+    padding-top: 2.5vh;
 }
 
-h2 {
-    text-align: center;
+a:link, a:visited, a:hover{
+    background-color:  #00a0e3;
+    color: white;
 }
 
 

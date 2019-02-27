@@ -3,65 +3,113 @@ body #patient_home_wrapper{
     padding-top: 10.5vh;
     padding-bottom: 2.5vh;
     overflow: scroll;
-
 }
-
-.flex-container{
-    display: flex;
-    height: 95%;
-    justify-content: center;
-    /* align-items: center; */
-}
-
-h3{
-    text-align: center;
-    color: #00a0e3;
-    font-size: 22pt;
-}
-
 
 h1 {
     text-align: center;
-    font-size: 30pt;
+    font-size: 20pt;
     color: #00a0e3;
     padding-bottom: 2.5vh;
 }
 
-h2{
-    font-size: 13pt;
-    text-decoration: underline;
-    padding-bottom: 2px;
-    padding-top: 10px;
-}
-
-#dob{
-    text-align: center;
-    color: gray;
-    padding-bottom: 30px;
-}
-
-.button{
+.edit-button{
     background-color:  #00a0e3;
     color: white;
     text-align: center;
-    float: right;
-    margin: 10px;
+    margin: 0 auto;
+    overflow-x: auto;
+    flex-flow: row wrap;
 }
 
-#personal_info{
-    height: 60%;
-    width: 30%;
+.flex-container{
+    display: flex;
+    height: 80%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: center;
+    overflow: auto;
+}
+
+.title{
+    font-size: 15pt;
+    color: grey;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    text-align: left;
+    overflow: auto;
+}
+
+#box1{
     border: 2px solid #2699FB;
-    margin-right: 10px;
-    padding: 2.5vh;
+    margin-right: 1vh;
+    padding: 2vh;
     margin-top: 2.5vh;
-    padding-top: 10%;
+    text-align: center;
 }
 
-#patient_data{
-    height: 60%;
-    width: 70%;
-    border: 2px solid black;
-    padding: 2.5vh;
+#patient_home_wrapper .flex-container #box1 .title{
+    text-align: left;
+    padding-bottom: 30px;
+}
+
+#table{
+    border: 2px solid #2699FB;
+    margin-right: 1vh;
+    padding: 2vh;
     margin-top: 2.5vh;
 }
+
+h2{
+    color: #00a0e3;
+    font-size: 15pt;
+    padding-top: 10px;
+}
+
+h3{
+    color: grey;
+    padding-bottom: 10px;
+    font-size: 10pt;
+}
+
+hr{
+    padding: 0;
+    margin: 0;
+}
+
+table, th, td{
+    overflow-x: auto;
+    padding: 1px 5px 1px 5px;
+    margin: auto;
+}
+
+th{
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: 10pt;
+}
+
+td{
+    color: grey;
+    font-size: 10pt;
+}
+
+#phq9{
+    float:left;
+}
+
+.phq9-button{
+    background-color:  #00a0e3;
+    color: white;
+    text-align: center;
+    margin: 10px 0px 0px 10px;
+    overflow-x: auto;
+    flex-flow: row wrap;
+
+}
+
+
+
+
+
+

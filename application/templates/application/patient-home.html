@@ -7,54 +7,78 @@
 {% endblock css %}
 
 {% block body %}
-    <div id="patient_home_wrapper">
+    <div id="patient_home_wrapper" style="overflow-x:auto;">
         <h1>Profile: {{ patient.first_name }} {{ patient.last_name }} </h1>
-        <button class="button">Edit Patient</button>
-        <div class="flex-container">
-            <div id="personal_info">
-                <h3> {{ patient.first_name }} {{ patient.last_name }} </h3>
-                    <p id="dob">({{ patient.dob }})</p>
-                <h2 id="contact_info">
-                    Contact Information: </h2>
-                    <p>Address: {{ patient.address }}</p>
-                    <p>Phone: {{ patient.phone }}</p>
+        <button class="edit-button" type="submit">Edit Patient</button>
+
+        <div class="flex-container" >
+            <div id="box1" style="flex-grow: 1" >
+                <div class="title"> personal information </div>
+                    <h2 id="dob">Date of Birth</h2>
+                        <h3>{{ patient.dob }}</h3>
+
+                    <h2 id="program"> Program</h2>
+                        <h3> Depression </h3>
+
+                    <h2 id="contact-info"> Contact Information</h2>
+                        <h3 id="address">Address: {{ patient.address }}</h3>
+                        <h3 id="phone"> Phone: {{ patient.phone }} </h3>
             </div>
 
-            <div id="patient_data">
-                <h2>Visit History</h2>
-                    <p></p>
-                <h2>Treatment:</h2>
-                    <p>{{ patient.current_step.name }}</p>
-                <h2>Medications:</h2>
-                    {% for medication in patient.medications.all %}
-                        <p>{{ medication }}</p>
-                    {% endfor %}
-                <h2>Notes:</h2>
-                    <p>{{ patient.notes }}</p>
-                <h2>PHQ-9 Results</h2>
-                    {% if phq9s %}
-                        <table>
-                            <tr>
-                                <th>Date</th>
-                                <th>Severity Score</th>
-                            </tr>
-                            {% for phq9 in phq9s %}
-                                <tr>
-                                    <td>{{ phq9.date.date }}</td>
-                                    <td>{{ phq9.severity_score }}</td>
-                                </tr>
-                            {% endfor %}
-                        </table>
-                    {% else %}
-                        No results yet
-                    {% endif %}
+            <div id="table" style="flex-grow: 6">
+                <div class="title"> Patient Data </div>
+                    <h2>Visit History</h2>
+                    <hr>
+                        <h3>June 6, 2018 <br>
+                            June 6, 2017 <br>
+                            June 6, 2016</h3>
+
+                    <h2>Next Visit Data</h2>
+                    <hr>
+                        <h3>some dates</h3>
+
+                    <h2>Current Treatment</h2>
+                    <hr>
+                        <h3>{{ patient.current_step.name }}</h3>
+
+                    <h2>Medications</h2>
+                    <hr>
+                        {% for medication in patient.medications.all %}
+                            <h3>{{ medication }}</h3>
+                        {% endfor %}
+
+                    <h2 id="phq9">PHQ-9 Results </h2>
                     <form method="post">
                         {% csrf_token %}
-                            <input type="hidden" name="patient_id" value={{ patient.id }}>
-                            <button type="submit">Take PHQ-9</button>
+                        <input type="hidden" name="patient_id" value={{ patient.id }}>
+                        <button class="phq9-button" type="submit">Take PHQ-9</button>
                     </form>
-                    <h2>Next Visit Data</h2>
-                        <p></p>
+
+                    <hr>
+
+                        {% if phq9s %}
+                            <div style="overflow-x:auto;">
+                                <table style="width: 100%">
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Severity Score</th>
+                                    </tr>
+                                    {% for phq9 in phq9s %}
+                                        <tr>
+                                            <td>{{ phq9.date.date }}</td>
+                                            <td>{{ phq9.severity_score }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        {% else %}
+                            <h3>No results yet</h3>
+                        {% endif %}
+
+
+                    <h2>Notes</h2>
+                    <hr>
+                        <h3>{{ patient.notes }}</h3>
             </div>
         </div>
 
