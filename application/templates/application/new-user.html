@@ -9,11 +9,14 @@
 {% block body %}
   <div id="new_user_wrapper">
     <div class="new_user_content">
+      <h1>
+        New User
+      </h1>
       {% if user.is_superuser %} <!-- Checks if user has permission, being superuser, to create new accounts-->
           <form method="POST">
               {% csrf_token %}
               {{ new_user_form | crispy }}    <!--Uses the form created in views.py and uses crispy form formatting-->
-                  <button class="btn btn-primary mt-4 btn-block" type="submit">Create User</button>
+                  <button class="slds-button slds-button_outline-brand" type="submit">Create User</button>
           </form>
       {% else %}  <!--If user does not have permission to create a new user-->
 

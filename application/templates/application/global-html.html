@@ -103,9 +103,15 @@
         </ul>
         <div class="login_button">
             {% if user.is_authenticated %}
-              <div class="users_name">
-                  Signed in as: {{ user.first_name }} {{ user.last_name }}
-              </div>
+              {% if user.is_superuser %}
+                <div class="users_name">
+                  Signed in as: {{ user.first_name }} {{ user.last_name }} #Admin
+                </div>
+              {% else %}
+                <div class="users_name">
+                    Signed in as: {{ user.first_name }} {{ user.last_name }}
+                </div>
+              {% endif %}
 
                 {#                <a href="{% url 'logout-view' %}" style="color: #A9A9A9">Signout</a>#}
                 {#                <button class="slds-button slds-button_outline-brand" onclick="window.location.href = {% url 'logout-view' %};"> Logout</button>#}

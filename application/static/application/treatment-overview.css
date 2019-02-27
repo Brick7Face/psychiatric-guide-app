@@ -6,4 +6,76 @@
 
 body #treatment_wrapper .treatment_content{
   margin: 0 auto;
+  list-style-position: inside;
+  background-color: #fff;
+  border: 2px solid #2699FB;
+  padding-left: 2.5vw;
+  padding-right: 2.5vw;
+  padding-top: 2vh;
+  padding-bottom:2vh;
+}
+
+table {
+    border-collapse: collapse;
+    margin-top: 2vh;
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+table, th, td {
+    border: 1px solid black;
+    padding: 15px;
+    font-size: 1em;
+}
+
+#header{
+  color: #2699FB;
+  font-size: 1.4em;
+}
+
+li {
+  font-size: 1em;
+  list-style-position:inside;
+}
+#week{
+  float:top;
+  display: inline-block;
+  width: 25%;
+  border:none;
+  font-size:1.2em;
+  color:#2699FB;
+  padding-left:2vw;
+}
+#item{
+  display: inline-block;
+  width: 75%;
+  border:none;
+}
+
+td ul li{
+  list-style-type: disc;
+  list-style-position: outside;
+  margin-left:2vw;
+}
+
+#withdrawals{
+  width: 33%;
+  display:inline-block;
+  border:none;
+}
+
+@media (max-width: 1200px) {
+  #treatment_wrapper{
+    margin-top: 5vh;
+    overflow-x:auto;
+  }
+  #header{
+    font-size:1em;
+  }
+  #week{
+    font-size:.8em;
+  }
+  li{
+    font-size:.6em;
+  }
 }

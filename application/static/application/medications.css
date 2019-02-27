@@ -1,8 +1,16 @@
 #medication_wrapper{
-  margin-top: 15vh;
+  margin-top: 10vh;
+  width: 60vw;
 }
-#medication_wrapper h1{
-  display:inline;
+
+body #medication_wrapper .medication_content{
+  background-color: #fff;
+  border: 2px solid #2699FB;
+  padding-left: 2.5vw;
+  padding-right: 2.5vw;
+  padding-top: 2vh;
+  height: 80vh;
+  overflow-x: auto;
 }
 body .medication_content button{
   color: #2699FB;
