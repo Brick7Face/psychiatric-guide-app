@@ -1,4 +1,5 @@
 import datetime
+import os
 
 from django.db.models import Model
 from django.forms import Form
@@ -14,10 +15,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from application.questionnaire_evaluations import PHQ9
 
+from google.cloud import datastore
 from github import Github
-
-from application.keys import GITHUB_TOKEN
-
 
 def login(request):
     return render(request, 'application/login.html', {'title': 'Login'})  # Renders login.html
@@ -222,18 +221,29 @@ def pocket_guide(request):
 
 def bug_report(request):
     if request.method == 'POST':
-        report = request.POST['report']
-        g = Github(GITHUB_TOKEN)
-        try:
-            repo = g.get_repo("Brick7Face/psychiatric-guide-app")
-            issue = repo.create_issue(
-                "User Generated Report: " + str(datetime.datetime.now()),
-                body=report
-            )
-            print(issue.html_url)
-            messages.success(request, 'Bug report submitted.')
-        except:
-            messages.error(request, 'An error occurred, please try again later.')
+        if os.getenv('GAE_APPLICATION', None):
+            report = request.POST['report']
+            key = get_datastore_key('GITHUB_KEY')
+            print(key)
+            g = Github(key)
+            try:
+                repo = g.get_repo("Brick7Face/psychiatric-guide-app")
+                issue = repo.create_issue(
+                    "User Generated Report: " + str(datetime.datetime.now()),
+                    body=report
+                )
+                print(issue.html_url)
+                messages.success(request, 'Bug report submitted.')
+            except:
+                messages.error(request, 'An error occurred, please try again later.')
+        else:
+            messages.error(request, 'Bugs can only be reported when running on app engine')
         return redirect('bug_report')
     else:
         return render(request, 'application/bug-report.html', {'title': 'Report a Bug'})
+
+
+def get_datastore_key(name):
+    client = datastore.Client()
+    key = client.key('key', name)
+    return client.get(key)['value']
