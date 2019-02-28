@@ -35,6 +35,8 @@ body #survey-complete-wrapper .survey-complete-content .slds-button{
     background-color:  #2699FB;
     color: white;
     align-content: center;
+    text-align: center;
+    display:block;
     postion: relative;
     font-size: 1.6em;
     padding: 1.5vh;
@@ -52,6 +54,7 @@ body #survey-complete-wrapper .survey-complete-content .slds-button{
     body #survey-complete-wrapper .survey-complete-content .slds-button{
         width: 20vw;
         margin-left: 15vw;
+        align-content: center;
     }
     body h1{
         font-size: 2em;

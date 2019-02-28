@@ -2,11 +2,13 @@ import datetime
 
 from django.db.models import Model
 from django.forms import Form
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.template.defaulttags import register
+from django.views.generic import UpdateView
 
 from application.models import Prescriber, Step, Patient
 from application.models import Phq9 as phq9_db
@@ -14,7 +16,6 @@ from django import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from application.questionnaire_evaluations import PHQ9
-
 
 from github import Github
 
@@ -76,9 +77,11 @@ def patients(request):
     else:
         return render(request, 'application/patients.html', {'title': 'Patients', 'patients': Patient.objects.all()})
 
+
 @register.filter
 def get_item(dictionary, key):
     return dictionary.get(key)
+
 
 @login_required
 def patient_home(request):
@@ -188,14 +191,14 @@ class CreatePatientForm(forms.ModelForm):
     last_name = forms.CharField()
     dob = forms.DateField(initial=datetime.date.today,
                           widget=forms.DateInput(format='%m/%d/%Y'),
-                          input_formats=('%m/%d/%Y', ))
+                          input_formats=('%m/%d/%Y',))
     address = forms.CharField()
     email = forms.EmailField()
     phone = forms.CharField()
     current_step = forms.ModelChoiceField(Step.objects)
     next_visit = forms.DateTimeField(initial=datetime.datetime.now(),
                                      widget=forms.DateTimeInput(format='%m/%d/%Y %H:%M'),
-                                     input_formats=('%m/%d/%Y %H:%M', ))
+                                     input_formats=('%m/%d/%Y %H:%M',))
     notes = forms.CharField()
 
     class Meta:
@@ -214,7 +217,6 @@ def new_patient(request):
     else:
         new_patient_form = CreatePatientForm()
     return render(request, 'application/new-patient.html', {'new_patient_form': new_patient_form})
-
 
 
 def treatment_overview(request):

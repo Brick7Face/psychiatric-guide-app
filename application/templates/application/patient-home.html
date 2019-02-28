@@ -29,10 +29,9 @@
                 <div class="title"> Patient Data </div>
                     <h2>Visit History</h2>
                     <hr>
-                        <h3>June 6, 2018 <br>
-                            June 6, 2017 <br>
-                            June 6, 2016</h3>
-
+                    {% for phq9 in phq9s %}
+                        <h3>{{ phq9.date.date }}</h3>
+                    {% endfor %}
                     <h2>Next Visit Data</h2>
                     <hr>
                         <h3>some dates</h3>
@@ -41,7 +40,8 @@
                         {%  for phq9 in phq9s %}
                             {% if forloop.last %}
                                 {% if phq9.change_treatment %}
-                                    <h2>Current Treatment: Treatment change may be warranted</h2>
+                                    <h2>Current Treatment </h2>
+                                    <h4>Treatment change may be warranted</h4>
                                     <hr>
                                 {% else %}
                                     <h2>Current Treatment:</h2>

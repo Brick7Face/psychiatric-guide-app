@@ -66,6 +66,11 @@ h2{
     padding-top: 10px;
 }
 
+h4{
+    color: #00a0e3;
+    font-style: italic;
+}
+
 body #patient_home_wrapper h3{
     color: grey;
     padding-bottom: 10px;
