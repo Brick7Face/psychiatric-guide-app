@@ -6,6 +6,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.template.defaulttags import register
 
 from application.models import Prescriber, Step, Patient
 from application.models import Phq9 as phq9_db
@@ -13,6 +14,7 @@ from django import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from application.questionnaire_evaluations import PHQ9
+
 
 from github import Github
 
@@ -74,6 +76,9 @@ def patients(request):
     else:
         return render(request, 'application/patients.html', {'title': 'Patients', 'patients': Patient.objects.all()})
 
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)
 
 @login_required
 def patient_home(request):

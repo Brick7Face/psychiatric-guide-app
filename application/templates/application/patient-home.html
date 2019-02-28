@@ -37,8 +37,22 @@
                     <hr>
                         <h3>some dates</h3>
 
-                    <h2>Current Treatment</h2>
+                {% if phq9s %}
+                        {%  for phq9 in phq9s %}
+                            {% if forloop.last %}
+                                {% if phq9.change_treatment %}
+                                    <h2>Current Treatment: Treatment change may be warranted</h2>
+                                    <hr>
+                                {% else %}
+                                    <h2>Current Treatment:</h2>
+                                    <hr>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                {% else %}
+                    <h2>Current Treatment:</h2>
                     <hr>
+                {% endif %}
                         <h3>{{ patient.current_step.name }}</h3>
 
                     <h2>Medications</h2>
@@ -55,7 +69,6 @@
                     </form>
 
                     <hr>
-
                         {% if phq9s %}
                             <div style="overflow-x:auto;">
                                 <table style="width: 100%">
@@ -78,6 +91,13 @@
 
                     <h2>Notes</h2>
                     <hr>
+                        {% if phq9s %}
+                            {%  for phq9 in phq9s %}
+                                {% if phq9.suicide_risk %}
+                                    <h3> {{ phq9.date.date }}: Assess for suicide risk </h3>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
                         <h3>{{ patient.notes }}</h3>
             </div>
         </div>
