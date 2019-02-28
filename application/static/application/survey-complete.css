@@ -1,16 +1,65 @@
-
 #survey-complete-wrapper{
-    margin:0 auto;
+    margin-top: 20vh;
+    height: 80vh;
+    width: 100%;
+}
+
+body #survey-complete-wrapper .survey-complete-content{
     width: 40vw;
+    padding-bottom: 10vh;
+    margin: 0 auto;
+    padding-left: 5vw;
+    padding-right: 5vw;
+   /* position: relative; */
+    background-color: #fff;
+    border: 2px solid #2699FB;
 }
 
-h1 {
+body #survey-complete-wrapper .survey-complete-content #header_text{
+    padding-bottom: 5vh;
+    padding-top: 1.5vh;
     text-align: center;
-    padding-top: 25%;
+    position: relative;
+    -webkit-animation: slide-top 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-top 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+
 }
 
-h2 {
+body h1 {
     text-align: center;
+    padding-top: 2.5vh;
+    font-size: 5em;
 }
+
+body #survey-complete-wrapper .survey-complete-content .slds-button{
+    background-color:  #2699FB;
+    color: white;
+    align-content: center;
+    text-align: center;
+    display:block;
+    postion: relative;
+    font-size: 1.6em;
+    padding: 1.5vh;
+}
+
+
+
+@media (max-width: 1200px) {
+    #survey-complete-wrapper{
+        margin-top: 20vh;
+    }
+    body #survey-complete-wrapper .survey-complete-content{
+        width: 60vw;
+    }
+    body #survey-complete-wrapper .survey-complete-content .slds-button{
+        width: 20vw;
+        margin-left: 15vw;
+        align-content: center;
+    }
+    body h1{
+        font-size: 2em;
+    }
+}
+
 
 

@@ -14,7 +14,7 @@ def populate():
     m = add_medication('Medication 1', 'fakes', 25, 50, 'wut', 'nothing', 'all the things')
     add_patient('bp', 'plant', datetime.date.min, 'the ground', 'bp@email.com', '23456789', step1,
                 datetime.datetime.min, [m], 'he is great')
-    add_patient('k', 'dub', datetime.date.min, 'fun road', 'kdub@email.com', '234543789', step1,
+    add_patient('keely', 'dubu', datetime.date.min, 'fun road', 'kdub@email.com', '234543789', step1,
                 datetime.datetime.min, [m], 'she is the greatest')
     print('\n' + ('=' * 80) + '\n')
 

@@ -7,7 +7,12 @@
 
 {% block body %}
     <div id="survey-complete-wrapper">
-        <h1>Survey Complete!</h1>
+        <div class="survey-complete-content">
+            <div id="header_text">
+                <h1>Survey Complete!</h1>
+            </div>
+            <a href="{% url 'phq9-results' %}" class="slds-button slds-button_brand" role="button">See Results Here</a>
+        </div>
     </div>
-    <a href="{% url 'phq9-results' %}" class="btn btn-primary mt-4 btn-block" type="submit">Click here to see the results</a>
+
 {% endblock body %}
