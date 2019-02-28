@@ -1,8 +1,16 @@
 body #patient_home_wrapper{
-    background-color: #fff;
     padding-top: 10.5vh;
     padding-bottom: 2.5vh;
-    overflow: scroll;
+    overflow: auto;
+}
+
+body #patient_home_wrapper .patient_home_content{
+    margin: 0 auto;
+    background-color: #fff;
+    border: 2px solid #2699FB;
+    padding-left: 2.5vw;
+    padding-right: 2.5vw;
+    padding-top: 2vh;
 }
 
 h1 {
@@ -22,8 +30,9 @@ h1 {
 }
 
 .flex-container{
+    margin-bottom: 5vh;
     display: flex;
-    height: 80%;
+    height: 65%;
     flex-direction: row;
     flex-wrap: wrap;
     align-content: stretch;
@@ -41,7 +50,7 @@ h1 {
 }
 
 #box1{
-    border: 2px solid #2699FB;
+    border: .5px solid #2699FB;
     margin-right: 1vh;
     padding: 2vh;
     margin-top: 2.5vh;
@@ -54,7 +63,7 @@ h1 {
 }
 
 #table{
-    border: 2px solid #2699FB;
+    border: .5px solid #2699FB;
     margin-right: 1vh;
     padding: 2vh;
     margin-top: 2.5vh;
@@ -67,7 +76,7 @@ h2{
 }
 
 h4{
-    color: #00a0e3;
+    color: red;
     font-style: italic;
 }
 
@@ -112,9 +121,3 @@ td{
     flex-flow: row wrap;
 
 }
-
-
-
-
-
-

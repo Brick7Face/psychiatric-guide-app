@@ -8,6 +8,7 @@
 
 {% block body %}
     <div id="phq9_results_wrapper">
+      <div class="phq9_results_container">
         <h1>PHQ-9 Patient Results</h1>
             <div class="flex-container">
                 <div id="table" style="flex: 8" >
@@ -58,12 +59,12 @@
                     <h2> Diagnosis </h2>
                     <hr>
                     {% if diagnosis %}
-                        <p> make a tentative diagnosis of depression, after ruling out
+                        <p> Make a tentative diagnosis of depression, after ruling out
                             physical causes, normal bereavement and a history of a manic
                             or hypomanic episode. Screen for bipolar disorder using the
                             Mood Disorders Questionnaire </p>
                     {% else %}
-                        <p> cannot make tentative diagnosis of depression based on severity score </p>
+                        <p> Cannot make tentative diagnosis of depression based on severity score </p>
                     {% endif %}
 
                     <h2> Change Treatment </h2>
@@ -73,19 +74,20 @@
                             of the first two questions is rated a 2 or 3 OR question 10 is
                             rated at least Somewhat difficult. </p>
                     {% else %}
-                        <p> don't change treatment </p>
+                        <p> Don't change treatment </p>
                     {% endif %}
 
                     <h2> Suicide Risk </h2>
                     <hr>
                     {% if suicide_risk %}
-                        <p> assess for suicide risk </p>
+                        <p> Assess for suicide risk </p>
                     {% else %}
-                        <p> not suicidal </p>
+                        <p> Not suicidal </p>
                     {% endif %}
                 </div>
 
         </div>
+      </div>
     </div>
     <form method="post">
         {% csrf_token %}
