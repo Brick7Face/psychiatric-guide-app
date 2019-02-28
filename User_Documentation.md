@@ -80,9 +80,9 @@ application that can be accessed anywhere by following The link below.
 ---
 
 
-The user side of our web application is still under development. This section will be updated in future releases 
-with details on how to use the app. For now, there is only a login screen that works for superusers, but this 
-will be the barrier for users in the future. Please check back to find more information.
+Currently, you must be registered as a prescriber to login and use the site. When logged in, a prescriber may access a list of patients, treatment overview information for the treatment options available, and a list of medications for those treatments. Under the patient list, the prescriber may select a patient and view information about them, including visit history, treatment and corresponding step, medications, PHQ-9 results, and other personal information necessary. This will be updated in the future to include information related to the bipolar treatment algorithm; currently it is all for depression. From the patient screen, a prescriber may allow for a patient to take the PHQ-9 form and update their score.
+
+The PHQ-9 form only requires that a prescriber turn the screen toward the patient and let them select answers based on the questions asked. The prescriber could also just ask the patient the questions and record their answer. At the end, the results of the form are shown for the prescriber to assess further and update the list of patient scores.
 
 
 # 4. Reporting a Bug
@@ -100,11 +100,9 @@ to the publicly available site.
 
 ## 4.2 Report New Bug
 
-In the next release, we will implement a feature to submit a bug on the Github site on which this project is hosted. 
-To submit a bug in the current stage, you may email [njtranel@gmail.com](mailto:njtranel@gmail.com) or submit a bug 
-manually on [https://github.com/Brick7Face/psychiatric-guide-app](https://github.com/Brick7Face/psychiatric-guide-app). 
+On the website, there is a link on the left side in the navigation bar to report a bug. You can fill out this form or submit a bug manually on [https://github.com/Brick7Face/psychiatric-guide-app](https://github.com/Brick7Face/psychiatric-guide-app). 
 When submitting a bug, be specific about exactly what you were trying to do, what you did to trigger it (as best of 
 your knowledge), what error messages you received if any, and if you were able to resolve it or not through alternative 
 means. You may also be interested in following this process: 
 [How to write good bug reports](https://musescore.org/en/handbook/developers-handbook/getting-started/how-write-good-bug-report-step-step-instructions). 
-We greatly appreciate any sort of feedback in regards to bugs.
+We greatly appreciate any sort of feedback.
