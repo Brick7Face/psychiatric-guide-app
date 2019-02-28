@@ -19,19 +19,8 @@ def populate():
     dstep7 = add_step('Non Response','Switch to a different antidepressant (SSRI or non-SSRI)')
     dstep8 = add_step('Partial Response','Optimize dose OR augment OR switch')
 
-    # add steps to a list, passed to treatment algorithm
-    dstepList = []
-    dstepList.append(dstep1)
-    dstepList.append(dstep2)
-    dstepList.append(dstep3)
-    dstepList.append(dstep4)
-    dstepList.append(dstep5)
-    dstepList.append(dstep6)
-    dstepList.append(dstep7)
-    dstepList.append(dstep8)
-
    # add depression treatment, linking to steps
-    add_treatment('Depression', dstepList)
+    add_treatment('Depression', dstep1, dstep2, dstep3, dstep4, dstep5, dstep6, dstep7, dstep8)
 
    # add medications - SSRI's
     add_medication('Citalopram (Celexa)', 'Selective Serotonin Reuptake Inhibitors', 10, 40, 'May increase by 10-20 mg increments at intervals of no less than 1 week', '- QT prolongation\n- Caution in heart disease, drug interactions', 'Orthostatic hypotension: rare\nConduction abnormalities: rare\nSedation: unlikely\nAnticholinergic (dry mouth/eyes, constipation, urinary retention, tachycardia): rare\nGI distress, nausea: common\nRestlessness, jitters, tremors: uncommon\nHeadache: uncommon\nInsomnia: uncommon\nSexual dysfunction: common\nSeizures: rare\nWeight gain: unlikely\nAgranulocytosis: rare')
@@ -60,13 +49,13 @@ def populate():
     add_medication('Liothyronine (Cytomel)', 'Antidepressant Augmenting Agents', 0.025, 0.050, '', '- Monitor BUN/Cr in elderly patients\n- Response usually within 3 weeks\n- take initial dose for 1 week then 0.050 mg/day', 'May aggravate cardiac conditions, symptoms of excessive dosage: anorexia, diaphoresis, heat intolerance, nausea/vomiting, tremor')
     add_medication('Lithium (Eskalith, Lithobid)', 'Antidepressant Augmenting Agents', 450, 900, '', '- Therapeutic level: may be lower for depression augmentation\n- Avoid in renal impairment\n- Also see bipolar medications\n- take at bedtime, descrease to 225 mg if not tolerated initially, 900 mg/day after 1 week', 'Gastrointestinal distress, polydipsia/polyuria, acne, weight gain, fine hand tremor')
     add_medication('Quetiapine (Seroquel, Seroquel XR)', 'Antidepressant Augmenting Agents', 50, 300, '', '- Monitor blood glucose, liver enzymes, lipids, weight, movement disorder side effects\n- take at bedtime for 2 days, then 150 mg for 2 days', 'Hypotension, somnolence ,sedation, headache, agitation, dizziness, endocrine and metabolic changes, dry mouth, weight gain, extrapyramidal symptoms')
-    add_medication('Aripiprazole (Abilify)', 'Antidepressant Augmenting Agents', 2, 15, 'Increase by up to 5 mg/day at one week intervals', '- Monitor blood glucose, liver enzymes, lipids, weight, movement disorder side effects\n- Antipsychotic with least weight gain', 'Headache, agitation, insomnia, somnolence, extrapyramidal symptoms, nausea, dyspepsia')
+    abilify = add_medication('Aripiprazole (Abilify)', 'Antidepressant Augmenting Agents', 2, 15, 'Increase by up to 5 mg/day at one week intervals', '- Monitor blood glucose, liver enzymes, lipids, weight, movement disorder side effects\n- Antipsychotic with least weight gain', 'Headache, agitation, insomnia, somnolence, extrapyramidal symptoms, nausea, dyspepsia')
    
     print('\n' + ('=' * 80) + '\n')
-    add_patient('bp', 'plant', datetime.date.min, 'the ground', 'bp@email.com', '23456789', step1,
-                datetime.datetime.min, [m], 'he is great')
-    add_patient('k', 'dub', datetime.date.min, 'fun road', 'kdub@email.com', '234543789', step1,
-                datetime.datetime.min, [m], 'she is the greatest')
+    add_patient('bp', 'plant', datetime.date.min, 'the ground', 'bp@email.com', '23456789', dstep1,
+                datetime.datetime.min, 'he is great', abilify)
+    add_patient('k', 'dub', datetime.date.min, 'fun road', 'kdub@email.com', '234543789', dstep1,
+                datetime.datetime.min, 'she is the greatest', abilify)
     print('\n' + ('=' * 80) + '\n')
 
 # add a step to database, with name and descriptions as strings
@@ -78,10 +67,9 @@ def add_step(name, description):
 
 
 # add treatment with name as string and step as reference to a step created previously
-def add_treatment(name, *stepList):
+def add_treatment(name, *steps):
     t, created = Treatment.objects.get_or_create(name=name)
-    for step in stepList:
-      t.steps.add(step)
+    t.steps.add(*steps)
 
     print('- Treatment: {0}, Created: {1}'.format(str(t), str(created)))
     return t
@@ -98,7 +86,7 @@ def add_medication(name, category, dose_i, dose_m, titration, comm, se):
 
 
 def add_patient(first_name, last_name, dob, address, email, phone,
-                current_step, next_visit, medications, notes):
+                current_step, next_visit, notes, *medications):
     p, created = Patient.objects.get_or_create(first_name=first_name,
                                                last_name=last_name,
                                                dob=dob,
@@ -108,7 +96,7 @@ def add_patient(first_name, last_name, dob, address, email, phone,
                                                current_step=current_step,
                                                next_visit=next_visit,
                                                notes=notes)
-    p.medications.set(medications)
+    p.medications.add(*medications)
     print('-Patient: {0}, Created: {1}'.format(str(p), str(created)))
     return p
 
