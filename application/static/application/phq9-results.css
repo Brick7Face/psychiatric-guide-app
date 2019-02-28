@@ -1,10 +1,20 @@
 body #phq9_results_wrapper{
-    background-color: #fff;
+    margin-top: 20vh;
     padding: .5vh;
 }
 
+body #phq9_results_wrapper .phq9_results_container{
+    margin: 0 auto;
+    background-color: #fff;
+    border: 2px solid #2699FB;
+    padding-left: 2.5vw;
+    padding-right: 2.5vw;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+}
+
 #phq9_results_wrapper, h1{
-    text-align: center;
+    text-align: left;
     padding-top: 20px;
     padding-bottom: 10px;
 }
@@ -22,7 +32,7 @@ body #phq9_results_wrapper{
 
 #box1{
     margin: 5px;
-    overflow: scroll;
+    overflow: auto;
     padding-top: 40px;
     min-width: 37%;
     max-width: 100%;
