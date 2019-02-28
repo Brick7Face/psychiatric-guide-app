@@ -66,7 +66,7 @@ h2{
     padding-top: 10px;
 }
 
-h3{
+body #patient_home_wrapper h3{
     color: grey;
     padding-bottom: 10px;
     font-size: 10pt;

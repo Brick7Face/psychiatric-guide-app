@@ -3,7 +3,7 @@ body #phq9_results_wrapper{
     padding: .5vh;
 }
 
-h1{
+#phq9_results_wrapper, h1{
     text-align: center;
     padding-top: 20px;
     padding-bottom: 10px;
