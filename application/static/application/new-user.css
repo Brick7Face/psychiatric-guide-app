@@ -1,14 +1,27 @@
 #new_user_wrapper{
-  width: 40vw;
+  width: 60vw;
   margin: 0 auto;
   margin-top: 10vh;
 }
 
 body #new_user_wrapper .new_user_content{
-  padding: 5vh 5vw;
-
+  margin: 0 auto;
   background-color: #fff;
   border: 2px solid #2699FB;
+  padding-left: 2.5vw;
+  padding-right: 2.5vw;
+  padding-top: 2vh;
+}
+
+body #new_user_wrapper .slds-button{
+  display: block;
+  margin: 0 auto;
+  margin-top:2vh;
+  margin-bottom: 2vh;
+}
+
+body #new_user_wrapper .new_user_content form{
+  padding-top: 2vh;
 }
 
 @media (max-width: 1200px){

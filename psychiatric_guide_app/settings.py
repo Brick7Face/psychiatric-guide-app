@@ -97,6 +97,24 @@ else:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
+# Use this for migrating cloud sql database
+# else:
+# # Running locally so connect to either a local MySQL instance or connect to
+# # Cloud SQL via the proxy. To start the proxy via command line:
+# #
+# #     $ cloud_sql_proxy -instances=[INSTANCE_CONNECTION_NAME]=tcp:3306
+# #
+# # See https://cloud.google.com/sql/docs/mysql-connect-proxy
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'HOST': '127.0.0.1',
+#             'PORT': '3306',
+#             'NAME': 'guide',
+#             'USER': 'bryanplant',
+#             'PASSWORD': '',
+#         }
+#     }
 # [END db_setup]
 
 # Password validation
