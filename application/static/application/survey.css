@@ -4,7 +4,6 @@ html, body {
     height: 100%;
 }
 body #question-wrapper {
-  margin-top: 10vh;
   width: 80%;
 }
 body #question-wrapper .question_content{
@@ -36,7 +35,7 @@ body #question-wrapper .question_content{
 #question-wrapper {
     position: relative;
     margin: 0 auto;
-    padding-top: 30vh;
+    padding-top: 20vh;
     height: 100%;
     width: 100%;
 }
