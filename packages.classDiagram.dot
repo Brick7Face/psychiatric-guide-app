@@ -1,0 +1,19 @@
+digraph "packages" {
+charset="utf-8"
+rankdir=BT
+"0" [label="application", shape="box"];
+"1" [label="application.admin", shape="box"];
+"2" [label="application.apps", shape="box"];
+"3" [label="application.migrations", shape="box"];
+"4" [label="application.migrations.0001_initial", shape="box"];
+"5" [label="application.migrations.0002_auto_20190223_1141", shape="box"];
+"6" [label="application.migrations.0003_auto_20190224_1551", shape="box"];
+"7" [label="application.migrations.0004_auto_20190224_1626", shape="box"];
+"8" [label="application.models", shape="box"];
+"9" [label="application.questionnaire_evaluations", shape="box"];
+"10" [label="application.urls", shape="box"];
+"11" [label="application.views", shape="box"];
+"1" -> "8" [arrowhead="open", arrowtail="none"];
+"11" -> "8" [arrowhead="open", arrowtail="none"];
+"11" -> "9" [arrowhead="open", arrowtail="none"];
+}

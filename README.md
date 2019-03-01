@@ -100,6 +100,21 @@ Our .travis.yml file simply specifies the language to use, the version of that l
 dependencies are installed based on the included requirements.txt file, and then runs a script where our unit tests 
 are located. 
 
+### 3.3 Project design overview 
+
+#### 3.3.1 Design decisions
+
+For this application, it is assumed that only the prescribing physicians will be using the product. The only instance in which a patient will come into contact with the application will be to fill out a PHQ9 or MDQ. It is also assumed that a patient will fill out a questionnaire at every appointment. 
+
+Prescribers are not limited to a specified number of patients and can see a list of all patients on the Patients page. As seen in section 3.3.2 each patient has multiple characteristics: 
+- can be prescribed zero to many medications at one time 
+- can have multiple PHQ9 or MDQ submissions
+- can have one Treatment plan and will be at only one step of that plan at a time. 
+
+#### 3.3.2 Class diagram for prescriber - patient relationship
+![Class Diagram](images/Class-Diagram.png) 
+
+
 
 ## 4. How to release a new version
 
