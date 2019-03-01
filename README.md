@@ -44,21 +44,25 @@ Finally, this documentation is accessible from a link on the website. For more q
 
 ### 3.1 How to compile/build:
 
+#### Running locally:<br>
+- First use pip to install the Python requirements<br>On Windows:<br>
+`pip install -r requirements.txt`<br>
+On Linux\MacOS:<br>
+`pip3 install -r requirements.txt`<br> 
+- Next, use the command to run the Django server locally:<br>
+On Windows:<br>
+`python manage.py runserver`<br>
+On Linux/MacOS:<br>
+`python3 manage.py runserver`. <br>
+This will host the application on local host at [http://127.0.0.1:8000/](http://127.0.0.1:8000/). 
+
+To interact with the Google Cloud SQL database:<br>
 Our software uses Google Cloud SQL as its database service. In order to interact with this database when running the 
 software locally, the following steps need to be completed. First, the Google Cloud SDK needs to be downloaded and
 installed at [https://cloud.google.com/sdk/](https://cloud.google.com/sdk/) After installing the SDK, run the command 
 `gcloud auth login` to sign in.<br>
 
-Before running the software there is one command 
-needed to install the Python requirements: <br>
-On Windows:<br>
-`pip install -r requirements.txt`<br>
-On Linux\MacOS:<br>
-`pip3 install -r requirements.txt`<br> 
-
-
-Running the software locally requires two
-commands. The first command is to set up a proxy to Cloud SQL:<br>
+In order to interact with Cloud SQL you will need to run the proxy<br>
 On Windows:<br>
 `cloud_sql_proxy.exe -instances="psychiatric-guide:us-west1:psychiatric-guide-db"=tcp:3306`<br>
 On Linux:<br>
@@ -68,13 +72,6 @@ On MacOS:<br>
 `./cloud_sql_proxy_mac -instances="psychiatric-guide:us-west1:psychiatric-guide-db"=tcp:3306`<br>
 If that command is not found on MacOS, use `chmod u+x cloud_sql_proxy_mac` and then the command above.<br>
 If there is still an error, contact bryanplant on Github for access information.
-
-Next, the command to run the Django server locally:<br>
-On Windows:<br>
-`python manage.py runserver`<br>
-On Linux/MacOS:<br>
-`python3 manage.py runserver`. <br>
-This will host the application on local host at [http://127.0.0.1:8000/](http://127.0.0.1:8000/). 
 
 
 ### 3.2 How to test:
@@ -118,7 +115,7 @@ platform which handles the majority of the management required to host a web app
 ### 4.1 Updating revision numbers
 
 The application should be updated in two places. First, update the version number in the 
-**settings.py** file. Secondly, **create a new release on github** with the same version 
+settings.py file. Secondly, **create a new release on github** with the same version 
 number that was updated in settings.py.
 
 
