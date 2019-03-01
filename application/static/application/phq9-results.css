@@ -88,3 +88,8 @@ hr{
     padding: 0;
     margin: 0 auto;
 }
+@media (max-width: 1200px){
+  body #phq9_results_wrapper{
+    margin-top: 5vh;
+  }
+}
