@@ -47,7 +47,7 @@ class Treatment(models.Model):
 # defines model for a medication used by prescribers
 class Medication(models.Model):
     # Fields
-    name = models.CharField(help_text='Enter medication name', max_length=25)
+    name = models.TextField(help_text='Enter medication name')
     category = models.CharField(help_text='Enter medication type', max_length=50)
     initial_dose = models.FloatField(help_text='Enter medication initial dose in mg', default=0)
     maximum_dose = models.FloatField(help_text='Enter medication maximum dose in mg', default=0)
