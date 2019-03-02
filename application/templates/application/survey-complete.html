@@ -1,0 +1,18 @@
+{% extends "application/global-html.html" %}
+{% load static %} <!-- loads in static css file  application/static/application-->
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'application/survey-complete.css' %}">
+{% endblock css %}
+
+{% block body %}
+    <div id="survey-complete-wrapper">
+        <div class="survey-complete-content">
+            <div id="header_text">
+                <h1>Survey Complete!</h1>
+            </div>
+            <a href="{% url 'phq9-results' %}" class="slds-button slds-button_brand" role="button">See Results Here</a>
+        </div>
+    </div>
+
+{% endblock body %}

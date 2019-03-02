@@ -1,0 +1,24 @@
+#medication_wrapper{
+  margin-top: 10vh;
+  width: 60vw;
+}
+
+body #medication_wrapper .medication_content{
+  background-color: #fff;
+  border: 2px solid #2699FB;
+  padding-left: 2.5vw;
+  padding-right: 2.5vw;
+  padding-top: 2vh;
+  height: 80vh;
+  overflow-x: auto;
+}
+body .medication_content button{
+  color: #2699FB;
+}
+body .medication_content{
+  margin: 0 auto;
+}
+
+body .medication_content #accordion{
+  margin-top: 2vh;
+}

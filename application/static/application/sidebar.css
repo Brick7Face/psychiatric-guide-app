@@ -1,0 +1,208 @@
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+
+
+#sidebar h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2em;
+  font-weight: 400;
+  line-height: 2.6em;
+}
+#sidebar p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+.login_button .users_name {
+  margin-bottom: 2vh;
+}
+
+a, a:hover, a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+
+#sidebar {
+    /* don't forget to add all the previously mentioned styles here too */
+    background: #2699FB;
+    color: #fff;
+    transition: all 0.3s;
+
+    height: 100%;
+    position: fixed;
+    width: 20vw;
+    overflow-y:scroll;
+    overflow:hidden;
+}
+
+#sidebar .sidebar-header {
+    margin-top:10px;
+    padding-left:25px;
+    padding: 25px;
+    background: #2699FB;
+}
+#sidebar .sidebar-header strong{
+  display:none;
+}
+#sidebar.active .sidebar-header h3{
+  display: block;
+}
+#sidebar.active .sidebar-header strong{
+  display:none;
+}
+#sidebar ul.components {
+    padding: 25px 0;
+    border-bottom: 1px solid #fff;
+    border-top: 1px solid #fff;
+    padding-bottom: -10vh;
+}
+
+#sidebar ul button {
+  background-color: #2699FB
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    padding-left: 25px;
+    font-size: 1.1em;
+    display: block;
+}
+#sidebar ul li a:hover {
+    color: #2699FB;
+    background: #fff;
+}
+
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+    color: #fff;
+    background: #2699FB
+}
+
+#sidebar ul ul a {
+    font-size: 0.9em;
+    padding-left: 40px !important;
+    background: #2699FB;
+}
+
+.menu_wrapper {
+    position: relative;
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    margin-right: 300px;
+}
+
+#sidebar a[data-toggle="collapse"] {
+    position: relative;
+}
+
+#sidebar .dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+#sidebar .login_button {
+  margin-top:30px;
+  padding-left: 25px;
+}
+
+#sidebar i{
+  color: #fff;
+}
+
+@media (max-width: 1200px) {
+    .users_name{
+      display: block;
+      font-size:0px;
+      /*
+      font-size: .9em;
+      text-align: left;
+      */
+    }
+    #sidebar .login_button{
+      text-align: center;
+      padding-left:0;
+      margin-top: 4px;
+    }
+    .slds-button{
+      padding: 0;
+      margin: 0;
+      width: 14vw;
+      font-size: .7em;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #sidebar.active {
+        min-width: 80px;
+        max-width: 80px;
+        text-align: center;
+    }
+    #sidebar .sidebar-header{
+      padding-left: 10px;
+    }
+    /*#sidebar .sidebar-header h3{
+      padding: 10px 4px;
+      text-align: center;
+      font-size: 1.1em;
+    }*/
+    /* Toggling the sidebar header content, hide the big heading [h3] and showing the small heading [strong] and vice versa*/
+    #sidebar .sidebar-header h3{
+      display: none;
+    }
+    #sidebar.active .sidebar-header h3 {
+        display: none;
+    }
+    #sidebar .sidebar-header strong{
+      display: block;
+    }
+    #sidebar.active .sidebar-header strong{
+      display:block;
+    }
+    #sidebar ul li a {
+        padding: 4px 4px;
+        text-align: center;
+        font-size: 0.7em;
+    }
+    #sidebar ul li a i p {
+        font-size: 0;
+    }
+
+    #sidebar ul li a i {
+        color: #fff;
+        margin-right:  0;
+        display: block;
+        font-size: 1.8em;
+        margin-bottom: 5px;
+    }
+
+    /* Same dropdown links padding*/
+    #sidebar ul ul a {
+        padding: 10px !important;
+        font-size:0px;
+    }
+
+    /* Changing the arrow position to bottom center position,
+       translateX(50%) works with right: 50%
+       to accurately  center the arrow */
+    #sidebar .dropdown-toggle::after {
+        top: auto;
+        bottom: 10px;
+        right: 50%;
+        -webkit-transform: translateX(50%);
+        -ms-transform: translateX(50%);
+        transform: translateX(50%);
+    }
+}

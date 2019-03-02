@@ -17,3 +17,10 @@
 __pycache__/
 # Ignored by the build system
 /setup.cfg
+
+sonarcloud/
+.eggs/
+.idea/
+adobeXDfiles/
+Psychiatric_Guide.egg-info/
+venv/

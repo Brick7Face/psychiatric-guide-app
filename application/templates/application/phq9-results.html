@@ -1,0 +1,96 @@
+{% extends "application/global-html.html" %}
+{% load crispy_forms_tags %}
+{% load static %} <!-- loads in static css file  application/static/application-->
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'application/phq9-results.css' %}">
+{% endblock css %}
+
+{% block body %}
+    <div id="phq9_results_wrapper">
+      <div class="phq9_results_container">
+        <h1>PHQ-9 Patient Results</h1>
+            <div class="flex-container">
+                <div id="table" style="flex: 8" >
+                    <h2>Severity Score: {{ severity_score }} </h2>
+                    <hr>
+                    <div style="overflow-x:auto;">
+                        <table >
+                            <tr>
+                                <th>Severity Score</th>
+                                <th>Tentative Diagnosis</th>
+                                <th>Treatment Recommendation</th>
+                            </tr>
+                            <tr>
+                                <td>5 - 9</td>
+                                <td>Minimal symptoms</td>
+                                <td>Support, ask to call if worse,
+                                    return in 1 month
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>10 - 14</td>
+                                <td>Minor Depression
+                                    Dysthymia or major Depression,
+                                    mild
+                                </td>
+                                <td>Support, contact in one week
+                                    Antidepressant or psychotherapy,
+                                    contact in one week
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>15 - 19</td>
+                                <td>Major Depression, moderate</td>
+                                <td> Antidepressant or psychotherapy</td>
+                            </tr>
+                            <tr>
+                                <td>20 or greater</td>
+                                <td>Major Depression, severe</td>
+                                <td>Antidepressant and psychotherapy
+                                    (especially if not improved on monotherapy)
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="box1" style="flex: 1" >
+                    <h2> Diagnosis </h2>
+                    <hr>
+                    {% if diagnosis %}
+                        <p> Make a tentative diagnosis of depression, after ruling out
+                            physical causes, normal bereavement and a history of a manic
+                            or hypomanic episode. Screen for bipolar disorder using the
+                            Mood Disorders Questionnaire </p>
+                    {% else %}
+                        <p> Cannot make tentative diagnosis of depression based on severity score </p>
+                    {% endif %}
+
+                    <h2> Change Treatment </h2>
+                    <hr>
+                    {% if change_treatment %}
+                        <p> Treatment or treatment change may be warranted if at least one
+                            of the first two questions is rated a 2 or 3 OR question 10 is
+                            rated at least Somewhat difficult. </p>
+                    {% else %}
+                        <p> Don't change treatment </p>
+                    {% endif %}
+
+                    <h2> Suicide Risk </h2>
+                    <hr>
+                    {% if suicide_risk %}
+                        <p> Assess for suicide risk </p>
+                    {% else %}
+                        <p> Not suicidal </p>
+                    {% endif %}
+                </div>
+
+        </div>
+      </div>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn btn-primary mt-4 btn-block" type="submit">add results to patient</button>
+    </form>
+{% endblock body %}

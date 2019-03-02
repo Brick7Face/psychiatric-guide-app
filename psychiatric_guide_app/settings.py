@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 
 # Application version
-version = '1.0'
+version = '2.0'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -76,15 +76,47 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'psychiatric_guide_app.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
+# [START db_setup]
+if os.getenv('GAE_APPLICATION', None):
+    # Running on production App Engine, so connect to Google Cloud SQL using
+    # the unix socket at /cloudsql/<your-cloudsql-connection string>
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': "/cloudsql/psychiatric-guide:us-west1:psychiatric-guide-db",
+            'USER': 'bryanplant',
+            'PASSWORD': '',
+            'NAME': 'guide',
+        }
     }
-}
+elif bool(os.getenv('USE_CLOUD_SQL', None)) is True:
+    print("using cloud sql db")
+    # Running locally so connect to either a local MySQL instance or connect to
+    # Cloud SQL via the proxy. To start the proxy via command line:
+    #
+    #     $ cloud_sql_proxy -instances=[INSTANCE_CONNECTION_NAME]=tcp:3306
+    #
+    # See https://cloud.google.com/sql/docs/mysql-connect-proxy
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': '127.0.0.1',
+            'PORT': '3306',
+            'NAME': 'guide',
+            'USER': 'bryanplant',
+            'PASSWORD': '',
+        }
+    }
+else:
+    print("using local db")
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+# [END db_setup]
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -122,5 +154,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
-LOGIN_REDIRECT_URL = '/'  # Sets redirect after login
+LOGIN_REDIRECT_URL = 'backend-home'  # Sets redirect after login
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+LOGIN_URL = 'login-view' # Redirect for the login page for @login_required
+# Sourced following code from user Jayground at https://stackoverflow.com/questions/3024153/how-to-expire-session-due-to-inactivity-in-django
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True # Logs user out if browser is closed
+SESSION_COOKIE_AGE = 900 # Automatically logs user out after 15 minutes (900 seconds)
+SESSION_SAVE_EVERY_REQUEST = True

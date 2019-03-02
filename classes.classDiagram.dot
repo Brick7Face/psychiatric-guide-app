@@ -1,0 +1,27 @@
+digraph "classes" {
+charset="utf-8"
+rankdir=BT
+"0" [label="{ApplicationConfig|name : str\l|}", shape="record"];
+"1" [label="{CreatePatientForm|address : CharField\lcurrent_step : ModelChoiceField\ldob : DateField\lemail : EmailField\lfirst_name : CharField\llast_name : CharField\lnext_visit : DateTimeField\lnotes : CharField\lphone : CharField\l|}", shape="record"];
+"2" [label="{CreateUser|first_name : CharField\lis_staff : CheckboxInput\lis_super_user : CheckboxInput\llast_name : CharField\lusername : CharField\l|}", shape="record"];
+"3" [label="{MDQ|\l|evaluation_question_one()\levaluation_question_three()\levaluation_question_two()\llogic_for_questions_two_and_three()\lmdq_diagnosis()\l}", shape="record"];
+"4" [label="{Medication|category : CharField\lcomments : TextField\linitial_dose : FloatField\lmaximum_dose : FloatField\lname : CharField\lside_effects : TextField\ltitration : TextField\l|get_absolute_url()\l}", shape="record"];
+"5" [label="{Meta|fields : list\lhelp_texts : dict\lmodel : User\l|}", shape="record"];
+"6" [label="{Meta|fields : list\lmodel\l|}", shape="record"];
+"7" [label="{Meta|ordering : list\l|}", shape="record"];
+"8" [label="{Meta|ordering : list\l|}", shape="record"];
+"9" [label="{Meta|ordering : list\l|}", shape="record"];
+"10" [label="{Meta|ordering : list\l|}", shape="record"];
+"11" [label="{Meta|ordering : list\l|}", shape="record"];
+"12" [label="{Migration|dependencies : list\linitial : bool\loperations : list\l|}", shape="record"];
+"13" [label="{Migration|dependencies : list\loperations : list\l|}", shape="record"];
+"14" [label="{Migration|dependencies : list\loperations : list\l|}", shape="record"];
+"15" [label="{Migration|dependencies : list\loperations : list\l|}", shape="record"];
+"16" [label="{PHQ9|\l|change_treatment()\lconvert_results()\ldiagnosis()\ldiagnosis_one()\ldiagnosis_three()\ldiagnosis_two()\lphq9_evaluation()\lsuicide_risk()\ltreatment_and_monitoring()\l}", shape="record"];
+"17" [label="{Patient|address : CharField\lcurrent_step : ForeignKey\ldob : DateField\lemail : EmailField\lfirst_name : CharField\llast_name : CharField\lmedications : ManyToManyField\lnext_visit : DateTimeField\lnotes : TextField\lphone : CharField\l|get_absolute_url()\l}", shape="record"];
+"18" [label="{Phq9|change_treatment : BooleanField\ldate : DateTimeField\ldiagnosis : BooleanField\lpatient : ForeignKey\lquestion_1 : IntegerField\lquestion_10 : IntegerField\lquestion_2 : IntegerField\lquestion_3 : IntegerField\lquestion_4 : IntegerField\lquestion_5 : IntegerField\lquestion_6 : IntegerField\lquestion_7 : IntegerField\lquestion_8 : IntegerField\lquestion_9 : IntegerField\lseverity_score : IntegerField\lsuicide_risk : BooleanField\l|}", shape="record"];
+"19" [label="{Prescriber|user : ForeignKey\l|get_absolute_url()\l}", shape="record"];
+"20" [label="{Step|description : TextField\lname : CharField\l|get_absolute_url()\l}", shape="record"];
+"21" [label="{Treatment|name : CharField\lsteps : ManyToManyField\l|get_absolute_url()\l}", shape="record"];
+"17" -> "6" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="model", style="solid"];
+}

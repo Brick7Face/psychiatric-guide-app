@@ -1,0 +1,35 @@
+{% extends "application/global-html.html" %}
+{% load static %} <!-- loads in static css file  application/static/application-->
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'application/documentation.css' %}">
+{% endblock css %}
+
+{% block body %}
+  <div id="document_wrapper">
+        <div class="document_content">
+          <div id="header_text">
+            <h1>
+              Documentation
+            </h1>
+          </div>
+          <div id="body_text">
+            <p>
+              Documentation for both users, and developers is available on Github for this Web Application.
+            </p>
+          </div>
+          <div class="row">
+              <div class="col-md">
+                      <button class="btn btn-primary mt-4 btn-block"
+                              onclick="window.location.href='https://github.com/Brick7Face/psychiatric-guide-app/blob/development/User_Documentation.md'">User Documentation
+                      </button>
+              </div>
+              <div class="col-md">
+                      <button class="btn btn-primary mt-4 btn-block"
+                              onclick="window.location.href='https://github.com/Brick7Face/psychiatric-guide-app/blob/development/README.md'">Developer Documentation
+                      </button>
+              </div>
+          </div>
+        </div>
+    </div>
+{% endblock body %}

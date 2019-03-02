@@ -1,4 +1,7 @@
 .idea/
+.vscode/
 venv/
 *.pyc
-static/
+/static/
+.DS_STORE
+db.sqlite3

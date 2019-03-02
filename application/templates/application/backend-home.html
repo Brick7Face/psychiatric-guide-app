@@ -1,0 +1,33 @@
+{% extends "application/global-html.html" %}
+{% load crispy_forms_tags %}
+{% load static %} <!-- loads in static css file  application/static/application-->
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'application/backend-home.css' %}">
+{% endblock css %}
+
+{% block body %}
+  <div id="home_wrapper">
+    <div class="backend-home-content">
+      <div id="header_text">
+        <h1>
+          Psychiatric Prescribing Guide
+        </h1>
+      </div>
+      <div id="header2_text">
+        <h2>
+          Welcome.
+        </h2>
+      </div>
+      <div id="body_text">
+        <p>
+          This WebApp has been designed for prescribers to more easily manage and control
+          the treatments they provide to their valued patients. The service is currently catered
+          for the treatment of Depression and Bipolar Disorder and has been adapted from the <a href="{% static 'application/pocket_guide.pdf' %}" class="pdf_link">Prescribing Pocket Guide (2012)</a> for Primary Care Providers.
+        </p>
+
+        <a href="{% url 'patients' %}" class="slds-button slds-button_brand" role="button">Go To Patients</a>
+      </div>
+    </div>
+  </div>
+{% endblock body %}

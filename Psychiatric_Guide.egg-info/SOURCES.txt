@@ -1,0 +1,8 @@
+README.md
+setup.py
+Psychiatric_Guide.egg-info/PKG-INFO
+Psychiatric_Guide.egg-info/SOURCES.txt
+Psychiatric_Guide.egg-info/dependency_links.txt
+Psychiatric_Guide.egg-info/not-zip-safe
+Psychiatric_Guide.egg-info/requires.txt
+Psychiatric_Guide.egg-info/top_level.txt

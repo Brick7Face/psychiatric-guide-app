@@ -1,0 +1,32 @@
+body {
+    padding-top: 0;
+    font-family: 'Poppins', sans-serif;
+}
+.wrapper{
+  height: 100vh;
+  width: 80vw;
+  margin-left: 20vw;
+  background-color: #F1F9FF;
+}
+body .content_container{
+  margin: 0 auto;
+  /*transform: translate(0%, 150%);*/
+  width: 60vw;
+  overflow-y:scroll;
+  overflow: hidden;
+}
+h1{
+  display: inline;
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.5em;
+  font-weight: 400;
+  text-align: center;
+}
+.content{
+  margin:0 auto;
+}
+@media (max-width: 768px) {
+    body .content_container {
+      padding-left: 0;
+    }
+}

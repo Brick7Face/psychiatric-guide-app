@@ -1,0 +1,111 @@
+#home_wrapper{
+  margin-top: 20vh;
+  height: 80vh;
+  width: 60vw;
+}
+
+body #home_wrapper .backend-home-content{
+  width: 40vw;
+  padding-bottom: 10vh;
+  margin: 0 auto;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  overflow: auto;
+  position: relative;
+  background-color: #fff;
+  border: 2px solid #2699FB;
+}
+
+.pdf_link{
+  color: #2699FB;
+}
+
+body h1{
+  font-size: 3em;
+}
+body h2{
+  font-size: 2em;
+  color: #2699FB;
+}
+body p{
+  color: #707070;
+}
+
+body #home_wrapper .backend-home-content .slds-button{
+  position: relative;
+  margin-top: 4vh;
+  width: 10vw;
+  margin-left: 10vw;
+  background-color: #2699FB;
+}
+
+body #home_wrapper .backend-home-content #header_text{
+  padding-bottom: 2vh;
+  position: relative;
+  -webkit-animation: slide-top 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-top 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+
+}
+
+body #home_wrapper .backend-home-content #header2_text{
+  padding-bottom: 2vh;
+  position: relative;
+  -webkit-animation: slide-top 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-top 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+          animation-delay: 1.5s;
+}
+
+body #home_wrapper .backend-home-content #body_text{
+  padding-bottom: 2vh;
+  position: relative;
+  -webkit-animation: slide-top 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-top 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+          animation-delay: 3s;
+
+}
+
+@-webkit-keyframs fadein {
+  0% {opacity: 0;}
+  100   {opacity: 1;}
+}
+
+@-webkit-keyframes slide-top {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(5vh);
+            transform: translateY(5vh);
+  }
+}
+@keyframes slide-top {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(5vh);
+            transform: translateY(5vh);
+  }
+}
+
+@media (max-width: 1200px) {
+  #home_wrapper{
+    margin-top: 20vh;
+  }
+  body #home_wrapper .backend-home-content{
+    width: 60vw;
+  }
+  body #home_wrapper .backend-home-content .slds-button{
+    width: 20vw;
+    margin-left: 15vw;
+  }
+  body h1{
+    font-size: 2em;
+  }
+}
