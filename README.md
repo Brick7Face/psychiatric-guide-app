@@ -73,6 +73,10 @@ On MacOS:<br>
 If that command is not found on MacOS, use `chmod u+x cloud_sql_proxy_mac` and then the command above.<br>
 If there is still an error, contact bryanplant on Github for access information.
 
+After starting the proxy, you will need to the environment variable USE_CLOUD_SQL=True this can be done while running different commands, for example to migrate the cloud sql database:<br>
+On Windows:<br>
+set USE_CLOUD_SQL=True python manage.py migrate
+
 
 ### 3.2 How to test:
 
