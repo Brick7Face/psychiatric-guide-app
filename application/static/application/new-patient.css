@@ -1,7 +1,10 @@
+body {
+  overflow-y: scroll;
+}
+
 #new_patient_wrapper{
-  margin-top:5vh;
   width: 60vw;
-  height: 95vh
+  margin: 0 auto;
 }
 body #new_patient_wrapper .new_patient_content{
   margin: 0 auto;

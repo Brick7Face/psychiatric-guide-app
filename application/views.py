@@ -8,7 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 
-from application.models import Prescriber, Step, Patient
+from application.models import Prescriber, Step, Patient, Organization
 from application.models import Phq9 as phq9_db
 from django import forms
 from django.contrib.auth.decorators import login_required
@@ -27,22 +27,12 @@ def logout_user(request):
     return redirect('login-view')  # Logs user out and redirects to login page
 
 
-# Create user code helped from Youtube series by Cory Schafer: https://www.youtube.com/watch?v=UmljXZIypDc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p
-@login_required  # If user is not logged in, they are redirected to the login page.
-def create_user(request):  # Renders user creation
-    if request.method == 'POST':
-        new_user_form = CreateUser(request.POST)  # Form for creating a new user
-        if new_user_form.is_valid():  # Enters if form is valid
-            new_user_form.save()  # Saves form to database
-            username = new_user_form.cleaned_data.get('username')
-            first_name = new_user_form.cleaned_data.get('first_name')
-            last_name = new_user_form.cleaned_data.get('last_name')
-            messages.success(request, 'Account created.')  # Message if user created succesfully
-            return redirect('create-new-user')
+class CreateOrganizationForm(forms.ModelForm):
+    name = forms.CharField()
 
-    else:
-        new_user_form = CreateUser()  # Resets form with error message if attempt not valid
-    return render(request, 'application/new-user.html', {'new_user_form': new_user_form})
+    class Meta:
+        model = Organization
+        fields = ['name']
 
 
 class CreateUser(UserCreationForm):  # Class for the user generation form
@@ -60,6 +50,67 @@ class CreateUser(UserCreationForm):  # Class for the user generation form
             'is_staff': 'Check if account is for a staff member.',
             'is_superuser': 'Allows this user to create, modify, edit, and delete other users and their information.'
         }
+
+
+def new_organization(request):
+    if request.method == 'POST':
+        new_organization_form = CreatePatientForm(request.POST)
+        if new_organization_form:
+            new_organization_form.save()
+            messages.success(request, 'Organization created.')
+            return redirect('backend-home')
+    else:
+        new_patient_form = CreatePatientForm()
+    return render(request, 'application/new-organization.html', {'new_organization_form': new_organization_form})
+
+
+# Create user code helped from Youtube series by Cory Schafer:
+# https://www.youtube.com/watch?v=UmljXZIypDc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p
+@login_required  # If user is not logged in, they are redirected to the login page.
+def create_user(request):
+    if request.method == 'POST':
+        new_user_form = CreateUser(request.POST)  # Form for creating a new user
+        if new_user_form.is_valid():  # Enters if form is valid
+            new_user_form.save()  # Saves form to database
+            messages.success(request, 'Account created.')  # Message if user created succesfully
+            return redirect('create-new-user')
+
+    else:
+        new_user_form = CreateUser()  # Resets form with error message if attempt not valid
+    return render(request, 'application/new-user.html', {'new_user_form': new_user_form})
+
+
+class CreatePatientForm(forms.ModelForm):
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    dob = forms.DateField(initial=datetime.date.today,
+                          widget=forms.DateInput(format='%m/%d/%Y'),
+                          input_formats=('%m/%d/%Y', ))
+    address = forms.CharField()
+    email = forms.EmailField()
+    phone = forms.CharField()
+    current_step = forms.ModelChoiceField(Step.objects)
+    next_visit = forms.DateTimeField(initial=datetime.datetime.now(),
+                                     widget=forms.DateTimeInput(format='%m/%d/%Y %H:%M'),
+                                     input_formats=('%m/%d/%Y %H:%M', ))
+    notes = forms.CharField()
+
+    class Meta:
+        model = Patient
+        fields = ['first_name', 'last_name', 'dob', 'address', 'email', 'phone', 'current_step',
+                  'next_visit', 'notes']
+
+
+def new_patient(request):
+    if request.method == 'POST':
+        new_patient_form = CreatePatientForm(request.POST)
+        if new_patient_form:
+            new_patient_form.save()
+            messages.success(request, 'Patient created.')
+            return redirect('patients')
+    else:
+        new_patient_form = CreatePatientForm()
+    return render(request, 'application/new-patient.html', {'new_patient_form': new_patient_form})
 
 
 def backend_home(request):
@@ -175,40 +226,6 @@ def survey(request):
 
 def medications(request):
     return render(request, 'application/medications.html', {'title': 'Medications'})
-
-
-class CreatePatientForm(forms.ModelForm):
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-    dob = forms.DateField(initial=datetime.date.today,
-                          widget=forms.DateInput(format='%m/%d/%Y'),
-                          input_formats=('%m/%d/%Y', ))
-    address = forms.CharField()
-    email = forms.EmailField()
-    phone = forms.CharField()
-    current_step = forms.ModelChoiceField(Step.objects)
-    next_visit = forms.DateTimeField(initial=datetime.datetime.now(),
-                                     widget=forms.DateTimeInput(format='%m/%d/%Y %H:%M'),
-                                     input_formats=('%m/%d/%Y %H:%M', ))
-    notes = forms.CharField()
-
-    class Meta:
-        model = Patient
-        fields = ['first_name', 'last_name', 'dob', 'address', 'email', 'phone', 'current_step',
-                  'next_visit', 'notes']
-
-
-def new_patient(request):
-    if request.method == 'POST':
-        new_patient_form = CreatePatientForm(request.POST)
-        if new_patient_form:
-            new_patient_form.save()
-            messages.success(request, 'Patient created.')
-            return redirect('patients')
-    else:
-        new_patient_form = CreatePatientForm()
-    return render(request, 'application/new-patient.html', {'new_patient_form': new_patient_form})
-
 
 
 def treatment_overview(request):

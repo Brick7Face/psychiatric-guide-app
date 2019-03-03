@@ -4,6 +4,25 @@ from django.utils import timezone
 import datetime
 
 
+# defines model for an organization that contains a group of prescribers
+class Organization(models.Model):
+    # Fields
+    name = models.CharField(help_text='Enter organization name', max_length=25)
+
+    # Metadata
+    class Meta:
+        ordering = ['name']
+
+    # Methods
+    def get_absolute_url(self):
+        """Returns the url to access a particular instance of Organization."""
+        return reverse('model-detail-view', args=[str(self.id)])
+
+    def __str__(self):
+        """String for representing the Organization object"""
+        return self.name
+
+
 # defines model for a single step (or box) from prescribing guide flowchart
 class Step(models.Model):
     # Fields
@@ -73,6 +92,7 @@ class Medication(models.Model):
 class Prescriber(models.Model):
     # Fields
     user = models.ForeignKey(User, on_delete=models.CASCADE, default='')
+    organization = models.ForeignKey(Organization, null=True, on_delete=models.SET_NULL)
 
     # Metadata
     class Meta:
@@ -98,11 +118,11 @@ class Patient(models.Model):
     email = models.EmailField(help_text='Enter patient current email', max_length=50)
     phone = models.CharField(help_text='Enter patient current phone number', max_length=20)
     current_step = models.ForeignKey(Step, null=True, on_delete=models.SET_NULL)
-    # visit history
     next_visit = models.DateTimeField(help_text='Enter the next visit date and time of the patient if applicable',
                                       blank=True, default=timezone.now)
     medications = models.ManyToManyField(Medication)
     notes = models.TextField(help_text='Enter any prescriber notes about patient')
+    organization = models.ForeignKey(Organization, null=True, on_delete=models.SET_NULL)
 
     # Metadata
     class Meta:
