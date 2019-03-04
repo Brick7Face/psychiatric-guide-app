@@ -96,7 +96,7 @@ class Patient(models.Model):
     dob = models.DateField(help_text='Enter patient date of birth', default=datetime.date.min)
     address = models.CharField(help_text='Enter patient current address', max_length=150)
     email = models.EmailField(help_text='Enter patient current email', max_length=50)
-    phone = models.CharField(help_text='Enter patient current phone number', max_length=20)
+    phone = models.CharField(help_text='Enter patient current phone number', max_length=11, )
     current_step = models.ForeignKey(Step, null=True, on_delete=models.SET_NULL)
     # visit history
     next_visit = models.DateTimeField(help_text='Enter the next visit date and time of the patient if applicable',
