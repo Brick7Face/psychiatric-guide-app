@@ -21,6 +21,7 @@ from application.questionnaire_evaluations import PHQ9
 from google.cloud import datastore
 from github import Github
 
+
 def login(request):
     return render(request, 'application/login.html', {'title': 'Login'})  # Renders login.html
 
@@ -71,8 +72,17 @@ def backend_home(request):
 
 def patients(request):
     if request.method == 'POST':
-        request.session['patient_id'] = request.POST['patient_id']
-        return redirect('patient-home')
+        action = request.POST['action']
+        patient_id = request.POST['patient_id']
+        # navigate to patient home
+        if action == "goto":
+            request.session['patient_id'] = patient_id
+            return redirect('patient-home')
+        # delete patient from database
+        elif action == "delete":
+            Patient.objects.get(id=patient_id).delete()
+            return render(request, 'application/patients.html',
+                          {'title': 'Patients', 'patients': Patient.objects.all()})
     else:
         return render(request, 'application/patients.html', {'title': 'Patients', 'patients': Patient.objects.all()})
 

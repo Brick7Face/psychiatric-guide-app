@@ -14,13 +14,28 @@
             </h1>
             <div class="patient_list">
                 {% for patient in patients %}
-                    <form method="post">
-                        {% csrf_token %}
-                        <input type="hidden" name="patient_id" value={{ patient.id }}>
-                        <button class="card" type="submit">
-                            <h2>{{ patient.last_name }}, {{ patient.first_name }}</h2>
-                        </button>
-                    </form>
+                    <div class="card">
+                        <h2>{{ patient.last_name }}, {{ patient.first_name }}</h2>
+                        <div class="patient_buttons">
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="patient_id" value={{ patient.id }}>
+                                <input type="hidden" name="action" value="goto">
+                                <button class="slds-button .slds-button__icon" type="submit">
+                                    <i class="fas fa-sign-in-alt fa-lg"></i>
+                                </button>
+                            </form>
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="patient_id" value={{ patient.id }}>
+                                <input type="hidden" name="action" value="delete">
+                                <button class="slds-button .slds-button__icon" type="submit">
+                                    <i class="fas fa-trash-alt fa-lg"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
                 {% endfor %}
             </div>
         </div>
