@@ -81,10 +81,7 @@ def patients(request):
         # delete patient from database
         elif action == "delete":
             Patient.objects.get(id=patient_id).delete()
-            return render(request, 'application/patients.html',
-                          {'title': 'Patients', 'patients': Patient.objects.all()})
-    else:
-        return render(request, 'application/patients.html', {'title': 'Patients', 'patients': Patient.objects.all()})
+    return render(request, 'application/patients.html', {'title': 'Patients', 'patients': Patient.objects.all()})
 
 
 @register.filter
