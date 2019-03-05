@@ -5,6 +5,8 @@ from . import views
 urlpatterns = [
     path('', log_view.LoginView.as_view(template_name='application/login.html', redirect_authenticated_user=True)),  # Home page of entire site
     path('login/', log_view.LoginView.as_view(template_name='application/login.html'), name='login-view'), # login page at /login
+    path('password-change/', log_view.PasswordChangeView.as_view(template_name='application/password-change.html'), name="password-change"),  # Logout page at
+    path('password-change-complete/', log_view.PasswordChangeDoneView.as_view(template_name='application/password-change-complete.html'), name="password-change-complete"),  # Logout page at
     path('logout/', views.logout_user, name="logout-view"),  # Logout page at
     path('create_user/', views.create_user, name='create-new-user'),  # Path for new user registration
     path('backend_home/', views.backend_home, name="backend-home"),  # Home page for logged in user

@@ -64,11 +64,11 @@ class CreateUser(UserCreationForm):  # Class for the user generation form
             'is_superuser': 'Allows this user to create, modify, edit, and delete other users and their information.'
         }
 
-
+@login_required  # If user is not logged in, they are redirected to the login page.
 def backend_home(request):
     return render(request, 'application/backend-home.html', {'title': 'Home'})  # Renders login.html
 
-
+@login_required  # If user is not logged in, they are redirected to the login page.
 def patients(request):
     if request.method == 'POST':
         request.session['patient_id'] = request.POST['patient_id']
@@ -95,7 +95,7 @@ def patient_home(request):
                        'patient': Patient.objects.get(id=patient_id),
                        'phq9s': phq9_db.objects.filter(patient_id=patient_id)})  # Renders login.html
 
-
+@login_required  # If user is not logged in, they are redirected to the login page.
 def phq9_results(request):
     print("TEST ", phq9_db.objects.last().diagnosis)
     dict = {'diagnosis': phq9_db.objects.last().diagnosis, 'change_treatment': phq9_db.objects.last().change_treatment,
@@ -124,7 +124,7 @@ def phq9_results(request):
 def documentation(request):
     return render(request, 'application/documentation.html', {'title': 'Documentation'})  # Renders login.html
 
-
+@login_required  # If user is not logged in, they are redirected to the login page.
 def survey(request):
     if request.method == 'POST':
         # TODO: calculate calculate and save results here
@@ -180,7 +180,7 @@ def survey(request):
                                                            'introduction': introduction,
                                                            'questions': questions})
 
-
+@login_required  # If user is not logged in, they are redirected to the login page.
 def medications(request):
     return render(request, 'application/medications.html', {'title': 'Medications'})
 
@@ -205,7 +205,7 @@ class CreatePatientForm(forms.ModelForm):
         fields = ['first_name', 'last_name', 'dob', 'address', 'email', 'phone', 'current_step',
                   'next_visit', 'notes']
 
-
+@login_required  # If user is not logged in, they are redirected to the login page.
 def new_patient(request):
     if request.method == 'POST':
         new_patient_form = CreatePatientForm(request.POST)
@@ -217,10 +217,9 @@ def new_patient(request):
         new_patient_form = CreatePatientForm()
     return render(request, 'application/new-patient.html', {'new_patient_form': new_patient_form})
 
-
+@login_required  # If user is not logged in, they are redirected to the login page.
 def treatment_overview(request):
     return render(request, 'application/treatment-overview.html', {'title': 'Treatment Overview'})
-
 
 def pocket_guide(request):
     return render(request, 'application/pocket_guide.pdf', {'title': 'Pocket Guide'})

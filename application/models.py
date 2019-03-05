@@ -5,6 +5,9 @@ import datetime
 
 
 # defines model for a single step (or box) from prescribing guide flowchart
+from phonenumber_field.modelfields import PhoneNumberField
+
+
 class Step(models.Model):
     # Fields
     name = models.CharField(help_text='Enter step title', max_length=25)
@@ -96,7 +99,7 @@ class Patient(models.Model):
     dob = models.DateField(help_text='Enter patient date of birth', default=datetime.date.min)
     address = models.CharField(help_text='Enter patient current address', max_length=150)
     email = models.EmailField(help_text='Enter patient current email', max_length=50)
-    phone = models.CharField(help_text='Enter patient current phone number', max_length=11, )
+    phone = PhoneNumberField(help_text='Enter patient current phone number')
     current_step = models.ForeignKey(Step, null=True, on_delete=models.SET_NULL)
     # visit history
     next_visit = models.DateTimeField(help_text='Enter the next visit date and time of the patient if applicable',
