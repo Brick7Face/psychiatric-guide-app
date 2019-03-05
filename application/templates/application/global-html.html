@@ -105,11 +105,14 @@
             {% if user.is_authenticated %}
                 {% if user.is_superuser %}
                     <div class="users_name">
-                        Signed in as: {{ user.first_name }} {{ user.last_name }} #Admin
+                        Signed in as: {{ user.first_name }} {{ user.last_name }} #Admin<br>
+                        <a href="{% url 'password-change' %}">Change Password</a>
                     </div>
                 {% else %}
                     <div class="users_name">
                         Signed in as: {{ user.first_name }} {{ user.last_name }}
+                        <a href="{% url 'password-change' %}">Change Password</a>
+
                     </div>
                 {% endif %}
 
