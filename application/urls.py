@@ -18,5 +18,6 @@ urlpatterns = [
     path('patient_home/', views.patient_home, name="patient-home"),
     path('phq9_results/', views.phq9_results, name="phq9-results"),
     path('pocket_guide/', views.pocket_guide, name="pocket_guide"),
-	path('edit_algorithm/', views.edit_algorithm, name="edit-algorithm")
+    path('edit_algorithm/', views.edit_algorithm, name="edit-algorithm"),
+    path('edit_step/', views.edit_step, name="edit-step"),
 ]

@@ -68,10 +68,28 @@ class CreateUser(UserCreationForm):  # Class for the user generation form
 @login_required
 def edit_algorithm(request):
 	return render(request, 'application/edit-algorithm.html', {'title': 'Edit Algorithm', 'steps': Step.objects.all()})
+
+'''
+@login_required
+def edit_step(request):
+	if request.method == 'POST':
+        step_form = CreateUser(request.POST)  # Form for creating a new user
+        if new_user_form.is_valid():  # Enters if form is valid
+            new_user_form.save()  # Saves form to database
+            username = new_user_form.cleaned_data.get('username')
+            first_name = new_user_form.cleaned_data.get('first_name')
+            last_name = new_user_form.cleaned_data.get('last_name')
+            messages.success(request, 'Account created.')  # Message if user created succesfully
+            return redirect('create-new-user')
+
+    else:
+        new_user_form = CreateUser()  # Resets form with error message if attempt not valid
+    return render(request, 'application/new-user.html', {'new_user_form': new_user_form})
 		
 @login_required  # If user is not logged in, they are redirected to the login page.
 def backend_home(request):
     return render(request, 'application/backend-home.html', {'title': 'Home'})  # Renders login.html
+'''
 
 @login_required  # If user is not logged in, they are redirected to the login page.
 def patients(request):
