@@ -65,6 +65,10 @@ class CreateUser(UserCreationForm):  # Class for the user generation form
             'is_superuser': 'Allows this user to create, modify, edit, and delete other users and their information.'
         }
 
+@login_required
+def edit_algorithm(request):
+	return render(request, 'application/edit-algorithm.html', {'title': 'Edit Algorithm', 'steps': Step.objects.all()})
+		
 @login_required  # If user is not logged in, they are redirected to the login page.
 def backend_home(request):
     return render(request, 'application/backend-home.html', {'title': 'Home'})  # Renders login.html
@@ -234,7 +238,7 @@ def treatment_overview(request):
     return render(request, 'application/treatment-overview.html', {'title': 'Treatment Overview'})
 
 def pocket_guide(request):
-    return render(request, 'application/pocket_guide.pdf', {'title': 'Pocket Guide'})
+	return render(request, 'application/pocket_guide.pdf', {'title': 'Pocket Guide'})
 
 
 def bug_report(request):
