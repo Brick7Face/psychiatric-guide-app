@@ -80,7 +80,12 @@ def patients(request):
             return redirect('patient-home')
         # delete patient from database
         elif action == "delete":
-            Patient.objects.get(id=patient_id).delete()
+            try:
+                patient = Patient.objects.get(id=patient_id)
+                patient.delete()
+            except:
+                pass
+
     return render(request, 'application/patients.html', {'title': 'Patients', 'patients': Patient.objects.all()})
 
 
