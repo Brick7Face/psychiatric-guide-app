@@ -21,6 +21,7 @@ from application.questionnaire_evaluations import PHQ9
 from google.cloud import datastore
 from github import Github
 
+
 def login(request):
     return render(request, 'application/login.html', {'title': 'Login'})  # Renders login.html
 
@@ -64,9 +65,11 @@ class CreateUser(UserCreationForm):  # Class for the user generation form
             'is_superuser': 'Allows this user to create, modify, edit, and delete other users and their information.'
         }
 
+
 @login_required  # If user is not logged in, they are redirected to the login page.
 def backend_home(request):
     return render(request, 'application/backend-home.html', {'title': 'Home'})  # Renders login.html
+
 
 @login_required  # If user is not logged in, they are redirected to the login page.
 def patients(request):
@@ -94,6 +97,7 @@ def patient_home(request):
                       {'title': 'Patient Home',
                        'patient': Patient.objects.get(id=patient_id),
                        'phq9s': phq9_db.objects.filter(patient_id=patient_id)})  # Renders login.html
+
 
 @login_required  # If user is not logged in, they are redirected to the login page.
 def phq9_results(request):
@@ -123,6 +127,7 @@ def phq9_results(request):
 
 def documentation(request):
     return render(request, 'application/documentation.html', {'title': 'Documentation'})  # Renders login.html
+
 
 @login_required  # If user is not logged in, they are redirected to the login page.
 def survey(request):
@@ -180,6 +185,7 @@ def survey(request):
                                                            'introduction': introduction,
                                                            'questions': questions})
 
+
 @login_required  # If user is not logged in, they are redirected to the login page.
 def medications(request):
     return render(request, 'application/medications.html', {'title': 'Medications'})
@@ -205,6 +211,7 @@ class CreatePatientForm(forms.ModelForm):
         fields = ['first_name', 'last_name', 'dob', 'address', 'email', 'phone', 'current_step',
                   'next_visit', 'notes']
 
+
 @login_required  # If user is not logged in, they are redirected to the login page.
 def new_patient(request):
     if request.method == 'POST':
@@ -217,9 +224,16 @@ def new_patient(request):
         new_patient_form = CreatePatientForm()
     return render(request, 'application/new-patient.html', {'new_patient_form': new_patient_form})
 
+
 @login_required  # If user is not logged in, they are redirected to the login page.
 def treatment_overview(request):
     return render(request, 'application/treatment-overview.html', {'title': 'Treatment Overview'})
+
+
+@login_required
+def algorithm(request):
+    return render(request, 'application/algorithm.html', {'title': 'Algorithm'})
+
 
 def pocket_guide(request):
     return render(request, 'application/pocket_guide.pdf', {'title': 'Pocket Guide'})

@@ -18,4 +18,5 @@ urlpatterns = [
     path('patient_home/', views.patient_home, name="patient-home"),
     path('phq9_results/', views.phq9_results, name="phq9-results"),
     path('pocket_guide/', views.pocket_guide, name="pocket_guide"),
+    path('algorithm/', views.algorithm, name="algorithm")
 ]

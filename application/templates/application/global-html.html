@@ -69,23 +69,28 @@
             {% endif %}
             <li>
                 {% if user.is_authenticated %}
-                  <a href="{% url 'backend-home' %}">
-                    <i class="fas fa-home"></i>
-                    Home
-                  </a>
-                  <a href="{% url 'patients' %}">
-                    <i class="fas fa-user"></i>
-                    Patients
-                  </a>
-                  <a href="{% url 'treatment-overview' %}">
-                    <i class="fas fa-code-branch"></i>
-                    Treatment Overview
-                  </a>
-                  <a href="{% url 'medications' %}">
-                    <i class="fas  fa-prescription"></i>
-                    Medications
-                  </a>
-                  {% else %}
+                    <a href="{% url 'backend-home' %}">
+                        <i class="fas fa-home"></i>
+                        Home
+                    </a>
+                    <a href="{% url 'patients' %}">
+                        <i class="fas fa-user"></i>
+                        Patients
+                    </a>
+                    <a href="{% url 'algorithm' %}">
+                        <i class="fas fa-bezier-curve"></i>
+                        Algorithm
+                    </a>
+                    <a href="{% url 'treatment-overview' %}">
+                        <i class="fas fa-code-branch"></i>
+                        Treatment Overview
+                    </a>
+
+                    <a href="{% url 'medications' %}">
+                        <i class="fas  fa-prescription"></i>
+                        Medications
+                    </a>
+                {% else %}
                     <a href="{% url 'login-view' %}">
                         <i class="fas fa-home" style="right:0;"></i>
                         Home
@@ -103,23 +108,21 @@
         </ul>
         <div class="login_button">
             {% if user.is_authenticated %}
-              {% if user.is_superuser %}
-                <div class="users_name">
-                  Signed in as: {{ user.first_name }} {{ user.last_name }} #Admin
-                </div>
-              {% else %}
-                <div class="users_name">
-                    Signed in as: {{ user.first_name }} {{ user.last_name }}
-                </div>
-              {% endif %}
-
-                {#                <a href="{% url 'logout-view' %}" style="color: #A9A9A9">Signout</a>#}
-                {#                <button class="slds-button slds-button_outline-brand" onclick="window.location.href = {% url 'logout-view' %};"> Logout</button>#}
-                <a href="{% url 'logout-view' %}" class="slds-button slds-button_outline-brand" role="button">Signout</a>
+                {% if user.is_superuser %}
+                    <div class="users_name">
+                        Signed in as: {{ user.first_name }} {{ user.last_name }} #Admin
+                    </div>
+                {% else %}
+                    <div class="users_name">
+                        Signed in as: {{ user.first_name }} {{ user.last_name }}
+                    </div>
+                {% endif %}
+                <a href="{% url 'logout-view' %}" class="slds-button slds-button_outline-brand"
+                   role="button">Signout</a>
             {% else %}
-              <div class="users_name">
-                Not signed in
-              </div>
+                <div class="users_name">
+                    Not signed in
+                </div>
                 <a href="{% url 'login-view' %}" class="slds-button slds-button_outline-brand" role="button">Login</a>
             {% endif %}
         </div>
