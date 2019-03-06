@@ -3,7 +3,7 @@ from django.contrib.auth import views as log_view  # views for login/logout prov
 from . import views
 
 urlpatterns = [
-    path('', log_view.LoginView.as_view(template_name='application/login.html')),  # Home page of entire site
+    path('', log_view.LoginView.as_view(template_name='application/login.html', redirect_authenticated_user=True)),  # Home page of entire site
     path('login/', log_view.LoginView.as_view(template_name='application/login.html'), name='login-view'), # login page at /login
     path('logout/', views.logout_user, name="logout-view"),  # Logout page at
     path('create_user/', views.create_user, name='create-new-user'),  # Path for new user registration
