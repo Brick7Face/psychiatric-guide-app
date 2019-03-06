@@ -15,16 +15,17 @@
             <div class="patient_list">
                 {% for patient in patients %}
                     <div class="card">
-                        <h2>{{ patient.last_name }}, {{ patient.first_name }}</h2>
-                        <div class="patient_buttons">
+                        <div class="patient_name">
                             <form method="post">
                                 {% csrf_token %}
                                 <input type="hidden" name="patient_id" value={{ patient.id }}>
                                 <input type="hidden" name="action" value="goto">
-                                <button class="slds-button .slds-button__icon" type="submit">
-                                    <i class="fas fa-sign-in-alt fa-lg"></i>
+                                <button class="slds-button name_button" type="submit">
+                                    <span>{{ patient.last_name }}, {{ patient.first_name }}</span>
                                 </button>
                             </form>
+                        </div>
+                        <div class="patient_buttons">
                             <form method="post">
                                 {% csrf_token %}
                                 <input type="hidden" name="patient_id" value={{ patient.id }}>
