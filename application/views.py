@@ -35,7 +35,7 @@ def logout_user(request):
 @login_required  # If user is not logged in, they are redirected to the login page.
 def create_user(request):  # Renders user creation
     if request.method == 'POST':
-        new_user_form = CreateUser(request.POST)  # Form for creating a new user
+        new_user_form = CreateUser(request.POST) # Form for creating a new user
         if new_user_form.is_valid():  # Enters if form is valid
             new_user_form.save()  # Saves form to database
             username = new_user_form.cleaned_data.get('username')
@@ -67,29 +67,32 @@ class CreateUser(UserCreationForm):  # Class for the user generation form
 
 @login_required
 def edit_algorithm(request):
-	return render(request, 'application/edit-algorithm.html', {'title': 'Edit Algorithm', 'steps': Step.objects.all()})
+    return render(request, 'application/edit-algorithm.html', {'title': 'Edit Algorithm', 'steps': Step.objects.all()})
 
-'''
+
+class StepEdit(UpdateView):
+    model = Step
+    fields = ['name', 'description']
+
 @login_required
 def edit_step(request):
-	if request.method == 'POST':
-        step_form = CreateUser(request.POST)  # Form for creating a new user
-        if new_user_form.is_valid():  # Enters if form is valid
-            new_user_form.save()  # Saves form to database
-            username = new_user_form.cleaned_data.get('username')
-            first_name = new_user_form.cleaned_data.get('first_name')
-            last_name = new_user_form.cleaned_data.get('last_name')
-            messages.success(request, 'Account created.')  # Message if user created succesfully
-            return redirect('create-new-user')
+    if request.method == 'POST':
+        step_form = StepEdit(request.POST)  # Form for editing a step
+        if step_form.is_valid():  # Enters if form is valid
+            step_form.save()  # Saves form to database
+            messages.success(request, 'Step saved.')  # Message if user created succesfully
+            return redirect('edit-step')
 
     else:
-        new_user_form = CreateUser()  # Resets form with error message if attempt not valid
-    return render(request, 'application/new-user.html', {'new_user_form': new_user_form})
+        step_form = StepEdit()  # Resets form with error message if attempt not valid
+    return render(request, 'application/edit-step.html', {'step_form': step_form})
+
+
 		
 @login_required  # If user is not logged in, they are redirected to the login page.
 def backend_home(request):
     return render(request, 'application/backend-home.html', {'title': 'Home'})  # Renders login.html
-'''
+
 
 @login_required  # If user is not logged in, they are redirected to the login page.
 def patients(request):
@@ -256,7 +259,7 @@ def treatment_overview(request):
     return render(request, 'application/treatment-overview.html', {'title': 'Treatment Overview'})
 
 def pocket_guide(request):
-	return render(request, 'application/pocket_guide.pdf', {'title': 'Pocket Guide'})
+    return render(request, 'application/pocket_guide.pdf', {'title': 'Pocket Guide'})
 
 
 def bug_report(request):
