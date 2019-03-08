@@ -24,7 +24,7 @@ body .medication_content #accordion{
 }
 
 body .medication_content #card{
-  border: 1px solid #2699FB;
+  border: .5px solid #2699FB;
   height: 3em;
   width: 100%;
 }

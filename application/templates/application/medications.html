@@ -24,13 +24,13 @@
           <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
                 {% for medication in medications %}
+                  {% if medication.category == "Selective Serotonin Reuptake Inhibitors" %}
                     <form method="post">
                         <div id="card">
-                          {% if medication.category == "Selective Serotonin Reuptake Inhibitors" %}
                             <h2>{{ medication.name }}</h2>
-                          {% endif %}
                         </div>
                     </form>
+                  {% endif %}
                 {% endfor %}
             </div>
           </div>
@@ -46,13 +46,13 @@
           <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
             <div class="card-body">
               {% for medication in medications %}
+                {% if medication.category == "Serotonin-Norepinephrine Reuptake Inhibitors" %}
                   <form method="post">
                       <div id="card">
-                        {% if medication.category == "Serotonin-Norepinephrine Reuptake Inhibitors" %}
                           <h2>{{ medication.name }}</h2>
-                        {% endif %}
                       </div>
                   </form>
+                {% endif %}
               {% endfor %}
             </div>
           </div>
@@ -68,13 +68,13 @@
           <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
             <div class="card-body">
               {% for medication in medications %}
+                {% if medication.category == "Bupropion" %}
                   <form method="post">
                       <div id="card">
-                        {% if medication.category == "Bupropion" %}
                           <h2>{{ medication.name }}</h2>
-                        {% endif %}
                       </div>
                   </form>
+                {% endif %}
               {% endfor %}
             </div>
           </div>
@@ -90,13 +90,13 @@
           <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
             <div class="card-body">
               {% for medication in medications %}
+              {% if medication.category == "Mirtazapine" %}
                   <form method="post">
                       <div id="card">
-                        {% if medication.category == "Mirtazapine" %}
                           <h2>{{ medication.name }}</h2>
-                        {% endif %}
                       </div>
                   </form>
+                  {% endif %}
               {% endfor %}
             </div>
           </div>
@@ -112,13 +112,13 @@
           <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
             <div class="card-body">
               {% for medication in medications %}
+                {% if medication.category == "Antidepressant Augmenting Agents" %}
                   <form method="post">
                       <div id="card">
-                        {% if medication.category == "Antidepressant Augmenting Agents" %}
                           <h2>{{ medication.name }}</h2>
-                        {% endif %}
                       </div>
                   </form>
+                {% endif %}
               {% endfor %}
             </div>
           </div>

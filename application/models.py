@@ -54,8 +54,7 @@ class Medication(models.Model):
     titration = models.TextField(help_text='Enter medication titration information')
     comments = models.TextField(help_text='Enter comments about medication')
     side_effects = models.TextField(help_text='Enter side effects for medication', default='')
-    #prescriber = models.ForeignKey(User, on_delete=models.CASCADE, default='')
-    
+
     # Metadata
     class Meta:
         ordering = ['category', 'name']
