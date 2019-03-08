@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 from django.template.defaulttags import register
 from django.views.generic import UpdateView
 
-from application.models import Prescriber, Step, Patient
+from application.models import Prescriber, Step, Patient, Medication
 from application.models import Phq9 as phq9_db
 from django import forms
 from django.contrib.auth.decorators import login_required
@@ -75,6 +75,10 @@ def patients(request):
         return redirect('patient-home')
     else:
         return render(request, 'application/patients.html', {'title': 'Patients', 'patients': Patient.objects.all()})
+
+@login_required  # If user is not logged in, they are redirected to the login page.
+def medications(request):
+    return render(request, 'application/medications.html', {'title': 'Medications', 'medications': Medication.objects.all()})
 
 
 @register.filter
@@ -179,10 +183,6 @@ def survey(request):
         return render(request, 'application/survey.html', {'title': 'Survey',
                                                            'introduction': introduction,
                                                            'questions': questions})
-
-@login_required  # If user is not logged in, they are redirected to the login page.
-def medications(request):
-    return render(request, 'application/medications.html', {'title': 'Medications'})
 
 
 class CreatePatientForm(forms.ModelForm):

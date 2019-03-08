@@ -22,3 +22,25 @@ body .medication_content{
 body .medication_content #accordion{
   margin-top: 2vh;
 }
+
+body .medication_content #card{
+  border: 1px solid #2699FB;
+  height: 3em;
+  width: 100%;
+}
+body h2{
+  display:inline-block;
+  padding-left: 1vw;
+  padding-top: .5em;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.25em;
+  font-weight: 300;
+  line-height: 1.5em;
+  color: #2699FB;
+}
+body #meds1 #meds2{
+  text-align: right;
+  display: inline-block;
+  right:0;
+  width: 50%;
+}
