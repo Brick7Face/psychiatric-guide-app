@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 from django.template.defaulttags import register
 from django.views.generic.edit import UpdateView
 from django.forms import ModelForm
+from django.db import models
 
 from application.models import Prescriber, Step, Patient
 from application.models import Phq9 as phq9_db
@@ -85,8 +86,8 @@ def edit_algorithm(request):
 
 
 class StepUpdate(ModelForm):
-    name = forms.CharField()
-    description = forms.CharField()
+    name = models.CharField()
+    description = models.CharField()
 
     class Meta:
         model = Step
@@ -103,8 +104,6 @@ def edit_step(request):
         step_form = StepUpdate(request.POST)  # Form for editing a step
         if step_form.is_valid():  # Enters if form is valid
             step_form.save()  # Saves form to database
-            #name = step_form.cleaned_data.get('name')
-            #description = step_form.cleaned_data.get('description')
             messages.success(request, 'Step saved.')  # Message if user created succesfully
             return redirect('edit-algorithm')
 
