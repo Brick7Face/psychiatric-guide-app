@@ -29,6 +29,7 @@ body .medication_content #card{
   width: 100%;
 }
 body h2{
+  width: 50%;
   display:inline-block;
   padding-left: 1vw;
   padding-top: .5em;
@@ -37,10 +38,4 @@ body h2{
   font-weight: 300;
   line-height: 1.5em;
   color: #2699FB;
-}
-body #meds1 #meds2{
-  text-align: right;
-  display: inline-block;
-  right:0;
-  width: 50%;
 }
