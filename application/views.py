@@ -9,7 +9,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.template.defaulttags import register
-from django.views.generic import UpdateView
+from django.views.generic.edit import UpdateView
+from django.forms import ModelForm
 
 from application.models import Prescriber, Step, Patient
 from application.models import Phq9 as phq9_db
@@ -67,24 +68,48 @@ class CreateUser(UserCreationForm):  # Class for the user generation form
 
 @login_required
 def edit_algorithm(request):
+    if request.method == 'POST':
+        action = request.POST['action']
+        step_id = request.POST['step_id']
+        if action == "goto":
+            request.session['step_id'] = step_id
+            return redirect('edit-step')
+        elif action == "delete":
+            try:
+                step = Step.objects.get(id=step_id)
+                step.delete()
+            except:
+                pass
+				
     return render(request, 'application/edit-algorithm.html', {'title': 'Edit Algorithm', 'steps': Step.objects.all()})
 
 
-class StepEdit(UpdateView):
-    model = Step
-    fields = ['name', 'description']
+class StepUpdate(ModelForm):
+    name = forms.CharField()
+    description = forms.CharField()
+
+    class Meta:
+        model = Step
+        fields = ['name', 'description']
+        help_texts = {  # Text descriptions that show under the field on the form
+            'name': 'Enter the name of the step',
+            'description': 'Enter the step description information, or other text that apppears in the step box.'
+        }
+	
 
 @login_required
 def edit_step(request):
     if request.method == 'POST':
-        step_form = StepEdit(request.POST)  # Form for editing a step
+        step_form = StepUpdate(request.POST)  # Form for editing a step
         if step_form.is_valid():  # Enters if form is valid
             step_form.save()  # Saves form to database
+            #name = step_form.cleaned_data.get('name')
+            #description = step_form.cleaned_data.get('description')
             messages.success(request, 'Step saved.')  # Message if user created succesfully
-            return redirect('edit-step')
+            return redirect('edit-algorithm')
 
     else:
-        step_form = StepEdit()  # Resets form with error message if attempt not valid
+        step_form = StepUpdate()  # Resets form with error message if attempt not valid
     return render(request, 'application/edit-step.html', {'step_form': step_form})
 
 

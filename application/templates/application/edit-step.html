@@ -17,10 +17,12 @@
         </h1>
         <form method="POST">
             {% csrf_token %}
-            {{ step_form | crispy }}
+            <table>
+			{{ step_form | crispy }}
+			</table>
             <!--Uses the form created in views.py and uses crispy form formatting-->
             <button class="slds-button slds-button_outline-brand" type="submit">Save Step</button>
         </form>
-      </div
+      </div>
     </div>
 {% endblock body %}
