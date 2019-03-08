@@ -74,7 +74,7 @@ def edit_algorithm(request):
         step_id = request.POST['step_id']
         if action == "goto":
             request.session['step_id'] = step_id
-            return redirect('edit-step')
+            return redirect('/admin/application/step/%s/change/' % step_id)
         elif action == "delete":
             try:
                 step = Step.objects.get(id=step_id)
@@ -83,35 +83,6 @@ def edit_algorithm(request):
                 pass
 				
     return render(request, 'application/edit-algorithm.html', {'title': 'Edit Algorithm', 'steps': Step.objects.all()})
-
-
-class StepUpdate(ModelForm):
-    name = models.CharField()
-    description = models.CharField()
-
-    class Meta:
-        model = Step
-        fields = ['name', 'description']
-        help_texts = {  # Text descriptions that show under the field on the form
-            'name': 'Enter the name of the step',
-            'description': 'Enter the step description information, or other text that apppears in the step box.'
-        }
-	
-
-@login_required
-def edit_step(request):
-    if request.method == 'POST':
-        step_form = StepUpdate(request.POST)  # Form for editing a step
-        if step_form.is_valid():  # Enters if form is valid
-            step_form.save()  # Saves form to database
-            messages.success(request, 'Step saved.')  # Message if user created succesfully
-            return redirect('edit-algorithm')
-
-    else:
-        step_form = StepUpdate()  # Resets form with error message if attempt not valid
-    return render(request, 'application/edit-step.html', {'step_form': step_form})
-
-
 		
 @login_required  # If user is not logged in, they are redirected to the login page.
 def backend_home(request):
