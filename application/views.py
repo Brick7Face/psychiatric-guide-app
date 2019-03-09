@@ -13,7 +13,7 @@ from django.views.generic.edit import UpdateView
 from django.forms import ModelForm
 from django.db import models
 
-from application.models import Prescriber, Step, Patient
+from application.models import Prescriber, Step, Patient, Medication
 from application.models import Phq9 as phq9_db
 from django import forms
 from django.contrib.auth.decorators import login_required
@@ -83,7 +83,50 @@ def edit_algorithm(request):
                 pass
 				
     return render(request, 'application/edit-algorithm.html', {'title': 'Edit Algorithm', 'steps': Step.objects.all()})
+
+	
+@login_required
+def edit_medications(request):
+    if request.method == 'POST':
+        action = request.POST['action']
+        medication_id = request.POST['medication_id']
+        if action == "goto":
+            request.session['medication_id'] = medication_id
+            return redirect('/admin/application/medication/%s/change/' % medication_id)
+        elif action == "delete":
+            try:
+                medication = Medication.objects.get(id=medication_id)
+                medication.delete()
+            except:
+                pass
+				
+    return render(request, 'application/edit-medications.html', {'title': 'Edit Medications', 'medications': Medication.objects.all()})
+
+class CreateMedicationForm(forms.ModelForm):
+    name = forms.CharField()
+    category = forms.CharField()
+    initial_dose = forms.FloatField()
+    maximum_dose = forms.FloatField()
+    titration = forms.TextInput()
+    comments = forms.TextInput()
+    side_effects = forms.TextInput()
+
+    class Meta:
+        model = Medication
+        fields = ['name', 'category', 'initial_dose', 'maximum_dose', 'titration', 'comments', 'side_effects']
 		
+@login_required  # If user is not logged in, they are redirected to the login page.
+def new_medication(request):
+    if request.method == 'POST':
+        new_med_form = CreateMedicationForm(request.POST)
+        if new_med_form.is_valid():
+            new_med_form.save()
+            messages.success(request, 'Medication created.')
+            return redirect('edit-medications')
+    else:
+        new_med_form = CreateMedicationForm()
+    return render(request, 'application/new-medication.html', {'new_med_form': new_med_form})
+	
 @login_required  # If user is not logged in, they are redirected to the login page.
 def backend_home(request):
     return render(request, 'application/backend-home.html', {'title': 'Home'})  # Renders login.html

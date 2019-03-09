@@ -19,4 +19,6 @@ urlpatterns = [
     path('phq9_results/', views.phq9_results, name="phq9-results"),
     path('pocket_guide/', views.pocket_guide, name="pocket_guide"),
     path('edit_algorithm/', views.edit_algorithm, name="edit-algorithm"),
+	path('edit_medications/', views.edit_medications, name="edit-medications"),
+	path('new_medication/', views.new_medication, name="new-medication"),
 ]
