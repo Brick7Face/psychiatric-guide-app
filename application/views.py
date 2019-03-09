@@ -36,7 +36,7 @@ def logout_user(request):
 @login_required  # If user is not logged in, they are redirected to the login page.
 def create_user(request):  # Renders user creation
     if request.method == 'POST':
-        new_user_form = CreateUser(request.POST) # Form for creating a new user
+        new_user_form = CreateUser(request.POST)  # Form for creating a new user
         if new_user_form.is_valid():  # Enters if form is valid
             new_user_form.save()  # Saves form to database
             username = new_user_form.cleaned_data.get('username')
@@ -66,6 +66,7 @@ class CreateUser(UserCreationForm):  # Class for the user generation form
             'is_superuser': 'Allows this user to create, modify, edit, and delete other users and their information.'
         }
 
+
 @login_required
 def edit_algorithm(request):
     if request.method == 'POST':
@@ -80,14 +81,11 @@ def edit_algorithm(request):
                 step.delete()
             except:
                 pass
-				
+
     return render(request, 'application/edit-algorithm.html', {'title': 'Edit Algorithm', 'steps': Step.objects.all()})
 
 
 class StepUpdate(ModelForm):
-    name = forms.CharField()
-    description = forms.CharField()
-
     class Meta:
         model = Step
         fields = ['name', 'description']
@@ -95,25 +93,26 @@ class StepUpdate(ModelForm):
             'name': 'Enter the name of the step',
             'description': 'Enter the step description information, or other text that apppears in the step box.'
         }
-	
+
 
 @login_required
 def edit_step(request):
     if request.method == 'POST':
-        step_form = StepUpdate(request.POST)  # Form for editing a step
-        if step_form.is_valid():  # Enters if form is valid
-            step_form.save()  # Saves form to database
-            #name = step_form.cleaned_data.get('name')
-            #description = step_form.cleaned_data.get('description')
-            messages.success(request, 'Step saved.')  # Message if user created succesfully
-            return redirect('edit-algorithm')
+        step_form = StepUpdate(request.POST)
+        if step_form.is_valid():
+            new_name = step_form.cleaned_data.get('name'),
+            new_des = step_form.cleaned_data.get('description')
+            namie = Step.objects.get(name = 'Full Response')
+            namie.description = 'teseroo descript'
+            namie.name = "testeroo"
+            namie.save()
+        return redirect('edit-algorithm')
 
     else:
         step_form = StepUpdate()  # Resets form with error message if attempt not valid
     return render(request, 'application/edit-step.html', {'step_form': step_form})
 
 
-		
 @login_required  # If user is not logged in, they are redirected to the login page.
 def backend_home(request):
     return render(request, 'application/backend-home.html', {'title': 'Home'})  # Renders login.html
@@ -157,6 +156,7 @@ def patient_home(request):
                        'patient': Patient.objects.get(id=patient_id),
                        'phq9s': phq9_db.objects.filter(patient_id=patient_id)})  # Renders login.html
 
+
 @login_required  # If user is not logged in, they are redirected to the login page.
 def phq9_results(request):
     print("TEST ", phq9_db.objects.last().diagnosis)
@@ -185,6 +185,7 @@ def phq9_results(request):
 
 def documentation(request):
     return render(request, 'application/documentation.html', {'title': 'Documentation'})  # Renders login.html
+
 
 @login_required  # If user is not logged in, they are redirected to the login page.
 def survey(request):
@@ -242,6 +243,7 @@ def survey(request):
                                                            'introduction': introduction,
                                                            'questions': questions})
 
+
 @login_required  # If user is not logged in, they are redirected to the login page.
 def medications(request):
     return render(request, 'application/medications.html', {'title': 'Medications'})
@@ -267,6 +269,7 @@ class CreatePatientForm(forms.ModelForm):
         fields = ['first_name', 'last_name', 'dob', 'address', 'email', 'phone', 'current_step',
                   'next_visit', 'notes']
 
+
 @login_required  # If user is not logged in, they are redirected to the login page.
 def new_patient(request):
     if request.method == 'POST':
@@ -279,9 +282,11 @@ def new_patient(request):
         new_patient_form = CreatePatientForm()
     return render(request, 'application/new-patient.html', {'new_patient_form': new_patient_form})
 
+
 @login_required  # If user is not logged in, they are redirected to the login page.
 def treatment_overview(request):
     return render(request, 'application/treatment-overview.html', {'title': 'Treatment Overview'})
+
 
 def pocket_guide(request):
     return render(request, 'application/pocket_guide.pdf', {'title': 'Pocket Guide'})
