@@ -116,7 +116,7 @@ def populate():
 
 # add a step to database, with name and descriptions as strings
 def add_step(text, transition, previous_step):
-    s, created = Step.objects.get_or_create(text=text, transition=transition, previous_step=previous_step)
+    s, created = Step.objects.get_or_create(description=text, transition=transition, previous_step=previous_step)
 
     print('- Step: {0}, Created: {1}'.format(str(s), str(created)))
     return s
