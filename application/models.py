@@ -7,6 +7,7 @@ import datetime
 # defines model for a single step (or box) from prescribing guide flowchart
 class Step(models.Model):
     # Fields
+    name = models.CharField(help_text='Enter step title', default='', max_length=25)
     text = models.TextField(help_text='Enter step text', default='')
     transition = models.CharField(help_text='Enter the transition to this step', default='', max_length=50)
     previous_step = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, default=None)
@@ -24,7 +25,7 @@ class Step(models.Model):
 
     def __str__(self):
         """String for representing the Step object (in Admin site etc.)."""
-        return self.text
+        return self.name
 
 
 # defines model for disorder treatment type and corresponding steps
