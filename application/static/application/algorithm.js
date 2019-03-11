@@ -29,7 +29,7 @@ for (var key in steps) {
     var text = joint.util.breakText(step.description, {
         width: width - 50
     });
-    rect.position(Math.random() * (screen_width - width), Math.random() * (screen_height - height));
+    rect.position(step.x, step.y);
     rect.resize(width, height);
     rect.attr({
         body: {
