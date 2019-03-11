@@ -90,7 +90,7 @@ if os.getenv('GAE_APPLICATION', None):
             'NAME': 'guide',
         }
     }
-elif os.getenv('USE_CLOUD_SQL', None) == "True":
+elif "True" in os.getenv('USE_CLOUD_SQL', None):
     print("using cloud sql db")
     # Running locally so connect to either a local MySQL instance or connect to
     # Cloud SQL via the proxy. To start the proxy via command line:
