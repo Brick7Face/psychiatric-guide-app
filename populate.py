@@ -9,7 +9,6 @@ import datetime
 def populate():
     print('Populating database...\n')
 
-
     Step.objects.all().delete()
     dstep1 = add_step('Diagnosis of Depression', '', None)
     dstep2 = add_step(
@@ -28,6 +27,7 @@ def populate():
     dstep12 = add_step('Optimize dose OR augment OR switch', 'Partial Response', dstep7)
     dstep13 = add_step('Continue same treatment for at least 4-9 months', 'Full Response', dstep7)
 
+    # add depression treatment, linking to steps
     Treatment.objects.all().delete()
     add_treatment('Depression', dstep1, dstep2, dstep3, dstep4, dstep5, dstep6, dstep7, dstep8, dstep9, dstep10,
                   dstep11, dstep12, dstep13)
