@@ -1,4 +1,5 @@
 import datetime
+import json
 import os
 
 from django.db.models import Model
@@ -8,6 +9,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.core import serializers
 from django.template.defaulttags import register
 from django.views.generic import UpdateView
 
@@ -232,7 +234,14 @@ def treatment_overview(request):
 
 @login_required
 def algorithm(request):
-    return render(request, 'application/algorithm.html', {'title': 'Algorithm'})
+    raw_steps = serializers.serialize('python', Step.objects.all().order_by('id'))
+    steps = {}
+    for step in raw_steps:
+        id = step['pk']
+        step = step['fields']
+        steps[id] = step
+    steps = json.dumps(steps)
+    return render(request, 'application/algorithm.html', {'title': 'Algorithm', 'steps': steps})
 
 
 def pocket_guide(request):
