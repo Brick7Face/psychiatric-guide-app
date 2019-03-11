@@ -10,6 +10,8 @@ class Step(models.Model):
     text = models.TextField(help_text='Enter step text', default='')
     transition = models.CharField(help_text='Enter the transition to this step', default='', max_length=50)
     previous_step = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, default=None)
+    x = models.IntegerField(default=0)
+    y = models.IntegerField(default=0)
 
     # Metadata
     class Meta:
