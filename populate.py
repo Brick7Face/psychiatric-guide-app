@@ -9,11 +9,14 @@ import datetime
 def populate():
     print('Populating database...\n')
 
-    # steps that are part of the depression treatment algorithm
+
     Step.objects.all().delete()
     dstep1 = add_step('Diagnosis of Depression', '', None)
-    dstep2 = add_step('Initial therapy with citalopram or sertraline (unless compelling indication for alternate agent) Address side effects and encourage adherence in 1 week. Evaluate response in 3-4 weeks', '', dstep1)
-    dstep3 = add_step('Ensure medication adherence\n\nOptimize dose OR switch (alternate SSRI or non-SSRI', 'Non Response', dstep2)
+    dstep2 = add_step(
+        'Initial therapy with citalopram or sertraline (unless compelling indication for alternate agent) Address side effects and encourage adherence in 1 week. Evaluate response in 3-4 weeks',
+        '', dstep1)
+    dstep3 = add_step('Ensure medication adherence\n\nOptimize dose OR switch (alternate SSRI or non-SSRI',
+                      'Non Response', dstep2)
     dstep4 = add_step('Optimize dose OR augment', 'Partial Response', dstep2)
     dstep5 = add_step('Continue same treatment for at least 4-9 months', 'Full Response', dstep2)
     dstep6 = add_step('Evaluate Response in 3-4 weeks', '', dstep3)
@@ -25,9 +28,11 @@ def populate():
     dstep12 = add_step('Optimize dose OR augment OR switch', 'Partial Response', dstep7)
     dstep13 = add_step('Continue same treatment for at least 4-9 months', 'Full Response', dstep7)
 
-    # add depression treatment, linking to steps
-    add_treatment('Depression', dstep1, dstep2, dstep3, dstep4, dstep5, dstep6, dstep7, dstep8, dstep9, dstep10, dstep11, dstep12)
+    Treatment.objects.all().delete()
+    add_treatment('Depression', dstep1, dstep2, dstep3, dstep4, dstep5, dstep6, dstep7, dstep8, dstep9, dstep10,
+                  dstep11, dstep12, dstep13)
 
+    Medication.objects.all().delete()
     # add medications - SSRI's
     add_medication('Citalopram (Celexa)', 'Selective Serotonin Reuptake Inhibitors', 10, 40,
                    'May increase by 10-20 mg increments at intervals of no less than 1 week',
@@ -108,6 +113,7 @@ def populate():
                              'Headache, agitation, insomnia, somnolence, extrapyramidal symptoms, nausea, dyspepsia')
 
     print('\n' + ('=' * 80) + '\n')
+    Patient.objects.all().delete()
     add_patient('bp', 'plant', datetime.date.min, 'the ground', 'bp@email.com', '23456789', dstep1,
                 datetime.datetime.min, 'he is great', abilify)
     add_patient('k', 'dub', datetime.date.min, 'fun road', 'kdub@email.com', '234543789', dstep1,
@@ -117,7 +123,7 @@ def populate():
 
 # add a step to database, with name and descriptions as strings
 def add_step(text, transition, previous_step):
-    s, created = Step.objects.get_or_create(text=text, transition=transition, previous_step=previous_step)
+    s, created = Step.objects.get_or_create(description=text, transition=transition, previous_step=previous_step)
 
     print('- Step: {0}, Created: {1}'.format(str(s), str(created)))
     return s

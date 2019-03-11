@@ -85,7 +85,6 @@
                         <i class="fas fa-code-branch"></i>
                         Treatment Overview
                     </a>
-
                     <a href="{% url 'medications' %}">
                         <i class="fas  fa-prescription"></i>
                         Medications
@@ -110,13 +109,20 @@
             {% if user.is_authenticated %}
                 {% if user.is_superuser %}
                     <div class="users_name">
-                        Signed in as: {{ user.first_name }} {{ user.last_name }} #Admin
+                        Signed in as: {{ user.first_name }} {{ user.last_name }} #Admin<br>
+                        <a href="{% url 'password-change' %}">Change Password</a>
+
                     </div>
                 {% else %}
                     <div class="users_name">
-                        Signed in as: {{ user.first_name }} {{ user.last_name }}
+                        Signed in as: {{ user.first_name }} {{ user.last_name }}<br>
+                        <a href="{% url 'password-change' %}">Change Password</a>
+
                     </div>
                 {% endif %}
+
+                {#                <a href="{% url 'logout-view' %}" style="color: #A9A9A9">Signout</a>#}
+                {#                <button class="slds-button slds-button_outline-brand" onclick="window.location.href = {% url 'logout-view' %};"> Logout</button>#}
                 <a href="{% url 'logout-view' %}" class="slds-button slds-button_outline-brand"
                    role="button">Signout</a>
             {% else %}

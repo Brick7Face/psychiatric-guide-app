@@ -76,10 +76,21 @@ def backend_home(request):
 @login_required  # If user is not logged in, they are redirected to the login page.
 def patients(request):
     if request.method == 'POST':
-        request.session['patient_id'] = request.POST['patient_id']
-        return redirect('patient-home')
-    else:
-        return render(request, 'application/patients.html', {'title': 'Patients', 'patients': Patient.objects.all()})
+        action = request.POST['action']
+        patient_id = request.POST['patient_id']
+        # navigate to patient home
+        if action == "goto":
+            request.session['patient_id'] = patient_id
+            return redirect('patient-home')
+        # delete patient from database
+        elif action == "delete":
+            try:
+                patient = Patient.objects.get(id=patient_id)
+                patient.delete()
+            except:
+                pass
+
+    return render(request, 'application/patients.html', {'title': 'Patients', 'patients': Patient.objects.all()})
 
 
 @register.filter

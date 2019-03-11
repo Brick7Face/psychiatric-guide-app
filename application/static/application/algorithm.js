@@ -20,13 +20,13 @@ for (var key in steps) {
     var rect = new joint.shapes.standard.Rectangle();
     var width;
     var height = 100;
-    if (step.text.length > 100) {
+    if (step.description.length > 100) {
         width = 250;
     }
     else {
         width = 150;
     }
-    var text = joint.util.breakText(step.text, {
+    var text = joint.util.breakText(step.description, {
         width: width - 50
     });
     rect.position(Math.random() * (screen_width - width), Math.random() * (screen_height - height));
