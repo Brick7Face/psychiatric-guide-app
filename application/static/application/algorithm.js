@@ -1,12 +1,15 @@
 var graph = new joint.dia.Graph;
 
 var steps = JSON.parse($("#steps").text());
+var container = $("#algorithm-wrapper")[0];
+var screen_width = container.offsetWidth;
+var screen_height = container.offsetHeight;
 
 var paper = new joint.dia.Paper({
     el: document.getElementById('algorithm-wrapper'),
     model: graph,
-    width: window.outerWidth,
-    height: window.outerHeight,
+    width: screen_width,
+    height: screen_height,
     gridSize: 1
 });
 
@@ -16,6 +19,7 @@ for (var key in steps) {
     var step = steps[key];
     var rect = new joint.shapes.standard.Rectangle();
     var width;
+    var height = 100;
     if (step.text.length > 100) {
         width = 250;
     }
@@ -25,8 +29,8 @@ for (var key in steps) {
     var text = joint.util.breakText(step.text, {
         width: width - 50
     });
-    rect.position(100, 30);
-    rect.resize(width, 100);
+    rect.position(Math.random() * (screen_width - width), Math.random() * (screen_height - height));
+    rect.resize(width, height);
     rect.attr({
         body: {
             fill: '#2699FB'
@@ -44,7 +48,7 @@ for (var key in steps) {
         var link = new joint.shapes.standard.Link();
         link.source(rects[step.previous_step]);
         link.target(rects[key]);
-        link.router('manhattan');
+        link.router('metro');
         link.appendLabel({
             attrs: {
                 text: {
