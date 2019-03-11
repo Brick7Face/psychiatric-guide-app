@@ -76,6 +76,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'psychiatric_guide_app.wsgi.application'
 
+use_cloud_sql = os.getenv('USE_CLOUD_SQL', None)
+
 # [START db_setup]
 if os.getenv('GAE_APPLICATION', None):
     # Running on production App Engine, so connect to Google Cloud SQL using
@@ -90,7 +92,7 @@ if os.getenv('GAE_APPLICATION', None):
             'NAME': 'guide',
         }
     }
-elif "True" in os.getenv('USE_CLOUD_SQL', None):
+elif use_cloud_sql and "True" in use_cloud_sql:
     print("using cloud sql db")
     # Running locally so connect to either a local MySQL instance or connect to
     # Cloud SQL via the proxy. To start the proxy via command line:
