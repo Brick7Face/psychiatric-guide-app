@@ -3,21 +3,28 @@
 {% load static %} <!-- loads in static css file  application/static/application-->
 
 {% block css %}
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jointjs/2.1.0/joint.css" />
-    <link rel="stylesheet" type="text/css" href="{% static 'application/algorithm.css' %}">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jointjs/2.1.0/joint.css"/>
+<link rel="stylesheet" type="text/css" href="{% static 'application/algorithm.css' %}">
 {% endblock css %}
 
 {% block body %}
-    <!-- content -->
-    <div id="algorithm-wrapper"></div>
+<!-- content -->
 
-    <!-- dependencies -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jointjs/2.1.0/joint.js"></script>
+<button id="set-button">Set Layout</button>
+<div id="canvas-wrapper">
+    <div id="canvas"></div>
+</div>
+<p id="steps" hidden>{{ steps }}</p>
+<form id="form" method="post" hidden>
+    {% csrf_token %}
+</form>
 
-    <!-- main script -->
-    <p id="steps">{{ steps }}</p>
-    <script src="{% static 'application/algorithm.js' %}"></script>
+<!-- dependencies -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jointjs/2.1.0/joint.js"></script>
+
+<!-- main script -->
+<script src="{% static 'application/algorithm.js' %}"></script>
 {% endblock body %}

@@ -252,7 +252,19 @@ def algorithm(request):
         step = step['fields']
         steps[id] = step
     steps = json.dumps(steps)
-    return render(request, 'application/algorithm.html', {'title': 'Algorithm', 'steps': steps})
+
+    if request.method == 'POST':
+        # Set Step's coordinates in the database
+        new_steps = json.loads(request.POST['steps'])
+        for step in Step.objects.all():
+            new_step = new_steps[str(step.id)]
+            step.x = new_step['x']
+            step.y = new_step['y']
+            step.save()
+
+        return redirect('algorithm')
+    else:
+        return render(request, 'application/algorithm.html', {'title': 'Algorithm', 'steps': steps})
 
 
 def pocket_guide(request):
