@@ -31,12 +31,11 @@ function draw() {
     for (var key in steps) {
         var step = steps[key];
         var rect = new joint.shapes.standard.Rectangle();
-        var width;
+        var width = 150;
         var height = 100;
-        if (step.description.length > 100) {
+        if (step.description.length > 70) {
             width = 250;
-        } else {
-            width = 150;
+            height = 150;
         }
         var text = joint.util.breakText(step.description, {
             width: width - 50
@@ -50,7 +49,7 @@ function draw() {
             label: {
                 text: text,
                 fill: 'white',
-                fontSize: 12
+                fontSize: 14
             }
         });
         rects[key] = rect;
