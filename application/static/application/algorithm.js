@@ -1,5 +1,13 @@
-var button = $("#set-button")[0];
-button.addEventListener("click", setLayout);
+var edit_button = $("#edit-button");
+edit_button[0].addEventListener("click", editLayout);
+
+var save_button = $("#save-button");
+save_button[0].addEventListener("click", setLayout);
+
+var cancel_button = $("#cancel-button");
+cancel_button[0].addEventListener("click", cancelLayout);
+
+var loading_icon = $("#loading-icon");
 
 var graph = new joint.dia.Graph;
 
@@ -14,7 +22,8 @@ var paper = new joint.dia.Paper({
     width: 1000,
     height: 1000,
     gridSize: 1,
-    restrictTranslate: true
+    restrictTranslate: true,
+    interactive: false
 });
 
 var scale = Math.min(canvas_width / 1000, canvas_height / 1000);
@@ -73,8 +82,25 @@ function draw() {
     }
 }
 
+function editLayout() {
+    edit_button.hide();
+    cancel_button.show();
+    save_button.show();
+    paper.setInteractivity(true);
+}
+
+function cancelLayout() {
+    cancel_button.hide();
+    save_button.hide();
+    location.reload();
+    loading_icon.show();
+}
+
 function setLayout() {
-    console.log("setting layout");
+    paper.setInteractivity(false);
+    save_button.hide();
+    cancel_button.hide();
+    loading_icon.show();
     for (var key in steps) {
         var new_step = steps[key];
         var position = rects[key].get('position');
@@ -82,7 +108,7 @@ function setLayout() {
         new_step.y = position.y;
         steps[key] = new_step;
     }
-    var new_steps = JSON.stringify(steps)
+    var new_steps = JSON.stringify(steps);
 
     var form = $("#form");
 

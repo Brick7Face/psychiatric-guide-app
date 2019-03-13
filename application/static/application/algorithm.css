@@ -18,12 +18,33 @@ body .content_container {
     margin: 0 auto;
 }
 
-button {
+#edit-menu {
+    top: .5vw;
+    left: .5vw;
+    position: absolute;
+}
+
+#edit-button {
     background-color: #00a0e3;
     color: white;
     text-align: center;
-    margin: 10px 0px 0px 10px;
-    top: 0;
-    left: 0;
-    position: absolute;
+}
+
+#cancel-button {
+    background-color: darkred;
+    color: white;
+    text-align: center;
+    display: none;
+}
+
+#save-button {
+    background-color: green;
+    color: white;
+    text-align: center;
+    display: none;
+}
+
+#loading-icon {
+    color: #00a0e3;
+    display: none;
 }
