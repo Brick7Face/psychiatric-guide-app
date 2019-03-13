@@ -12,6 +12,16 @@
     <div id="edit-menu">
         <button id="edit-button">Edit Layout</button>
         <button id="save-button">Save Layout</button>
+        <div id="link-dropdown">
+            <button id="dropdown-button">Link Type</button>
+            <div id="dropdown-content">
+                <button onclick="setRouter('normal')">Normal</button>
+                <button onclick="setRouter('manhattan')">Manhattan</button>
+                <button onclick="setRouter('metro')">Metro</button>
+                <button onclick="setRouter('orthogonal')">Orthogonal</button>
+                <button onclick="setRouter('oneSide')">One Side</button>
+            </div>
+        </div>
         <button id="cancel-button">Cancel</button>
         <div id="loading-icon">
             <i class="fas fa-spinner fa-pulse fa-2x"></i>

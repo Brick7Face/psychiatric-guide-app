@@ -7,6 +7,8 @@ save_button[0].addEventListener("click", setLayout);
 var cancel_button = $("#cancel-button");
 cancel_button[0].addEventListener("click", cancelLayout);
 
+var dropdown_button = $("#dropdown-button");
+
 var loading_icon = $("#loading-icon");
 
 var graph = new joint.dia.Graph;
@@ -33,6 +35,7 @@ var size = Math.min(canvas_width, canvas_height);
 paper.setDimensions(size, size);
 
 var rects = {};
+var links = [];
 
 draw();
 
@@ -77,6 +80,7 @@ function draw() {
                     }
                 }
             });
+            links.push(link);
             link.addTo(graph);
         }
     }
@@ -86,20 +90,23 @@ function editLayout() {
     edit_button.hide();
     cancel_button.show();
     save_button.show();
+    dropdown_button.show();
     paper.setInteractivity(true);
 }
 
 function cancelLayout() {
     cancel_button.hide();
     save_button.hide();
-    location.reload();
+    dropdown_button.hide();
     loading_icon.show();
+    location.reload();
 }
 
 function setLayout() {
     paper.setInteractivity(false);
     save_button.hide();
     cancel_button.hide();
+    dropdown_button.hide();
     loading_icon.show();
     for (var key in steps) {
         var new_step = steps[key];
@@ -123,4 +130,10 @@ function setLayout() {
     // The form needs to be a part of the document in
     // order for us to be able to submit it.
     form.submit();
+}
+
+function setRouter(type) {
+    links.forEach(function(link) {
+        link.router(type);
+    });
 }
