@@ -67,6 +67,7 @@ button {
 
 #dropdown-content button {
     display: block;
+    min-width: 100px;
 }
 
 #dropdown-content button:hover {
