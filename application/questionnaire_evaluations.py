@@ -96,16 +96,18 @@ class PHQ9:
     and tentative diagnosis 
     
     @param: A patients answers to the PHQ-9 questionnaire
-    @return: ??? 
+    @return: Integer 
     """
     def treatment_and_monitoring(self, answers):
         severity_score = int(0)
         for i in range(1, len(answers) + 1):
             severity_score += answers.get(i)
         return severity_score
-        #TODO: based on severity score print table from PHQ9 treatment and monitoring section 3
 
 
+    """
+    converts the results from the DB into a dictionary
+    """
     def convert_results(self, results):
         answers = {}
         for item in results.items():
@@ -127,8 +129,6 @@ class PHQ9:
         results_dictionary = {'diagnosis' : self.diagnosis(d1, d2, d3), 'change_treatment' : self.change_treatment(d1, d3),
                               'suicide_risk' : self.suicide_risk(answers), 'severity_score' : self.treatment_and_monitoring(answers)}
         return results_dictionary
-        # TODO: Monitoring – a change in the Severity Score of 5 or more
-        #  is considered clinically significant in assessing improvement of symptoms.
 
 
 class MDQ:
