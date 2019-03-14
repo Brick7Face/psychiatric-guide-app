@@ -13,7 +13,6 @@ var loading_icon = $("#loading-icon");
 
 var graph = new joint.dia.Graph;
 
-var steps = JSON.parse($("#steps").text());
 var container = $("#canvas-wrapper");
 var canvas_width = container.innerWidth();
 var canvas_height = container.innerHeight() - 50;
@@ -24,6 +23,9 @@ var paper = new joint.dia.Paper({
     width: 1000,
     height: 1000,
     gridSize: 1,
+    background: {
+        color: "#F1F9FF"
+    },
     restrictTranslate: true,
     interactive: false
 });
@@ -133,7 +135,7 @@ function setLayout() {
 }
 
 function setRouter(type) {
-    links.forEach(function(link) {
+    links.forEach(function (link) {
         link.router(type);
     });
 }
