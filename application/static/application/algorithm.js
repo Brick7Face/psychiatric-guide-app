@@ -41,7 +41,7 @@ function draw() {
     for (var key in steps) {
         var step = steps[key];
         var rect = new joint.shapes.standard.Rectangle();
-        var width = 150;
+        var width = 200;
         var height = 100;
         if (step.description.length > 70) {
             width = 250;
