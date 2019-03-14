@@ -245,7 +245,18 @@ def treatment_overview(request):
 
 @login_required
 def algorithm(request):
-    raw_steps = serializers.serialize('python', Treatment.objects.get(name="Depression").steps.all().order_by('id'))
+    alg = request.GET.get('algorithm', None)
+    print("GET algorithm:", alg)
+    if alg:
+        request.session['algorithm'] = alg
+        print("Saving session algorithm:", alg)
+    elif request.session.get('algorithm', None):
+        alg = request.session['algorithm']
+        print("Getting session algorithm:", alg)
+    else:
+        alg = "Depression"
+        print("Using default algorithm", alg)
+    raw_steps = serializers.serialize('python', Treatment.objects.get(name=alg).steps.all().order_by('id'))
     steps = {}
     for step in raw_steps:
         id = step['pk']
@@ -256,7 +267,7 @@ def algorithm(request):
     if request.method == 'POST':
         # Set Step's coordinates in the database
         new_steps = json.loads(request.POST['steps'])
-        for step in Treatment.objects.get(name="Depression").steps.all().order_by('id'):
+        for step in Treatment.objects.get(name=alg).steps.all().order_by('id'):
             new_step = new_steps[str(step.id)]
             step.x = new_step['x']
             step.y = new_step['y']

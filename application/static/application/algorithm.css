@@ -46,14 +46,23 @@ button {
 
 #loading-icon {
     color: #00a0e3;
+    position: absolute;
     display: none;
+}
+
+#algorithm-dropdown {
+    display: inline-block;
+}
+
+#algorithm-dropdown #dropdown-button {
+    display: block;
 }
 
 #link-dropdown {
     display: inline-block;
 }
 
-#dropdown-button {
+#link-dropdown #dropdown-button {
     display: none;
 }
 
@@ -67,17 +76,17 @@ button {
 
 #dropdown-content button {
     display: block;
-    min-width: 100px;
+    min-width: 150px;
 }
 
 #dropdown-content button:hover {
     background-color: #444444;
 }
 
-#link-dropdown:hover #dropdown-content {
+#link-dropdown:hover #dropdown-content, #algorithm-dropdown:hover #dropdown-content {
     display: block;
 }
 
-#link-dropdown:hover #dropdown-button {
+#link-dropdown:hover #dropdown-button, #algorithm-dropdown:hover #dropdown-button {
     background-color: #444444;
 }

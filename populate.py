@@ -66,8 +66,8 @@ def populate():
     bmstep5 = add_step('bm5', 'Try different agent as monotherapy', 'Non-Response', bmstep3)
     bmstep6 = add_step('bm6',
                        'Try combinations not already used in previous including use of oxcarbazepine (avoid use of two antipsychotics)',
-                       '', bmstep4)
-    bmstep7 = add_step('bm7', '', '', bmstep6)
+                       'Partial or Non-Response', bmstep4)
+    bmstep7 = add_step('bm7', 'Refer to a psychiatrist', 'Partial or Non-Response', bmstep6)
     add_treatment('Bipolar Manic', bmstep1, bmstep2, bmstep3, bmstep4, bmstep5, bmstep6, bmstep7)
 
     # add medications - SSRI's

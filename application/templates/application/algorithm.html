@@ -10,8 +10,16 @@
 {% block body %}
     <!-- content -->
     <div id="edit-menu">
-        <button id="edit-button">Edit Layout</button>
-        <button id="save-button">Save Layout</button>
+        <button id="edit-button" onclick="editLayout()">Edit Layout</button>
+        <div id="algorithm-dropdown">
+            <button id="dropdown-button">Select Algorithm</button>
+            <div id="dropdown-content">
+                <button onclick="changeAlgorithm('Depression')">Depression</button>
+                <button onclick="changeAlgorithm('Bipolar Depressed')">Bipolar Depressed</button>
+                <button onclick="changeAlgorithm('Bipolar Manic')">Bipolar Manic</button>
+            </div>
+        </div>
+        <button id="save-button" onclick="setLayout()">Save Layout</button>
         <div id="link-dropdown">
             <button id="dropdown-button">Link Type</button>
             <div id="dropdown-content">
@@ -22,7 +30,7 @@
                 <button onclick="setRouter('oneSide')">One Side</button>
             </div>
         </div>
-        <button id="cancel-button">Cancel</button>
+        <button id="cancel-button" onclick="cancelLayout()">Cancel</button>
         <div id="loading-icon">
             <i class="fas fa-spinner fa-pulse fa-2x"></i>
         </div>

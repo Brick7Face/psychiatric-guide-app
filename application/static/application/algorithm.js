@@ -1,21 +1,17 @@
 var edit_button = $("#edit-button");
-edit_button[0].addEventListener("click", editLayout);
-
 var save_button = $("#save-button");
-save_button[0].addEventListener("click", setLayout);
-
 var cancel_button = $("#cancel-button");
-cancel_button[0].addEventListener("click", cancelLayout);
-
-var dropdown_button = $("#dropdown-button");
-
+var link_button = $("#link-dropdown #dropdown-button");
+var link_dropdown = $("#link-dropdown");
+var algorithm_button = $("#algorithm-dropdown #dropdown-button");
+var algorithm_dropdown = $("#algorithm-dropdown");
 var loading_icon = $("#loading-icon");
-
-var graph = new joint.dia.Graph;
 
 var container = $("#canvas-wrapper");
 var canvas_width = container.innerWidth();
 var canvas_height = container.innerHeight() - 50;
+
+var graph = new joint.dia.Graph;
 
 var paper = new joint.dia.Paper({
     el: document.getElementById('canvas'),
@@ -90,16 +86,19 @@ function draw() {
 
 function editLayout() {
     edit_button.hide();
+    algorithm_button.hide();
     cancel_button.show();
     save_button.show();
-    dropdown_button.show();
+    link_button.show();
     paper.setInteractivity(true);
 }
 
 function cancelLayout() {
     cancel_button.hide();
     save_button.hide();
-    dropdown_button.hide();
+    link_button.hide();
+    link_dropdown.hide();
+    algorithm_dropdown.hide();
     loading_icon.show();
     location.reload();
 }
@@ -108,7 +107,9 @@ function setLayout() {
     paper.setInteractivity(false);
     save_button.hide();
     cancel_button.hide();
-    dropdown_button.hide();
+    link_button.hide();
+    link_dropdown.hide();
+    algorithm_dropdown.hide();
     loading_icon.show();
     for (var key in steps) {
         var new_step = steps[key];
@@ -129,8 +130,6 @@ function setLayout() {
 
     form.append(field);
 
-    // The form needs to be a part of the document in
-    // order for us to be able to submit it.
     form.submit();
 }
 
@@ -138,4 +137,19 @@ function setRouter(type) {
     links.forEach(function (link) {
         link.router(type);
     });
+}
+
+function changeAlgorithm(algorithm) {
+    var form = $("#form");
+    form.attr("method", "get");
+
+    var field = $('<input></input>');
+
+    field.attr("type", "hidden");
+    field.attr("name", "algorithm");
+    field.attr("value", algorithm);
+
+    form.append(field);
+
+    form.submit();
 }
