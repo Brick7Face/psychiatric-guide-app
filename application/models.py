@@ -16,7 +16,7 @@ class Step(models.Model):
 
     # Metadata
     class Meta:
-        ordering = ['id']
+        ordering = ['name']
 
     # Methods
     def get_absolute_url(self):
