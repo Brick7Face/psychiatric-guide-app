@@ -13,7 +13,7 @@ from django.core import serializers
 from django.template.defaulttags import register
 from django.views.generic import UpdateView
 
-from application.models import Prescriber, Step, Patient
+from application.models import Prescriber, Step, Patient, Treatment
 from application.models import Phq9 as phq9_db
 from django import forms
 from django.contrib.auth.decorators import login_required
@@ -245,7 +245,7 @@ def treatment_overview(request):
 
 @login_required
 def algorithm(request):
-    raw_steps = serializers.serialize('python', Step.objects.all().order_by('id'))
+    raw_steps = serializers.serialize('python', Treatment.objects.get(name="Depression").steps.all().order_by('id'))
     steps = {}
     for step in raw_steps:
         id = step['pk']

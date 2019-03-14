@@ -10,22 +10,22 @@ def populate():
     print('Populating database...\n')
 
     Step.objects.all().delete()
-    dstep1 = add_step('Diagnosis of Depression', '', None)
-    dstep2 = add_step(
-        'Initial therapy with citalopram or sertraline (unless compelling indication for alternate agent) Address side effects and encourage adherence in 1 week. Evaluate response in 3-4 weeks',
-        '', dstep1)
-    dstep3 = add_step('Ensure medication adherence\n\nOptimize dose OR switch (alternate SSRI or non-SSRI',
+    dstep1 = add_step('d1', 'Diagnosis of Depression', '', None)
+    dstep2 = add_step('d2',
+                      'Initial therapy with citalopram or sertraline (unless compelling indication for alternate agent) Address side effects and encourage adherence in 1 week. Evaluate response in 3-4 weeks',
+                      '', dstep1)
+    dstep3 = add_step('d3', 'Ensure medication adherence\n\nOptimize dose OR switch (alternate SSRI or non-SSRI)',
                       'Non Response', dstep2)
-    dstep4 = add_step('Optimize dose OR augment', 'Partial Response', dstep2)
-    dstep5 = add_step('Continue same treatment for at least 4-9 months', 'Full Response', dstep2)
-    dstep6 = add_step('Evaluate Response in 3-4 weeks', '', dstep3)
-    dstep7 = add_step('Evaluate Response in 3-4 weeks', '', dstep4)
-    dstep8 = add_step('Switch to a different antidepressant (SSRI or non-SSRI)', 'Non Response', dstep6)
-    dstep9 = add_step('Optimize dose OR augment OR switch', 'Partial Response', dstep6)
-    dstep10 = add_step('Continue same treatment for at least 4-9 months', 'Full Response', dstep6)
-    dstep11 = add_step('Switch to a different antidepressant (SSRI or non-SSRI)', 'Non Response', dstep7)
-    dstep12 = add_step('Optimize dose OR augment OR switch', 'Partial Response', dstep7)
-    dstep13 = add_step('Continue same treatment for at least 4-9 months', 'Full Response', dstep7)
+    dstep4 = add_step('d4', 'Optimize dose OR augment', 'Partial Response', dstep2)
+    dstep5 = add_step('d5', 'Continue same treatment for at least 4-9 months', 'Full Response', dstep2)
+    dstep6 = add_step('d6', 'Evaluate Response in 3-4 weeks', '', dstep3)
+    dstep7 = add_step('d7', 'Evaluate Response in 3-4 weeks', '', dstep4)
+    dstep8 = add_step('d8', 'Switch to a different antidepressant (SSRI or non-SSRI)', 'Non Response', dstep6)
+    dstep9 = add_step('d9', 'Optimize dose OR augment OR switch', 'Partial Response', dstep6)
+    dstep10 = add_step('d10', 'Continue same treatment for at least 4-9 months', 'Full Response', dstep6)
+    dstep11 = add_step('d11', 'Switch to a different antidepressant (SSRI or non-SSRI)', 'Non Response', dstep7)
+    dstep12 = add_step('d12', 'Optimize dose OR augment OR switch', 'Partial Response', dstep7)
+    dstep13 = add_step('d13', 'Continue same treatment for at least 4-9 months', 'Full Response', dstep7)
 
     # add depression treatment, linking to steps
     Treatment.objects.all().delete()
@@ -122,8 +122,9 @@ def populate():
 
 
 # add a step to database, with name and descriptions as strings
-def add_step(text, transition, previous_step):
-    s, created = Step.objects.get_or_create(description=text, transition=transition, previous_step=previous_step)
+def add_step(name, description, transition, previous_step):
+    s, created = Step.objects.get_or_create(name=name, description=description, transition=transition,
+                                            previous_step=previous_step)
 
     print('- Step: {0}, Created: {1}'.format(str(s), str(created)))
     return s
