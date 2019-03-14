@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 from django.template.defaulttags import register
 from django.views.generic import UpdateView
 
-from application.models import Prescriber, Step, Patient
+from application.models import Prescriber, Step, Patient, MDQ
 from application.models import Phq9 as phq9_db
 from django import forms
 from django.contrib.auth.decorators import login_required
@@ -65,9 +65,11 @@ class CreateUser(UserCreationForm):  # Class for the user generation form
             'is_superuser': 'Allows this user to create, modify, edit, and delete other users and their information.'
         }
 
+
 @login_required  # If user is not logged in, they are redirected to the login page.
 def backend_home(request):
     return render(request, 'application/backend-home.html', {'title': 'Home'})  # Renders login.html
+
 
 @login_required  # If user is not logged in, they are redirected to the login page.
 def patients(request):
@@ -107,6 +109,7 @@ def patient_home(request):
                        'patient': Patient.objects.get(id=patient_id),
                        'phq9s': phq9_db.objects.filter(patient_id=patient_id)})  # Renders login.html
 
+
 @login_required  # If user is not logged in, they are redirected to the login page.
 def phq9_results(request):
     print("TEST ", phq9_db.objects.last().diagnosis)
@@ -136,61 +139,134 @@ def phq9_results(request):
 def documentation(request):
     return render(request, 'application/documentation.html', {'title': 'Documentation'})  # Renders login.html
 
+
 @login_required  # If user is not logged in, they are redirected to the login page.
 def survey(request):
     if request.method == 'POST':
-        # TODO: calculate calculate and save results here
+        print(request.POST)
         results = dict(request.POST)
-
         results.pop('csrfmiddlewaretoken', '')
-        phq9 = PHQ9()
-        # returns dictionary {diag : bool, change treat : bool, suicide : bool, score : int}
-        dic = phq9.phq9_evaluation(results)
-        phq9 = phq9_db.objects.create(question_1=results.get(str(1))[0],
-                                      question_2=results.get(str(2))[0],
-                                      question_3=results.get(str(3))[0],
-                                      question_4=results.get(str(4))[0],
-                                      question_5=results.get(str(5))[0],
-                                      question_6=results.get(str(6))[0],
-                                      question_7=results.get(str(7))[0],
-                                      question_8=results.get(str(8))[0],
-                                      question_9=results.get(str(9))[0],
-                                      question_10=results.get(str(10))[0],
-                                      diagnosis=dic.get("diagnosis"),
-                                      severity_score=dic.get("severity_score"),
-                                      change_treatment=dic.get("change_treatment"),
-                                      suicide_risk=dic.get("suicide_risk")
-                                      )
-
-        request.session['phq9_id'] = phq9.id
-
-        return render(request, 'application/survey-complete.html', {'title': "Survey Complete"})
-
+        return process_phq9(request, results)
     else:
-        introduction = "Over the past 2 weeks, how often have you been bothered by any of the following problems?"
-        choices1 = ["Not at all", "Several days", "More than half the days", "Nearly every day"]
-        choices2 = ["Not difficult at all", "Somewhat difficult", "Very difficult", "Extremely difficult"]
-        questions = [
-            ["Little interest or pleasure in doing things?", choices1],
-            ["Feeling down, depressed or hopeless?", choices1],
-            ["Trouble falling or staying asleep, or sleeping too much?", choices1],
-            ["Feeling tired or having little energy?", choices1],
-            ["Poor appetite or overeating?", choices1],
-            ["Feeling bad about yourself or that you are a failure or have let yourself or your family down?",
-             choices1],
-            ["Trouble concentrating on things, such as reading the newspaper or watching television?", choices1],
-            [
-                "Moving or speaking so slowly that other people could have noticed? Or so fidgety or restless that you have been moving a lot more than usual?",
-                choices1],
-            ["Thoughts that you would be better off dead, or thoughts of hurting yourself in some way?", choices1],
-            [
-                "How difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?",
-                choices2]
-        ]
+        return get_phq9(request)
 
-        return render(request, 'application/survey.html', {'title': 'Survey',
-                                                           'introduction': introduction,
-                                                           'questions': questions})
+
+def get_phq9(request):
+    introduction = "Over the past 2 weeks, how often have you been bothered by any of the following problems?"
+    choices1 = ["Not at all", "Several days", "More than half the days", "Nearly every day"]
+    choices2 = ["Not difficult at all", "Somewhat difficult", "Very difficult", "Extremely difficult"]
+    questions = [
+        ["Little interest or pleasure in doing things?", choices1],
+        ["Feeling down, depressed or hopeless?", choices1],
+        ["Trouble falling or staying asleep, or sleeping too much?", choices1],
+        ["Feeling tired or having little energy?", choices1],
+        ["Poor appetite or overeating?", choices1],
+        ["Feeling bad about yourself or that you are a failure or have let yourself or your family down?",
+         choices1],
+        ["Trouble concentrating on things, such as reading the newspaper or watching television?", choices1],
+        [
+            "Moving or speaking so slowly that other people could have noticed? Or so fidgety or restless that you have been moving a lot more than usual?",
+            choices1],
+        ["Thoughts that you would be better off dead, or thoughts of hurting yourself in some way?", choices1],
+        [
+            "How difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?",
+            choices2]
+    ]
+
+    return render(request, 'application/survey.html', {'title': 'PHQ-9',
+                                                       'introduction': introduction,
+                                                       'questions': questions})
+
+
+def process_phq9(request, results):
+    phq9 = PHQ9()
+    # returns dictionary {diag : bool, change treat : bool, suicide : bool, score : int}
+    dic = phq9.phq9_evaluation(results)
+    phq9 = phq9_db.objects.create(question_1=results.get(str(1))[0],
+                                  question_2=results.get(str(2))[0],
+                                  question_3=results.get(str(3))[0],
+                                  question_4=results.get(str(4))[0],
+                                  question_5=results.get(str(5))[0],
+                                  question_6=results.get(str(6))[0],
+                                  question_7=results.get(str(7))[0],
+                                  question_8=results.get(str(8))[0],
+                                  question_9=results.get(str(9))[0],
+                                  question_10=results.get(str(10))[0],
+                                  diagnosis=dic.get("diagnosis"),
+                                  severity_score=dic.get("severity_score"),
+                                  change_treatment=dic.get("change_treatment"),
+                                  suicide_risk=dic.get("suicide_risk")
+                                  )
+
+    request.session['phq9_id'] = phq9.id
+
+    return render(request, 'application/survey-complete.html', {'title': "Survey Complete"})
+
+
+def get_mdq(request):
+    introduction = "Has there ever been a period of time when you were not your usual self and..."
+    choices1 = ["No", "Yes"]
+    choices2 = ["No Problems", "Minor Problem", "Moderate Problem", "Serious Problem"]
+    questions = [
+        [
+            "...you felt so good or so hyper that other people thought you were not your normal self or you were so hyper that you got into trouble?",
+            choices1],
+        ["...you were so irritable that you shouted at people or started fights or arguments?", choices1],
+        ["...you felt much more self-confident than usual?", choices1],
+        ["...you got much less sleep than usual and found that you didn't really miss it?", choices1],
+        ["...you were more talkative or spoke much faster than usual?", choices1],
+        ["...thoughts raced through your head or you couldn't slow your mind down?", choices1],
+        ["...you were so easily distracted by things around you that you had trouble concentrating or staying on track",
+         choices1],
+        ["...you had more energy than normal?", choices1],
+        ["...you were much more active or did many more things than usual?", choices1],
+        [
+            "...you were much more social or outgoing that usual, for example you telephoned friends in the middle of the night?",
+            choices1],
+        ["...you were much more interested in sex than usual?", choices1],
+        [
+            "...you did things that were unusual for you or that other people might have thought were excessive, foolish or risky?",
+            choices1],
+        ["...spending money got you or your family in trouble?", choices1],
+        [
+            "If you checked YES to more than one of the above, have several of these ever happened during the same period of time?",
+            choices1],
+        [
+            "How much of a problem did any of these cause you - like being unable to work; having family, money or legal troubles; getting into arguments or fights?",
+            choices2],
+    ]
+
+    return render(request, 'application/survey.html', {'title': 'MDQ',
+                                                       'introduction': introduction,
+                                                       'questions': questions})
+
+
+def process_mdq(request, results):
+    # TODO process mdq results
+    diagnosis = True
+
+    mdq = MDQ.objects.create(question_1=results.get(bool(1))[0],
+                             question_2=results.get(bool(2))[0],
+                             question_3=results.get(bool(3))[0],
+                             question_4=results.get(bool(4))[0],
+                             question_5=results.get(bool(5))[0],
+                             question_6=results.get(bool(6))[0],
+                             question_7=results.get(bool(7))[0],
+                             question_8=results.get(bool(8))[0],
+                             question_9=results.get(bool(9))[0],
+                             question_10=results.get(bool(10))[0],
+                             question_11=results.get(bool(11))[0],
+                             question_12=results.get(bool(12))[0],
+                             question_13=results.get(bool(13))[0],
+                             question_14=results.get(bool(14))[0],
+                             question_15=results.get(bool(15))[0],
+                             diagnosis=diagnosis,
+                             )
+
+    request.session['mdq_id'] = mdq.id
+
+    return render(request, 'application/survey-complete.html', {'title': "Survey Complete"})
+
 
 @login_required  # If user is not logged in, they are redirected to the login page.
 def medications(request):
@@ -217,6 +293,7 @@ class CreatePatientForm(forms.ModelForm):
         fields = ['first_name', 'last_name', 'dob', 'address', 'email', 'phone', 'current_step',
                   'next_visit', 'notes']
 
+
 @login_required  # If user is not logged in, they are redirected to the login page.
 def new_patient(request):
     if request.method == 'POST':
@@ -229,9 +306,11 @@ def new_patient(request):
         new_patient_form = CreatePatientForm()
     return render(request, 'application/new-patient.html', {'new_patient_form': new_patient_form})
 
+
 @login_required  # If user is not logged in, they are redirected to the login page.
 def treatment_overview(request):
     return render(request, 'application/treatment-overview.html', {'title': 'Treatment Overview'})
+
 
 def pocket_guide(request):
     return render(request, 'application/pocket_guide.pdf', {'title': 'Pocket Guide'})
