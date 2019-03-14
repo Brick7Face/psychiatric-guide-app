@@ -256,7 +256,7 @@ def algorithm(request):
     if request.method == 'POST':
         # Set Step's coordinates in the database
         new_steps = json.loads(request.POST['steps'])
-        for step in Step.objects.all():
+        for step in Treatment.objects.get(name="Depression").steps.all().order_by('id'):
             new_step = new_steps[str(step.id)]
             step.x = new_step['x']
             step.y = new_step['y']
