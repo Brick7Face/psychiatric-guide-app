@@ -7,30 +7,31 @@
 {% endblock css %}
 
 {% block body %}
-    <div id="patient_home_wrapper">
-      <h2>
-        <a href="{% url 'patients' %}" class="go_back">< Go Back</a>
-      </h2>
-      <div class="patient_home_content">
-        <h1>Profile: {{ patient.first_name }} {{ patient.last_name }} </h1>
-        <button class="edit-button" type="submit">Edit Patient</button>
 
-        <div class="flex-container" >
-            <div id="box1" style="flex-grow: 1" >
-                <div class="title"> personal information </div>
+    <div id="patient_home_wrapper">
+        <h2>
+            <a href="{% url 'patients' %}" class="go_back">< Go Back</a>
+        </h2>
+        <div class="patient_home_content">
+            <h1>Profile: {{ patient.first_name }} {{ patient.last_name }} </h1>
+            <button class="edit-button" type="submit">Edit Patient</button>
+
+            <div class="flex-container">
+                <div id="box1" style="flex-grow: 1">
+                    <div class="title"> personal information</div>
                     <h2 id="dob">Date of Birth</h2>
-                        <h3>{{ patient.dob }}</h3>
+                    <h3>{{ patient.dob }}</h3>
 
                     <h2 id="program"> Program</h2>
-                        <h3> Depression </h3>
+                    <h3> Depression </h3>
 
                     <h2 id="contact-info"> Contact Information</h2>
-                        <h3 id="address">Address: {{ patient.address }}</h3>
-                        <h3 id="phone"> Phone: {{ patient.phone }} </h3>
-            </div>
+                    <h3 id="address">Address: {{ patient.address }}</h3>
+                    <h3 id="phone"> Phone: {{ patient.phone }} </h3>
+                </div>
 
-            <div id="table" style="flex-grow: 6">
-                <div class="title"> Patient Data </div>
+                <div id="table" style="flex-grow: 6">
+                    <div class="title"> Patient Data</div>
                     <h2>Visit History</h2>
                     <hr>
                     {% for phq9 in phq9s %}
@@ -38,10 +39,10 @@
                     {% endfor %}
                     <h2>Next Visit Data</h2>
                     <hr>
-                        <h3>some dates</h3>
+                    <h3>some dates</h3>
 
-                {% if phq9s %}
-                        {%  for phq9 in phq9s %}
+                    {% if phq9s %}
+                        {% for phq9 in phq9s %}
                             {% if forloop.last %}
                                 {% if phq9.change_treatment %}
                                     <h2>Current Treatment </h2>
@@ -53,17 +54,17 @@
                                 {% endif %}
                             {% endif %}
                         {% endfor %}
-                {% else %}
-                    <h2>Current Treatment:</h2>
-                    <hr>
-                {% endif %}
-                        <h3>{{ patient.current_step.name }}</h3>
+                    {% else %}
+                        <h2>Current Treatment:</h2>
+                        <hr>
+                    {% endif %}
+                    <h3>{{ patient.current_step.name }}</h3>
 
                     <h2>Medications</h2>
                     <hr>
-                        {% for medication in patient.medications.all %}
-                            <h3>{{ medication }}</h3>
-                        {% endfor %}
+                    {% for medication in patient.medications.all %}
+                        <h3>{{ medication }}</h3>
+                    {% endfor %}
 
                     <h2 id="phq9">PHQ-9 Results </h2>
                     <form method="post">
@@ -73,39 +74,39 @@
                     </form>
 
                     <hr>
-                        {% if phq9s %}
-                            <div style="overflow-x:auto;">
-                                <table style="width: 100%">
+                    {% if phq9s %}
+                        <div style="overflow-x:auto;">
+                            <table style="width: 100%">
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Severity Score</th>
+                                </tr>
+                                {% for phq9 in phq9s %}
                                     <tr>
-                                        <th>Date</th>
-                                        <th>Severity Score</th>
+                                        <td>{{ phq9.date.date }}</td>
+                                        <td>{{ phq9.severity_score }}</td>
                                     </tr>
-                                    {% for phq9 in phq9s %}
-                                        <tr>
-                                            <td>{{ phq9.date.date }}</td>
-                                            <td>{{ phq9.severity_score }}</td>
-                                        </tr>
-                                    {% endfor %}
-                                </table>
-                            </div>
-                        {% else %}
-                            <h3>No results yet</h3>
-                        {% endif %}
+                                {% endfor %}
+                            </table>
+                        </div>
+                    {% else %}
+                        <h3>No results yet</h3>
+                    {% endif %}
 
 
                     <h2>Notes</h2>
                     <hr>
-                        {% if phq9s %}
-                            {%  for phq9 in phq9s %}
-                                {% if phq9.suicide_risk %}
-                                    <h3> {{ phq9.date.date }}: Assess for suicide risk </h3>
-                                {% endif %}
-                            {% endfor %}
-                        {% endif %}
-                        <h3>{{ patient.notes }}</h3>
+                    {% if phq9s %}
+                        {% for phq9 in phq9s %}
+                            {% if phq9.suicide_risk %}
+                                <h3> {{ phq9.date.date }}: Assess for suicide risk </h3>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    <h3>{{ patient.notes }}</h3>
+                </div>
             </div>
         </div>
-      </div>
     </div>
 
 {% endblock body %}
