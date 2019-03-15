@@ -125,7 +125,7 @@ def phq9_results(request):
     if request.method == 'POST':
         # add phq-9 results to the patient
         patient_id = request.session['patient_id']
-        phq9 = phq9_db.objects.get(id=request.session['phq9_id'])
+        phq9 = phq9_db.objects.get(id=request.session['survey_id'])
         phq9.patient_id = patient_id
         phq9.save()
         return redirect('patient-home')
@@ -199,7 +199,7 @@ def process_phq9(request, results):
                                   suicide_risk=dic.get("suicide_risk")
                                   )
 
-    request.session['phq9_id'] = phq9.id
+    request.session['survey_id'] = phq9.id
 
     return render(request, 'application/survey-complete.html', {'title': "Survey Complete"})
 
@@ -264,7 +264,7 @@ def process_mdq(request, results):
                              diagnosis=diagnosis,
                              )
 
-    request.session['mdq_id'] = mdq.id
+    request.session['survey_id'] = mdq.id
 
     return render(request, 'application/survey-complete.html', {'title': "Survey Complete"})
 
