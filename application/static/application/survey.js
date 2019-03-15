@@ -11,7 +11,6 @@ function showIntroduction() {
 
 function hideIntroduction() {
     var introduction = document.getElementsByClassName("question introduction")[0];
-    console.log(introduction);
     introduction.style.display = "none";
     showQuestion(questionIndex);
 }
@@ -22,7 +21,6 @@ function updateQuestion(n) {
 }
 
 function showQuestion(n) {
-    console.log("showing questions");
     var i;
     questions = document.getElementsByClassName("question");
     if (n > questions.length) {
@@ -34,16 +32,23 @@ function showQuestion(n) {
     for (i = 0; i < questions.length; i++) {
         questions[i].style.display = "none";
     }
-    questions[questionIndex-1].style.display = "block";
+    var question = questions[questionIndex - 1];
+    question.style.display = "block";
+
+    // set width of choices based on how many choices there are
+    var choices = question.querySelector("#choice-container").children;
+    var width = (100 / choices.length).toString() + "%";
+    for (let choice of choices) {
+        choice.style.width = width;
+    }
 }
 
 function showNext() {
-    var next = questions[questionIndex-1].querySelector(".next-button");
-    var submit = questions[questionIndex-1].querySelector(".submit-button");
+    var next = questions[questionIndex - 1].querySelector(".next-button");
+    var submit = questions[questionIndex - 1].querySelector(".submit-button");
     if (next != null) {
         next.disabled = false;
-    }
-    else if (submit != null) {
+    } else if (submit != null) {
         submit.disabled = false;
     }
 }
