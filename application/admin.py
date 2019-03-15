@@ -8,3 +8,6 @@ admin.site.register(Prescriber)
 admin.site.register(Treatment)
 admin.site.register(Phq9)
 
+class MyModelAdmin(admin.ModelAdmin):
+    change_form_template = '/application/templates/admin/custom_change_template.html'
+
