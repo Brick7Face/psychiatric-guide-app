@@ -112,31 +112,6 @@ def patient_home(request):
                        'phq9s': phq9_db.objects.filter(patient_id=patient_id)})  # Renders login.html
 
 
-@login_required  # If user is not logged in, they are redirected to the login page.
-def phq9_results(request):
-    dict = {'diagnosis': phq9_db.objects.last().diagnosis, 'change_treatment': phq9_db.objects.last().change_treatment,
-            'suicide_risk': phq9_db.objects.last().suicide_risk,
-            'severity_score': phq9_db.objects.last().severity_score}
-    return render(request, 'application/phq9-results.html', dict)  # Renders login.html
-
-
-@login_required
-def phq9_results(request):
-    if request.method == 'POST':
-        # add phq-9 results to the patient
-        patient_id = request.session['patient_id']
-        phq9 = phq9_db.objects.get(id=request.session['survey_id'])
-        phq9.patient_id = patient_id
-        phq9.save()
-        return redirect('patient-home')
-    else:
-        dict = {'diagnosis': phq9_db.objects.last().diagnosis,
-                'change_treatment': phq9_db.objects.last().change_treatment,
-                'suicide_risk': phq9_db.objects.last().suicide_risk,
-                'severity_score': phq9_db.objects.last().severity_score}
-        return render(request, 'application/phq9-results.html', dict)  # Renders login.html
-
-
 def documentation(request):
     return render(request, 'application/documentation.html', {'title': 'Documentation'})  # Renders login.html
 
@@ -150,6 +125,23 @@ def survey(request):
         return process_phq9(request, results)
     else:
         return get_phq9(request)
+
+
+@login_required
+def survey_results(request):
+    if request.method == 'POST':
+        # add phq-9 results to the patient
+        patient_id = request.session['patient_id']
+        phq9 = phq9_db.objects.get(id=request.session['survey_id'])
+        phq9.patient_id = patient_id
+        phq9.save()
+        return redirect('patient-home')
+    else:
+        dict = {'diagnosis': phq9_db.objects.last().diagnosis,
+                'change_treatment': phq9_db.objects.last().change_treatment,
+                'suicide_risk': phq9_db.objects.last().suicide_risk,
+                'severity_score': phq9_db.objects.last().severity_score}
+        return render(request, 'application/survey-results.html', dict)  # Renders login.html
 
 
 def get_phq9(request):
