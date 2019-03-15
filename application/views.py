@@ -275,7 +275,7 @@ def algorithm(request):
 
         return redirect('algorithm')
     else:
-        return render(request, 'application/algorithm.html', {'title': 'Algorithm', 'steps': steps})
+        return render(request, 'application/algorithm.html', {'title': 'Algorithm', 'algorithm': alg, 'steps': steps})
 
 
 def pocket_guide(request):
