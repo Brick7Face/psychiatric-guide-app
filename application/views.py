@@ -1,4 +1,5 @@
 import datetime
+import json
 import os
 
 from django.db.models import Model
@@ -8,10 +9,11 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.core import serializers
 from django.template.defaulttags import register
 from django.views.generic import UpdateView
 
-from application.models import Prescriber, Step, Patient, MDQ
+from application.models import Prescriber, Step, Patient, Treatment, MDQ
 from application.models import Phq9 as phq9_db
 from django import forms
 from django.contrib.auth.decorators import login_required
@@ -112,7 +114,6 @@ def patient_home(request):
 
 @login_required  # If user is not logged in, they are redirected to the login page.
 def phq9_results(request):
-    print("TEST ", phq9_db.objects.last().diagnosis)
     dict = {'diagnosis': phq9_db.objects.last().diagnosis, 'change_treatment': phq9_db.objects.last().change_treatment,
             'suicide_risk': phq9_db.objects.last().suicide_risk,
             'severity_score': phq9_db.objects.last().severity_score}
@@ -312,6 +313,37 @@ def treatment_overview(request):
     return render(request, 'application/treatment-overview.html', {'title': 'Treatment Overview'})
 
 
+@login_required
+def algorithm(request):
+    alg = request.GET.get('algorithm', None)
+    if alg:
+        request.session['algorithm'] = alg
+    elif request.session.get('algorithm', None):
+        alg = request.session['algorithm']
+    else:
+        alg = "Depression"
+    raw_steps = serializers.serialize('python', Treatment.objects.get(name=alg).steps.all().order_by('id'))
+    steps = {}
+    for step in raw_steps:
+        id = step['pk']
+        step = step['fields']
+        steps[id] = step
+    steps = json.dumps(steps)
+
+    if request.method == 'POST':
+        # Set Step's coordinates in the database
+        new_steps = json.loads(request.POST['steps'])
+        for step in Treatment.objects.get(name=alg).steps.all().order_by('id'):
+            new_step = new_steps[str(step.id)]
+            step.x = new_step['x']
+            step.y = new_step['y']
+            step.save()
+
+        return redirect('algorithm')
+    else:
+        return render(request, 'application/algorithm.html', {'title': 'Algorithm', 'algorithm': alg, 'steps': steps})
+
+
 def pocket_guide(request):
     return render(request, 'application/pocket_guide.pdf', {'title': 'Pocket Guide'})
 
@@ -321,7 +353,6 @@ def bug_report(request):
         if os.getenv('GAE_APPLICATION', None):
             report = request.POST['report']
             key = get_datastore_key('GITHUB_KEY')
-            print(key)
             g = Github(key)
             try:
                 repo = g.get_repo("Brick7Face/psychiatric-guide-app")
@@ -329,7 +360,6 @@ def bug_report(request):
                     "User Generated Report: " + str(datetime.datetime.now()),
                     body=report
                 )
-                print(issue.html_url)
                 messages.success(request, 'Bug report submitted.')
             except:
                 messages.error(request, 'An error occurred, please try again later.')
