@@ -3,7 +3,7 @@
 {% load static %} <!-- loads in static css file  application/static/application-->
 
 {% block css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'application/survey-results.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'application/phq9-results.css' %}">
 {% endblock css %}
 
 {% block body %}
@@ -91,6 +91,6 @@
     </div>
     <form method="post">
         {% csrf_token %}
-        <button class="btn btn-primary mt-4 btn-block" type="submit">add results to patient</button>
+        <button class="btn btn-primary mt-4 btn-block" type="submit">Add results to patient</button>
     </form>
 {% endblock body %}

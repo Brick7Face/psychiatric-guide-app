@@ -13,12 +13,14 @@ from django.core import serializers
 from django.template.defaulttags import register
 from django.views.generic import UpdateView
 
-from application.models import Prescriber, Step, Patient, Treatment, MDQ
+from application.models import Prescriber, Step, Patient, Treatment
 from application.models import Phq9 as phq9_db
+from application.models import MDQ as mdq_db
 from django import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from application.questionnaire_evaluations import PHQ9
+from application.questionnaire_evaluations import MDQ
 
 from google.cloud import datastore
 from github import Github
@@ -100,16 +102,20 @@ def get_item(dictionary, key):
 
 @login_required
 def patient_home(request):
-    if request.method == 'POST':
-        # take PHQ-9
-        request.session['patient_id'] = request.POST['patient_id']
-        return redirect('survey')
-    else:
-        patient_id = request.session["patient_id"]
-        return render(request, 'application/patient-home.html',
-                      {'title': 'Patient Home',
-                       'patient': Patient.objects.get(id=patient_id),
-                       'phq9s': phq9_db.objects.filter(patient_id=patient_id)})  # Renders login.html
+    if request.method == 'GET':
+        action = request.GET.get('action', None)
+        if action in ['phq9', 'mdq']:
+            # take either phq9 or mdq survey
+            request.session['patient_id'] = request.GET['patient_id']
+            request.session['survey_type'] = action
+            return redirect('survey')
+
+    patient_id = request.session["patient_id"]
+    return render(request, 'application/patient-home.html',
+                  {'title': 'Patient Home',
+                   'patient': Patient.objects.get(id=patient_id),
+                   'phq9s': phq9_db.objects.filter(patient_id=patient_id),
+                   'mdqs': mdq_db.objects.filter(patient_id=patient_id)})  # Renders login.html
 
 
 def documentation(request):
@@ -118,30 +124,52 @@ def documentation(request):
 
 @login_required  # If user is not logged in, they are redirected to the login page.
 def survey(request):
+    survey_type = request.session['survey_type']
     if request.method == 'POST':
-        print(request.POST)
         results = dict(request.POST)
         results.pop('csrfmiddlewaretoken', '')
-        return process_phq9(request, results)
+        print(results)
+
+        if survey_type == 'phq9':
+            return process_phq9(request, results)
+        elif survey_type == 'mdq':
+            return process_mdq(request, results)
     else:
-        return get_phq9(request)
+        if survey_type == 'phq9':
+            return get_phq9(request)
+        elif survey_type == 'mdq':
+            return get_mdq(request)
 
 
 @login_required
 def survey_results(request):
+    survey_type = request.session['survey_type']
     if request.method == 'POST':
-        # add phq-9 results to the patient
-        patient_id = request.session['patient_id']
-        phq9 = phq9_db.objects.get(id=request.session['survey_id'])
-        phq9.patient_id = patient_id
-        phq9.save()
+        if survey_type == 'phq9':
+            # add phq-9 results to the patient
+            patient_id = request.session['patient_id']
+            phq9 = phq9_db.objects.get(id=request.session['survey_id'])
+            phq9.patient_id = patient_id
+            phq9.save()
+        elif survey_type == 'mdq':
+            # add mdq results to the patient
+            patient_id = request.session['patient_id']
+            mdq = mdq_db.objects.get(id=request.session['survey_id'])
+            mdq.patient_id = patient_id
+            mdq.save()
         return redirect('patient-home')
     else:
-        dict = {'diagnosis': phq9_db.objects.last().diagnosis,
-                'change_treatment': phq9_db.objects.last().change_treatment,
-                'suicide_risk': phq9_db.objects.last().suicide_risk,
-                'severity_score': phq9_db.objects.last().severity_score}
-        return render(request, 'application/survey-results.html', dict)  # Renders login.html
+        if survey_type == 'phq9':
+            # display phq9 results
+            dict = {'diagnosis': phq9_db.objects.last().diagnosis,
+                    'change_treatment': phq9_db.objects.last().change_treatment,
+                    'suicide_risk': phq9_db.objects.last().suicide_risk,
+                    'severity_score': phq9_db.objects.last().severity_score}
+            return render(request, 'application/phq9-results.html', dict)
+        elif survey_type == 'mdq':
+            # display mdq results
+            dict = {}
+            return render(request, 'application/mdq-results.html', dict)
 
 
 def get_phq9(request):
@@ -235,26 +263,28 @@ def get_mdq(request):
 
 
 def process_mdq(request, results):
-    # TODO process mdq results
+    mdq = MDQ()
+
+    # TODO process mdq results and get diagnosis
     diagnosis = True
 
-    mdq = MDQ.objects.create(question_1=results.get(bool(1))[0],
-                             question_2=results.get(bool(2))[0],
-                             question_3=results.get(bool(3))[0],
-                             question_4=results.get(bool(4))[0],
-                             question_5=results.get(bool(5))[0],
-                             question_6=results.get(bool(6))[0],
-                             question_7=results.get(bool(7))[0],
-                             question_8=results.get(bool(8))[0],
-                             question_9=results.get(bool(9))[0],
-                             question_10=results.get(bool(10))[0],
-                             question_11=results.get(bool(11))[0],
-                             question_12=results.get(bool(12))[0],
-                             question_13=results.get(bool(13))[0],
-                             question_14=results.get(bool(14))[0],
-                             question_15=results.get(bool(15))[0],
-                             diagnosis=diagnosis,
-                             )
+    mdq = mdq_db.objects.create(question_1=results.get(str(1))[0],
+                                question_2=results.get(str(2))[0],
+                                question_3=results.get(str(3))[0],
+                                question_4=results.get(str(4))[0],
+                                question_5=results.get(str(5))[0],
+                                question_6=results.get(str(6))[0],
+                                question_7=results.get(str(7))[0],
+                                question_8=results.get(str(8))[0],
+                                question_9=results.get(str(9))[0],
+                                question_10=results.get(str(10))[0],
+                                question_11=results.get(str(11))[0],
+                                question_12=results.get(str(12))[0],
+                                question_13=results.get(str(13))[0],
+                                question_14=results.get(str(14))[0],
+                                question_15=results.get(str(15))[0],
+                                diagnosis=diagnosis,
+                                )
 
     request.session['survey_id'] = mdq.id
 
