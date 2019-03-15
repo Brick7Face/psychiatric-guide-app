@@ -114,7 +114,6 @@ def patient_home(request):
 
 @login_required  # If user is not logged in, they are redirected to the login page.
 def phq9_results(request):
-    print("TEST ", phq9_db.objects.last().diagnosis)
     dict = {'diagnosis': phq9_db.objects.last().diagnosis, 'change_treatment': phq9_db.objects.last().change_treatment,
             'suicide_risk': phq9_db.objects.last().suicide_risk,
             'severity_score': phq9_db.objects.last().severity_score}
@@ -246,16 +245,12 @@ def treatment_overview(request):
 @login_required
 def algorithm(request):
     alg = request.GET.get('algorithm', None)
-    print("GET algorithm:", alg)
     if alg:
         request.session['algorithm'] = alg
-        print("Saving session algorithm:", alg)
     elif request.session.get('algorithm', None):
         alg = request.session['algorithm']
-        print("Getting session algorithm:", alg)
     else:
         alg = "Depression"
-        print("Using default algorithm", alg)
     raw_steps = serializers.serialize('python', Treatment.objects.get(name=alg).steps.all().order_by('id'))
     steps = {}
     for step in raw_steps:
@@ -287,7 +282,6 @@ def bug_report(request):
         if os.getenv('GAE_APPLICATION', None):
             report = request.POST['report']
             key = get_datastore_key('GITHUB_KEY')
-            print(key)
             g = Github(key)
             try:
                 repo = g.get_repo("Brick7Face/psychiatric-guide-app")
@@ -295,7 +289,6 @@ def bug_report(request):
                     "User Generated Report: " + str(datetime.datetime.now()),
                     body=report
                 )
-                print(issue.html_url)
                 messages.success(request, 'Bug report submitted.')
             except:
                 messages.error(request, 'An error occurred, please try again later.')
