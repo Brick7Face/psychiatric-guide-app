@@ -5,17 +5,11 @@
 import os
 import datetime
 
-from django.utils import timezone
+from django.utils.timezone import make_aware
 
 
 def populate():
     print('Populating database...\n')
-
-    print('Deleting old objects...\n')
-    Step.objects.all().delete()
-    Treatment.objects.all().delete()
-    Medication.objects.all().delete()
-    Patient.objects.all().delete()
 
     # add depression steps and treatment
     dstep1 = add_step('d1', 'Diagnosis of Depression', '', None)
@@ -150,10 +144,12 @@ def populate():
                              'Headache, agitation, insomnia, somnolence, extrapyramidal symptoms, nausea, dyspepsia')
 
     print('\n' + ('=' * 80) + '\n')
+    aware_datetime = make_aware(datetime.datetime.min)
+
     add_patient('bp', 'plant', datetime.date.min, 'the ground', 'bp@email.com', '23456789', dstep1,
-                timezone.now(), 'he is great', abilify)
+                aware_datetime, 'he is great', abilify)
     add_patient('k', 'dub', datetime.date.min, 'fun road', 'kdub@email.com', '234543789', dstep1,
-                timezone.now(), 'she is the greatest', abilify)
+                aware_datetime, 'she is the greatest', abilify)
     print('\n' + ('=' * 80) + '\n')
 
 
