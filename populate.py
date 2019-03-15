@@ -5,34 +5,65 @@
 import os
 import datetime
 
+from django.utils.timezone import make_aware
+
 
 def populate():
     print('Populating database...\n')
 
-    Step.objects.all().delete()
-    dstep1 = add_step('Diagnosis of Depression', '', None)
-    dstep2 = add_step(
-        'Initial therapy with citalopram or sertraline (unless compelling indication for alternate agent) Address side effects and encourage adherence in 1 week. Evaluate response in 3-4 weeks',
-        '', dstep1)
-    dstep3 = add_step('Ensure medication adherence\n\nOptimize dose OR switch (alternate SSRI or non-SSRI',
+    # add depression steps and treatment
+    dstep1 = add_step('d1', 'Diagnosis of Depression', '', None)
+    dstep2 = add_step('d2',
+                      'Initial therapy with citalopram or sertraline (unless compelling indication for alternate agent) Address side effects and encourage adherence in 1 week. Evaluate response in 3-4 weeks',
+                      '', dstep1)
+    dstep3 = add_step('d3', 'Ensure medication adherence\n\nOptimize dose OR switch (alternate SSRI or non-SSRI)',
                       'Non Response', dstep2)
-    dstep4 = add_step('Optimize dose OR augment', 'Partial Response', dstep2)
-    dstep5 = add_step('Continue same treatment for at least 4-9 months', 'Full Response', dstep2)
-    dstep6 = add_step('Evaluate Response in 3-4 weeks', '', dstep3)
-    dstep7 = add_step('Evaluate Response in 3-4 weeks', '', dstep4)
-    dstep8 = add_step('Switch to a different antidepressant (SSRI or non-SSRI)', 'Non Response', dstep6)
-    dstep9 = add_step('Optimize dose OR augment OR switch', 'Partial Response', dstep6)
-    dstep10 = add_step('Continue same treatment for at least 4-9 months', 'Full Response', dstep6)
-    dstep11 = add_step('Switch to a different antidepressant (SSRI or non-SSRI)', 'Non Response', dstep7)
-    dstep12 = add_step('Optimize dose OR augment OR switch', 'Partial Response', dstep7)
-    dstep13 = add_step('Continue same treatment for at least 4-9 months', 'Full Response', dstep7)
-
-    # add depression treatment, linking to steps
-    Treatment.objects.all().delete()
+    dstep4 = add_step('d4', 'Optimize dose OR augment', 'Partial Response', dstep2)
+    dstep5 = add_step('d5', 'Continue same treatment for at least 4-9 months', 'Full Response', dstep2)
+    dstep6 = add_step('d6', 'Evaluate Response in 3-4 weeks', '', dstep3)
+    dstep7 = add_step('d7', 'Evaluate Response in 3-4 weeks', '', dstep4)
+    dstep8 = add_step('d8', 'Switch to a different antidepressant (SSRI or non-SSRI)', 'Non Response', dstep6)
+    dstep9 = add_step('d9', 'Optimize dose OR augment OR switch', 'Partial Response', dstep6)
+    dstep10 = add_step('d10', 'Continue same treatment for at least 4-9 months', 'Full Response', dstep6)
+    dstep11 = add_step('d11', 'Switch to a different antidepressant (SSRI or non-SSRI)', 'Non Response', dstep7)
+    dstep12 = add_step('d12', 'Optimize dose OR augment OR switch', 'Partial Response', dstep7)
+    dstep13 = add_step('d13', 'Continue same treatment for at least 4-9 months', 'Full Response', dstep7)
     add_treatment('Depression', dstep1, dstep2, dstep3, dstep4, dstep5, dstep6, dstep7, dstep8, dstep9, dstep10,
                   dstep11, dstep12, dstep13)
 
-    Medication.objects.all().delete()
+    # add bipolar depressed steps and treatment
+    bdstep1 = add_step('bd1', 'Bipolar Disorder\nCurrently Depressed', '', None)
+    bdstep2 = add_step('bd2', 'Not taking antimanic with NO history of severe and/or recent mania', '', bdstep1)
+    bdstep3 = add_step('bd3', 'Not taking antimanic with history of severe and/or recent mania', '', bdstep1)
+    bdstep4 = add_step('bd4', 'Taking antimanic other than lithium', '', bdstep1)
+    bdstep5 = add_step('bd5', 'Taking lithium', '', bdstep1)
+    bdstep6 = add_step('bd6', 'Initial therapy with stage 1 medication', '', bdstep2)
+    bdstep7 = add_step('bd7', 'Add stage 1 medication', '', bdstep4)
+    bdstep8 = add_step('bd8', 'Increase lithium trough levels to >= 0.8 mEq/L (approximately 12 hours post dose)', '',
+                       bdstep5)
+    bdstep9 = add_step('bd9', 'Add OR switch to a stage 2 medication OR add an SSRI OR Bupropion', '', bdstep6)
+    bdstep10 = add_step('bd10', 'Add OR switch to a stage 2 medication', '', bdstep6)
+    bdstep11 = add_step('bd11',
+                        'Quetiapine or olanzapine-fluoxetine combination if not previously used (if not currently on an antipsychotic) OR add an antidepressant (do not use 2 antidepressants)',
+                        '', bdstep9)
+    bdstep12 = add_step('bd12', 'Refer to a psychiatrist', '', bdstep11)
+    add_treatment('Bipolar Depressed', bdstep1, bdstep2, bdstep3, bdstep4, bdstep5, bdstep6, bdstep7, bdstep8, bdstep9,
+                  bdstep10, bdstep11, bdstep12)
+
+    # add bipolar manic steps and treatment
+    bmstep1 = add_step('bm1', 'Bipolar Disorder\nCurrently Hypomanic/Manic', '', None)
+    bmstep2 = add_step('bm2', 'Discontinue antidepressants\nStart medication monotherapy*', 'Euphoric/Irritable', bmstep1)
+    bmstep3 = add_step('bm3',
+                       'Discontinue antidepressants\nStart medication monotherapy* (avoid lithium and quetiapine)',
+                       'Mixed', bmstep1)
+    bmstep4 = add_step('bm4', 'Two drug combination (not two antipsychotics)', 'Partial Response', bmstep2)
+    bmstep5 = add_step('bm5', 'Try different agent as monotherapy', 'Non-Response', bmstep3)
+    bmstep6 = add_step('bm6',
+                       'Try combinations not already used in previous including use of oxcarbazepine (avoid use of two antipsychotics)',
+                       'Partial or Non-Response', bmstep4)
+    bmstep7 = add_step('bm7', 'Refer to a psychiatrist', 'Partial or Non-Response', bmstep6)
+    add_treatment('Bipolar Manic', bmstep1, bmstep2, bmstep3, bmstep4, bmstep5, bmstep6, bmstep7)
+
     # add medications - SSRI's
     add_medication('Citalopram (Celexa)', 'Selective Serotonin Reuptake Inhibitors', 10, 40,
                    'May increase by 10-20 mg increments at intervals of no less than 1 week',
@@ -113,17 +144,19 @@ def populate():
                              'Headache, agitation, insomnia, somnolence, extrapyramidal symptoms, nausea, dyspepsia')
 
     print('\n' + ('=' * 80) + '\n')
-    Patient.objects.all().delete()
+    aware_datetime = make_aware(datetime.datetime.min)
+
     add_patient('bp', 'plant', datetime.date.min, 'the ground', 'bp@email.com', '23456789', dstep1,
-                datetime.datetime.min, 'he is great', abilify)
+                aware_datetime, 'he is great', abilify)
     add_patient('k', 'dub', datetime.date.min, 'fun road', 'kdub@email.com', '234543789', dstep1,
-                datetime.datetime.min, 'she is the greatest', abilify)
+                aware_datetime, 'she is the greatest', abilify)
     print('\n' + ('=' * 80) + '\n')
 
 
 # add a step to database, with name and descriptions as strings
-def add_step(text, transition, previous_step):
-    s, created = Step.objects.get_or_create(description=text, transition=transition, previous_step=previous_step)
+def add_step(name, description, transition, previous_step):
+    s, created = Step.objects.get_or_create(name=name, description=description, transition=transition,
+                                            previous_step=previous_step)
 
     print('- Step: {0}, Created: {1}'.format(str(s), str(created)))
     return s
