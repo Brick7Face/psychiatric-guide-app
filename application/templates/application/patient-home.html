@@ -66,9 +66,10 @@
                         <h3>{{ medication }}</h3>
                     {% endfor %}
 
-                    <h2 id="phq9">PHQ-9 Results </h2>
-                    <form method="post">
+                    <h2 id="phq9">PHQ-9 Results</h2>
+                    <form method="get">
                         {% csrf_token %}
+                        <input type="hidden" name="action" value="phq9">
                         <input type="hidden" name="patient_id" value={{ patient.id }}>
                         <button class="phq9-button" type="submit">Take PHQ-9</button>
                     </form>
@@ -93,6 +94,33 @@
                         <h3>No results yet</h3>
                     {% endif %}
 
+                    <h2 id="phq9">MDQ Results</h2>
+                    <form method="get">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="mdq">
+                        <input type="hidden" name="patient_id" value={{ patient.id }}>
+                        <button class="phq9-button" type="submit">Take MDQ</button>
+                    </form>
+
+                    <hr>
+                    {% if mdqs %}
+                        <div style="overflow-x:auto;">
+                            <table style="width: 100%">
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Diagnosis</th>
+                                </tr>
+                                {% for mdq in mdqs %}
+                                    <tr>
+                                        <td>{{ mdq.date.date }}</td>
+                                        <td>{{ mdq.diagnosis }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    {% else %}
+                        <h3>No results yet</h3>
+                    {% endif %}
 
                     <h2>Notes</h2>
                     <hr>

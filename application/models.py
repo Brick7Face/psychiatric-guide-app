@@ -140,3 +140,25 @@ class Phq9(models.Model):
     change_treatment = models.BooleanField(default=False)
     suicide_risk = models.BooleanField(default=False)
     patient = models.ForeignKey(Patient, null=True, on_delete=models.SET_NULL)
+
+
+class MDQ(models.Model):
+    # Fields
+    date = models.DateTimeField(default=timezone.now)
+    question_1 = models.BooleanField(default=False)
+    question_2 = models.BooleanField(default=False)
+    question_3 = models.BooleanField(default=False)
+    question_4 = models.BooleanField(default=False)
+    question_5 = models.BooleanField(default=False)
+    question_6 = models.BooleanField(default=False)
+    question_7 = models.BooleanField(default=False)
+    question_8 = models.BooleanField(default=False)
+    question_9 = models.BooleanField(default=False)
+    question_10 = models.BooleanField(default=False)
+    question_11 = models.BooleanField(default=False)
+    question_12 = models.BooleanField(default=False)
+    question_13 = models.BooleanField(default=False)
+    question_14 = models.BooleanField(default=False)
+    question_15 = models.IntegerField(default=5)
+    diagnosis = models.BooleanField(default=False)
+    patient = models.ForeignKey(Patient, null=True, on_delete=models.SET_NULL)
