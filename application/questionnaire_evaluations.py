@@ -133,19 +133,6 @@ class PHQ9:
 
 class MDQ:
     """
-    based on the patients answers to question one of the MDQ determine if questions two and three
-    need to be asked
-
-    @param:
-    @return:
-    """
-    def logic_for_questions_two_and_three(self):
-        #TODO: 1) rename this
-        #      2) figure out what this will look like
-        #      3) write this
-        pass
-
-    """
     If seven or mare of the patient's responses from question one are marked yes,
     return true.
 
@@ -153,9 +140,8 @@ class MDQ:
     @return:
     """
     def evaluation_question_one(self, answers):
-        #TODO: determine format of answers to questions (bool or int)
         question_one_score = 0
-        for i in range(1, len(answers)):
+        for i in range(1, 13):
             if answers.get(i) == 1:
                 question_one_score += 1
         if question_one_score >= 7:
@@ -170,8 +156,7 @@ class MDQ:
     @return:
     """
     def evaluation_question_two(self, answers):
-        #TODO: determine format of answers to questions (bool or int)
-        if answers.get(2) == 1:
+        if answers.get(14) == 1:
             return True
         else:
             return False
@@ -184,11 +169,21 @@ class MDQ:
     @return:
     """
     def evaluation_question_three(self, answers):
-        #TODO: determine format of answers to questions (bool or int)
-        if answers.get(3) >= 2:
+        if answers.get(15) >= 2:
             return True
         else:
             return False
+
+    """
+    converts the results from the DB into a dictionary
+    """
+    def convert_results(self, results):
+        answers = {}
+        for item in results.items():
+            key = int(item[0])
+            value = int(item[1][0])
+            answers[key] = value
+        return answers
 
     """
     Evaluates the three components of the diagnosis section of the MDQ. This method
@@ -199,8 +194,8 @@ class MDQ:
     @param:
     @return:
     """
-    def mdq_diagnosis(self, answers):
-        #TODO: For Treatment and Monitoring see “Bipolar Disorder Treatment Overview.
+    def mdq_diagnosis(self, results):
+        answers = self.convert_results(results)
         if self.evaluation_question_one(answers) and self.evaluation_question_two(answers) \
                 and self.evaluation_question_three(answers):
             return True
