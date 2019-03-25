@@ -1,6 +1,7 @@
 from unittest import TestCase
 from application.models import Step, Treatment, Medication, Prescriber, Patient, Phq9
 from application.questionnaire_evaluations import PHQ9
+from django.urls import reverse
 
 class PHQ9TestCase(TestCase):
     phq9 = None
@@ -100,9 +101,50 @@ class ModelsTestCase(TestCase):
         patient = Patient(last_name="Testson", address="NA", email="test@test.com", phone=5555555555, notes="NA")
         self.assertEqual(str(patient), patient.last_name)
 
-         
-
-#
+		
+# tests some of the url reversals; testing one covers urls.py, so not every url is tested
+class UrlsTestCase(TestCase):
+	def test_logout_url(self):
+		url = reverse('logout-view')
+		self.assertEqual(url, '/application/logout/')
+	
+	def test_create_user_url(self):
+		url = reverse('create-new-user')
+		self.assertEqual(url, '/application/create_user/')
+		
+	def test_backend_home_url(self):
+		url = reverse('backend-home')
+		self.assertEqual(url, '/application/backend_home/')
+		
+	def test_documentation_url(self):
+		url = reverse('documentation')
+		self.assertEqual(url, '/application/documentation/')
+		
+	def test_survey_url(self):
+		url = reverse('survey')
+		self.assertEqual(url, '/application/survey/')
+		
+	def test_medications_url(self):
+		url = reverse('medications')
+		self.assertEqual(url, '/application/medications/')
+		
+	def test_patients_url(self):
+		url = reverse('patients')
+		self.assertEqual(url, '/application/patients/')
+		
+	def test_treatment_overview_url(self):
+		url = reverse('treatment-overview')
+		self.assertEqual(url, '/application/treatment-overview')
+		
+	def test_new_patient_url(self):
+		url = reverse('new-patient')
+		self.assertEqual(url, '/application/new-patient')
+		
+	def test_bug_report_url(self):
+		url = reverse('bug_report')
+		self.assertEqual(url, '/application/bug_report/')
+		
+		
 #
 # class MDQTestCase(TestCase):
 #     def test_logic_for_questions_two_and_three(self):
