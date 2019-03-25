@@ -396,3 +396,18 @@ def get_datastore_key(name):
     client = datastore.Client()
     key = client.key('key', name)
     return client.get(key)['value']
+
+
+@login_required  # If user is not logged in, they are redirected to the login page.
+def edit_patient(request, id): # View to edit the patient information
+    patient = Patient.objects.get(pk=id)    #Gets the patient database field
+    if request.method == 'POST':
+        edit_patient_form = CreatePatientForm(request.POST, instance=patient)
+        if edit_patient_form:
+            edit_patient_form.save()
+            messages.success(request, 'Patient edited.')
+            return redirect('patients')
+    else:
+        edit_patient_form = CreatePatientForm(instance=patient) # Form receives the patients data base info and populates the form
+    return render(request, 'application/edit-patient.html', {'edit_patient_form': edit_patient_form})
+
