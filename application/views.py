@@ -299,9 +299,8 @@ def medications(request):
 class CreatePatientForm(forms.ModelForm):
     first_name = forms.CharField()
     last_name = forms.CharField()
-    dob = forms.DateField(initial=datetime.date.today,
-                          widget=forms.DateInput(format='%m/%d/%Y'),
-                          input_formats=('%m/%d/%Y',))
+    # datepicker sourced from https://stackoverflow.com/questions/31548373/django-1-8-django-crispy-forms-is-there-a-simple-easy-way-of-implementing-a
+    dob = forms.DateField(widget=forms.TextInput(attrs={'type':'date'}))
     address = forms.CharField()
     email = forms.EmailField()
     phone = forms.CharField()
