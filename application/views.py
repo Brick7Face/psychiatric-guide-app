@@ -400,14 +400,14 @@ def get_datastore_key(name):
 
 @login_required  # If user is not logged in, they are redirected to the login page.
 def edit_patient(request, id):
+    patient = Patient.objects.get(pk=id)
     if request.method == 'POST':
-        edit_patient_form = CreatePatientForm(request.POST)
+        edit_patient_form = CreatePatientForm(request.POST, instance=patient)
         if edit_patient_form:
             edit_patient_form.save()
             messages.success(request, 'Patient edited.')
             return redirect('patients')
     else:
-        patient = Patient.objects.get(pk=id)
         edit_patient_form = CreatePatientForm(instance=patient)
     return render(request, 'application/edit-patient.html', {'edit_patient_form': edit_patient_form})
 
