@@ -14,7 +14,8 @@
         </h2>
         <div class="patient_home_content">
             <h1>Profile: {{ patient.first_name }} {{ patient.last_name }} </h1>
-            <button class="edit-button" type="submit">Edit Patient</button>
+{#            <button class="edit-button" type="submit">Edit Patient</button>#}
+            <a href="{% url 'edit-patient' id=patient.id %}" class="edit-button" type="submit">Edit Patient</a>
 
             <div class="flex-container">
                 <div id="box1" style="flex-grow: 1">

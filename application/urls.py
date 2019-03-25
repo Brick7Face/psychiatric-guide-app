@@ -14,6 +14,7 @@ urlpatterns = [
     path('survey/', views.survey, name="survey"),
     path('medications/', views.medications, name="medications"),
     path('patients/', views.patients, name="patients"),
+    path('edit-patient/id=(<id>)/', views.edit_patient, name="edit-patient"),
     path('treatment-overview', views.treatment_overview, name="treatment-overview"),
     path('new-patient', views.new_patient, name="new-patient"),
     path('bug_report/', views.bug_report, name="bug_report"),
