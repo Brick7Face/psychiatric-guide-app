@@ -75,7 +75,7 @@ If there is still an error, contact bryanplant on Github for access information.
 
 After starting the proxy, you will need to the environment variable USE_CLOUD_SQL=True this can be done while running different commands, for example to migrate the cloud sql database:<br>
 On Windows:<br>
-`set USE_CLOUD_SQL=True python manage.py migrate`<br>
+`set USE_CLOUD_SQL=True && python manage.py migrate`<br>
 Make sure to set the environment variable to False if you want to use the local database again.
 
 

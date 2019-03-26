@@ -11,8 +11,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
-          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"
+            integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP"
+            crossorigin="anonymous"></script>
 
 
     <!-- Lightning force CSS -->
@@ -69,23 +71,27 @@
             {% endif %}
             <li>
                 {% if user.is_authenticated %}
-                  <a href="{% url 'backend-home' %}">
-                    <i class="fas fa-home"></i>
-                    Home
-                  </a>
-                  <a href="{% url 'patients' %}">
-                    <i class="fas fa-user"></i>
-                    Patients
-                  </a>
-                  <a href="{% url 'treatment-overview' %}">
-                    <i class="fas fa-code-branch"></i>
-                    Treatment Overview
-                  </a>
-                  <a href="{% url 'medications' %}">
-                    <i class="fas  fa-prescription"></i>
-                    Medications
-                  </a>
-                  {% else %}
+                    <a href="{% url 'backend-home' %}">
+                        <i class="fas fa-home"></i>
+                        Home
+                    </a>
+                    <a href="{% url 'patients' %}">
+                        <i class="fas fa-user"></i>
+                        Patients
+                    </a>
+                    <a href="{% url 'algorithm' %}">
+                        <i class="fas fa-bezier-curve"></i>
+                        Algorithm
+                    </a>
+                    <a href="{% url 'treatment-overview' %}">
+                        <i class="fas fa-code-branch"></i>
+                        Treatment Overview
+                    </a>
+                    <a href="{% url 'medications' %}">
+                        <i class="fas  fa-prescription"></i>
+                        Medications
+                    </a>
+                {% else %}
                     <a href="{% url 'login-view' %}">
                         <i class="fas fa-home" style="right:0;"></i>
                         Home
@@ -103,23 +109,28 @@
         </ul>
         <div class="login_button">
             {% if user.is_authenticated %}
-              {% if user.is_superuser %}
-                <div class="users_name">
-                  Signed in as: {{ user.first_name }} {{ user.last_name }} #Admin
-                </div>
-              {% else %}
-                <div class="users_name">
-                    Signed in as: {{ user.first_name }} {{ user.last_name }}
-                </div>
-              {% endif %}
+                {% if user.is_superuser %}
+                    <div class="users_name">
+                        Signed in as: {{ user.first_name }} {{ user.last_name }} #Admin<br>
+                        <a href="{% url 'password-change' %}">Change Password</a>
+
+                    </div>
+                {% else %}
+                    <div class="users_name">
+                        Signed in as: {{ user.first_name }} {{ user.last_name }}<br>
+                        <a href="{% url 'password-change' %}">Change Password</a>
+
+                    </div>
+                {% endif %}
 
                 {#                <a href="{% url 'logout-view' %}" style="color: #A9A9A9">Signout</a>#}
                 {#                <button class="slds-button slds-button_outline-brand" onclick="window.location.href = {% url 'logout-view' %};"> Logout</button>#}
-                <a href="{% url 'logout-view' %}" class="slds-button slds-button_outline-brand" role="button">Signout</a>
+                <a href="{% url 'logout-view' %}" class="slds-button slds-button_outline-brand"
+                   role="button">Signout</a>
             {% else %}
-              <div class="users_name">
-                Not signed in
-              </div>
+                <div class="users_name">
+                    Not signed in
+                </div>
                 <a href="{% url 'login-view' %}" class="slds-button slds-button_outline-brand" role="button">Login</a>
             {% endif %}
         </div>
