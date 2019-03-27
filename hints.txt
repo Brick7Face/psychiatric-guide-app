@@ -1,0 +1,4 @@
+C:\Users\Njtra\AppData\Local\Programs\Python\Python36-32\Lib\site-packages\django\contrib\admin\templates\admin
+
+https://docs.djangoproject.com/en/2.1/ref/contrib/admin/
+https://stackoverflow.com/questions/8442724/django-admin-disable-editing-and-remove-save-buttons-for-a-specific-model

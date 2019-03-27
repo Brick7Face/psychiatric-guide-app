@@ -80,9 +80,8 @@ application that can be accessed anywhere by following The link below.
 ---
 
 
-Currently, you must be registered as a prescriber to login and use the site. When logged in, a prescriber may access a list of patients, treatment overview information for the treatment options available, and a list of medications for those treatments. Under the patient list, the prescriber may select a patient and view information about them, including visit history, treatment and corresponding step, medications, PHQ-9 results, and other personal information necessary. This will be updated in the future to include information related to the bipolar treatment algorithm; currently it is all for depression. The prescriber also has the option to register a new patient from the patients list. From a patient's home page, a prescriber may allow for a patient to take the PHQ-9, or MDQ and update their score.
+You must be registered as a prescriber to login and use the site. When logged in, a prescriber may access a list of patients, treatment overview information for the treatment options available, and a list of medications for those treatments. Under the patient list, the prescriber may select a patient and view information about them, including visit history, treatment algorithm and corresponding step, medications, PHQ-9/MDQ results, and other personal information necessary. The prescriber also has the option register a new patient from the patients list. From a patient's home page, a prescriber may allow for a patient to take the PHQ-9 or MDQ form and update their score. A patient's information can be edited manually by clicking the Edit Patient button.
 
-The PHQ-9 and MDQ forms only requires that a prescriber turn the screen toward the patient and let them select answers based on the questions asked. The prescriber could also just ask the patient the questions and record their answer. At the end, the results of the form are shown for the prescriber to assess further and update the list of patient scores.
 
 # 3.1 Admin Actions
 
@@ -94,7 +93,6 @@ Accessible from the site navigation is the "Patients" page. Here you can find a 
 
 From the Patients List page, you can click on any patient in the list to access their full profile, delete a patient using the garbage can symbol on the right hand side of each patient, and finally create a new patient using the button at the bottom of the page.
 
-
 ## 3.2a Creating New Patient
 
 Upon clicking the "New Patient" button on the Patients List page, you are directed to a form to fill out regarding patient information. On this screen you must fill out all form fields. The "Current Step" field is already populated by all the possible options outlined in the Prescribing Pocket Guide.
@@ -105,21 +103,19 @@ After clicking on a patient from the Patient List page, you will be directed to 
 
 ## 3.2c Taking New PHQ-9 or MDQ
 
-In any patient profile there are two sections, one for PHQ-9 results, and another for MDQ results. Alongside these results and recommendations are the options to take new tests. When you click on either of these buttons you will be sent to the corresponding test where the patient can answer questions which will determine a score, results, and treatment recommendations that will then be saved to that patients profile upon completion.
+In any patient profile there are two sections, one for PHQ-9 results, and another for MDQ results. Alongside these results and recommendations are the options to take new tests. When you click on either of these buttons you will be sent to the corresponding test where the patient can answer questions which will determine a score, results, and treatment recommendations that will then be saved to that patients profile upon completion. The PHQ-9 and MDQ forms only require that a prescriber turn the screen toward the patient and let them select answers based on the questions asked. The prescriber could also just ask the patient the questions and record their answer.
 
 # 3.3 Algorithm
 
-Accessible from the site navigation is the "Algorithm" page. Here you can find a full algorithm of the treatments for depression and bi-polar disorder. This page is editable from the user perspective in the sense that you can click and drag different components to be displayed how you like after clicking the "Edit Layout" button.
-
-The displayed algorithm can be switched between depression and bi-polar disorder by clicking the "Select Algorithm" button.
+The Algorithm tab contains the steps laid out for the Depression, Bipolar Depressed, and Bipolar Manic treatment algorithms as shown in the Prescribing Pocket Guide 2012. The default display is the Depression algorithm, but the Select Algorithm button in the top left can be used to choose among the three. In the case of the layout needing to be changed, an administrator could login and see another button here that says "Edit Layout". This opens up options for moving the steps around in a drag-and-drop manner and rearranging links to steps. So, if a treatment had a few steps that needed to be changed or rearranged, there would not be a lot of overhead to do so.
 
 # 3.4 Treatment Overview
 
-Accessible from the site navigation is the "Treatment Overview" page. Here you can find the overview of both available treatments through the application.
+The Treatment Overview page shows general information about the treatment types that a patient may need to be aware of. This page is designed to be printed by the prescriber and given to the patient if they would like. It contains miscellaneous information that is not located elsewhere on the site.
 
 # 3.5 Medications
 
-Accessible from the site navigation is the "Medications" page. Here you can find a full list of all medications that prescribers have at their disposal. Medications are split into their respective categories. This page simply contains the name and type of each medication. There is more information regarding the medications in the database that could be added to the prescribers interface at a later time by the developer.
+The Medications page displays relevant medications used in the three treatment algorithms. These contain information such as generic and brand names, dosing, titration, comments, and side effects. Information from this page could also be printed and given to a patient if necessary.
 
 # 3.6 Reporting a Bug
 
