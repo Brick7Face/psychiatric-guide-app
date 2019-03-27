@@ -15,6 +15,8 @@ body #treatment_wrapper .treatment_content{
   padding-right: 2.5vw;
   padding-top: 2vh;
   padding-bottom:2vh;
+  overflow:scroll;
+  overflow-x:hidden;
 }
 
 table {
