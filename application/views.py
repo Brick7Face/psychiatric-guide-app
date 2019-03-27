@@ -295,7 +295,6 @@ def process_mdq(request, results):
 def medications(request):
     return render(request, 'application/medications.html', {'title': 'Medications'})
 
-
 class CreatePatientForm(forms.ModelForm):
     first_name = forms.CharField()
     last_name = forms.CharField()
@@ -332,6 +331,10 @@ def new_patient(request):
 @login_required  # If user is not logged in, they are redirected to the login page.
 def treatment_overview(request):
     return render(request, 'application/treatment-overview.html', {'title': 'Treatment Overview'})
+
+@login_required  # If user is not logged in, they are redirected to the login page.
+def bipolar_treatment_overview(request):
+    return render(request, 'application/bipolar-treatment-overview.html', {'title': 'Bipolar Treatment Overview'})
 
 
 @login_required
@@ -409,4 +412,3 @@ def edit_patient(request, id): # View to edit the patient information
     else:
         edit_patient_form = CreatePatientForm(instance=patient) # Form receives the patients data base info and populates the form
     return render(request, 'application/edit-patient.html', {'edit_patient_form': edit_patient_form})
-
