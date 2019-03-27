@@ -15,7 +15,8 @@ from django.views.generic.edit import UpdateView
 from django.forms import ModelForm
 from django.db import models
 
-from application.models import Prescriber, Step, Patient, Medication, Treatment
+
+from application.models import Prescriber, Step, Patient, Treatment, Medication
 from application.models import Phq9 as phq9_db
 from application.models import MDQ as mdq_db
 from django import forms
@@ -154,6 +155,10 @@ def patients(request):
                 pass
 
     return render(request, 'application/patients.html', {'title': 'Patients', 'patients': Patient.objects.all()})
+
+@login_required  # If user is not logged in, they are redirected to the login page.
+def medications(request):
+    return render(request, 'application/medications.html', {'title': 'Medications', 'medications': Medication.objects.all()})
 
 
 @register.filter
@@ -351,10 +356,6 @@ def process_mdq(request, results):
 
     return render(request, 'application/survey-complete.html', {'title': "Survey Complete"})
 
-
-@login_required  # If user is not logged in, they are redirected to the login page.
-def medications(request):
-    return render(request, 'application/medications.html', {'title': 'Medications'})
 
 
 class CreatePatientForm(forms.ModelForm):
