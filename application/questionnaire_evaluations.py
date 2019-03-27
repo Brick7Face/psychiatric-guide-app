@@ -177,8 +177,8 @@ class MDQ:
     """
     converts the results from the DB into a dictionary
     
-    @param: Dictionary 
-    @return: Boolean
+    @param: Array 
+    @return: Dictionary
     """
     def convert_results(self, results):
         answers = {}

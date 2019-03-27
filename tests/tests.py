@@ -79,8 +79,9 @@ class PHQ9TestCase(TestCase):
         self.assertEqual(self.phq9.convert_results(a1), a1_expected)
 
     def test_phq9_evaluation(self):
-        # TODO: a change in the Severity Score of 5 or more
-        pass
+        a1 = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0, 10: 0}
+        self.assertFalse(self.phq9.phq9_evaluation(a1))
+
 
 
 class TestMDQ(TestCase):
@@ -93,23 +94,47 @@ class TestMDQ(TestCase):
         a1 = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0}
         a2 = {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0}
         a3 = {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0}
-        a4 = {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0}
+        a4 = {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 1}
         self.assertFalse(self.mdq.evaluation_question_one(a1))
         self.assertFalse(self.mdq.evaluation_question_one(a2))
         self.assertTrue(self.mdq.evaluation_question_one(a3))
         self.assertTrue(self.mdq.evaluation_question_one(a4))
 
     def test_evaluation_question_two(self):
-        self.fail()
+        a1 = {14: 0}
+        a2 = {14: 1}
+        a3 = {14: 2}
+        self.assertFalse(self.mdq.evaluation_question_two(a1))
+        self.assertTrue(self.mdq.evaluation_question_two(a2))
+        self.assertFalse(self.mdq.evaluation_question_two(a3))
 
     def test_evaluation_question_three(self):
-        self.fail()
+        a1 = {15: 0}
+        a2 = {15: 1}
+        a3 = {15: 2}
+        a4 = {15: 3}
+        self.assertFalse(self.mdq.evaluation_question_three(a1))
+        self.assertFalse(self.mdq.evaluation_question_three(a2))
+        self.assertTrue(self.mdq.evaluation_question_three(a3))
+        self.assertTrue(self.mdq.evaluation_question_three(a4))
 
     def test_convert_results(self):
-        self.fail()
+        a1 = {'1': ['2'], '2': ['1']}
+        a1_expected = {1: 2, 2: 1}
+        self.assertEqual(self.mdq.convert_results(a1), a1_expected)
 
     def test_mdq_diagnosis(self):
-        self.fail()
+        a1 = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0, 14: 0, 15: 3}
+        a2 = {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0, 14: 1, 15: 0}
+        a3 = {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0, 14: 1, 15: 0}
+        a4 = {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0, 14: 0, 15: 3}
+        a5 = {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0, 14: 1, 15: 3}
+        self.assertFalse(self.mdq.mdq_diagnosis(a1))
+        self.assertFalse(self.mdq.mdq_diagnosis(a2))
+        self.assertFalse(self.mdq.mdq_diagnosis(a3))
+        self.assertFalse(self.mdq.mdq_diagnosis(a4))
+        self.assertTrue(self.mdq.mdq_diagnosis(a5))
+
 
 
 class ModelsTestCase(TestCase):
