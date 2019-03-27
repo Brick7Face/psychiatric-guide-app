@@ -1,6 +1,8 @@
 from unittest import TestCase
 from application.models import Step, Treatment, Medication, Prescriber, Patient, Phq9
 from application.questionnaire_evaluations import PHQ9
+from application.questionnaire_evaluations import MDQ
+
 
 class PHQ9TestCase(TestCase):
     phq9 = None
@@ -71,10 +73,9 @@ class PHQ9TestCase(TestCase):
         self.assertEqual(6, self.phq9.treatment_and_monitoring(a2))
         self.assertEqual(6, self.phq9.treatment_and_monitoring(a3))
 
-
     def test_convert_results(self):
-        a1 = {'1':['2'], '2':['1']}
-        a1_expected = {1:2, 2:1}
+        a1 = {'1': ['2'], '2': ['1']}
+        a1_expected = {1: 2, 2: 1}
         self.assertEqual(self.phq9.convert_results(a1), a1_expected)
 
     def test_phq9_evaluation(self):
@@ -82,8 +83,37 @@ class PHQ9TestCase(TestCase):
         pass
 
 
+class TestMDQ(TestCase):
+    mdq = None
+
+    def setUp(self):
+        self.mdq = MDQ()
+
+    def test_evaluation_question_one(self):
+        a1 = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0}
+        a2 = {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0}
+        a3 = {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0}
+        a4 = {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0}
+        self.assertFalse(self.mdq.evaluation_question_one(a1))
+        self.assertFalse(self.mdq.evaluation_question_one(a2))
+        self.assertTrue(self.mdq.evaluation_question_one(a3))
+        self.assertTrue(self.mdq.evaluation_question_one(a4))
+
+    def test_evaluation_question_two(self):
+        self.fail()
+
+    def test_evaluation_question_three(self):
+        self.fail()
+
+    def test_convert_results(self):
+        self.fail()
+
+    def test_mdq_diagnosis(self):
+        self.fail()
+
+
 class ModelsTestCase(TestCase):
-    
+
     def test_step_string(self):
         step = Step(name="Test Step", description="Testing...")
         self.assertEqual(str(step), step.name)
@@ -99,25 +129,3 @@ class ModelsTestCase(TestCase):
     def test_patient_string(self):
         patient = Patient(last_name="Testson", address="NA", email="test@test.com", phone=5555555555, notes="NA")
         self.assertEqual(str(patient), patient.last_name)
-
-         
-
-#
-#
-# class MDQTestCase(TestCase):
-#     def test_logic_for_questions_two_and_three(self):
-#         pass
-#
-#     def test_evaluation_question_one(self):
-#         pass
-#
-#     def test_evaluation_question_two(self):
-#         pass
-#
-#     def test_evaluation_question_three(self):
-#         pass
-#
-#     def test_mdq_diagnosis(self):
-#         pass
-
-

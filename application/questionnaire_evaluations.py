@@ -136,8 +136,8 @@ class MDQ:
     If seven or mare of the patient's responses from question one are marked yes,
     return true.
 
-    @param:
-    @return:
+    @param: Dictionary
+    @return: Boolean
     """
     def evaluation_question_one(self, answers):
         question_one_score = 0
@@ -152,8 +152,8 @@ class MDQ:
     """
     if the patient answered question two of the MDQ as yes return true
     
-    @param:
-    @return:
+    @param: Dictionary
+    @return: Boolean
     """
     def evaluation_question_two(self, answers):
         if answers.get(14) == 1:
@@ -165,8 +165,8 @@ class MDQ:
     if the patient answered question three of the MDQ as either Moderate Problem or
     Serious Problem return true
     
-    @param:
-    @return:
+    @param: Dictionary 
+    @return: Boolean
     """
     def evaluation_question_three(self, answers):
         if answers.get(15) >= 2:
@@ -176,6 +176,9 @@ class MDQ:
 
     """
     converts the results from the DB into a dictionary
+    
+    @param: Dictionary 
+    @return: Boolean
     """
     def convert_results(self, results):
         answers = {}
