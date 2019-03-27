@@ -2,8 +2,6 @@
   margin-top: 10vh;
   height: 85vh;
   width: 60vw;
-  overflow:scroll;
-  overflow-x:hidden;
 }
 
 body #treatment_wrapper .treatment_content{
