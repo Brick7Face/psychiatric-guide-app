@@ -16,7 +16,7 @@ from django.forms import ModelForm
 from django.db import models
 
 
-from application.models import Prescriber, Step, Patient, Treatment
+from application.models import Prescriber, Step, Patient, Treatment, Medication
 from application.models import Phq9 as phq9_db
 from application.models import MDQ as mdq_db
 from django import forms
@@ -355,7 +355,7 @@ def process_mdq(request, results):
 
 @login_required  # If user is not logged in, they are redirected to the login page.
 def medications(request):
-    return render(request, 'application/medications.html', {'title': 'Medications'})
+    return render(request, 'application/medications.html', {'title': 'Medications', 'medications': Medication.objects.all()})
 
 
 class CreatePatientForm(forms.ModelForm):
