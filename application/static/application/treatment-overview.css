@@ -1,8 +1,7 @@
 #treatment_wrapper{
-  margin-top: 15vh;
+  margin-top: 5vh;
   height: 85vh;
   width: 60vw;
-  overflow:scroll;
   overflow-x:hidden;
 }
 
@@ -17,6 +16,10 @@ body #treatment_wrapper .treatment_content{
   padding-bottom:2vh;
   overflow:scroll;
   overflow-x:hidden;
+}
+
+body #treatment_wrapper #edit-menu{
+  margin-bottom: 2vh;
 }
 
 table {
