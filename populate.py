@@ -138,10 +138,54 @@ def populate():
     add_medication('Quetiapine (Seroquel, Seroquel XR)', 'Antidepressant Augmenting Agents', 50, 300, '',
                    '- Monitor blood glucose, liver enzymes, lipids, weight, movement disorder side effects\n- take at bedtime for 2 days, then 150 mg for 2 days',
                    'Hypotension, somnolence ,sedation, headache, agitation, dizziness, endocrine and metabolic changes, dry mouth, weight gain, extrapyramidal symptoms')
-    abilify = add_medication('Aripiprazole (Abilify)', 'Antidepressant Augmenting Agents', 2, 15,
-                             'Increase by up to 5 mg/day at one week intervals',
-                             '- Monitor blood glucose, liver enzymes, lipids, weight, movement disorder side effects\n- Antipsychotic with least weight gain',
-                             'Headache, agitation, insomnia, somnolence, extrapyramidal symptoms, nausea, dyspepsia')
+
+    # add medications - Mood stablizers
+    add_medication('Carbamazepine (CBZ, Tegretol)', 'Mood Stabilizers', 200, 1600,
+                             '',
+                             '- Many drug interactions\n- Monitor blood levels; goal: 4-12 mcg/ml\n- Pregnancy category C\n- Black Box Warning: aplastic anemia/agranulocytosis\n- Obtain baseline HLA-B test in Asian patients\n- Adjust in 200 mg increments',
+                             'Ataxia, dizziness, sedation, slurred speech, nausea, vomiting, rash')
+    add_medication('Divalproex Sodium (Depakote)/Valproic Acid (VPA, Depakene)', 'Mood Stabilizers', 500, 60,
+                             '',
+                             '- Black Box Warning: hepatotoxicity, teratogen, pancreatitis\n- Monitor blood levels - goal: 50-125 mcg/ml\n- Pregnancy category D\n- take divided BID or at bedtime; adjust max dose based on weight (60 mg/kg/day)',
+                             'Nausea, sedation, tremor, weight gain, alopecia, transient elevation in liver enzymes')
+    add_medication('Lamotrigine (Lamictal)', 'Mood Stabilizers', 25, 200,
+                             '',
+                             '- Initial dose: 25 mg/day X 2 weeks, 50 mg/day X 2 weeks, then 100 mg/day X 1 week\n-- With Divalproex/VPA: 25 mg QOD X 2 weeks, then 25 mg/day X 2 weeks, then 50 mg/day X 1 week\n-- With CBZ: 50 mg/day X 2 weeks, then 50 mg/day BID X 2 weeks, then 100 mg BID X 1 week, then 150 mg BID X 1 week\n- Max dose: 200 mg/day; with Divalproex/VPA: 100 mg/day; With CBZ: 400 mg/day\n- Black Box Warning: severe rashes such as Stevens-Johnson Syndrome\n- Pregnancy category C\n- Adjust dose in renal impairment',
+                             'Dizziness, headache, ataxia, nausea, diplopia, rash')
+    add_medication('Lithium (Eskalith, Lithobid)', 'Mood Stabilizers', 300, 1200,
+                             '',
+                             '- Initial dose: 300-600 mg/day at bedtime, > 1200 mg give in divided doses\n- Max dose: based on blood level\n- Drug interactions (NSAIDs, ACEI, Hctz)\n- Monitor blood levels - goal for maintenance treatment: 0.8-1.0 mEq/L\n- Pregnancy category D\n- Good renal function and adequate salt and fluid intake are essential\n- Avoid in renal impairment',
+                             'Tremor, polydipsia polyuria, nausea (take with food), diarrhea, weight gain, weakness, lethary, confusion')
+    add_medication('Oxcarbazepine (Trileptal)', 'Mood Stabilizers', 300, 2400,
+                             '',
+                             '- No drug levels to monitor\n- Fewer drug-drug interactions than carbamazepine\n- Adjust dose in renal impairment',
+                             'Dizziness, diplopia, fatigue, headache, ataxia, tremor, slurred speech')
+
+    # add medications - Antipsychotics
+    abilify = add_medication('Aripiprazole (Abilify)', 'Antipsychotics', 10, 30,
+                             '',
+                             '- Minimal sedation and weight gain',
+                             'Somnolence, headache, nausea, constipation, dyspepsia, dizziness')
+    saphris = add_medication('Asenapine (Saphris)', 'Antipsychotics', 5, 20,
+                             '',
+                             '- Sublingual tablet; do not eat or drink for 10 minutes after taking\n- Minimal weight gain',
+                             'Somnolence, dizziness, constipation, akathisia, QT prolongation')
+    zyprexa = add_medication('Olanzapine (Zyprexa)', 'Antipsychotics', 10, 20,
+                             '',
+                             '- Zyprexa Zydis - orally disintegrating tablets useful for patients who cannot chew or who are "cheeking"',
+                             'Sedation, orthostasis, weight gain, dry mouth, headache, dizziness')
+    seroquel = add_medication('Quetiapine (Seroquel, Seroquel XR)', 'Antipsychotics', 50, 800,
+                             '',
+                             '- Mania: start at 50 mg BID, goal is 200 mg BID on day 4\n- Bipolar depression: 50 mg at bedtime, goal is 300 mg at bedtime on day 4',
+                             'Sedation, dizziness, headache, weight gain, tremor, constipation')
+    risperdal = add_medication('Risperidone (Risperdal)', 'Antipsychotics', 1, 8,
+                             '',
+                             '- Concentrate, oral disintegrating tablets, and long acting injection are available\n- Generic tablets available\n- Take at bedtime, adjust by 1 mg/day at intervals greater than or equal to 24 hours',
+                             'Orthostatsis, dose related extrapyramidal effects, some weight gain, sedation, prolactin elevation')
+    geodon = add_medication('Ziprasidone (Geodon)', 'Antipsychotics', 40, 160,
+                             '',
+                             '- Contraindicated with medications that cause QT prolongation\n- Minimal weight gain\n- Take BID with meals, increase to 60-80 mg BID with meals on day 2',
+                             'Insomnia, headache, nausea, vomiting, lightheadedness, dizziness')
 
     print('\n' + ('=' * 80) + '\n')
     aware_datetime = make_aware(datetime.datetime.min)
