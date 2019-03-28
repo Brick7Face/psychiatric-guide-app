@@ -82,20 +82,48 @@ application that can be accessed anywhere by following The link below.
 
 You must be registered as a prescriber to login and use the site. When logged in, a prescriber may access a list of patients, treatment overview information for the treatment options available, and a list of medications for those treatments. Under the patient list, the prescriber may select a patient and view information about them, including visit history, treatment algorithm and corresponding step, medications, PHQ-9/MDQ results, and other personal information necessary. The prescriber also has the option register a new patient from the patients list. From a patient's home page, a prescriber may allow for a patient to take the PHQ-9 or MDQ form and update their score. A patient's information can be edited manually by clicking the Edit Patient button.
 
-The PHQ-9 and MDQ forms only require that a prescriber turn the screen toward the patient and let them select answers based on the questions asked. The prescriber could also just ask the patient the questions and record their answer. At the end, the results of the form are shown for the prescriber to assess further and update the list of patient scores. Suggestions for prescriptions and related warnings based on score change are displayed after saving to the patient. The corresponding step that the patient is on is shown in the patient information, and to see where to go from there the prescriber must go to the Algorithm tab on the left side.
+
+# 3.1 Admin Actions
+
+Administrators of the Psychiatric App have more privileges than those who are not. Administrators can create new users through the "Admin Actions" dropdown menu available in the site navigation. All software related administrator actions are described in the Developer Documentation for the project.
+
+# 3.2 Patients
+
+Accessible from the site navigation is the "Patients" page. Here you can find a full list of all patients in the app database along with all their individual profiles.
+
+From the Patients List page, you can click on any patient in the list to access their full profile, delete a patient using the garbage can symbol on the right hand side of each patient, and finally create a new patient using the button at the bottom of the page.
+
+## 3.2a Creating New Patient
+
+Upon clicking the "New Patient" button on the Patients List page, you are directed to a form to fill out regarding patient information. On this screen you must fill out all form fields. The "Current Step" field is already populated by all the possible options outlined in the Prescribing Pocket Guide.
+
+## 3.2b Edit Current Patients
+
+After clicking on a patient from the Patient List page, you will be directed to that patients profile. This profile contains all information that was entered into the form when the patient profile was created, along with any information from previous visits including test results from the PHQ-9 and MDQ, dates of previous visits, and treatment recommendations. On this page you also have the option to "Edit Patient". Once clicking on this button, you will be shown a form similar to the one that you saw when the patient was created. From here you can change any field in the patient profile aside from test scores, and previous visits.
+
+## 3.2c Taking New PHQ-9 or MDQ
+
+In any patient profile there are two sections, one for PHQ-9 results, and another for MDQ results. Alongside these results and recommendations are the options to take new tests. When you click on either of these buttons you will be sent to the corresponding test where the patient can answer questions which will determine a score, results, and treatment recommendations that will then be saved to that patients profile upon completion. The PHQ-9 and MDQ forms only require that a prescriber turn the screen toward the patient and let them select answers based on the questions asked. The prescriber could also just ask the patient the questions and record their answer.
+
+# 3.3 Algorithm
 
 The Algorithm tab contains the steps laid out for the Depression, Bipolar Depressed, and Bipolar Manic treatment algorithms as shown in the Prescribing Pocket Guide 2012. The default display is the Depression algorithm, but the Select Algorithm button in the top left can be used to choose among the three. In the case of the layout needing to be changed, an administrator could login and see another button here that says "Edit Layout". This opens up options for moving the steps around in a drag-and-drop manner and rearranging links to steps. So, if a treatment had a few steps that needed to be changed or rearranged, there would not be a lot of overhead to do so.
 
+# 3.4 Treatment Overview
+
 The Treatment Overview page shows general information about the treatment types that a patient may need to be aware of. This page is designed to be printed by the prescriber and given to the patient if they would like. It contains miscellaneous information that is not located elsewhere on the site.
+
+# 3.5 Medications
 
 The Medications page displays relevant medications used in the three treatment algorithms. These contain information such as generic and brand names, dosing, titration, comments, and side effects. Information from this page could also be printed and given to a patient if necessary.
 
-The last two tabs are helpful to bridge the gap between developers and users - the Report a Bug page allows a user to submit a bug, which is explained next, and the Documentation tab simply links to the hosted documentation from GitHub.
+# 3.6 Reporting a Bug
 
+Reporting a bug in the application can be done very simply through the "Report a Bug" option found in the site navigation. On this page you will see a text box where you simply describe the problem or bug you found, which will automatically be visible to the developer of the application. More information regarding bugs on the developer side can be found in the developer documentation.
 
-# 4. Reporting a Bug
+# 3.7 Viewing Documentation
 
-
+From the site you may view both the User, and Developer documentation. Located in the site navigation is a "Documentation" link that you will find links to both documents.
 
 ---
 

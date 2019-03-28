@@ -174,7 +174,7 @@ a, a:hover, a:focus {
     #sidebar ul li a {
         padding: 4px 4px;
         text-align: center;
-        font-size: 0.7em;
+        font-size: 1em;
     }
     #sidebar ul li a i p {
         font-size: 0;

@@ -16,6 +16,7 @@ urlpatterns = [
     path('patients/', views.patients, name="patients"),
     path('edit-patient/id=(<id>)/', views.edit_patient, name="edit-patient"),
     path('treatment-overview', views.treatment_overview, name="treatment-overview"),
+    path('bipolar-treatment-overview', views.bipolar_treatment_overview, name="bipolar-treatment-overview"),
     path('new-patient', views.new_patient, name="new-patient"),
     path('bug_report/', views.bug_report, name="bug_report"),
     path('patient_home/', views.patient_home, name="patient-home"),

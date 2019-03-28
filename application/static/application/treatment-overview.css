@@ -1,8 +1,7 @@
 #treatment_wrapper{
-  margin-top: 15vh;
+  margin-top: 5vh;
   height: 85vh;
   width: 60vw;
-  overflow:scroll;
   overflow-x:hidden;
 }
 
@@ -17,6 +16,10 @@ body #treatment_wrapper .treatment_content{
   padding-bottom:2vh;
   overflow:scroll;
   overflow-x:hidden;
+}
+
+body #treatment_wrapper #edit-menu{
+  margin-bottom: 2vh;
 }
 
 table {
@@ -37,10 +40,9 @@ table, th, td {
   font-size: 1.4em;
 }
 
-li {
-  font-size: 1em;
-  list-style-position:inside;
+table li {
 }
+
 #week{
   float:top;
   display: inline-block;
@@ -60,6 +62,8 @@ td ul li{
   list-style-type: disc;
   list-style-position: outside;
   margin-left:2vw;
+  font-size: 1em;
+  list-style-position:inside;
 }
 
 #withdrawals{
@@ -79,7 +83,6 @@ td ul li{
   #week{
     font-size:.8em;
   }
-  li{
-    font-size:.6em;
+  td ul li{
+    font-size:.7em;
   }
-}
