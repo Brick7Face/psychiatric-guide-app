@@ -14,7 +14,9 @@ from django.template.defaulttags import register
 from django.views.generic.edit import UpdateView
 from django.forms import ModelForm
 from django.db import models
-from application.models import Prescriber, Step, Patient, Treatment
+
+
+from application.models import Prescriber, Step, Patient, Treatment, Medication
 from application.models import Phq9 as phq9_db
 from application.models import MDQ as mdq_db
 from django import forms
@@ -69,7 +71,7 @@ class CreateUser(UserCreationForm):  # Class for the user generation form
             'is_staff': 'Check if account is for a staff member.',
             'is_superuser': 'Allows this user to create, modify, edit, and delete other users and their information.'
         }
-		
+
 @login_required
 def edit_algorithm(request):
     if request.method == 'POST':
@@ -84,10 +86,10 @@ def edit_algorithm(request):
                 step.delete()
             except:
                 pass
-				
+
     return render(request, 'application/edit-algorithm.html', {'title': 'Edit Algorithm', 'steps': Step.objects.all()})
 
-	
+
 @login_required
 def edit_medications(request):
     if request.method == 'POST':
@@ -102,7 +104,7 @@ def edit_medications(request):
                 medication.delete()
             except:
                 pass
-				
+
     return render(request, 'application/edit-medications.html', {'title': 'Edit Medications', 'medications': Medication.objects.all()})
 
 class CreateMedicationForm(forms.ModelForm):
@@ -117,7 +119,7 @@ class CreateMedicationForm(forms.ModelForm):
     class Meta:
         model = Medication
         fields = ['name', 'category', 'initial_dose', 'maximum_dose', 'titration', 'comments', 'side_effects']
-		
+
 @login_required  # If user is not logged in, they are redirected to the login page.
 def new_medication(request):
     if request.method == 'POST':
@@ -353,7 +355,7 @@ def process_mdq(request, results):
 
 @login_required  # If user is not logged in, they are redirected to the login page.
 def medications(request):
-    return render(request, 'application/medications.html', {'title': 'Medications'})
+    return render(request, 'application/medications.html', {'title': 'Medications', 'medications': Medication.objects.all()})
 
 class CreatePatientForm(forms.ModelForm):
     first_name = forms.CharField()
