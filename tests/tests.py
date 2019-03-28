@@ -79,9 +79,10 @@ class PHQ9TestCase(TestCase):
         self.assertEqual(self.phq9.convert_results(a1), a1_expected)
 
     def test_phq9_evaluation(self):
-        a1 = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0, 10: 0}
-        self.assertFalse(self.phq9.phq9_evaluation(a1))
-
+        a1 = {'1': ['0'], '2': ['0'], '3': ['0'], '4': ['0'], '5': ['0'], '6': ['0'], '7': ['0'], '8': ['0'],
+              '9': ['0'], '10': ['1']}
+        expected = {'diagnosis': False, 'change_treatment': False,'suicide_risk': False, 'severity_score': 1}
+        self.assertEqual(self.phq9.phq9_evaluation(a1), expected)
 
 
 class TestMDQ(TestCase):
@@ -95,10 +96,12 @@ class TestMDQ(TestCase):
         a2 = {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0}
         a3 = {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0}
         a4 = {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 1}
+        a5 = {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0, 14: 1}
         self.assertFalse(self.mdq.evaluation_question_one(a1))
         self.assertFalse(self.mdq.evaluation_question_one(a2))
         self.assertTrue(self.mdq.evaluation_question_one(a3))
         self.assertTrue(self.mdq.evaluation_question_one(a4))
+        self.assertFalse(self.mdq.evaluation_question_one(a5))
 
     def test_evaluation_question_two(self):
         a1 = {14: 0}
@@ -124,17 +127,16 @@ class TestMDQ(TestCase):
         self.assertEqual(self.mdq.convert_results(a1), a1_expected)
 
     def test_mdq_diagnosis(self):
-        a1 = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0, 14: 0, 15: 3}
-        a2 = {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0, 14: 1, 15: 0}
-        a3 = {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0, 14: 1, 15: 0}
-        a4 = {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0, 14: 0, 15: 3}
-        a5 = {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0, 14: 1, 15: 3}
+        a1 = {'1': ['0'], '2': ['0'], '3': ['0'], '4': ['0'], '5': ['0'], '6': ['0'], '7': ['0'], '8': ['0'], '9': ['0'], '10': ['0'],'11': ['0'], '12': ['0'], '13': ['0'], '14': ['0'], '15': ['0']}
+        a2 = {'1': ['1'], '2': ['1'], '3': ['1'], '4': ['1'], '5': ['1'], '6': ['1'], '7': ['0'], '8': ['0'], '9': ['0'], '10': ['0'],'11': ['0'], '12': ['0'], '13': ['0'], '14': ['0'], '15': ['3']}
+        a3 = {'1': ['1'], '2': ['1'], '3': ['1'], '4': ['1'], '5': ['1'], '6': ['1'], '7': ['1'], '8': ['0'], '9': ['0'], '10': ['0'],'11': ['0'], '12': ['0'], '13': ['0'], '14': ['1'], '15': ['0']}
+        a4 = {'1': ['1'], '2': ['1'], '3': ['1'], '4': ['1'], '5': ['1'], '6': ['1'], '7': ['0'], '8': ['0'], '9': ['0'], '10': ['0'],'11': ['0'], '12': ['0'], '13': ['0'], '14': ['0'], '15': ['3']}
+        a5 = {'1': ['1'], '2': ['1'], '3': ['1'], '4': ['1'], '5': ['1'], '6': ['1'], '7': ['0'], '8': ['1'], '9': ['1'], '10': ['0'],'11': ['0'], '12': ['0'], '13': ['0'], '14': ['1'], '15': ['3']}
         self.assertFalse(self.mdq.mdq_diagnosis(a1))
         self.assertFalse(self.mdq.mdq_diagnosis(a2))
         self.assertFalse(self.mdq.mdq_diagnosis(a3))
         self.assertFalse(self.mdq.mdq_diagnosis(a4))
         self.assertTrue(self.mdq.mdq_diagnosis(a5))
-
 
 
 class ModelsTestCase(TestCase):

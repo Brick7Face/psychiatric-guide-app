@@ -141,7 +141,7 @@ class MDQ:
     """
     def evaluation_question_one(self, answers):
         question_one_score = 0
-        for i in range(1, 13):
+        for i in range(1, 14):
             if answers.get(i) == 1:
                 question_one_score += 1
         if question_one_score >= 7:
