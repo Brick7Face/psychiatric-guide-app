@@ -8,15 +8,15 @@
 {% endblock css %}
 
 {% block body %}
-  <div id="edit-menu">
-      <div id="algorithm-dropdown">
-          <div id="dropdown-content">
-              <a href="{% url 'treatment-overview' %}" class="slds-button slds-button_outline-brand" role="button">Depression</a>
-              <a href="{% url 'bipolar-treatment-overview' %}" class="slds-button slds-button_outline-brand" role="button">Bipolar</a>
-          </div>
-      </div>
-  </div>
   <div id="treatment_wrapper">
+    <div id="edit-menu">
+        <div id="algorithm-dropdown">
+            <div id="dropdown-content">
+                <a href="{% url 'treatment-overview' %}" class="slds-button slds-button_outline-brand" role="button">Depression</a>
+                <a href="{% url 'bipolar-treatment-overview' %}" class="slds-button slds-button_outline-brand" role="button">Bipolar</a>
+            </div>
+        </div>
+    </div>
     <div class="treatment_content">
       <h1>
         Depression Treatment Overview
