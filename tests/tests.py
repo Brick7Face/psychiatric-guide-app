@@ -1,14 +1,9 @@
 from unittest import TestCase
 from application.models import Step, Treatment, Medication, Prescriber, Patient, Phq9
-from application.questionnaire_evaluations import PHQ9
-<<<<<<< HEAD
-from application.questionnaire_evaluations import MDQ
-
-=======
+from application.questionnaire_evaluations import PHQ9, MDQ
 from application.apps import ApplicationConfig
 from django.urls import reverse
 from django.apps import apps
->>>>>>> development
 
 class PHQ9TestCase(TestCase):
     phq9 = None
@@ -145,7 +140,7 @@ class TestMDQ(TestCase):
         a3 = {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0}
         self.assertTrue(self.mdq.evaluation_question_one(a3))
 		
-	def test_evaluation_question_one_four(self):
+    def test_evaluation_question_one_four(self):
         a4 = {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 1}
         self.assertTrue(self.mdq.evaluation_question_one(a4))
 		
@@ -177,7 +172,7 @@ class TestMDQ(TestCase):
         a3 = {15: 2}
         self.assertTrue(self.mdq.evaluation_question_three(a3))
 		
-	def test_evaluation_question_three_four(self):
+    def test_evaluation_question_three_four(self):
         a4 = {15: 3}
         self.assertTrue(self.mdq.evaluation_question_three(a4))
 
@@ -194,15 +189,15 @@ class TestMDQ(TestCase):
         a2 = {'1': ['1'], '2': ['1'], '3': ['1'], '4': ['1'], '5': ['1'], '6': ['1'], '7': ['0'], '8': ['0'], '9': ['0'], '10': ['0'],'11': ['0'], '12': ['0'], '13': ['0'], '14': ['0'], '15': ['3']}
         self.assertFalse(self.mdq.mdq_diagnosis(a2))
 	
-	def test_mdq_diagnosis_three(self):
+    def test_mdq_diagnosis_three(self):
         a3 = {'1': ['1'], '2': ['1'], '3': ['1'], '4': ['1'], '5': ['1'], '6': ['1'], '7': ['1'], '8': ['0'], '9': ['0'], '10': ['0'],'11': ['0'], '12': ['0'], '13': ['0'], '14': ['1'], '15': ['0']}
         self.assertFalse(self.mdq.mdq_diagnosis(a3))
 		
-	def test_mdq_diagnosis_four(self):
+    def test_mdq_diagnosis_four(self):
         a4 = {'1': ['1'], '2': ['1'], '3': ['1'], '4': ['1'], '5': ['1'], '6': ['1'], '7': ['0'], '8': ['0'], '9': ['0'], '10': ['0'],'11': ['0'], '12': ['0'], '13': ['0'], '14': ['0'], '15': ['3']}
         self.assertFalse(self.mdq.mdq_diagnosis(a4))
 		
-	def test_mdq_diagnosis_five(self):
+    def test_mdq_diagnosis_five(self):
         a5 = {'1': ['1'], '2': ['1'], '3': ['1'], '4': ['1'], '5': ['1'], '6': ['1'], '7': ['0'], '8': ['1'], '9': ['1'], '10': ['0'],'11': ['0'], '12': ['0'], '13': ['0'], '14': ['1'], '15': ['3']}
         self.assertTrue(self.mdq.mdq_diagnosis(a5))
 
@@ -292,6 +287,3 @@ class ApplicationConfigTest(TestCase):
 #
 #     def test_mdq_diagnosis(self):
 #         pass
-
-
->>>>>>> development
