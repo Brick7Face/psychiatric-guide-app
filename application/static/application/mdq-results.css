@@ -18,3 +18,9 @@ body #mdq_results_wrapper .mdq_results_container{
     padding-top: 20px;
     padding-bottom: 10px;
 }
+
+h2 {
+    font-size: 20px;
+    color: #00a0e3;
+    padding: 15px 5px 10px 5px;
+}

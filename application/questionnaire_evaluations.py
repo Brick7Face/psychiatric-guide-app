@@ -96,16 +96,18 @@ class PHQ9:
     and tentative diagnosis 
     
     @param: A patients answers to the PHQ-9 questionnaire
-    @return: ??? 
+    @return: Integer 
     """
     def treatment_and_monitoring(self, answers):
         severity_score = int(0)
         for i in range(1, len(answers) + 1):
             severity_score += answers.get(i)
         return severity_score
-        #TODO: based on severity score print table from PHQ9 treatment and monitoring section 3
 
 
+    """
+    converts the results from the DB into a dictionary
+    """
     def convert_results(self, results):
         answers = {}
         for item in results.items():
@@ -127,35 +129,19 @@ class PHQ9:
         results_dictionary = {'diagnosis' : self.diagnosis(d1, d2, d3), 'change_treatment' : self.change_treatment(d1, d3),
                               'suicide_risk' : self.suicide_risk(answers), 'severity_score' : self.treatment_and_monitoring(answers)}
         return results_dictionary
-        # TODO: Monitoring – a change in the Severity Score of 5 or more
-        #  is considered clinically significant in assessing improvement of symptoms.
 
 
 class MDQ:
     """
-    based on the patients answers to question one of the MDQ determine if questions two and three
-    need to be asked
-
-    @param:
-    @return:
-    """
-    def logic_for_questions_two_and_three(self):
-        #TODO: 1) rename this
-        #      2) figure out what this will look like
-        #      3) write this
-        pass
-
-    """
     If seven or mare of the patient's responses from question one are marked yes,
     return true.
 
-    @param:
-    @return:
+    @param: Dictionary
+    @return: Boolean
     """
     def evaluation_question_one(self, answers):
-        #TODO: determine format of answers to questions (bool or int)
         question_one_score = 0
-        for i in range(1, len(answers)):
+        for i in range(1, 14):
             if answers.get(i) == 1:
                 question_one_score += 1
         if question_one_score >= 7:
@@ -166,12 +152,11 @@ class MDQ:
     """
     if the patient answered question two of the MDQ as yes return true
     
-    @param:
-    @return:
+    @param: Dictionary
+    @return: Boolean
     """
     def evaluation_question_two(self, answers):
-        #TODO: determine format of answers to questions (bool or int)
-        if answers.get(2) == 1:
+        if answers.get(14) == 1:
             return True
         else:
             return False
@@ -180,15 +165,28 @@ class MDQ:
     if the patient answered question three of the MDQ as either Moderate Problem or
     Serious Problem return true
     
-    @param:
-    @return:
+    @param: Dictionary 
+    @return: Boolean
     """
     def evaluation_question_three(self, answers):
-        #TODO: determine format of answers to questions (bool or int)
-        if answers.get(3) >= 2:
+        if answers.get(15) >= 2:
             return True
         else:
             return False
+
+    """
+    converts the results from the DB into a dictionary
+    
+    @param: Array 
+    @return: Dictionary
+    """
+    def convert_results(self, results):
+        answers = {}
+        for item in results.items():
+            key = int(item[0])
+            value = int(item[1][0])
+            answers[key] = value
+        return answers
 
     """
     Evaluates the three components of the diagnosis section of the MDQ. This method
@@ -199,8 +197,8 @@ class MDQ:
     @param:
     @return:
     """
-    def mdq_diagnosis(self, answers):
-        #TODO: For Treatment and Monitoring see “Bipolar Disorder Treatment Overview.
+    def mdq_diagnosis(self, results):
+        answers = self.convert_results(results)
         if self.evaluation_question_one(answers) and self.evaluation_question_two(answers) \
                 and self.evaluation_question_three(answers):
             return True

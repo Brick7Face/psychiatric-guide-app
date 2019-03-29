@@ -230,7 +230,7 @@ def survey_results(request):
             return render(request, 'application/phq9-results.html', dict)
         elif survey_type == 'mdq':
             # display mdq results
-            dict = {}
+            dict = {'diagnosis' : mdq_db.objects.last().diagnosis}
             return render(request, 'application/mdq-results.html', dict)
 
 
@@ -326,10 +326,8 @@ def get_mdq(request):
 
 def process_mdq(request, results):
     mdq = MDQ()
-
     # TODO process mdq results and get diagnosis
-    diagnosis = True
-
+    diagnosis = mdq.mdq_diagnosis(results)
     mdq = mdq_db.objects.create(question_1=results.get(str(1))[0],
                                 question_2=results.get(str(2))[0],
                                 question_3=results.get(str(3))[0],
@@ -345,7 +343,7 @@ def process_mdq(request, results):
                                 question_13=results.get(str(13))[0],
                                 question_14=results.get(str(14))[0],
                                 question_15=results.get(str(15))[0],
-                                diagnosis=diagnosis,
+                                diagnosis=diagnosis
                                 )
 
     request.session['survey_id'] = mdq.id

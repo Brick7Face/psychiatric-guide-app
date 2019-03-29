@@ -97,6 +97,12 @@ table, th, td{
     margin: auto;
 }
 
+h5{
+    color: grey;
+    font-size: 8pt;
+    font-style: italic;
+}
+
 th{
     font-weight: normal;
     text-transform: uppercase;
@@ -119,5 +125,4 @@ td{
     margin: 10px 0px 0px 10px;
     overflow-x: auto;
     flex-flow: row wrap;
-
 }
