@@ -11,9 +11,12 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.core import serializers
 from django.template.defaulttags import register
-from django.views.generic import UpdateView
+from django.views.generic.edit import UpdateView
+from django.forms import ModelForm
+from django.db import models
 
-from application.models import Prescriber, Step, Patient, Treatment
+
+from application.models import Prescriber, Step, Patient, Treatment, Medication
 from application.models import Phq9 as phq9_db
 from application.models import MDQ as mdq_db
 from django import forms
@@ -39,7 +42,7 @@ def logout_user(request):
 @login_required  # If user is not logged in, they are redirected to the login page.
 def create_user(request):  # Renders user creation
     if request.method == 'POST':
-        new_user_form = CreateUser(request.POST)  # Form for creating a new user
+        new_user_form = CreateUser(request.POST) # Form for creating a new user
         if new_user_form.is_valid():  # Enters if form is valid
             new_user_form.save()  # Saves form to database
             username = new_user_form.cleaned_data.get('username')
@@ -69,6 +72,65 @@ class CreateUser(UserCreationForm):  # Class for the user generation form
             'is_superuser': 'Allows this user to create, modify, edit, and delete other users and their information.'
         }
 
+@login_required
+def edit_algorithm(request):
+    if request.method == 'POST':
+        action = request.POST['action']
+        step_id = request.POST['step_id']
+        if action == "goto":
+            request.session['step_id'] = step_id
+            return redirect('/admin/application/step/%s/change/' % step_id)
+        elif action == "delete":
+            try:
+                step = Step.objects.get(id=step_id)
+                step.delete()
+            except:
+                pass
+
+    return render(request, 'application/edit-algorithm.html', {'title': 'Edit Algorithm', 'steps': Step.objects.all()})
+
+
+@login_required
+def edit_medications(request):
+    if request.method == 'POST':
+        action = request.POST['action']
+        medication_id = request.POST['medication_id']
+        if action == "goto":
+            request.session['medication_id'] = medication_id
+            return redirect('/admin/application/medication/%s/change/' % medication_id)
+        elif action == "delete":
+            try:
+                medication = Medication.objects.get(id=medication_id)
+                medication.delete()
+            except:
+                pass
+
+    return render(request, 'application/edit-medications.html', {'title': 'Edit Medications', 'medications': Medication.objects.all()})
+
+class CreateMedicationForm(forms.ModelForm):
+    name = forms.CharField()
+    category = forms.CharField()
+    initial_dose = forms.FloatField()
+    maximum_dose = forms.FloatField()
+    titration = forms.TextInput()
+    comments = forms.TextInput()
+    side_effects = forms.TextInput()
+
+    class Meta:
+        model = Medication
+        fields = ['name', 'category', 'initial_dose', 'maximum_dose', 'titration', 'comments', 'side_effects']
+
+@login_required  # If user is not logged in, they are redirected to the login page.
+def new_medication(request):
+    if request.method == 'POST':
+        new_med_form = CreateMedicationForm(request.POST)
+        if new_med_form.is_valid():
+            new_med_form.save()
+            messages.success(request, 'Medication created.')
+            return redirect('edit-medications')
+    else:
+        new_med_form = CreateMedicationForm()
+    return render(request, 'application/new-medication.html', {'new_med_form': new_med_form})
 
 @login_required  # If user is not logged in, they are redirected to the login page.
 def backend_home(request):
@@ -291,8 +353,7 @@ def process_mdq(request, results):
 
 @login_required  # If user is not logged in, they are redirected to the login page.
 def medications(request):
-    return render(request, 'application/medications.html', {'title': 'Medications'})
-
+    return render(request, 'application/medications.html', {'title': 'Medications', 'medications': Medication.objects.all()})
 
 class CreatePatientForm(forms.ModelForm):
     first_name = forms.CharField()
@@ -330,6 +391,10 @@ def new_patient(request):
 @login_required  # If user is not logged in, they are redirected to the login page.
 def treatment_overview(request):
     return render(request, 'application/treatment-overview.html', {'title': 'Treatment Overview'})
+
+@login_required  # If user is not logged in, they are redirected to the login page.
+def bipolar_treatment_overview(request):
+    return render(request, 'application/bipolar-treatment-overview.html', {'title': 'Bipolar Treatment Overview'})
 
 
 @login_required
@@ -407,4 +472,3 @@ def edit_patient(request, id): # View to edit the patient information
     else:
         edit_patient_form = CreatePatientForm(instance=patient) # Form receives the patients data base info and populates the form
     return render(request, 'application/edit-patient.html', {'edit_patient_form': edit_patient_form})
-

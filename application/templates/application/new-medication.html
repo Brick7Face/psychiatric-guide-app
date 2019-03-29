@@ -1,0 +1,26 @@
+{% extends "application/global-html.html" %}
+{% load crispy_forms_tags %}
+{% load static %} <!-- loads in static css file  application/static/application-->
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'application/new-medication.css' %}">
+{% endblock css %}
+
+{% block body %}
+    <div id="new_med_wrapper">
+      <h2>
+        <a href="{% url 'edit-medications' %}" class="go_back">< Go Back</a>
+      </h2>
+      <div class="new_med_content">
+        <h1>
+          New Medication
+        </h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ new_med_form | crispy }}
+            <!--Uses the form created in views.py and uses crispy form formatting-->
+            <button class="slds-button slds-button_outline-brand" type="submit">Create Medication</button>
+        </form>
+      </div
+    </div>
+{% endblock body %}
