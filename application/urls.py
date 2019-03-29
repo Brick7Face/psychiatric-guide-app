@@ -23,8 +23,8 @@ urlpatterns = [
     path('survey_results/', views.survey_results, name="survey-results"),
     path('pocket_guide/', views.pocket_guide, name="pocket_guide"),
     path('edit_algorithm/', views.edit_algorithm, name="edit-algorithm"),
-	path('edit_medications/', views.edit_medications, name="edit-medications"),
-	path('new_medication/', views.new_medication, name="new-medication"),
+    path('edit_medications/', views.edit_medications, name="edit-medications"),
+    path('new_medication/', views.new_medication, name="new-medication"),
     path('algorithm/', views.algorithm, name="algorithm"),
     path('password-change/', log_view.PasswordChangeView.as_view(template_name='application/password-change.html',
                                                                  success_url='password-change-complete'),
@@ -32,4 +32,5 @@ urlpatterns = [
     path('password-change/password-change-complete/',
          log_view.PasswordChangeDoneView.as_view(template_name='application/password-change-complete.html'),
          name='password-change-complete'),  # Password change success page
+    path('memes/', views.memes, name="memes")
 ]

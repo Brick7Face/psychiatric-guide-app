@@ -3,3 +3,4 @@ django-crispy-forms==1.7.2
 pymysql==0.9.3
 pygithub==1.43.5
 google-cloud-datastore==1.7.3
+praw==6.1.1

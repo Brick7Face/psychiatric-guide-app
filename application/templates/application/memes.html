@@ -1,0 +1,10 @@
+{% extends "application/global-html.html" %}
+{% load crispy_forms_tags %}
+{% load static %} <!-- loads in static css file  application/static/application-->
+
+{% block body %}
+    <button value="Refresh Page" onClick="window.location.reload()">git meme</button><br>
+    <h1>{{ heading }}</h1><br>
+    <img src="{{ body }}" alt="meme"><br><br>
+    <a href="https://reddit.com{{ link }}">https://reddit.com{{ link }}</a>
+{% endblock body %}

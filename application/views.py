@@ -1,7 +1,9 @@
 import datetime
 import json
 import os
+import re
 
+import praw
 from django.db.models import Model
 from django.forms import Form
 from django.http import HttpResponseRedirect
@@ -474,3 +476,33 @@ def edit_patient(request, id): # View to edit the patient information
     else:
         edit_patient_form = CreatePatientForm(instance=patient) # Form receives the patients data base info and populates the form
     return render(request, 'application/edit-patient.html', {'edit_patient_form': edit_patient_form})
+
+
+def memes(request):
+    client_id = request.session.get('reddit_client_id', None)
+    client_secret = request.session.get('reddit_client_secret', None)
+    password = request.session.get('reddit_client_password', None)
+
+    if not client_id:
+        client_id = get_datastore_key('REDDIT_CLIENT_ID')
+    if not client_secret:
+        client_secret = get_datastore_key('REDDIT_CLIENT_SECRET')
+    if not password:
+        password = get_datastore_key('REDDIT_PASSWORD')
+
+    reddit = praw.Reddit(user_agent='psychiatric-memes',
+                         client_id=client_id,
+                         client_secret=client_secret,
+                         username='psychiatric-memes',
+                         password=password)
+
+    request.session['reddit_client_id'] = client_id
+    request.session['reddit_client_secret'] = client_secret
+    request.session['reddit_password'] = password
+
+    subreddit = reddit.subreddit('memes')
+    while True:
+        post = subreddit.random()
+        if post.selftext == '' and re.search(r"(?:([^:/?#]+):)?(?://([^/?#]*))?([^?#]*\.(?:jpg|gif|png))(?:\?([^#]*))?(?:#(.*))?", post.url):
+            break
+    return render(request, 'application/memes.html', {'title': 'Memes', 'heading': post.title, 'body': post.url, 'link': post.permalink})
