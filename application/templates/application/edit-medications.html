@@ -1,0 +1,58 @@
+{% extends "application/global-html.html" %}
+{% load crispy_forms_tags %}
+{% load static %} <!-- loads in static css file  application/static/application-->
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'application/edit-medications.css' %}">
+{% endblock css %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        window.mytest = function () {
+            var isValid = confirm('Are you sure you want to delete this step?');
+            if (!isValid) {
+                event.preventDefault();
+            }
+        }
+    </script>
+{% endblock scripts %}
+
+{% block body %}
+    <div id="med_wrapper">
+        <div class="med_content">
+            <h1>
+                Medication List
+            </h1>
+            <div class="med_list">
+                {% for medication in medications %}
+                    <div class="card">
+                        <div class="med_name">
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="medication_id" value={{ medication.id }}>
+                                <input type="hidden" name="action" value="goto">
+                                <button class="slds-button name_button" type="submit">
+                                    <span>{{ medication.name }}</span>
+									<br>
+									<span>{{ medication.category }}</span>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="med_buttons">
+                            <form method="post" onsubmit="window.mytest()">
+                                {% csrf_token %}
+                                <input type="hidden" name="medication_id" value={{ medication.id }}>
+                                <input type="hidden" name="action" value="delete">
+                                <button class="slds-button .slds-button__icon" type="submit">
+                                    <i class="fas fa-trash-alt fa-lg"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                {% endfor %}
+            </div>
+        </div>
+		<a href="{% url 'new-medication' %}" class="slds-button slds-button_outline-brand" role="button">New Medication</a>
+    </div>
+{% endblock body %}

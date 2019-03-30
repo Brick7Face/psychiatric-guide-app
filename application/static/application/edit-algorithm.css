@@ -1,0 +1,83 @@
+#steps_wrapper {
+    margin-top: 15vh;
+    height: 85vh;
+    width: 60vw;
+}
+
+body #steps_wrapper .steps_content {
+    margin: 0 auto;
+    background-color: #fff;
+    border: 2px solid #2699FB;
+    padding-left: 2.5vw;
+    padding-right: 2.5vw;
+    padding-top: 2vh;
+}
+
+body #steps_wrapper .step_list {
+    padding: 1em;
+    margin-top: 2vh;
+    height: 50vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    white-space: nowrap;
+
+}
+
+body #steps_wrapper .card {
+    height: 12em;
+    width: 100%;
+}
+
+button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+body #steps_wrapper .step_name .name_button {
+    margin: 0 0 0 1vw;
+    text-align: left;
+    height: 100%;
+}
+
+body #steps_wrapper .step_buttons {
+    position: absolute;
+    right: 0;
+    height: 100%;
+}
+
+body #steps_wrapper .step_buttons button {
+    width: auto;
+    margin: 0 1vw 0 0;
+    height: 100%;
+}
+
+body #steps_wrapper .step_buttons form {
+    float: left;
+    width: auto;
+    margin-right: 1vw;
+}
+
+body #steps_wrapper .slds-button {
+    display: block;
+    margin: 0 auto;
+    margin-top: 2vh;
+    width: 40vw;
+}
+
+body span {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #2699FB;
+}
+
+body h1 {
+    font-size: 2.5em;
+}
+
+@media (max-width: 1200px) {
+    body #steps_wrapper .slds-button {
+        width: 25vw;
+    }
+}

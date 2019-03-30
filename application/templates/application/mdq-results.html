@@ -1,0 +1,29 @@
+{% extends "application/global-html.html" %}
+{% load crispy_forms_tags %}
+{% load static %} <!-- loads in static css file  application/static/application-->
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'application/mdq-results.css' %}">
+{% endblock css %}
+
+{% block body %}
+    <div id="mdq_results_wrapper">
+        <div class="mdq_results_container">
+            <h1>MDQ Patient Results</h1>
+            <div id="mdq_results">
+                {% if diagnosis %}
+                    <h2>The screen is positive for possible bipolar I disorder.
+                        Complete a clinical interview to make a diagnosis.
+                        This screen is not as sensitive for Bipolar II Disorder (depression and hypomania).</h2>
+                {% else %}
+                    <h2>The screen not positive for possible bipolar I disorder.</h2>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn btn-primary mt-4 btn-block" type="submit">Add results to patient</button>
+    </form>
+{% endblock body %}

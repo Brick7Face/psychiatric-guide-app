@@ -1,0 +1,26 @@
+body #mdq_results_wrapper{
+    margin-top: 20vh;
+    padding: .5vh;
+}
+
+body #mdq_results_wrapper .mdq_results_container{
+    margin: 0 auto;
+    background-color: #fff;
+    border: 2px solid #2699FB;
+    padding-left: 2.5vw;
+    padding-right: 2.5vw;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+}
+
+#mdq_results_wrapper, h1{
+    text-align: left;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+h2 {
+    font-size: 20px;
+    color: #00a0e3;
+    padding: 15px 5px 10px 5px;
+}

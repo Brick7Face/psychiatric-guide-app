@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 
 # Application version
-version = '2.0'
+version = '3.0'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -76,6 +76,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'psychiatric_guide_app.wsgi.application'
 
+use_cloud_sql = os.getenv('USE_CLOUD_SQL', None)
+
 # [START db_setup]
 if os.getenv('GAE_APPLICATION', None):
     # Running on production App Engine, so connect to Google Cloud SQL using
@@ -90,7 +92,7 @@ if os.getenv('GAE_APPLICATION', None):
             'NAME': 'guide',
         }
     }
-elif bool(os.getenv('USE_CLOUD_SQL', None)) is True:
+elif use_cloud_sql and "True" in use_cloud_sql:
     print("using cloud sql db")
     # Running locally so connect to either a local MySQL instance or connect to
     # Cloud SQL via the proxy. To start the proxy via command line:
@@ -158,6 +160,6 @@ LOGIN_REDIRECT_URL = 'backend-home'  # Sets redirect after login
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_URL = 'login-view' # Redirect for the login page for @login_required
 # Sourced following code from user Jayground at https://stackoverflow.com/questions/3024153/how-to-expire-session-due-to-inactivity-in-django
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True # Logs user out if browser is closed
+# SESSION_EXPIRE_AT_BROWSER_CLOSE = True # Logs user out if browser is closed
 SESSION_COOKIE_AGE = 900 # Automatically logs user out after 15 minutes (900 seconds)
 SESSION_SAVE_EVERY_REQUEST = True

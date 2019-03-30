@@ -1,0 +1,80 @@
+{% extends "application/global-html.html" %}
+{% load crispy_forms_tags %}
+{% load static %} <!-- loads in static css file  application/static/application-->
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'application/treatment-overview.css' %}">
+{% endblock css %}
+
+{% block body %}
+  <div id="treatment_wrapper">
+    <div id="edit-menu">
+        <div id="algorithm-dropdown">
+            <div id="dropdown-content">
+                <a href="{% url 'treatment-overview' %}" class="slds-button slds-button_outline-brand" role="button">Depression</a>
+                <a href="{% url 'bipolar-treatment-overview' %}" class="slds-button slds-button_outline-brand" role="button">Bipolar</a>
+            </div>
+        </div>
+    </div>
+    <div class="treatment_content">
+      <h1>
+        Bipolar Treatment Overview
+      </h1>
+      <table style="width:100%">
+          <tr>
+              <td id="header">Goals of Therapy</td>
+              <td id>
+                  <ul>
+                      <h2 id="header">Acute:</h2>
+                      <li>Control current episode</li>
+                      <li>Reduce harm to self and others</li>
+
+                      <h2 id="header">Maintenance:</h2>
+                      <li>Prevent or minimize future episodes</li>
+                      <li>Optimize medication adherence</li>
+                      <li>Reduce drug adverse effects and drug interactions</li>
+                      <li>Educate the patient and family about the disorder</li>
+                      <li>Follow-up on a regular schedule</li>
+                      <li>Optimize function and quality of life</li>
+                  </ul>
+              </td>
+          </tr>
+          <tr>
+              <td id="header">General Approach to Treatment</td>
+              <td id="item">
+                  <ul>
+                      <h2 id="header">Pharmalogical:</h2>
+                      <li>Identify and manage secondary causes of mania such as
+                      antidepressants, drug abuse, alchohol abuse, hypothyroidism, or dementia</li>
+                      <li>Initiate mood stabilizer</li>
+                      <li>During acute episode, medications can be added (or increased) and then tapered once the patient is stablized</li>
+                      <li>Do not use an antidepressent without a mood stabilizer</li>
+                      <li>Antidepressants may destablize mood or cause a switch to mania/hypomania</li>
+                      <li>Add an antipsychotic if psychosis is present</li>
+
+                      <h2 id="header">Non Pharmacological</h2>
+                      <li>Inform patient, family, and caregivers of self-help and support groupos</li>
+                      <li>Address adequate nutrition, sleep, exercise, and stress reduction</li>
+                      <li>Encourage psychotherapy and supportive counseling</li>
+                      <li>Minimize nicotine and stop caffeeine intake 8 hours prior to bedtime</li>
+                      <li>Document mood episodes in a daily mood chart</li>
+                      <li>Treat comorbid substance use and abuse</li>
+                  </ul>
+              </td>
+          </tr>
+          <tr>
+              <td id="header">Monitoring</td>
+              <td>
+                <ul>
+                    <li>Monitor patients ever 1-2 weeks for 6 weeks when starting new medications or switching therapies</li>
+                    <li>Once stabilized, monitor patient every month for 3 months, then every 2-3 months</li>
+                    <li>Monitor for depression using PHQ-9</li>
+                    <li>Continually assess suicidality</li>
+                    <li>Monitor medication adherence as this may be a reason for non-response and recurrent episodes</li>
+                </ul>
+              </td>
+          </tr>
+      </table>
+    </div>
+  </div>
+{% endblock body %}
