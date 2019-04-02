@@ -61,7 +61,7 @@ body #patients_wrapper .slds-button {
     display: block;
     margin: 0 auto;
     margin-top: 2vh;
-    width: 10vw;
+	width: 100%;
 }
 
 body span {
