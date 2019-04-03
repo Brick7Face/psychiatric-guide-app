@@ -15,7 +15,6 @@ from django.views.generic.edit import UpdateView
 from django.forms import ModelForm
 from django.db import models
 
-
 from application.models import Prescriber, Step, Patient, Treatment, Medication
 from application.models import Phq9 as phq9_db
 from application.models import MDQ as mdq_db
@@ -42,7 +41,7 @@ def logout_user(request):
 @login_required  # If user is not logged in, they are redirected to the login page.
 def create_user(request):  # Renders user creation
     if request.method == 'POST':
-        new_user_form = CreateUser(request.POST) # Form for creating a new user
+        new_user_form = CreateUser(request.POST)  # Form for creating a new user
         if new_user_form.is_valid():  # Enters if form is valid
             new_user_form.save()  # Saves form to database
             username = new_user_form.cleaned_data.get('username')
@@ -71,6 +70,7 @@ class CreateUser(UserCreationForm):  # Class for the user generation form
             'is_staff': 'Check if account is for a staff member.',
             'is_superuser': 'Allows this user to create, modify, edit, and delete other users and their information.'
         }
+
 
 @login_required
 def edit_algorithm(request):
@@ -105,7 +105,9 @@ def edit_medications(request):
             except:
                 pass
 
-    return render(request, 'application/edit-medications.html', {'title': 'Edit Medications', 'medications': Medication.objects.all()})
+    return render(request, 'application/edit-medications.html',
+                  {'title': 'Edit Medications', 'medications': Medication.objects.all()})
+
 
 class CreateMedicationForm(forms.ModelForm):
     name = forms.CharField()
@@ -120,6 +122,7 @@ class CreateMedicationForm(forms.ModelForm):
         model = Medication
         fields = ['name', 'category', 'initial_dose', 'maximum_dose', 'titration', 'comments', 'side_effects']
 
+
 @login_required  # If user is not logged in, they are redirected to the login page.
 def new_medication(request):
     if request.method == 'POST':
@@ -131,6 +134,7 @@ def new_medication(request):
     else:
         new_med_form = CreateMedicationForm()
     return render(request, 'application/new-medication.html', {'new_med_form': new_med_form})
+
 
 @login_required  # If user is not logged in, they are redirected to the login page.
 def backend_home(request):
@@ -164,6 +168,9 @@ def get_item(dictionary, key):
 
 @login_required
 def patient_home(request):
+    patient_id = request.session["patient_id"]
+    patient = Patient.objects.get(id=patient_id)
+
     if request.method == 'GET':
         action = request.GET.get('action', None)
         if action in ['phq9', 'mdq']:
@@ -171,11 +178,21 @@ def patient_home(request):
             request.session['patient_id'] = request.GET['patient_id']
             request.session['survey_type'] = action
             return redirect('survey')
+        elif action == 'algorithm':
+            request.session['algorithm'] = request.GET.get('algorithm')
+            request.session['current_step_id'] = patient.current_step_id
+            return redirect('algorithm')
 
-    patient_id = request.session["patient_id"]
+    current_treatment = None
+    for treatment in Treatment.objects.all():
+        if patient.current_step in treatment.steps.all():
+            current_treatment = treatment
+            break
+
     return render(request, 'application/patient-home.html',
                   {'title': 'Patient Home',
-                   'patient': Patient.objects.get(id=patient_id),
+                   'patient': patient,
+                   'treatment': current_treatment,
                    'phq9s': phq9_db.objects.filter(patient_id=patient_id),
                    'mdqs': mdq_db.objects.filter(patient_id=patient_id)})  # Renders login.html
 
@@ -230,7 +247,7 @@ def survey_results(request):
             return render(request, 'application/phq9-results.html', dict)
         elif survey_type == 'mdq':
             # display mdq results
-            dict = {'diagnosis' : mdq_db.objects.last().diagnosis}
+            dict = {'diagnosis': mdq_db.objects.last().diagnosis}
             return render(request, 'application/mdq-results.html', dict)
 
 
@@ -353,13 +370,15 @@ def process_mdq(request, results):
 
 @login_required  # If user is not logged in, they are redirected to the login page.
 def medications(request):
-    return render(request, 'application/medications.html', {'title': 'Medications', 'medications': Medication.objects.all()})
+    return render(request, 'application/medications.html',
+                  {'title': 'Medications', 'medications': Medication.objects.all()})
+
 
 class CreatePatientForm(forms.ModelForm):
     first_name = forms.CharField()
     last_name = forms.CharField()
     # datepicker sourced from https://stackoverflow.com/questions/31548373/django-1-8-django-crispy-forms-is-there-a-simple-easy-way-of-implementing-a
-    dob = forms.DateField(widget=forms.TextInput(attrs={'type':'date'}))
+    dob = forms.DateField(widget=forms.TextInput(attrs={'type': 'date'}))
     address = forms.CharField()
     email = forms.EmailField()
     phone = forms.CharField()
@@ -392,6 +411,7 @@ def new_patient(request):
 def treatment_overview(request):
     return render(request, 'application/treatment-overview.html', {'title': 'Treatment Overview'})
 
+
 @login_required  # If user is not logged in, they are redirected to the login page.
 def bipolar_treatment_overview(request):
     return render(request, 'application/bipolar-treatment-overview.html', {'title': 'Bipolar Treatment Overview'})
@@ -406,11 +426,20 @@ def algorithm(request):
         alg = request.session['algorithm']
     else:
         alg = "Depression"
+
+    current_step_id = request.session.get('current_step_id', None)
+    request.session['current_step_id'] = None
+
     raw_steps = serializers.serialize('python', Treatment.objects.get(name=alg).steps.all().order_by('id'))
     steps = {}
     for step in raw_steps:
         id = step['pk']
         step = step['fields']
+        if id == current_step_id:
+            step['current'] = True
+        else:
+            step['current'] = False
+
         steps[id] = step
     steps = json.dumps(steps)
 
@@ -461,8 +490,8 @@ def get_datastore_key(name):
 
 
 @login_required  # If user is not logged in, they are redirected to the login page.
-def edit_patient(request, id): # View to edit the patient information
-    patient = Patient.objects.get(pk=id)    #Gets the patient database field
+def edit_patient(request, id):  # View to edit the patient information
+    patient = Patient.objects.get(pk=id)  # Gets the patient database field
     if request.method == 'POST':
         edit_patient_form = CreatePatientForm(request.POST, instance=patient)
         if edit_patient_form.is_valid():
@@ -470,5 +499,6 @@ def edit_patient(request, id): # View to edit the patient information
             messages.success(request, 'Patient edited.')
             return redirect('patients')
     else:
-        edit_patient_form = CreatePatientForm(instance=patient) # Form receives the patients data base info and populates the form
+        edit_patient_form = CreatePatientForm(
+            instance=patient)  # Form receives the patients data base info and populates the form
     return render(request, 'application/edit-patient.html', {'edit_patient_form': edit_patient_form})
