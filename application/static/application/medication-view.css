@@ -1,0 +1,107 @@
+body #medication_view_wrapper{
+    padding-top: 10.5vh;
+    padding-bottom: 2.5vh;
+    overflow: auto;
+}
+
+body #medication_view_wrapper .medication_view_content{
+    margin: 0 auto;
+    background-color: #fff;
+    border: 2px solid #2699FB;
+    padding-left: 2.5vw;
+    padding-right: 2.5vw;
+    padding-top: 2vh;
+}
+
+h1 {
+    text-align: left;
+    font-size: 20pt;
+    color: #00a0e3;
+    padding-bottom: 2.5vh;
+}
+
+.flex-container{
+    margin-bottom: 5vh;
+    display: flex;
+    height: 65%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: center;
+    overflow: auto;
+	text-align: left;
+}
+
+.title{
+    font-size: 20pt;
+    color: grey;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    text-align: left;
+    overflow: auto;
+}
+
+#box1{
+    border: .5px solid #2699FB;
+    margin-right: 1vh;
+    padding: 2vh;
+    margin-top: 2.5vh;
+    text-align: left;
+}
+
+#medication_view_wrapper .flex-container #box1 .title{
+    text-align: left;
+    padding-bottom: 30px;
+}
+
+#table{
+    border: .5px solid #2699FB;
+    margin-right: 1vh;
+    padding: 2vh;
+    margin-top: 2.5vh;
+}
+
+h2{
+    color: #00a0e3;
+    font-size: 15pt;
+    padding-top: 10px;
+}
+
+h4{
+    color: red;
+    font-style: italic;
+}
+
+body #medication_view_wrapper h3{
+    color: grey;
+    padding-bottom: 10px;
+    font-size: 10pt;
+}
+
+hr{
+    padding: 0;
+    margin: 0;
+}
+
+table, th, td{
+    overflow-x: auto;
+    padding: 1px 5px 1px 5px;
+    margin: auto;
+}
+
+h5{
+    color: grey;
+    font-size: 8pt;
+    font-style: italic;
+}
+
+th{
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: 10pt;
+}
+
+td{
+    color: grey;
+    font-size: 10pt;
+}

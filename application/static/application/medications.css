@@ -24,7 +24,6 @@ body .medication_content #accordion{
 }
 
 body .medication_content #card{
-  border: .5px solid #2699FB;
   height: 3em;
   width: 100%;
 }
@@ -38,4 +37,12 @@ body h2{
   font-weight: 300;
   line-height: 1.5em;
   color: #2699FB;
+}
+
+body .name_button {
+	width: 100%;
+    text-align: left;
+    height: 100%;
+	background-color: white;
+	border: .5px solid #2699FB;
 }

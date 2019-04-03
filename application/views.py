@@ -133,6 +133,25 @@ def new_medication(request):
     return render(request, 'application/new-medication.html', {'new_med_form': new_med_form})
 
 @login_required  # If user is not logged in, they are redirected to the login page.
+def medications(request):
+    if request.method == 'POST':
+        action = request.POST['action']
+        medication_id = request.POST['medication_id']
+        # navigate to medication view
+        if action == "goto":
+            request.session['medication_id'] = medication_id
+            return redirect('medication-view')
+
+    return render(request, 'application/medications.html', {'title': 'Medications', 'medications': Medication.objects.all()})
+	
+@login_required
+def medication_view(request):
+    medication_id = request.session["medication_id"]
+    return render(request, 'application/medication-view.html',
+                  {'title': 'Medication View',
+                   'medication': Medication.objects.get(id=medication_id)})
+
+@login_required  # If user is not logged in, they are redirected to the login page.
 def backend_home(request):
     return render(request, 'application/backend-home.html', {'title': 'Home'})  # Renders login.html
 
@@ -349,11 +368,6 @@ def process_mdq(request, results):
     request.session['survey_id'] = mdq.id
 
     return render(request, 'application/survey-complete.html', {'title': "Survey Complete"})
-
-
-@login_required  # If user is not logged in, they are redirected to the login page.
-def medications(request):
-    return render(request, 'application/medications.html', {'title': 'Medications', 'medications': Medication.objects.all()})
 
 class CreatePatientForm(forms.ModelForm):
     first_name = forms.CharField()
