@@ -14,7 +14,9 @@
         </h2>
         <div class="patient_home_content">
             <h1>Profile: {{ patient.first_name }} {{ patient.last_name }} </h1>
-            <button onclick="location.href='{% url 'edit-patient' id=patient.id %}'" class="phq9-button" type="submit">Edit Patient</button>
+            <button onclick="location.href='{% url 'edit-patient' id=patient.id %}'" class="phq9-button" type="submit">
+                Edit Patient
+            </button>
 
             <div class="flex-container">
                 <div id="box1" style="flex-grow: 1">
@@ -39,7 +41,7 @@
                     {% endfor %}
                     <h2>Next Visit Data</h2>
                     <hr>
-                    <h3>some dates</h3>
+                    <h3>{{ patient.next_visit }}</h3>
 
                     <h2 id="phq9">Current Treatment</h2>
                     <form method="get">
