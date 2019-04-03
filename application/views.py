@@ -379,7 +379,7 @@ class CreatePatientForm(forms.ModelForm):
 def new_patient(request):
     if request.method == 'POST':
         new_patient_form = CreatePatientForm(request.POST)
-        if new_patient_form:
+        if new_patient_form.is_valid():
             new_patient_form.save()
             messages.success(request, 'Patient created.')
             return redirect('patients')
@@ -465,7 +465,7 @@ def edit_patient(request, id): # View to edit the patient information
     patient = Patient.objects.get(pk=id)    #Gets the patient database field
     if request.method == 'POST':
         edit_patient_form = CreatePatientForm(request.POST, instance=patient)
-        if edit_patient_form:
+        if edit_patient_form.is_valid():
             edit_patient_form.save()
             messages.success(request, 'Patient edited.')
             return redirect('patients')
