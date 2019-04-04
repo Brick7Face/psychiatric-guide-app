@@ -72,10 +72,20 @@ h4{
     font-style: italic;
 }
 
+
 body #medication_view_wrapper h3{
     color: grey;
     padding-bottom: 10px;
     font-size: 10pt;
+}
+
+.dose_head {
+	display: inline;
+	font-weight: bold;
+}
+
+.dose_body {
+	display: inline;
 }
 
 hr{
