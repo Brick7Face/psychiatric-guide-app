@@ -386,12 +386,6 @@ def process_mdq(request, results):
 
     return render(request, 'application/survey-complete.html', {'title': "Survey Complete"})
 
-
-@login_required  # If user is not logged in, they are redirected to the login page.
-def medications(request):
-    return render(request, 'application/medications.html',
-                  {'title': 'Medications', 'medications': Medication.objects.all()})
-
 class CreatePatientForm(forms.ModelForm):
     first_name = forms.CharField()
     last_name = forms.CharField()
