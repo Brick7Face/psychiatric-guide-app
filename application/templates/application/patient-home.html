@@ -74,7 +74,7 @@
                         {% csrf_token %}
                         <input type="hidden" name="action" value="phq9">
                         <input type="hidden" name="patient_id" value={{ patient.id }}>
-                        <button class="phq9-button" type="submit">Take PHQ-9</button>
+                        <button class="phq9-button" type="submit">Give PHQ-9</button>
                     </form>
                     <h5>A change in the Severity Score of 5 or more is considered clinically significant in assessing
                         improvement of symptoms. </h5>
@@ -103,7 +103,7 @@
                         {% csrf_token %}
                         <input type="hidden" name="action" value="mdq">
                         <input type="hidden" name="patient_id" value={{ patient.id }}>
-                        <button class="phq9-button" type="submit">Take MDQ</button>
+                        <button class="phq9-button" type="submit">Give MDQ</button>
                     </form>
 
                     <hr>
