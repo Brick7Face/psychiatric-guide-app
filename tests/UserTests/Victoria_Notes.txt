@@ -1,0 +1,19 @@
+- prompts are good, patient information laid out well
+- provider is "giving" PHQ-9, MDQ, not "taking" it (change wording)
+- New patient form - typically patient would fill out individual information; 
+current step and down would be filled out by prescriber. So, this may require
+separating these forms. Patient info would be done before visit, step info and
+next visit would be done during the visit
+- Notes shouldn't be required upon filling out new patient form
+- Provider needs a way to diagnose patient's program and potentially change
+that program
+- Treament overview page, algorithm page maybe add print button so info
+could be printed for patient as intended. Printing from browser doesn't look right
+	- some of the info on treatment overview is not applicable to the
+	patient, such as discontinution/change of dosing, as the doctor
+	chooses this 
+	- basically, prescriber should have access to different info than
+	patient
+- Medications page - if you go back from viewing a medication, should display
+card that you were just on
+- 

@@ -25,6 +25,7 @@ urlpatterns = [
     path('edit_algorithm/', views.edit_algorithm, name="edit-algorithm"),
 	path('edit_medications/', views.edit_medications, name="edit-medications"),
 	path('new_medication/', views.new_medication, name="new-medication"),
+    path('medication-view/', views.medication_view, name="medication-view"),
     path('algorithm/', views.algorithm, name="algorithm"),
     path('password-change/', log_view.PasswordChangeView.as_view(template_name='application/password-change.html',
                                                                  success_url='password-change-complete'),
