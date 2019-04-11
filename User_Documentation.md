@@ -3,16 +3,6 @@
 [Developer Documentation](https://github.com/Brick7Face/psychiatric-guide-app/blob/development/README.md)
 can be found by clicking on the link.
 
-New features since last release:
-- Added ability for prescribers to edit patient information
-- Added ability for admins to edit treatment step information, medication information from front-end
-- Added treatment overview information for Bipolar disorder
-- Added medication views, common information for Depression and Bipolar medications
-- Added algorithm views for Depression, Bipolar Manic and Bipolar Depressed treatments, as well as ability to switch between them and edit their layout flows
-- Added ability for prescribers to give patients MDQ form and track results
-- Developed with [Cerner compatible practices](https://fhir.cerner.com/millennium/dstu2/)
-- Updated documentation
-
 # 1. Web Application Overview
 
 
