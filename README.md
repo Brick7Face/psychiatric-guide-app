@@ -3,12 +3,6 @@
 Webapp to automate the Prescribing Pocket Guide 2012 process.
 [User Documentation](https://github.com/Brick7Face/psychiatric-guide-app/blob/development/User_Documentation.md) can be found by clicking on the link.
 
-New features since last release:
-- Updated UML/class diagram
-- Better bug documentation
-- Updated documentation
-- An updated test suite with better coverage, tests for implemented features
-
 # 1. Obtain the source code
 
 ---
