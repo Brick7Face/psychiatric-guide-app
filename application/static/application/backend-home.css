@@ -42,25 +42,25 @@ body #home_wrapper .backend-home-content .slds-button{
 body #home_wrapper .backend-home-content #header_text{
   padding-bottom: 2vh;
   position: relative;
-  -webkit-animation: slide-top 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: slide-top 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  -webkit-animation: slide-top .75s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-top .75s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 
 }
 
 body #home_wrapper .backend-home-content #header2_text{
   padding-bottom: 2vh;
   position: relative;
-  -webkit-animation: slide-top 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: slide-top 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-          animation-delay: 1.5s;
+  -webkit-animation: slide-top .75s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-top .75s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+          animation-delay: .75s;
 }
 
 body #home_wrapper .backend-home-content #body_text{
   padding-bottom: 2vh;
   position: relative;
-  -webkit-animation: slide-top 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: slide-top 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-          animation-delay: 3s;
+  -webkit-animation: slide-top .75s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-top .75s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+          animation-delay: 1.5s;
 
 }
 
