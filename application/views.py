@@ -398,7 +398,7 @@ class CreatePatientForm(forms.ModelForm):
     next_visit = forms.DateTimeField(initial=datetime.datetime.now(),
                                      widget=forms.DateTimeInput(format='%m/%d/%Y %H:%M'),
                                      input_formats=('%m/%d/%Y %H:%M',))
-    notes = forms.CharField()
+    notes = forms.CharField(required=False)
 
     class Meta:
         model = Patient
