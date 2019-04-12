@@ -386,6 +386,7 @@ def process_mdq(request, results):
 
     return render(request, 'application/survey-complete.html', {'title': "Survey Complete"})
 
+
 class CreatePatientForm(forms.ModelForm):
     first_name = forms.CharField()
     last_name = forms.CharField()
@@ -514,3 +515,31 @@ def edit_patient(request, id):  # View to edit the patient information
         edit_patient_form = CreatePatientForm(
             instance=patient)  # Form receives the patients data base info and populates the form
     return render(request, 'application/edit-patient.html', {'edit_patient_form': edit_patient_form})
+
+
+@login_required  # If user is not logged in, they are redirected to the login page.
+def edit_algo(request, id):  # View to edit the patient information
+    algo = Step.objects.get(pk=id)  # Gets the patient database field
+    if request.method == 'POST':
+        edit_algo_form = EditAlgoForm(request.POST, instance=algo)
+        if edit_algo_form.is_valid():
+            edit_algo_form.save()
+            messages.success(request, 'Edit Algorithm.')
+            return redirect('edit-algorithm')
+    else:
+        edit_algo_form = EditAlgoForm(
+            instance=algo)  # Form receives the patients data base info and populates the form
+    return render(request, 'application/edit-algorithm.html', {'edit_algo_form': edit_algo_form})
+
+class EditAlgoForm(models.Model):
+    # Fields
+    name = models.CharField(help_text='Enter step title', max_length=25)
+    description = models.TextField(help_text='Enter step description')
+    transition = models.CharField(help_text='Enter the transition to this step', default='', max_length=50)
+    previous_step = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, default=None)
+    x = models.IntegerField(default=0)
+    y = models.IntegerField(default=0)
+
+    # Metadata
+    class Meta:
+        ordering = ['name']

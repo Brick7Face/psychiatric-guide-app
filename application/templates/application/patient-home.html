@@ -66,7 +66,10 @@
                     <h2>Medications</h2>
                     <hr>
                     {% for medication in patient.medications.all %}
-                        <h3>{{ medication }}</h3>
+                        <div class="row">
+                            <div class="col-sm-6"><h3>{{ medication }}</h3></div>
+                            <div class="col-sm-6"><h3>{{ patient.date_prescribed }}</h3></div>
+                        </div>
                     {% endfor %}
 
                     <h2 id="phq9">PHQ-9 Results</h2>

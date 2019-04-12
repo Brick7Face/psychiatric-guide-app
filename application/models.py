@@ -109,6 +109,7 @@ class Patient(models.Model):
     next_visit = models.DateTimeField(help_text='Enter the next visit date and time of the patient if applicable',
                                       blank=True, default=timezone.now)
     medications = models.ManyToManyField(Medication)
+    date_prescribed = models.DateField(auto_now_add=True)
     notes = models.TextField(help_text='Enter any prescriber notes about patient')
 
     # Metadata
