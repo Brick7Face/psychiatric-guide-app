@@ -24,7 +24,7 @@ class Step(models.Model):
     # Methods
     def get_absolute_url(self):
         """Returns the url to access a particular instance of Step."""
-        return reverse('model-detail-view', args=[str(self.id)])
+        return reverse('edit-algorithm')
 
     def __str__(self):
         """String for representing the Step object (in Admin site etc.)."""
@@ -69,7 +69,7 @@ class Medication(models.Model):
     # Methods
     def get_absolute_url(self):
         """Returns the url to access a particular instance of Medication."""
-        return reverse('model-detail-view', args=[str(self.id)])
+        return reverse('edit-medications')
 
     def __str__(self):
         """String for representing the Medication object (in Admin site etc.)."""
