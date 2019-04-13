@@ -1,0 +1,45 @@
+{% extends "application/global-html.html" %}
+{% load crispy_forms_tags %}
+{% load static %} <!-- loads in static css file  application/static/application-->
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'application/medication-view.css' %}">
+{% endblock css %}
+
+{% block body %}
+
+    <div id="medication_view_wrapper">
+        <h2>
+            <a href="{% url 'medications' %}" class="go_back">< Go Back</a>
+        </h2>
+        <div class="medication_view_content">
+            <h1>Medication: {{ medication.name }} </h1>
+
+            <div class="flex-container">
+                <div id="box1" style="flex-grow: 1">
+                    <div class="title"> General Information</div>
+                    <h2 id="category">Category</h2>
+                    <h3 class="dose_head">{{ medication.category }}</h3>
+
+                    <h2 id="dosing"> Dosing</h2>
+                    <h3 class="dose_head"> Initial Dose: </h3>
+					<h3 class="dose_body"> {{ medication.initial_dose }}  mg </h3><br><br>
+                    <h3 class="dose_head"> Maximum Dose: </h3>
+					<h3 class="dose_body"> {{ medication.maximum_dose }} mg </h3><br><br>
+					<h3 class="dose_head"> Titration: </h3>
+					<h3 class="dose_body"> {{ medication.titration|linebreaks }} </h3><br>
+                </div>
+
+                <div id="table" style="flex-grow: 6">
+                    <div class="title"> Other Information </div>
+						<h3 class="dose_head"> Comments: </h3>
+						<h3 class="dose_body">{{ medication.comments|linebreaks }} </h3><br>
+						<h3 class="dose_head"> Side Effects: </h3>
+						<h3 class="dose_body"> {{ medication.side_effects|linebreaks }} </h3>
+					</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}

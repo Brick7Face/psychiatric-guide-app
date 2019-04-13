@@ -50,11 +50,18 @@ function draw() {
         var text = joint.util.breakText(step.description, {
             width: width - 50
         });
+
         rect.position(step.x, step.y);
         rect.resize(width, height);
+
+        // highlight current step
+        var fill = '#2699FB';
+        if (step.current) {
+            fill = 'green';
+        }
         rect.attr({
             body: {
-                fill: '#2699FB'
+                fill: fill
             },
             label: {
                 text: text,
@@ -62,6 +69,7 @@ function draw() {
                 fontSize: 14
             }
         });
+
         rects[key] = rect;
         rect.addTo(graph);
 

@@ -14,17 +14,18 @@
         </h2>
         <div class="patient_home_content">
             <h1>Profile: {{ patient.first_name }} {{ patient.last_name }} </h1>
-{#            <button class="edit-button" type="submit">Edit Patient</button>#}
-            <a href="{% url 'edit-patient' id=patient.id %}" class="edit-button" type="submit">Edit Patient</a>
+            <button onclick="location.href='{% url 'edit-patient' id=patient.id %}'" class="phq9-button" type="submit">
+                Edit Patient
+            </button>
 
             <div class="flex-container">
                 <div id="box1" style="flex-grow: 1">
-                    <div class="title"> personal information</div>
+                    <div class="title">personal information</div>
                     <h2 id="dob">Date of Birth</h2>
                     <h3>{{ patient.dob }}</h3>
 
                     <h2 id="program"> Program</h2>
-                    <h3> Depression </h3>
+                    <h3> {{ treatment.name }} </h3>
 
                     <h2 id="contact-info"> Contact Information</h2>
                     <h3 id="address">Address: {{ patient.address }}</h3>
@@ -40,31 +41,38 @@
                     {% endfor %}
                     <h2>Next Visit Data</h2>
                     <hr>
-                    <h3>some dates</h3>
+                    <h3>{{ patient.next_visit }}</h3>
 
+                    <h2 id="phq9">Current Treatment</h2>
+                    <form method="get">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="algorithm">
+                        <input type="hidden" name="algorithm" value="{{ treatment.name }}">
+                        <button class="phq9-button" type="submit">View Current Step</button>
+                    </form>
                     {% if phq9s %}
                         {% for phq9 in phq9s %}
                             {% if forloop.last %}
                                 {% if phq9.change_treatment %}
-                                    <h2>Current Treatment </h2>
                                     <h4>Treatment change may be warranted</h4>
-                                    <hr>
-                                {% else %}
-                                    <h2>Current Treatment:</h2>
-                                    <hr>
                                 {% endif %}
                             {% endif %}
                         {% endfor %}
-                    {% else %}
-                        <h2>Current Treatment:</h2>
-                        <hr>
                     {% endif %}
-                    <h3>{{ patient.current_step.name }}</h3>
+                    <hr>
+                    <h3><b>Algorithm:</b> {{ treatment.name }}</h3>
+                    <h3><b>Step:</b> {{ patient.current_step.description }}</h3>
 
-                    <h2>Medications</h2>
+                    <h2 id="phq9">Medications</h2>
+                    <button onclick="location.href='{% url 'edit-medication-form' id=patient.id %}'" class="phq9-button"
+                            type="submit">Update Medication
+                    </button>
                     <hr>
                     {% for medication in patient.medications.all %}
-                        <h3>{{ medication }}</h3>
+                        <div class="row">
+                            <div class="col-sm-6"><h3>{{ medication }}</h3></div>
+                            <div class="col-sm-6"><h3>{{ patient.date_prescribed }}</h3></div>
+                        </div>
                     {% endfor %}
 
                     <h2 id="phq9">PHQ-9 Results</h2>
@@ -72,9 +80,10 @@
                         {% csrf_token %}
                         <input type="hidden" name="action" value="phq9">
                         <input type="hidden" name="patient_id" value={{ patient.id }}>
-                        <button class="phq9-button" type="submit">Take PHQ-9</button>
+                        <button class="phq9-button" type="submit">Give PHQ-9</button>
                     </form>
-                    <h5>A change in the Severity Score of 5 or more is considered clinically significant in assessing improvement of symptoms. </h5>
+                    <h5>A change in the Severity Score of 5 or more is considered clinically significant in assessing
+                        improvement of symptoms. </h5>
                     <hr>
                     {% if phq9s %}
                         <div style="overflow-x:auto;">
@@ -100,7 +109,7 @@
                         {% csrf_token %}
                         <input type="hidden" name="action" value="mdq">
                         <input type="hidden" name="patient_id" value={{ patient.id }}>
-                        <button class="phq9-button" type="submit">Take MDQ</button>
+                        <button class="phq9-button" type="submit">Give MDQ</button>
                     </form>
 
                     <hr>
@@ -123,7 +132,15 @@
                         <h3>No results yet</h3>
                     {% endif %}
 
-                    <h2>Notes</h2>
+                    <h2 id="phq9"> Notes</h2>
+                    <button id="add-notes" class="phq9-button" onclick="showTextArea()">Add Note</button>
+                    <form id="text-box">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="add-note">
+                        <input type="hidden" name="patient_id" value={{ patient.id }}>
+                        <textarea name="text"></textarea>
+                        <button class="phq9-button" type="submit">Submit</button>
+                    </form>
                     <hr>
                     {% if phq9s %}
                         {% for phq9 in phq9s %}
@@ -137,5 +154,11 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jointjs/2.1.0/joint.js"></script>
+    <script src="{% static 'application/notes.js' %}"></script>
 
 {% endblock body %}

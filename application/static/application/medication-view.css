@@ -1,38 +1,39 @@
-body #patient_home_wrapper{
-    background-color: #fff;
+body #medication_view_wrapper{
     padding-top: 10.5vh;
     padding-bottom: 2.5vh;
-    overflow: scroll;
+    overflow: auto;
+}
+
+body #medication_view_wrapper .medication_view_content{
+    margin: 0 auto;
+    background-color: #fff;
+    border: 2px solid #2699FB;
+    padding-left: 2.5vw;
+    padding-right: 2.5vw;
+    padding-top: 2vh;
 }
 
 h1 {
-    text-align: center;
+    text-align: left;
     font-size: 20pt;
-    color: coral;
+    color: #00a0e3;
     padding-bottom: 2.5vh;
 }
 
-.edit-button{
-    background-color: coral;
-    color: white;
-    text-align: center;
-    margin: 0 auto;
-    overflow-x: auto;
-    flex-flow: row wrap;
-}
-
 .flex-container{
+    margin-bottom: 5vh;
     display: flex;
-    height: 80%;
+    height: 65%;
     flex-direction: row;
     flex-wrap: wrap;
     align-content: stretch;
     justify-content: center;
     overflow: auto;
+	text-align: left;
 }
 
 .title{
-    font-size: 15pt;
+    font-size: 20pt;
     color: grey;
     padding-bottom: 10px;
     text-transform: uppercase;
@@ -41,35 +42,50 @@ h1 {
 }
 
 #box1{
-    border: 2px solid coral;
+    border: .5px solid #2699FB;
     margin-right: 1vh;
     padding: 2vh;
     margin-top: 2.5vh;
-    text-align: center;
+    text-align: left;
 }
 
-#patient_home_wrapper .flex-container #box1 .title{
+#medication_view_wrapper .flex-container #box1 .title{
     text-align: left;
     padding-bottom: 30px;
 }
 
 #table{
-    border: 2px solid coral;
+    border: .5px solid #2699FB;
     margin-right: 1vh;
     padding: 2vh;
     margin-top: 2.5vh;
 }
 
 h2{
-    color: coral;
+    color: #00a0e3;
     font-size: 15pt;
     padding-top: 10px;
 }
 
-body #patient_home_wrapper h3{
+h4{
+    color: red;
+    font-style: italic;
+}
+
+
+body #medication_view_wrapper h3{
     color: grey;
     padding-bottom: 10px;
     font-size: 10pt;
+}
+
+.dose_head {
+	display: inline;
+	font-weight: bold;
+}
+
+.dose_body {
+	display: inline;
 }
 
 hr{
@@ -83,6 +99,12 @@ table, th, td{
     margin: auto;
 }
 
+h5{
+    color: grey;
+    font-size: 8pt;
+    font-style: italic;
+}
+
 th{
     font-weight: normal;
     text-transform: uppercase;
@@ -93,25 +115,3 @@ td{
     color: grey;
     font-size: 10pt;
 }
-
-#phq9{
-    float:left;
-}
-
-.phq9-button{
-    background-color: coral;
-    color: white;
-    text-align: center;
-    margin: 10px 0px 0px 10px;
-    overflow-x: auto;
-    flex-flow: row wrap;
-
-}
-
-
-
-
-
-
-
-
