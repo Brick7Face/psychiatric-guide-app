@@ -13,6 +13,14 @@ body #patient_home_wrapper .patient_home_content{
     padding-top: 2vh;
 }
 
+#text-box{
+    display: none;
+}
+
+textarea {
+    width: 100%;
+}
+
 h1 {
     text-align: center;
     font-size: 20pt;
@@ -75,15 +83,16 @@ h2{
     padding-top: 10px;
 }
 
-h4{
-    color: red;
-    font-style: italic;
-}
-
-body #patient_home_wrapper h3{
+h3{
     color: grey;
     padding-bottom: 10px;
     font-size: 10pt;
+    white-space: pre-line;
+}
+
+h4{
+    color: red;
+    font-style: italic;
 }
 
 hr{
@@ -126,3 +135,5 @@ td{
     overflow-x: auto;
     flex-flow: row wrap;
 }
+
+

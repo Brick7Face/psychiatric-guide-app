@@ -201,12 +201,17 @@ def patient_home(request):
             request.session['algorithm'] = request.GET.get('algorithm')
             request.session['current_step_id'] = patient.current_step_id
             return redirect('algorithm')
+        elif action == 'add-note':
+            text = request.GET.get('text', '')
+            patient.notes = patient.notes + '\n' + text
 
     current_treatment = None
     for treatment in Treatment.objects.all():
         if patient.current_step in treatment.steps.all():
             current_treatment = treatment
             break
+
+    patient.save()
 
     return render(request, 'application/patient-home.html',
                   {'title': 'Patient Home',
@@ -514,3 +519,4 @@ def edit_patient(request, id):  # View to edit the patient information
         edit_patient_form = CreatePatientForm(
             instance=patient)  # Form receives the patients data base info and populates the form
     return render(request, 'application/edit-patient.html', {'edit_patient_form': edit_patient_form})
+
