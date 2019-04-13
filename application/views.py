@@ -523,3 +523,25 @@ def edit_patient(request, id):  # View to edit the patient information
         edit_patient_form = CreatePatientForm(
             instance=patient)  # Form receives the patients data base info and populates the form
     return render(request, 'application/edit-patient.html', {'edit_patient_form': edit_patient_form})
+
+
+def edit_medication(request, id):  # View to edit the patient medication
+    patient = Patient.objects.get(pk=id)  # Gets the patient database field
+    if request.method == 'POST':
+        edit_medication_form = UpdateMedicationForm(request.POST, instance=patient)
+        if edit_medication_form.is_valid():
+            edit_medication_form.save()
+            messages.success(request, 'Medication Updated.')
+            return redirect('patients')
+    else:
+        edit_medication_form = UpdateMedicationForm(
+            instance=patient)  # Form receives the patients data base info and populates the form
+    return render(request, 'application/edit-medication-form.html', {'edit_medication_form': edit_medication_form})
+
+
+class UpdateMedicationForm(forms.ModelForm): # Field to show medication form
+    medications = models.ManyToManyField(Medication)
+
+    class Meta:
+        model = Patient
+        fields = ['medications']
