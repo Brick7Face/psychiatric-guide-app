@@ -203,7 +203,7 @@ def patient_home(request):
             return redirect('algorithm')
         elif action == 'add-note':
             text = request.GET.get('text', '')
-            patient.notes = patient.notes + '\n' + text
+            patient.notes = patient.notes + '\n' + datetime.datetime.now().date().strftime('%B %d, %Y') + " |  " + text
 
     current_treatment = None
     for treatment in Treatment.objects.all():
