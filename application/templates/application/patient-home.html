@@ -63,10 +63,9 @@
                     <h3><b>Algorithm:</b> {{ treatment.name }}</h3>
                     <h3><b>Step:</b> {{ patient.current_step.description }}</h3>
 
-                    <h2>Medications</h2>
+                    <h2 id="phq9">Medications</h2>
                     <button onclick="location.href='{% url 'edit-medication-form' id=patient.id %}'" class="phq9-button"
-                            type="submit">
-                        Update Medication
+                            type="submit">Update Medication
                     </button>
                     <hr>
                     {% for medication in patient.medications.all %}
