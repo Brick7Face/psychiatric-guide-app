@@ -146,14 +146,17 @@ def medications(request):
             request.session['medication_id'] = medication_id
             return redirect('medication-view')
 
-    return render(request, 'application/medications.html', {'title': 'Medications', 'medications': Medication.objects.all()})
-	
+    return render(request, 'application/medications.html',
+                  {'title': 'Medications', 'medications': Medication.objects.all()})
+
+
 @login_required
 def medication_view(request):
     medication_id = request.session["medication_id"]
     return render(request, 'application/medication-view.html',
                   {'title': 'Medication View',
                    'medication': Medication.objects.get(id=medication_id)})
+
 
 @login_required  # If user is not logged in, they are redirected to the login page.
 def backend_home(request):
@@ -201,12 +204,17 @@ def patient_home(request):
             request.session['algorithm'] = request.GET.get('algorithm')
             request.session['current_step_id'] = patient.current_step_id
             return redirect('algorithm')
+        elif action == 'add-note':
+            text = request.GET.get('text', '')
+            patient.notes = patient.notes + '\n' + datetime.datetime.now().date().strftime('%B %d, %Y') + " |  " + text
 
     current_treatment = None
     for treatment in Treatment.objects.all():
         if patient.current_step in treatment.steps.all():
             current_treatment = treatment
             break
+
+    patient.save()
 
     return render(request, 'application/patient-home.html',
                   {'title': 'Patient Home',
@@ -385,6 +393,7 @@ def process_mdq(request, results):
     request.session['survey_id'] = mdq.id
 
     return render(request, 'application/survey-complete.html', {'title': "Survey Complete"})
+
 
 class CreatePatientForm(forms.ModelForm):
     first_name = forms.CharField()
