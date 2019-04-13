@@ -64,6 +64,10 @@
                     <h3><b>Step:</b> {{ patient.current_step.description }}</h3>
 
                     <h2>Medications</h2>
+                    <button onclick="location.href='{% url 'edit-medication-form' id=patient.id %}'" class="phq9-button"
+                            type="submit">
+                        Update Medication
+                    </button>
                     <hr>
                     {% for medication in patient.medications.all %}
                         <div class="row">

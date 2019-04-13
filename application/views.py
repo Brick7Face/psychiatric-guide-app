@@ -146,14 +146,17 @@ def medications(request):
             request.session['medication_id'] = medication_id
             return redirect('medication-view')
 
-    return render(request, 'application/medications.html', {'title': 'Medications', 'medications': Medication.objects.all()})
-	
+    return render(request, 'application/medications.html',
+                  {'title': 'Medications', 'medications': Medication.objects.all()})
+
+
 @login_required
 def medication_view(request):
     medication_id = request.session["medication_id"]
     return render(request, 'application/medication-view.html',
                   {'title': 'Medication View',
                    'medication': Medication.objects.get(id=medication_id)})
+
 
 @login_required  # If user is not logged in, they are redirected to the login page.
 def backend_home(request):
@@ -517,29 +520,23 @@ def edit_patient(request, id):  # View to edit the patient information
     return render(request, 'application/edit-patient.html', {'edit_patient_form': edit_patient_form})
 
 
-@login_required  # If user is not logged in, they are redirected to the login page.
-def edit_algo(request, id):  # View to edit the patient information
-    algo = Step.objects.get(pk=id)  # Gets the patient database field
+def edit_medication(request, id):  # View to edit the patient medication
+    patient = Patient.objects.get(pk=id)  # Gets the patient database field
     if request.method == 'POST':
-        edit_algo_form = EditAlgoForm(request.POST, instance=algo)
-        if edit_algo_form.is_valid():
-            edit_algo_form.save()
-            messages.success(request, 'Edit Algorithm.')
-            return redirect('edit-algorithm')
+        edit_medication_form = UpdateMedicationForm(request.POST, instance=patient)
+        if edit_medication_form.is_valid():
+            edit_medication_form.save()
+            messages.success(request, 'Medication Updated.')
+            return redirect('patients')
     else:
-        edit_algo_form = EditAlgoForm(
-            instance=algo)  # Form receives the patients data base info and populates the form
-    return render(request, 'application/edit-algorithm.html', {'edit_algo_form': edit_algo_form})
+        edit_medication_form = UpdateMedicationForm(
+            instance=patient)  # Form receives the patients data base info and populates the form
+    return render(request, 'application/edit-medication-form.html', {'edit_medication_form': edit_medication_form})
 
-class EditAlgoForm(models.Model):
-    # Fields
-    name = models.CharField(help_text='Enter step title', max_length=25)
-    description = models.TextField(help_text='Enter step description')
-    transition = models.CharField(help_text='Enter the transition to this step', default='', max_length=50)
-    previous_step = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, default=None)
-    x = models.IntegerField(default=0)
-    y = models.IntegerField(default=0)
 
-    # Metadata
+class UpdateMedicationForm(forms.ModelForm): # Field to show medication form
+    medications = models.ManyToManyField(Medication)
+
     class Meta:
-        ordering = ['name']
+        model = Patient
+        fields = ['medications']
