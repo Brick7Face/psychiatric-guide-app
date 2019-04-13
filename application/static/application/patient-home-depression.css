@@ -1,10 +1,10 @@
-body #patient_home_wrapper{
+body #patient_home_wrapper {
     padding-top: 10.5vh;
     padding-bottom: 2.5vh;
     overflow: auto;
 }
 
-body #patient_home_wrapper .patient_home_content{
+body #patient_home_wrapper .patient_home_content {
     margin: 0 auto;
     background-color: #fff;
     border: 2px solid #2699FB;
@@ -13,7 +13,7 @@ body #patient_home_wrapper .patient_home_content{
     padding-top: 2vh;
 }
 
-#text-box{
+#text-box {
     display: none;
 }
 
@@ -28,8 +28,8 @@ h1 {
     padding-bottom: 2.5vh;
 }
 
-.edit-button{
-    background-color:  #00a0e3;
+.edit-button {
+    background-color: #00a0e3;
     color: white;
     text-align: center;
     margin: 0 auto;
@@ -37,7 +37,7 @@ h1 {
     flex-flow: row wrap;
 }
 
-.flex-container{
+.flex-container {
     margin-bottom: 5vh;
     display: flex;
     height: 65%;
@@ -48,7 +48,7 @@ h1 {
     overflow: auto;
 }
 
-.title{
+.title {
     font-size: 15pt;
     color: grey;
     padding-bottom: 10px;
@@ -57,7 +57,7 @@ h1 {
     overflow: auto;
 }
 
-#box1{
+#box1 {
     border: .5px solid #2699FB;
     margin-right: 1vh;
     padding: 2vh;
@@ -65,70 +65,70 @@ h1 {
     text-align: center;
 }
 
-#patient_home_wrapper .flex-container #box1 .title{
+#patient_home_wrapper .flex-container #box1 .title {
     text-align: left;
     padding-bottom: 30px;
 }
 
-#table{
+#table {
     border: .5px solid #2699FB;
     margin-right: 1vh;
     padding: 2vh;
     margin-top: 2.5vh;
 }
 
-h2{
+h2 {
     color: #00a0e3;
     font-size: 15pt;
     padding-top: 10px;
 }
 
-h3{
+h3 {
     color: grey;
     padding-bottom: 10px;
     font-size: 10pt;
     white-space: pre-line;
 }
 
-h4{
+h4 {
     color: red;
     font-style: italic;
 }
 
-hr{
+hr {
     padding: 0;
     margin: 0;
 }
 
-table, th, td{
+table, th, td {
     overflow-x: auto;
     padding: 1px 5px 1px 5px;
     margin: auto;
 }
 
-h5{
+h5 {
     color: grey;
     font-size: 8pt;
     font-style: italic;
 }
 
-th{
+th {
     font-weight: normal;
     text-transform: uppercase;
     font-size: 10pt;
 }
 
-td{
+td {
     color: grey;
     font-size: 10pt;
 }
 
-#phq9{
-    float:left;
+#phq9 {
+    float: left;
 }
 
-.phq9-button{
-    background-color:  #00a0e3;
+.phq9-button {
+    background-color: #00a0e3;
     color: white;
     text-align: center;
     margin: 10px 0px 0px 10px;

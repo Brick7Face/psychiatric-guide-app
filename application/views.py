@@ -146,14 +146,17 @@ def medications(request):
             request.session['medication_id'] = medication_id
             return redirect('medication-view')
 
-    return render(request, 'application/medications.html', {'title': 'Medications', 'medications': Medication.objects.all()})
-	
+    return render(request, 'application/medications.html',
+                  {'title': 'Medications', 'medications': Medication.objects.all()})
+
+
 @login_required
 def medication_view(request):
     medication_id = request.session["medication_id"]
     return render(request, 'application/medication-view.html',
                   {'title': 'Medication View',
                    'medication': Medication.objects.get(id=medication_id)})
+
 
 @login_required  # If user is not logged in, they are redirected to the login page.
 def backend_home(request):
@@ -391,6 +394,7 @@ def process_mdq(request, results):
 
     return render(request, 'application/survey-complete.html', {'title': "Survey Complete"})
 
+
 class CreatePatientForm(forms.ModelForm):
     first_name = forms.CharField()
     last_name = forms.CharField()
@@ -519,4 +523,3 @@ def edit_patient(request, id):  # View to edit the patient information
         edit_patient_form = CreatePatientForm(
             instance=patient)  # Form receives the patients data base info and populates the form
     return render(request, 'application/edit-patient.html', {'edit_patient_form': edit_patient_form})
-
