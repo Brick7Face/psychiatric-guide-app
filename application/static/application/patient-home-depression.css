@@ -83,15 +83,16 @@ h2{
     padding-top: 10px;
 }
 
-h4{
-    color: red;
-    font-style: italic;
-}
-
-body #patient_home_wrapper h3{
+h3{
     color: grey;
     padding-bottom: 10px;
     font-size: 10pt;
+    white-space: pre-line;
+}
+
+h4{
+    color: red;
+    font-style: italic;
 }
 
 hr{
