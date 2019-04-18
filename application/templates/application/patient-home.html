@@ -63,10 +63,16 @@
                     <h3><b>Algorithm:</b> {{ treatment.name }}</h3>
                     <h3><b>Step:</b> {{ patient.current_step.description }}</h3>
 
-                    <h2>Medications</h2>
+                    <h2 id="phq9">Medications</h2>
+                    <button onclick="location.href='{% url 'edit-medication-form' id=patient.id %}'" class="phq9-button"
+                            type="submit">Update Medication
+                    </button>
                     <hr>
                     {% for medication in patient.medications.all %}
-                        <h3>{{ medication }}</h3>
+                        <div class="row">
+                            <div class="col-sm-6"><h3>{{ medication }}</h3></div>
+                            <div class="col-sm-6"><h3>{{ patient.date_prescribed }}</h3></div>
+                        </div>
                     {% endfor %}
 
                     <h2 id="phq9">PHQ-9 Results</h2>
@@ -126,7 +132,15 @@
                         <h3>No results yet</h3>
                     {% endif %}
 
-                    <h2>Notes</h2>
+                    <h2 id="phq9"> Notes</h2>
+                    <button id="add-notes" class="phq9-button" onclick="showTextArea()">Add Note</button>
+                    <form id="text-box">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="add-note">
+                        <input type="hidden" name="patient_id" value={{ patient.id }}>
+                        <textarea name="text"></textarea>
+                        <button class="phq9-button" type="submit">Submit</button>
+                    </form>
                     <hr>
                     {% if phq9s %}
                         {% for phq9 in phq9s %}
@@ -140,5 +154,11 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jointjs/2.1.0/joint.js"></script>
+    <script src="{% static 'application/notes.js' %}"></script>
 
 {% endblock body %}

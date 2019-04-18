@@ -1,0 +1,38 @@
+﻿Jaclyn’s User Test:
+* logged in using a given admin account 
+* likes the color scheme
+* Welcome animation could be faster
+* When creating a new patient 
+   * ‘Dob’ should be ‘DOB’ 
+   * Unsure what address means/requires. It should define if only the street address is needed or if the state, zip-code, and country are also required. —> add a statement or something to define requirements
+   * The treatment step names were unclear to her 
+      * This issue is ignored because Jaclyn does not have a medical background
+   * ‘Notes’ should not be a required field when creating a new patient
+* Taking PHQ-9
+   * On the survey complete page, she was unsure if she as a patient should continue 
+      * Add something/edit page to define that only prescribers should continue, not patients. 
+   * As a prescriber, she would want to see the answers to all the questions. 
+* Taking MDQ
+   * On the survey complete page, she was unsure if she as a patient should continue 
+      * Add something/edit page to define that only prescribers should continue, not patients. 
+   * Questions 1-13 should display the entire question not start with “...”  
+   * As a prescriber, she would want to see the answers to all the questions. 
+* Patient view
+   * Not clear how to add/update the notes section
+   * Well organized
+* Algorithm page 
+   * Edited the algorithm 
+* Treatment overview
+   * No comments 
+* Medication page
+   * Wanted to be able to see all the details of each medication from this page
+   * Did not know which medications were used for which disorder
+* Report a bug
+   * As a non-technical person, she was concerned about how much detail to give
+      * After looking in user documentation she found a helpful link and felt more comfortable with her bug report 
+* Documentation 
+   * Found it to be well organized and helpful 
+* Admin features
+   * BUG: 
+      * under the Edit Algorithm and the Edit Medications sections, if the ‘view on site’ button is pressed the page errors out 
+         * Database issue

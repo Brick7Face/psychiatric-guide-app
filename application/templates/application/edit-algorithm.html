@@ -40,6 +40,7 @@
                         </div>
                         <div class="step_buttons">
                             <form method="post" onsubmit="window.mytest()">
+
                                 {% csrf_token %}
                                 <input type="hidden" name="step_id" value={{ step.id }}>
                                 <input type="hidden" name="action" value="delete">
