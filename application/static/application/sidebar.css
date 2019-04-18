@@ -1,14 +1,14 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
 
-
 #sidebar h3 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 2em;
-  font-weight: 400;
-  line-height: 2.6em;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2em;
+    font-weight: 400;
+    line-height: 2.6em;
     color: white;
 }
+
 #sidebar p {
     font-family: 'Poppins', sans-serif;
     font-size: 1.1em;
@@ -18,8 +18,8 @@
 }
 
 .login_button .users_name {
-  margin-top: 2vh;
-  margin-bottom: 2vh;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
 }
 
 a, a:hover, a:focus {
@@ -38,25 +38,29 @@ a, a:hover, a:focus {
     height: 100%;
     position: fixed;
     width: 20vw;
-    overflow-y:scroll;
-    overflow:hidden;
+    overflow-y: scroll;
+    overflow: hidden;
 }
 
 #sidebar .sidebar-header {
-    margin-top:10px;
-    padding-left:25px;
+    margin-top: 10px;
+    padding-left: 25px;
     padding: 25px;
     background: #2699FB;
 }
-#sidebar .sidebar-header strong{
-  display:none;
+
+#sidebar .sidebar-header strong {
+    display: none;
 }
-#sidebar.active .sidebar-header h3{
-  display: block;
+
+#sidebar.active .sidebar-header h3 {
+    display: block;
 }
-#sidebar.active .sidebar-header strong{
-  display:none;
+
+#sidebar.active .sidebar-header strong {
+    display: none;
 }
+
 #sidebar ul.components {
     padding: 25px 0;
     border-bottom: 1px solid #fff;
@@ -65,7 +69,7 @@ a, a:hover, a:focus {
 }
 
 #sidebar ul button {
-  background-color: #2699FB
+    background-color: #2699FB
 }
 
 #sidebar ul p {
@@ -79,6 +83,7 @@ a, a:hover, a:focus {
     font-size: 1.1em;
     display: block;
 }
+
 #sidebar ul li a:hover {
     color: #2699FB;
     background: #fff;
@@ -116,68 +121,79 @@ a, a:hover, a:focus {
 }
 
 #sidebar .login_button {
-  margin-top:30px;
-  padding-left: 25px;
+    margin-top: 30px;
+    padding-left: 25px;
 }
 
-#sidebar i{
-  color: #fff;
+#sidebar i {
+    color: #fff;
 }
 
 @media (max-width: 1200px) {
-    .users_name{
-      display: block;
-      font-size:.75em;
-      /*
-      font-size: .9em;
-      text-align: left;
-      */
+    .users_name {
+        display: block;
+        font-size: .75em;
+        /*
+        font-size: .9em;
+        text-align: left;
+        */
     }
-    #sidebar .login_button{
-      text-align: center;
-      padding-left:0;
-      margin-top: 4px;
+
+    #sidebar .login_button {
+        text-align: center;
+        padding-left: 0;
+        margin-top: 4px;
     }
-    .slds-button{
-      padding: 0;
-      margin: 0;
-      width: 14vw;
-      font-size: .7em;
+
+    .slds-button {
+        padding: 0;
+        margin: 0;
+        width: 14vw;
+        font-size: .7em;
     }
+
     #sidebar.active {
         margin-left: 0;
     }
+
     #sidebar.active {
         min-width: 80px;
         max-width: 80px;
         text-align: center;
     }
-    #sidebar .sidebar-header{
-      padding-left: 10px;
+
+    #sidebar .sidebar-header {
+        padding-left: 10px;
     }
+
     /*#sidebar .sidebar-header h3{
       padding: 10px 4px;
       text-align: center;
       font-size: 1.1em;
     }*/
     /* Toggling the sidebar header content, hide the big heading [h3] and showing the small heading [strong] and vice versa*/
-    #sidebar .sidebar-header h3{
-      display: none;
+    #sidebar .sidebar-header h3 {
+        display: none;
     }
+
     #sidebar.active .sidebar-header h3 {
         display: none;
     }
-    #sidebar .sidebar-header strong{
-      display: block;
+
+    #sidebar .sidebar-header strong {
+        display: block;
     }
-    #sidebar.active .sidebar-header strong{
-      display:block;
+
+    #sidebar.active .sidebar-header strong {
+        display: block;
     }
+
     #sidebar ul li a {
         padding: 9px 9px;
         text-align: center;
         font-size: 1em;
     }
+
     #sidebar ul li a i p {
         font-size: 0;
     }
@@ -193,7 +209,7 @@ a, a:hover, a:focus {
     /* Same dropdown links padding*/
     #sidebar ul ul a {
         padding: 10px !important;
-        font-size:.75em;
+        font-size: .75em;
     }
 
     /* Changing the arrow position to bottom center position,
