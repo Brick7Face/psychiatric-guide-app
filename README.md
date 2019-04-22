@@ -97,6 +97,8 @@ We have setup unit tests to run automatically in a script through Travis CI, whi
  `sonar-scanner -D"sonar.projectKey=Brick7Face_psychiatric-guide-app" -D"sonar.organization=brick7face-github" -D"sonar.sources=." -D"sonar.host.url=https://sonarcloud.io" -D"sonar.login=3ea10bb00bffd52c5e9a8e1196a646ddfb7a1eec"`<br>
  This will generate a code report available on the corresponding [SonarCloud dashboard](https://sonarcloud.io/dashboard?id=Brick7Face_psychiatric-guide-app) for the project. Make sure to add the `/sonarcloud/sonar-scanner.*/bin` directory to your path before execution.
 
+ The app has been tested on Google Chrome, Mozilla Firefox, and Safari, and should work on all modern browsers. The display generally is scaled best for a screen at least 1920x1080p resolution, but still works on lower resolutions.
+
 ### 3.2.1 How to set up an automated weekly (or more frequent) build and test
 
 For automated testing, our application uses the Travis CI tool. This tool is openly available at
@@ -128,7 +130,7 @@ If logging in as an administrator, other features are available, such as access 
 
 Algorithms available are those specified in the Prescribing Pocket Guide 2012; specifically, treatment options for depression, bipolar depressed, and bipolar manic disorders. The steps and order are available through the site; however, if new algorithms need to be added or steps manipulated, it is assumed that the developers would do this. Adding the option for a prescriber to do this was outside of the scope of this project, and so the software would come preconfigured with the necessary algorithms for a prescriber. However, editing objects that would require frequent updating is available to the client through the admin site, which simply requires the correct credentials. This particular design decision was specified by the client while developing this project.
 
-Additionally, programming practices used while developing took the [Cerner compatible practices](https://fhir.cerner.com/millennium/dstu2/) into account.
+Additionally, programming practices used while developing took the [Cerner compatible practices](https://fhir.cerner.com/millennium/dstu2/) into account. The app is being submitted to Cerner for official review as well.
 
 ### 3.3.2 Class diagram for prescriber - patient relationship
 ![Class Diagram](images/Class-Diagram.png)

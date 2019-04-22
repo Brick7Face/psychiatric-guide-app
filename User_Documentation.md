@@ -137,8 +137,7 @@ From the site you may view both the User, and Developer documentation. Located i
 
 ## 4.1 Check For Updates And Bug Fixes
 
-Updates and bug fixes will be released periodically throughout the creation process and will be automatically pushed
-to the publicly available site.  
+At this point the project is intended to be released publically. There are not currently more features planned in the short term, but we will continue to maintain the code through the Github Issues list and by individual request. The code is in the process of being submitted to Cerner for review and is intended to be released there. As always, the source code is available on the [Github site](https://github.com/Brick7Face/psychiatric-guide-app).
 
 ## 4.2 Report New Bug
 
