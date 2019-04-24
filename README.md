@@ -97,6 +97,8 @@ We have setup unit tests to run automatically in a script through Travis CI, whi
  `sonar-scanner -D"sonar.projectKey=Brick7Face_psychiatric-guide-app" -D"sonar.organization=brick7face-github" -D"sonar.sources=." -D"sonar.host.url=https://sonarcloud.io" -D"sonar.login=3ea10bb00bffd52c5e9a8e1196a646ddfb7a1eec"`<br>
  This will generate a code report available on the corresponding [SonarCloud dashboard](https://sonarcloud.io/dashboard?id=Brick7Face_psychiatric-guide-app) for the project. Make sure to add the `/sonarcloud/sonar-scanner.*/bin` directory to your path before execution.
 
+ The app has been tested on Google Chrome, Mozilla Firefox, and Safari, and should work on all modern browsers. The display generally is scaled best for a screen at least 1920x1080p resolution, but still works on lower resolutions.
+
 ### 3.2.1 How to set up an automated weekly (or more frequent) build and test
 
 For automated testing, our application uses the Travis CI tool. This tool is openly available at
