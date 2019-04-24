@@ -19,6 +19,10 @@ body p{
   color: #707070;
 }
 
+body #github {
+	color: blue;
+}
+
 @media (max-width: 1200px){
   body #document_wrapper .document_content{
     width: 60vw;
